@@ -31,4 +31,11 @@ describe('base config', () => {
       .map(([ruleId]) => ruleId);
     expect(rulesWithTypes).toHaveLength(0);
   });
+
+  test('should have rule disabled if test file pattern matches', async () => {
+    const config = await loadConfig('utils.spec.js');
+    expect(config.rules['@typescript-eslint/no-non-null-assertion']).toEqual([
+      'off',
+    ]);
+  });
 });

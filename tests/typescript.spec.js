@@ -50,4 +50,11 @@ describe('base config', () => {
       .map(([ruleId]) => ruleId);
     expect(rulesWithoutTypes).toHaveLength(0);
   });
+
+  test('should have rule disabled if test file pattern matches', async () => {
+    const config = await loadConfig('index.test.ts');
+    expect(config.rules['@typescript-eslint/no-unsafe-assignment']).toEqual([
+      'off',
+    ]);
+  });
 });

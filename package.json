@@ -21,5 +21,15 @@
   "bugs": {
     "url": "https://github.com/code-pushup/eslint-config/issues"
   },
-  "homepage": "https://github.com/code-pushup/eslint-config#readme"
+  "homepage": "https://github.com/code-pushup/eslint-config#readme",
+  "peerDependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.0.0"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.11.0",
+    "@typescript-eslint/parser": "^6.11.0",
+    "eslint": "^8.53.0"
+  }
 }

@@ -1,8 +1,8 @@
 /** @type {import('jest').Config} */
 const config = {
   clearMocks: true,
-  globalSetup: './test/setup.js',
-  globalTeardown: './test/teardown.js',
+  globalSetup: './tests/helpers/setup.js',
+  globalTeardown: './tests/helpers/teardown.js',
 };
 
 module.exports = config;

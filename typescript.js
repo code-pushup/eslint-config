@@ -1,3 +1,4 @@
+const { TEST_FILE_PATTERNS } = require('./lib/patterns');
 const { NAMING_CONVENTION_OPTIONS } = require('./lib/rule-options');
 
 /** @type {import('eslint').ESLint.ConfigData} */
@@ -22,7 +23,6 @@ module.exports = {
     // ADDITIONAL RULES
 
     // https://typescript-eslint.io/rules/
-    '@typescript-eslint/no-confusing-void-expression': 'warn',
     '@typescript-eslint/naming-convention': [
       'warn',
       ...NAMING_CONVENTION_OPTIONS,

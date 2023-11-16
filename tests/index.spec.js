@@ -1,15 +1,10 @@
 const { describe, expect, test } = require('@jest/globals');
-const { ESLint } = require('eslint');
+const { setupLintUtils } = require('./helpers/lint-utils');
 
 describe('base config', () => {
-  const eslint = new ESLint({
-    baseConfig: { extends: '@code-pushup' },
-    useEslintrc: false,
+  const { loadConfig, loadRules } = setupLintUtils({
+    extends: '@code-pushup',
   });
-
-  /** @returns {Promise<import('eslint').Linter.Config>} */
-  const loadConfig = (filePath = '*.js') =>
-    eslint.calculateConfigForFile(filePath);
 
   test('should load config for JavaScript file', async () => {
     await expect(loadConfig('index.js')).resolves.not.toThrow();
@@ -27,5 +22,13 @@ describe('base config', () => {
   test('should have implicitly extended rule', async () => {
     const config = await loadConfig();
     expect(config.rules).toHaveProperty('no-const-assign');
+  });
+
+  test('should not include any rule which requires type checking', async () => {
+    const rules = await loadRules();
+    const rulesWithTypes = Object.entries(rules)
+      .filter(([, meta]) => meta.docs.requiresTypeChecking)
+      .map(([ruleId]) => ruleId);
+    expect(rulesWithTypes).toHaveLength(0);
   });
 });

@@ -26,7 +26,6 @@ module.exports = {
     // DISABLED RULES FROM EXTENDED CONFIGS
 
     '@typescript-eslint/consistent-indexed-object-style': 'off',
-    '@typescript-eslint/unbound-method': 'off',
 
     // CUSTOMIZED RULES FROM EXTENDED CONFIGS
 

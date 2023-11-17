@@ -1,7 +1,7 @@
 const { describe, expect, test } = require('@jest/globals');
 const { setupLintUtils } = require('./helpers/lint-utils');
 
-describe('base config', () => {
+describe('typescript config', () => {
   const { loadConfig, getRulesByIds } = setupLintUtils({
     extends: '@code-pushup/eslint-config/typescript',
   });

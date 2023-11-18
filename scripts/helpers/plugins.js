@@ -1,4 +1,4 @@
-/** @type {Record<string, string>} */
+/** @type {Record<string, import('./types').Icon>} */
 const pluginIcons = {
   '@typescript-eslint': 'typescript',
 };

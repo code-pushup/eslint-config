@@ -1,25 +1,54 @@
+const { configDescription, configAlias, configIcon } = require('./configs');
 const { pluginIcon, pluginDocs } = require('./plugins');
 const { parseRuleId } = require('./rules');
 
 /**
+ * Format Markdown documentation for README
+ * @param {string[]} configs Config names
+ */
+function configsToMarkdown(configs) {
+  const blocks = [
+    `## ⚙️ Configs (${configs.length})`,
+    'Configurations are available for different tech stacks.',
+    mdTable(
+      ['Stack', 'Config', 'Description'],
+      configs.map(config => {
+        const icon = configIcon(config);
+        return [
+          mdImage(
+            `https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/${icon}.png`,
+            icon,
+          ),
+          mdLink(
+            `https://github.com/code-pushup/eslint-config/blob/main/docs/${config}.md`,
+            configAlias(config),
+          ),
+          configDescription(config),
+        ];
+      }),
+    ),
+  ];
+
+  return blocks.join('\n\n');
+}
+
+/**
  * Format Markdown documentation for given config.
- * @param {string} name Config name
- * @param {string} description Config description
+ * @param {string} config Config name
  * @param {import('./types').RuleData[]} rules List of rules included in config
  */
-function configRulesToMarkdown(name, description, rules) {
-  const extendName =
-    name === 'index' ? '@code-pushup' : `@code-pushup/eslint-config/${name}`;
+function configRulesToMarkdown(config, rules) {
+  const alias = configAlias(config);
 
   const errors = rules.filter(rule => rule.level === 'error');
   const warnings = rules.filter(rule => rule.level === 'warn');
 
   const blocks = [
-    `# ${extendName} config`,
-    description,
+    `# \`${alias}\` config`,
+    configDescription(config),
     '## ⚙️ Setup',
     'Add to `extends` in your .eslintrc file:',
-    mdCodeBlock(`{\n  "extends": ["${extendName}"]\n}`, 'json'),
+    mdCodeBlock(`{\n  "extends": ["${alias}"]\n}`, 'json'),
     `## 📏 Rules (${rules.length})`,
     [
       '🔧 Automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/user-guide/command-line-interface#--fix).',
@@ -153,6 +182,13 @@ function mdImage(url, alt) {
 }
 
 /**
+ * @param {string[]} items
+ */
+function mdList(items) {
+  return items.map(item => `- ${item}\n`);
+}
+
+/**
  * @param {string} content
  * @param {'ts' | 'js' | 'json'} [lang='ts']
  */
@@ -189,5 +225,6 @@ function htmlDetails(content, summary) {
 }
 
 module.exports = {
+  configsToMarkdown,
   configRulesToMarkdown,
 };

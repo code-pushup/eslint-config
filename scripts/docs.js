@@ -5,8 +5,9 @@ const { execSync } = require('node:child_process');
 const {
   configRulesToMarkdown,
   configsToMarkdown,
-} = require('./helpers/markdown');
+} = require('./helpers/format');
 const { configs } = require('./helpers/configs');
+const { ruleLevelFromEntry } = require('./helpers/rules');
 
 const readmePath = path.join(__dirname, '..', 'README.md');
 const docsDir = path.join(__dirname, '..', 'docs');
@@ -99,25 +100,6 @@ async function generateConfigDocs(name) {
   await fs.writeFile(filePath, markdown);
 
   console.info(`Generated Markdown docs in ${filePath}`);
-}
-
-/**
- * @param {import('eslint').Linter.RuleLevelAndOptions} entry
- * @returns {import('eslint').Linter.StringSeverity}
- */
-function ruleLevelFromEntry(entry) {
-  const level = Array.isArray(entry) ? entry[0] : entry;
-  switch (level) {
-    case 0:
-    case 'off':
-      return 'off';
-    case 1:
-    case 'warn':
-      return 'warn';
-    case 2:
-    case 'error':
-      return 'error';
-  }
 }
 
 if (require.main === module) {

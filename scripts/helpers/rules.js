@@ -12,6 +12,26 @@ function parseRuleId(ruleId) {
   };
 }
 
+/**
+ * @param {import('eslint').Linter.RuleLevelAndOptions} entry
+ * @returns {import('eslint').Linter.StringSeverity}
+ */
+function ruleLevelFromEntry(entry) {
+  const level = Array.isArray(entry) ? entry[0] : entry;
+  switch (level) {
+    case 0:
+    case 'off':
+      return 'off';
+    case 1:
+    case 'warn':
+      return 'warn';
+    case 2:
+    case 'error':
+      return 'error';
+  }
+}
+
 module.exports = {
   parseRuleId,
+  ruleLevelFromEntry,
 };

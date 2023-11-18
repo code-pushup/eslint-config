@@ -17,10 +17,14 @@ function configRulesToMarkdown(name, description, rules) {
   const blocks = [
     `# ${extendName} config`,
     description,
-    '## 🔧 Usage',
-    'Add to `extends` in .eslintrc file:',
+    '## ⚙️ Setup',
+    'Add to `extends` in your .eslintrc file:',
     mdCodeBlock(`{\n  "extends": ["${extendName}"]\n}`, 'json'),
     `## 📏 Rules (${rules.length})`,
+    [
+      '🔧 Automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/user-guide/command-line-interface#--fix).',
+      '💡 Manually fixable by [editor suggestions](https://eslint.org/docs/developer-guide/working-with-rules#providing-suggestions).',
+    ].join('<br>'),
     ...(errors.length
       ? [`### 🚨 Errors (${errors.length})`, rulesTable(errors)]
       : []),
@@ -35,7 +39,7 @@ function configRulesToMarkdown(name, description, rules) {
 /** @param {import('./types').RuleData[]} rules  */
 function rulesTable(rules) {
   return mdTable(
-    ['Plugin', 'Rule', 'Description', 'Options'],
+    ['Plugin', 'Rule', 'Options', 'Autofix'],
     rules
       .sort((a, b) => {
         const { name: name1, plugin: plugin1 = '' } = parseRuleId(a.id);
@@ -44,8 +48,6 @@ function rulesTable(rules) {
       })
       .map(rule => {
         const { name, plugin } = parseRuleId(rule.id);
-        const icon = pluginIcon(plugin);
-        const pluginDocsUrl = pluginDocs(plugin);
 
         const options =
           rule.options.length > 1
@@ -55,14 +57,19 @@ function rulesTable(rules) {
               : undefined;
 
         return [
-          mdLink(
-            pluginDocsUrl,
-            mdImage(`./icons/${icon}.png`, plugin || 'ESLint core'),
-          ),
+          plugin
+            ? mdLink(
+                pluginDocs(plugin),
+                mdImage(
+                  `./icons/${pluginIcon(plugin)}.png`,
+                  plugin || 'ESLint core',
+                ),
+              )
+            : '-',
 
-          mdLink(rule.meta.docs?.url, name),
-
-          rule.meta.docs.description ?? '',
+          mdLink(rule.meta.docs?.url, name) +
+            '<br>' +
+            rule.meta.docs.description ?? '',
 
           options
             ? htmlDetails(
@@ -72,6 +79,10 @@ function rulesTable(rules) {
                 truncate(optionsPreview(options), 30),
               )
             : '-',
+
+          [rule.meta.fixable ? '🔧' : '', rule.meta.hasSuggestions ? '💡' : '']
+            .filter(Boolean)
+            .join(' ') || '-',
         ];
       }),
   );
@@ -154,20 +165,13 @@ function mdCodeBlock(content, lang = 'ts') {
  * @param {string[][]} rows
  */
 function mdTable(head, rows) {
-  const colWidths = head.map((th, i) =>
-    Math.max(th.length, ...rows.map(row => row[i].length)),
-  );
-
   /** @param {string[]} cells */
-  const toRow = (cells, char = ' ') => {
-    const paddedCells = cells.map((td, i) => td.padEnd(colWidths[i], char));
-    return '| ' + paddedCells.join(' | ') + ' |';
-  };
+  const toRow = cells => '| ' + cells.join(' | ') + ' |';
 
   return [
     toRow(head),
-    toRow(Array(head.length).fill(':--'), '-'),
-    ...rows.map(cells => toRow(cells)),
+    toRow(Array(head.length).fill(':--')),
+    ...rows.map(toRow),
   ].join('\n');
 }
 

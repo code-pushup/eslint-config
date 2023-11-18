@@ -43,7 +43,11 @@ async function generateReadmeDocs() {
   );
 
   const mdGenerated = configsToMarkdown(configs);
-  const mdGeneratedBlock = [startComment, mdGenerated, endComment].join('\n\n');
+  const mdGeneratedBlock = [
+    startComment,
+    mdGenerated.replace(/\n$/, ''),
+    endComment,
+  ].join('\n\n');
 
   const mdUpdated =
     startIndex < 0
@@ -71,7 +75,10 @@ async function generateConfigDocs(name) {
 
   /** @type {import('eslint').Linter.Config} */
   const config = await eslint.calculateConfigForFile('*.ts');
-  const ruleIds = Object.entries(config.rules)
+  /** @type {import('eslint').Linter.Config} */
+  const testConfig = await eslint.calculateConfigForFile('*.test.ts');
+  const mergedRules = { ...testConfig.rules, ...config.rules };
+  const ruleIds = Object.entries(mergedRules)
     .filter(([, entry]) => ruleLevelFromEntry(entry) !== 'off')
     .map(([ruleId]) => ruleId);
   const rules = eslint.getRulesMetaForResults([
@@ -85,12 +92,19 @@ async function generateConfigDocs(name) {
     name,
     ruleIds.map(id => {
       const entry = config.rules[id];
+      const level = ruleLevelFromEntry(entry);
+      const testLevel = ruleLevelFromEntry(testConfig.rules[id]);
       return {
         id,
         meta: rules[id],
-        level: ruleLevelFromEntry(entry),
+        level,
         ...(Array.isArray(entry) && {
           options: entry.slice(1),
+        }),
+        ...(testLevel !== level && {
+          testOverride: {
+            level: testLevel,
+          },
         }),
       };
     }),

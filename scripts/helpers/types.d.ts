@@ -1,8 +1,13 @@
+import type { Linter, Rule } from 'eslint';
+
 export type RuleData = {
   id: string;
-  meta: import('eslint').Rule.RuleMetaData;
-  level: Exclude<import('eslint').Linter.RuleEntry, 'off'>;
+  meta: Rule.RuleMetaData;
+  level: Exclude<Linter.RuleEntry, 'off'>;
   options: unknown[];
+  testOverride?: {
+    level: Linter.RuleEntry;
+  };
 };
 
 // corresponds to file names in docs/icons

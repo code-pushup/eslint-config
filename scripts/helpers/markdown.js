@@ -21,7 +21,7 @@ function mdImage(url, alt) {
  * @param {string[]} items
  */
 function mdList(items) {
-  return items.map(item => `- ${item}\n`);
+  return items.map(item => `- ${item}\n`).join('');
 }
 
 /**

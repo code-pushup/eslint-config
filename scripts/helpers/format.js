@@ -7,7 +7,11 @@ const {
   mdTable,
   mdCodeBlock,
   htmlDetails,
+  mdList,
 } = require('./markdown');
+const { TEST_FILE_PATTERNS } = require('../../lib/patterns');
+
+const testGlobsLink = '../README.md#🧪-test-overrides';
 
 /**
  * Format Markdown documentation for README
@@ -34,6 +38,10 @@ function configsToMarkdown(configs) {
         ];
       }),
     ),
+    '## 🧪 Test overrides',
+    'For non-production code, some rules are disabled (or downgraded from errors to warnings).',
+    'This applies to file paths matching any of the following globs:',
+    mdList(TEST_FILE_PATTERNS.map(pattern => '`' + pattern + '`')),
   ];
 
   return blocks.join('\n\n');
@@ -60,6 +68,8 @@ function configRulesToMarkdown(config, rules) {
     [
       '🔧 Automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/user-guide/command-line-interface#--fix).',
       '💡 Manually fixable by [editor suggestions](https://eslint.org/docs/developer-guide/working-with-rules#providing-suggestions).',
+      `🧪🚫 Disabled for [test files](${testGlobsLink})`,
+      `🧪⚠️ Severity lessened to warning for [test files](${testGlobsLink})`,
     ].join('<br>'),
     ...(errors.length
       ? [`### 🚨 Errors (${errors.length})`, rulesTable(errors)]
@@ -75,7 +85,7 @@ function configRulesToMarkdown(config, rules) {
 /** @param {import('./types').RuleData[]} rules  */
 function rulesTable(rules) {
   return mdTable(
-    ['Plugin', 'Rule', 'Options', 'Autofix'],
+    ['Plugin', 'Rule', 'Options', 'Autofix', 'Overrides'],
     rules
       .sort((a, b) => {
         const { name: name1, plugin: plugin1 = '' } = parseRuleId(a.id);
@@ -120,7 +130,13 @@ function rulesTable(rules) {
 
           [rule.meta.fixable ? '🔧' : '', rule.meta.hasSuggestions ? '💡' : '']
             .filter(Boolean)
-            .join(' ') || '-',
+            .join(', ') || '-',
+
+          rule.testOverride
+            ? rule.testOverride.level === 'off'
+              ? '🧪🚫'
+              : '🧪⚠️'
+            : '-',
         ];
       }),
   );

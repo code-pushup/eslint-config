@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# docs script
+npm run docs
+git add docs
+
+# Prettier (https://prettier.io/docs/en/precommit.html#option-5-shell-script)
+FILES=$(git diff --cached --name-only --diff-filter=ACMR | sed 's| |\\ |g')
+[ -z "$FILES" ] && exit 0
+echo "$FILES" | xargs ./node_modules/.bin/prettier --ignore-unknown --write
+echo "$FILES" | xargs git add

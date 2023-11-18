@@ -51,13 +51,13 @@ function rulesTable(rules) {
           rule.options.length > 1
             ? rule.options
             : rule.options.length === 1
-            ? rule.options[0]
-            : undefined;
+              ? rule.options[0]
+              : undefined;
 
         return [
           mdLink(
             pluginDocsUrl,
-            mdImage(`./icons/${icon}.png`, plugin || 'ESLint core')
+            mdImage(`./icons/${icon}.png`, plugin || 'ESLint core'),
           ),
 
           mdLink(rule.meta.docs?.url, name),
@@ -69,11 +69,11 @@ function rulesTable(rules) {
                 '<pre>' +
                   JSON.stringify(options, null, 2).replace(/\n/g, '<br>') +
                   '</pre>',
-                truncate(optionsPreview(options), 30)
+                truncate(optionsPreview(options), 30),
               )
             : '-',
         ];
-      })
+      }),
   );
 }
 
@@ -155,7 +155,7 @@ function mdCodeBlock(content, lang = 'ts') {
  */
 function mdTable(head, rows) {
   const colWidths = head.map((th, i) =>
-    Math.max(th.length, ...rows.map(row => row[i].length))
+    Math.max(th.length, ...rows.map(row => row[i].length)),
   );
 
   /** @param {string[]} cells */

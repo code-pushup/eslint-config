@@ -62,7 +62,7 @@ async function generateConfigDocs(name, description) {
           options: entry.slice(1),
         }),
       };
-    })
+    }),
   );
 
   const filePath = path.join(docsDir, `${name}.md`);

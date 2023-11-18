@@ -27,14 +27,14 @@ describe('typescript config', () => {
   test('should have rule from extended recommended type-checked config', async () => {
     const config = await loadConfig();
     expect(config.rules).toHaveProperty(
-      '@typescript-eslint/no-unsafe-assignment'
+      '@typescript-eslint/no-unsafe-assignment',
     );
   });
 
   test('should have rule from extended strict config', async () => {
     const config = await loadConfig();
     expect(config.rules).toHaveProperty(
-      '@typescript-eslint/no-non-null-assertion'
+      '@typescript-eslint/no-non-null-assertion',
     );
   });
 

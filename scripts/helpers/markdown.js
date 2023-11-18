@@ -103,7 +103,9 @@ function rulesTable(rules) {
           options
             ? htmlDetails(
                 '<pre>' +
-                  JSON.stringify(options, null, 2).replace(/\n/g, '<br>') +
+                  JSON.stringify(options, null, 2)
+                    .replace(/\n/g, '<br>')
+                    .replace('|', '\\|') +
                   '</pre>',
                 truncate(optionsPreview(options), 30),
               )

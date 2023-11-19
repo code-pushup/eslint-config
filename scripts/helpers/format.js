@@ -34,7 +34,7 @@ function configsToMarkdown(configs) {
         return [
           mdImage(
             `https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/${icon}.png`,
-            icon,
+            icon.replace(/^\w+\//, ''),
           ),
           mdLink(
             `https://github.com/code-pushup/eslint-config/blob/main/docs/${config}.md`,

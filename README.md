@@ -10,8 +10,8 @@ Configurations are available for different tech stacks.
 
 | Stack | Config | Description |
 | :-: | :-- | :-- |
-| ![javascript](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/javascript.png) | [@code-pushup](https://github.com/code-pushup/eslint-config/blob/main/docs/index.md) | Default configuration, suitable for any JavaScript/TypeScript project. |
-| ![typescript](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/typescript.png) | [@code-pushup/eslint-config/typescript](https://github.com/code-pushup/eslint-config/blob/main/docs/typescript.md) | Configuration for strict TypeScript projects. |
+| ![javascript](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/material/javascript.png) | [@code-pushup](https://github.com/code-pushup/eslint-config/blob/main/docs/index.md) | Default configuration, suitable for any JavaScript/TypeScript project. |
+| ![typescript](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/material/typescript.png) | [@code-pushup/eslint-config/typescript](https://github.com/code-pushup/eslint-config/blob/main/docs/typescript.md) | Configuration for strict TypeScript projects. |
 
 ### 🧪 Test overrides
 

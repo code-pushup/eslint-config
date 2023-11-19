@@ -8,8 +8,8 @@ const configs = Object.keys(configDescriptions);
 
 /** @type {Record<keyof typeof configDescriptions, import('./types').Icon>} */
 const configIcons = {
-  index: 'javascript',
-  typescript: 'typescript',
+  index: 'material/javascript',
+  typescript: 'material/typescript',
 };
 
 /**
@@ -48,6 +48,7 @@ function configDescription(name) {
 /**
  * Get icon name for given config.
  * @param {string} name Config file name without extension
+ * @returns {import('./types').Icon}
  */
 function configIcon(name) {
   if (!(name in configIcons)) {

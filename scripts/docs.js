@@ -7,7 +7,7 @@ const {
   configsToMarkdown,
 } = require('./helpers/format');
 const { configs } = require('./helpers/configs');
-const { ruleLevelFromEntry } = require('./helpers/rules');
+const { ruleLevelFromEntry, getEnabledRuleIds } = require('./helpers/rules');
 
 const readmePath = path.join(__dirname, '..', 'README.md');
 const docsDir = path.join(__dirname, '..', 'docs');
@@ -75,12 +75,42 @@ async function generateConfigDocs(name) {
 
   /** @type {import('eslint').Linter.Config} */
   const config = await eslint.calculateConfigForFile('*.ts');
+
   /** @type {import('eslint').Linter.Config} */
   const testConfig = await eslint.calculateConfigForFile('*.test.ts');
-  const mergedRules = { ...testConfig.rules, ...config.rules };
-  const ruleIds = Object.entries(mergedRules)
-    .filter(([, entry]) => ruleLevelFromEntry(entry) !== 'off')
-    .map(([ruleId]) => ruleId);
+
+  /** @type {import('eslint').Linter.Config} */
+  const exportedConfig = require(`../${name}.js`);
+  const exportedConfigExtends = Array.isArray(exportedConfig.extends)
+    ? exportedConfig.extends
+    : typeof exportedConfig.extends === 'string'
+      ? [exportedConfig.extends]
+      : [];
+  const extendedConfigs = await exportedConfigExtends
+    .filter(alias => alias.startsWith('@code-pushup'))
+    .reduce(
+      /** @param {Promise<Record<string, string[]>>} acc  */
+      async (acc, alias) => {
+        const record = await acc;
+        const eslint = new ESLint({
+          baseConfig: { extends: alias },
+          useEslintrc: false,
+        });
+        /** @type {import('eslint').Linter.Config} */
+        const { rules } = await eslint.calculateConfigForFile('*.ts');
+        return {
+          ...record,
+          [alias]: getEnabledRuleIds(rules),
+        };
+      },
+      Promise.resolve({}),
+    );
+  const extendedRuleIds = Object.values(extendedConfigs).flat();
+
+  const ruleIds = getEnabledRuleIds({
+    ...testConfig.rules,
+    ...config.rules,
+  }).filter(ruleId => !extendedRuleIds.includes(ruleId));
   const rules = eslint.getRulesMetaForResults([
     {
       messages: ruleIds.map(ruleId => ({ ruleId })),
@@ -98,9 +128,10 @@ async function generateConfigDocs(name) {
         id,
         meta: rules[id],
         level,
-        ...(Array.isArray(entry) && {
-          options: entry.slice(1),
-        }),
+        ...(Array.isArray(entry) &&
+          entry.length > 1 && {
+            options: entry.slice(1),
+          }),
         ...(testLevel !== level && {
           testOverride: {
             level: testLevel,
@@ -108,6 +139,10 @@ async function generateConfigDocs(name) {
         }),
       };
     }),
+    Object.entries(extendedConfigs).map(([alias, rules]) => ({
+      alias,
+      rulesCount: rules.length,
+    })),
   );
 
   const filePath = path.join(docsDir, `${name}.md`);

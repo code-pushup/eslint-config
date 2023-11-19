@@ -31,7 +31,17 @@ function ruleLevelFromEntry(entry) {
   }
 }
 
+/**
+ * @param {import('eslint').Linter.RulesRecord} rules
+ */
+function getEnabledRuleIds(rules) {
+  return Object.entries(rules)
+    .filter(([, entry]) => ruleLevelFromEntry(entry) !== 'off')
+    .map(([ruleId]) => ruleId);
+}
+
 module.exports = {
   parseRuleId,
   ruleLevelFromEntry,
+  getEnabledRuleIds,
 };

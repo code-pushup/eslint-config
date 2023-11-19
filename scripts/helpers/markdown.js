@@ -33,6 +33,16 @@ function mdCodeBlock(content, lang = 'ts') {
 }
 
 /**
+ * @param {string | string[]} content
+ */
+function mdQuote(content) {
+  if (Array.isArray(content)) {
+    return content.map(block => `> ${block}`).join('\n>\n');
+  }
+  return `> ${content}`;
+}
+
+/**
  * @param {string[]} head
  * @param {string[][]} rows
  */
@@ -66,5 +76,6 @@ module.exports = {
   mdList,
   mdTable,
   mdCodeBlock,
+  mdQuote,
   htmlDetails,
 };

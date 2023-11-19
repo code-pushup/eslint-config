@@ -1,4 +1,9 @@
-const { configDescription, configAlias, configIcon } = require('./configs');
+const {
+  configDescription,
+  configAlias,
+  configIcon,
+  configFromAlias,
+} = require('./configs');
 const { pluginIcon, pluginDocs } = require('./plugins');
 const { parseRuleId } = require('./rules');
 const {
@@ -8,6 +13,7 @@ const {
   mdCodeBlock,
   htmlDetails,
   mdList,
+  mdQuote,
 } = require('./markdown');
 const { TEST_FILE_PATTERNS } = require('../../lib/patterns');
 
@@ -51,12 +57,19 @@ function configsToMarkdown(configs) {
  * Format Markdown documentation for given config.
  * @param {string} config Config name
  * @param {import('./types').RuleData[]} rules List of rules included in config
+ * @param {import('./types').ExtendedConfig[]} extended List of extended Code PushUp
  */
-function configRulesToMarkdown(config, rules) {
+function configRulesToMarkdown(config, rules, extended) {
   const alias = configAlias(config);
 
   const errors = rules.filter(rule => rule.level === 'error');
   const warnings = rules.filter(rule => rule.level === 'warn');
+
+  const extendedRulesCount = extended.reduce(
+    (acc, { rulesCount }) => acc + rulesCount,
+    0,
+  );
+  const totalRulesCount = extendedRulesCount + rules.length;
 
   const blocks = [
     `# \`${alias}\` config`,
@@ -64,13 +77,37 @@ function configRulesToMarkdown(config, rules) {
     '## ⚙️ Setup',
     'Add to `extends` in your .eslintrc file:',
     mdCodeBlock(`{\n  "extends": ["${alias}"]\n}`, 'json'),
-    `## 📏 Rules (${rules.length})`,
-    [
-      '🔧 Automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/user-guide/command-line-interface#--fix).',
-      '💡 Manually fixable by [editor suggestions](https://eslint.org/docs/developer-guide/working-with-rules#providing-suggestions).',
-      `🧪🚫 Disabled for [test files](${testGlobsLink})`,
-      `🧪⚠️ Severity lessened to warning for [test files](${testGlobsLink})`,
-    ].join('<br>'),
+    `## 📏 Rules (${totalRulesCount})`,
+    ...(extended.length
+      ? [
+          `**${extendedRulesCount}** rules are included from ${
+            extended.length > 1
+              ? `${extended.length} other configs`
+              : extended[0].alias === '@code-pushup'
+                ? 'the default config'
+                : '`' + extended[0].alias + '`'
+          }. For brevity, only the **${
+            rules.length
+          }** additional rules are listed in this document.`,
+          "Refer to the extended config's docs:",
+          mdList(
+            extended.map(({ alias, rulesCount }) =>
+              mdLink(
+                `./${configFromAlias(alias)}.md#📏-rules-${rulesCount}`,
+                `\`${alias}\` rules`,
+              ),
+            ),
+          ),
+        ]
+      : []),
+    mdQuote(
+      [
+        '🔧 Automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/user-guide/command-line-interface#--fix).',
+        '💡 Manually fixable by [editor suggestions](https://eslint.org/docs/developer-guide/working-with-rules#providing-suggestions).',
+        `🧪🚫 Disabled for [test files](${testGlobsLink})`,
+        `🧪⚠️ Severity lessened to warning for [test files](${testGlobsLink})`,
+      ].join('<br>'),
+    ),
     ...(errors.length
       ? [`### 🚨 Errors (${errors.length})`, rulesTable(errors)]
       : []),
@@ -96,9 +133,9 @@ function rulesTable(rules) {
         const { name, plugin } = parseRuleId(rule.id);
 
         const options =
-          rule.options.length > 1
+          rule.options?.length > 1
             ? rule.options
-            : rule.options.length === 1
+            : rule.options?.length === 1
               ? rule.options[0]
               : undefined;
 

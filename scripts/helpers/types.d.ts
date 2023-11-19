@@ -4,10 +4,15 @@ export type RuleData = {
   id: string;
   meta: Rule.RuleMetaData;
   level: Exclude<Linter.RuleEntry, 'off'>;
-  options: unknown[];
+  options?: unknown[];
   testOverride?: {
     level: Linter.RuleEntry;
   };
+};
+
+export type ExtendedConfig = {
+  alias: string;
+  rulesCount: number;
 };
 
 // corresponds to file names in docs/icons

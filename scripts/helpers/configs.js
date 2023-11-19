@@ -24,6 +24,17 @@ function configAlias(name) {
 }
 
 /**
+ * Get config file name (without extension) from `extends` alias.
+ * @param {string} alias Config file name without extension
+ */
+function configFromAlias(alias) {
+  if (alias === '@code-pushup') {
+    return 'index';
+  }
+  return alias.slice(alias.lastIndexOf('/') + 1);
+}
+
+/**
  * Get description for given config.
  * @param {string} name Config file name without extension
  */
@@ -49,5 +60,6 @@ module.exports = {
   configs,
   configDescription,
   configAlias,
+  configFromAlias,
   configIcon,
 };

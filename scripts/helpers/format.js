@@ -25,7 +25,7 @@ const testGlobsLink = '../README.md#🧪-test-overrides';
  */
 function configsToMarkdown(configs) {
   const blocks = [
-    `## ⚙️ Configs (${configs.length})`,
+    '## ⚙️ Configs',
     'Configurations are available for different tech stacks.',
     mdTable(
       ['Stack', 'Config', 'Description'],
@@ -43,8 +43,9 @@ function configsToMarkdown(configs) {
           configDescription(config),
         ];
       }),
+      ['c', 'l', 'l'],
     ),
-    '## 🧪 Test overrides',
+    '### 🧪 Test overrides',
     'For non-production code, some rules are disabled (or downgraded from errors to warnings).',
     'This applies to file paths matching any of the following globs:',
     mdList(TEST_FILE_PATTERNS.map(pattern => '`' + pattern + '`')),
@@ -104,8 +105,8 @@ function configRulesToMarkdown(config, rules, extended) {
       [
         '🔧 Automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/user-guide/command-line-interface#--fix).',
         '💡 Manually fixable by [editor suggestions](https://eslint.org/docs/developer-guide/working-with-rules#providing-suggestions).',
-        `🧪🚫 Disabled for [test files](${testGlobsLink})`,
-        `🧪⚠️ Severity lessened to warning for [test files](${testGlobsLink})`,
+        `🧪🚫 Disabled for [test files](${testGlobsLink}).`,
+        `🧪⚠️ Severity lessened to warning for [test files](${testGlobsLink}).`,
       ].join('<br>'),
     ),
     ...(errors.length
@@ -148,7 +149,7 @@ function rulesTable(rules) {
                   plugin || 'ESLint core',
                 ),
               )
-            : '-',
+            : '',
 
           mdLink(rule.meta.docs?.url, name) +
             '<br>' +
@@ -163,19 +164,20 @@ function rulesTable(rules) {
                   '</pre>',
                 truncate(optionsPreview(options), 30),
               )
-            : '-',
+            : '',
 
           [rule.meta.fixable ? '🔧' : '', rule.meta.hasSuggestions ? '💡' : '']
             .filter(Boolean)
-            .join(', ') || '-',
+            .join(', ') || '',
 
           rule.testOverride
             ? rule.testOverride.level === 'off'
               ? '🧪🚫'
               : '🧪⚠️'
-            : '-',
+            : '',
         ];
       }),
+    ['c', 'l', 'l', 'c', 'c'],
   );
 }
 

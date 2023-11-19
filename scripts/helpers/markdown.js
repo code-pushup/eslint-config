@@ -45,14 +45,26 @@ function mdQuote(content) {
 /**
  * @param {string[]} head
  * @param {string[][]} rows
+ * @param {('l' | 'c' | 'r')[] | undefined} align
  */
-function mdTable(head, rows) {
+function mdTable(head, rows, align) {
   /** @param {string[]} cells */
   const toRow = cells => '| ' + cells.join(' | ') + ' |';
 
+  /** @type {Record<(typeof align)[number], string>} */
+  const alignments = {
+    l: ':--',
+    c: ':-:',
+    r: '--:',
+  };
+
   return [
     toRow(head),
-    toRow(Array(head.length).fill(':--')),
+    toRow(
+      Array.from({ length: head.length }).map(
+        (_, i) => alignments[align?.[i] ?? 'l'],
+      ),
+    ),
     ...rows.map(toRow),
   ].join('\n');
 }

@@ -15,5 +15,14 @@ export type ExtendedConfig = {
   rulesCount: number;
 };
 
-// corresponds to file names in docs/icons
-export type Icon = 'javascript' | 'typescript';
+// corresponds to PNG file names in docs/icons
+export type Icon =
+  | 'expired'
+  | 'import'
+  | 'javascript'
+  | 'lambda'
+  | 'promise'
+  | 'secure'
+  | 'sonar'
+  | 'typescript'
+  | 'unicorn';

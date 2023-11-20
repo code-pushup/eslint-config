@@ -31,10 +31,19 @@
     "eslint-plugin-deprecation": "^2.0.0",
     "eslint-plugin-functional": "^6.0.0",
     "eslint-plugin-import": "^2.25.0",
+    "eslint-plugin-n": "^16.0.0",
     "eslint-plugin-no-secrets": "^0.8.0",
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-sonarjs": "^0.11.0",
     "eslint-plugin-unicorn": "^40.0.0"
+  },
+  "peerDependenciesMeta": {
+    "eslint-plugin-deprecation": {
+      "optional": true
+    },
+    "eslint-plugin-n": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^6.11.0",
@@ -43,6 +52,7 @@
     "eslint-plugin-deprecation": "^2.0.0",
     "eslint-plugin-functional": "^6.0.0",
     "eslint-plugin-import": "^2.29.0",
+    "eslint-plugin-n": "^16.3.1",
     "eslint-plugin-no-secrets": "^0.8.9",
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-sonarjs": "^0.23.0",

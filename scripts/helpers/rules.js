@@ -1,6 +1,8 @@
 /** @param {string} ruleId  */
 function parseRuleId(ruleId) {
-  const i = ruleId.lastIndexOf('/');
+  const i = ruleId.startsWith('@')
+    ? ruleId.lastIndexOf('/')
+    : ruleId.indexOf('/');
   if (i < 0) {
     return {
       name: ruleId,

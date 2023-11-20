@@ -2,6 +2,7 @@ const configDescriptions = {
   index:
     'Default configuration, suitable for any JavaScript/TypeScript project.',
   typescript: 'Configuration for strict TypeScript projects.',
+  node: 'Configuration for Node.js projects.',
 };
 
 const configs = Object.keys(configDescriptions);
@@ -10,6 +11,7 @@ const configs = Object.keys(configDescriptions);
 const configIcons = {
   index: 'material/javascript',
   typescript: 'material/typescript',
+  node: 'material/nodejs',
 };
 
 /**

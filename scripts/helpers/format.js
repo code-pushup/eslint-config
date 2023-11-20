@@ -153,7 +153,7 @@ function rulesTable(rules) {
 
           mdLink(rule.meta.docs?.url, name) +
             '<br>' +
-            rule.meta.docs.description ?? '',
+            (rule.meta.docs.description ?? ''),
 
           options
             ? htmlDetails(

@@ -2,9 +2,10 @@ const { describe, expect, test } = require('@jest/globals');
 const { setupLintUtils } = require('./helpers/lint-utils');
 
 describe('base config', () => {
-  const { loadConfig, loadRules } = setupLintUtils({
-    extends: '@code-pushup',
-  });
+  const { loadConfig, loadRules, lint } = setupLintUtils(
+    { extends: '@code-pushup' },
+    '*.js',
+  );
 
   test('should load config for JavaScript file', async () => {
     await expect(loadConfig('index.js')).resolves.not.toThrow();
@@ -37,5 +38,9 @@ describe('base config', () => {
     expect(config.rules['@typescript-eslint/no-non-null-assertion']).toEqual([
       'off',
     ]);
+  });
+
+  test('should not throw when linting project without tsconfig', async () => {
+    await expect(lint(['*.js', 'lib/*.js'])).resolves.not.toThrow();
   });
 });

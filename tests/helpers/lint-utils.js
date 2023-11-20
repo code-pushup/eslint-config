@@ -20,7 +20,7 @@ function setupLintUtils(config, defaultFilePath = '*.ts') {
   const getRulesByIds = ruleIds =>
     eslint.getRulesMetaForResults([
       {
-        messages: [ruleIds.map(ruleId => ({ ruleId }))],
+        messages: ruleIds.map(ruleId => ({ ruleId })),
         suppressedMessages: [],
       },
     ]);
@@ -30,10 +30,14 @@ function setupLintUtils(config, defaultFilePath = '*.ts') {
     return getRulesByIds(Object.keys(config.rules));
   };
 
+  /** @param {string | string[]} patterns */
+  const lint = (patterns = defaultFilePath) => eslint.lintFiles(patterns);
+
   return {
     loadConfig,
     loadRules,
     getRulesByIds,
+    lint,
   };
 }
 

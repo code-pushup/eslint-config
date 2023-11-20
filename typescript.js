@@ -7,6 +7,8 @@ module.exports = {
     '@code-pushup',
     'plugin:@typescript-eslint/recommended-type-checked',
     'plugin:@typescript-eslint/strict',
+    'plugin:import/typescript',
+    'plugin:deprecation/recommended',
   ],
   rules: {
     // DISABLED RULES FROM EXTENDED CONFIGS

@@ -20,8 +20,12 @@ module.exports = {
     'eslint:recommended',
     'plugin:@typescript-eslint/eslint-recommended',
     'plugin:@typescript-eslint/recommended',
+    'plugin:import/recommended',
+    'plugin:sonarjs/recommended',
+    'plugin:promise/recommended',
     ...(isPrettierAvailable ? ['prettier'] : []),
   ],
+
   rules: {
     // DISABLED RULES FROM EXTENDED CONFIGS
 
@@ -74,7 +78,23 @@ module.exports = {
     '@typescript-eslint/method-signature-style': 'warn',
     '@typescript-eslint/no-shadow': 'warn',
     '@typescript-eslint/no-unused-expressions': 'warn',
+
+    // https://github.com/import-js/eslint-plugin-import#rules
+    'import/extensions': ['warn', 'never', { json: 'always' }],
+    'import/max-dependencies': ['warn', { ignoreTypeImports: true }],
+    'import/no-absolute-path': 'error',
+    'import/no-amd': 'error',
+    'import/no-anonymous-default-export': 'warn',
+    'import/no-commonjs': 'error',
+    'import/no-cycle': 'error',
+    'import/no-deprecated': 'warn',
+    'import/no-mutable-exports': 'error',
+    'import/no-named-default': 'warn',
+    'import/no-self-import': 'error',
+    'import/no-unassigned-import': 'warn',
+    'import/no-useless-path-segments': 'warn',
   },
+
   overrides: [
     {
       files: TEST_FILE_PATTERNS,
@@ -85,6 +105,7 @@ module.exports = {
         'max-lines-per-function': 'off',
         curly: 'off',
         '@typescript-eslint/no-non-null-assertion': 'off',
+        'sonarjs/no-duplicate-string': 'off',
       },
     },
   ],

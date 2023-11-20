@@ -2,9 +2,10 @@ const { describe, expect, test } = require('@jest/globals');
 const { setupLintUtils } = require('./helpers/lint-utils');
 
 describe('typescript config', () => {
-  const { loadConfig, getRulesByIds } = setupLintUtils({
-    extends: '@code-pushup/eslint-config/typescript',
-  });
+  const { loadConfig, getRulesByIds } = setupLintUtils(
+    { extends: '@code-pushup/eslint-config/typescript' },
+    '*.ts',
+  );
 
   test('should load config for JavaScript file', async () => {
     await expect(loadConfig('src/utils.js')).resolves.not.toThrow();

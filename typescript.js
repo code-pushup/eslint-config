@@ -11,16 +11,16 @@ module.exports = {
     'plugin:deprecation/recommended',
   ],
   rules: {
-    // DISABLED RULES FROM EXTENDED CONFIGS
-
-    '@typescript-eslint/unbound-method': 'off',
-
     // CUSTOMIZED RULES FROM EXTENDED CONFIGS
 
     '@typescript-eslint/prefer-nullish-coalescing': [
       'warn',
       { ignorePrimitives: { string: true } },
     ],
+
+    // DISABLED RULES FROM EXTENDED CONFIGS
+
+    '@typescript-eslint/unbound-method': 'off',
 
     // ADDITIONAL RULES
 

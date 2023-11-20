@@ -1,5 +1,6 @@
 const { TEST_FILE_PATTERNS } = require('./lib/patterns');
 const { packageExists } = require('./lib/utils');
+const unicorn = require('eslint-plugin-unicorn');
 
 const isPrettierAvailable =
   packageExists('prettier') && packageExists('eslint-config-prettier');
@@ -23,17 +24,33 @@ module.exports = {
     'plugin:import/recommended',
     'plugin:sonarjs/recommended',
     'plugin:promise/recommended',
+    'plugin:unicorn/recommended',
     ...(isPrettierAvailable ? ['prettier'] : []),
   ],
 
   rules: {
-    // DISABLED RULES FROM EXTENDED CONFIGS
-
-    '@typescript-eslint/consistent-indexed-object-style': 'off',
-
     // CUSTOMIZED RULES FROM EXTENDED CONFIGS
 
     '@typescript-eslint/consistent-type-definitions': ['warn', 'type'],
+    // convert unicorn errors to warnings
+    ...Object.entries(unicorn.configs.recommended.rules).reduce(
+      (acc, [ruleId, entry]) => ({
+        ...acc,
+        [ruleId]: entry === 'error' ? 'warn' : entry,
+      }),
+      {},
+    ),
+
+    // DISABLED RULES FROM EXTENDED CONFIGS
+
+    '@typescript-eslint/consistent-indexed-object-style': 'off',
+    'unicorn/prevent-abbreviations': 'off',
+    'unicorn/no-array-for-each': 'off',
+    'unicorn/no-array-reduce': 'off',
+    'unicorn/no-array-callback-reference': 'off',
+    'unicorn/no-null': 'off',
+    'unicorn/prefer-export-from': 'off',
+    'unicorn/no-object-as-default-parameter': 'off',
 
     // ADDITIONAL RULES
 

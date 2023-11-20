@@ -43,4 +43,15 @@ describe('base config', () => {
   test('should not throw when linting project without tsconfig', async () => {
     await expect(lint(['*.js', 'lib/*.js'])).resolves.not.toThrow();
   });
+
+  test('should only warn for all unicorn plugin rules', async () => {
+    const config = await loadConfig();
+    const unicornErrorRules = Object.entries(config.rules)
+      .filter(([ruleId]) => ruleId.startsWith('unicorn/'))
+      .filter(([, entry]) => {
+        const severity = Array.isArray(entry) ? entry[0] : entry;
+        return severity === 'error' || severity === 2;
+      });
+    expect(unicornErrorRules).toHaveLength(0);
+  });
 });

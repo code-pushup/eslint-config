@@ -35,13 +35,17 @@
     "eslint-plugin-no-secrets": "^0.8.0",
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-sonarjs": "^0.11.0",
-    "eslint-plugin-unicorn": "^40.0.0"
+    "eslint-plugin-unicorn": "^40.0.0",
+    "eslint-plugin-vitest": "^0.3.0"
   },
   "peerDependenciesMeta": {
     "eslint-plugin-deprecation": {
       "optional": true
     },
     "eslint-plugin-n": {
+      "optional": true
+    },
+    "eslint-plugin-vitest": {
       "optional": true
     }
   },
@@ -57,6 +61,7 @@
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-sonarjs": "^0.23.0",
     "eslint-plugin-unicorn": "^49.0.0",
+    "eslint-plugin-vitest": "^0.3.10",
     "husky": "^8.0.0",
     "jest": "^29.7.0",
     "prettier": "3.1.0"

@@ -3,6 +3,7 @@ const configDescriptions = {
     'Default configuration, suitable for any JavaScript/TypeScript project.',
   typescript: 'Configuration for strict TypeScript projects.',
   node: 'Configuration for Node.js projects.',
+  vitest: 'Configuration for projects with tests written in Vitest.',
 };
 
 const configs = Object.keys(configDescriptions);
@@ -12,6 +13,12 @@ const configIcons = {
   index: 'material/javascript',
   typescript: 'material/typescript',
   node: 'material/nodejs',
+  vitest: 'material/vitest',
+};
+
+/** @type {Partial<Record<keyof typeof configDescriptions, string>>} */
+const configPatterns = {
+  vitest: '*.test.ts',
 };
 
 /**
@@ -59,10 +66,22 @@ function configIcon(name) {
   return configIcons[name];
 }
 
+/**
+ * Get file pattern for given config.
+ * @param {string} name Config file name without extension
+ */
+function configPattern(name) {
+  if (!(name in configPatterns)) {
+    return '*.ts';
+  }
+  return configPatterns[name];
+}
+
 module.exports = {
   configs,
   configDescription,
   configAlias,
   configFromAlias,
   configIcon,
+  configPattern,
 };

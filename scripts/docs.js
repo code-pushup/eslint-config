@@ -6,7 +6,7 @@ const {
   configRulesToMarkdown,
   configsToMarkdown,
 } = require('./helpers/format');
-const { configs } = require('./helpers/configs');
+const { configs, configPattern } = require('./helpers/configs');
 const { ruleLevelFromEntry, getEnabledRuleIds } = require('./helpers/rules');
 
 const readmePath = path.join(__dirname, '..', 'README.md');
@@ -74,7 +74,7 @@ async function generateConfigDocs(name) {
   });
 
   /** @type {import('eslint').Linter.Config} */
-  const config = await eslint.calculateConfigForFile('*.ts');
+  const config = await eslint.calculateConfigForFile(configPattern(name));
 
   /** @type {import('eslint').Linter.Config} */
   const testConfig = await eslint.calculateConfigForFile('*.test.ts');
@@ -97,7 +97,9 @@ async function generateConfigDocs(name) {
           useEslintrc: false,
         });
         /** @type {import('eslint').Linter.Config} */
-        const { rules } = await eslint.calculateConfigForFile('*.ts');
+        const { rules } = await eslint.calculateConfigForFile(
+          configPattern(name),
+        );
         return {
           ...record,
           [alias]: getEnabledRuleIds(rules),

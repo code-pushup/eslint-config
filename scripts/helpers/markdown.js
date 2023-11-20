@@ -82,6 +82,16 @@ function htmlDetails(content, summary) {
   ].join('');
 }
 
+/**
+ * @param {string} content
+ */
+function mdTableCellSanitize(content) {
+  return content
+    .replace(/\\/g, '\\\\')
+    .replace('|', '\\|')
+    .replace(/\*/g, '\\*');
+}
+
 module.exports = {
   mdLink,
   mdImage,
@@ -90,4 +100,5 @@ module.exports = {
   mdCodeBlock,
   mdQuote,
   htmlDetails,
+  mdTableCellSanitize,
 };

@@ -14,6 +14,7 @@ const {
   htmlDetails,
   mdList,
   mdQuote,
+  mdTableCellSanitize,
 } = require('./markdown');
 const { TEST_FILE_PATTERNS } = require('../../lib/patterns');
 
@@ -158,11 +159,12 @@ function rulesTable(rules) {
           options
             ? htmlDetails(
                 '<pre>' +
-                  JSON.stringify(options, null, 2)
-                    .replace(/\n/g, '<br>')
-                    .replace('|', '\\|') +
+                  mdTableCellSanitize(JSON.stringify(options, null, 2)).replace(
+                    /\n/g,
+                    '<br>',
+                  ) +
                   '</pre>',
-                truncate(optionsPreview(options), 30),
+                truncate(mdTableCellSanitize(optionsPreview(options)), 30),
               )
             : '',
 

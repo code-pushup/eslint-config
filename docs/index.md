@@ -12,11 +12,11 @@ Add to `extends` in your .eslintrc file:
 }
 ```
 
-## 📏 Rules (249)
+## 📏 Rules (255)
 
 > 🔧 Automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/user-guide/command-line-interface#--fix).<br>💡 Manually fixable by [editor suggestions](https://eslint.org/docs/developer-guide/working-with-rules#providing-suggestions).<br>🧪🚫 Disabled for [test files](../README.md#🧪-test-overrides).<br>🧪⚠️ Severity lessened to warning for [test files](../README.md#🧪-test-overrides).
 
-### 🚨 Errors (118)
+### 🚨 Errors (120)
 
 | Plugin | Rule | Options | Autofix | Overrides |
 | :-: | :-- | :-- | :-: | :-: |
@@ -92,6 +92,7 @@ Add to `extends` in your .eslintrc file:
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [no-var-requires](https://typescript-eslint.io/rules/no-var-requires)<br>Disallow `require` statements except in import statements |  |  |  |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [prefer-as-const](https://typescript-eslint.io/rules/prefer-as-const)<br>Enforce the use of `as const` over literal type |  | 🔧, 💡 |  |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [triple-slash-reference](https://typescript-eslint.io/rules/triple-slash-reference)<br>Disallow certain triple slash directives in favor of ES6-style import declarations |  |  |  |
+| [![functional](./icons/icons8/lambda.png)](https://github.com/eslint-functional/eslint-plugin-functional#readme) | [immutable-data](https://github.com/eslint-functional/eslint-plugin-functional/blob/v6.0.0/docs/rules/immutable-data.md)<br>Enforce treating data as immutable. | <details><summary>ignoreImmediateMutation: true</summary><pre>{<br>  "ignoreImmediateMutation": true<br>}</pre></details> |  | 🧪⚠️ |
 | [![import](./icons/icons8/import.png)](https://github.com/import-js/eslint-plugin-import#readme) | [default](https://github.com/import-js/eslint-plugin-import/blob/v2.29.0/docs/rules/default.md)<br>Ensure a default export is present, given a default import. |  |  |  |
 | [![import](./icons/icons8/import.png)](https://github.com/import-js/eslint-plugin-import#readme) | [export](https://github.com/import-js/eslint-plugin-import/blob/v2.29.0/docs/rules/export.md)<br>Forbid any invalid exports, i.e. re-export of the same name. |  |  |  |
 | [![import](./icons/icons8/import.png)](https://github.com/import-js/eslint-plugin-import#readme) | [named](https://github.com/import-js/eslint-plugin-import/blob/v2.29.0/docs/rules/named.md)<br>Ensure named imports correspond to a named export in the remote file. |  |  |  |
@@ -103,6 +104,7 @@ Add to `extends` in your .eslintrc file:
 | [![import](./icons/icons8/import.png)](https://github.com/import-js/eslint-plugin-import#readme) | [no-mutable-exports](https://github.com/import-js/eslint-plugin-import/blob/v2.29.0/docs/rules/no-mutable-exports.md)<br>Forbid the use of mutable exports with `var` or `let`. |  |  |  |
 | [![import](./icons/icons8/import.png)](https://github.com/import-js/eslint-plugin-import#readme) | [no-self-import](https://github.com/import-js/eslint-plugin-import/blob/v2.29.0/docs/rules/no-self-import.md)<br>Forbid a module from importing itself. |  |  |  |
 | [![import](./icons/icons8/import.png)](https://github.com/import-js/eslint-plugin-import#readme) | [no-unresolved](https://github.com/import-js/eslint-plugin-import/blob/v2.29.0/docs/rules/no-unresolved.md)<br>Ensure imports point to a file/module that can be resolved. |  |  |  |
+| [![no-secrets](./icons/icons8/secure.png)](https://github.com/nickdeis/eslint-plugin-no-secrets#readme) | no-secrets<br>An eslint rule that looks for possible leftover secrets in code | <details><summary>additionalDelimiters: -, ig...</summary><pre>{<br>  "additionalDelimiters": [<br>    "-"<br>  ],<br>  "ignoreContent": "https://"<br>}</pre></details> |  |  |
 | [![promise](./icons/icons8/promise.png)](https://github.com/eslint-community/eslint-plugin-promise#readme) | [always-return](https://github.com/eslint-community/eslint-plugin-promise/blob/main/docs/rules/always-return.md)<br> |  |  |  |
 | [![promise](./icons/icons8/promise.png)](https://github.com/eslint-community/eslint-plugin-promise#readme) | [catch-or-return](https://github.com/eslint-community/eslint-plugin-promise/blob/main/docs/rules/catch-or-return.md)<br> |  |  |  |
 | [![promise](./icons/icons8/promise.png)](https://github.com/eslint-community/eslint-plugin-promise#readme) | [no-new-statics](https://github.com/eslint-community/eslint-plugin-promise/blob/main/docs/rules/no-new-statics.md)<br> |  | 🔧 |  |
@@ -139,7 +141,7 @@ Add to `extends` in your .eslintrc file:
 | [![sonarjs](./icons/other/sonar.png)](https://github.com/SonarSource/eslint-plugin-sonarjs#readme) | [prefer-single-boolean-return](https://github.com/SonarSource/eslint-plugin-sonarjs/blob/master/docs/rules/prefer-single-boolean-return.md)<br>Return of boolean expressions should not be wrapped into an "if-then-else" statement |  | 💡 |  |
 | [![sonarjs](./icons/other/sonar.png)](https://github.com/SonarSource/eslint-plugin-sonarjs#readme) | [prefer-while](https://github.com/SonarSource/eslint-plugin-sonarjs/blob/master/docs/rules/prefer-while.md)<br>A "while" loop should be used instead of a "for" loop |  | 🔧 |  |
 
-### ⚠️ Warnings (131)
+### ⚠️ Warnings (135)
 
 | Plugin | Rule | Options | Autofix | Overrides |
 | :-: | :-- | :-- | :-: | :-: |
@@ -163,6 +165,10 @@ Add to `extends` in your .eslintrc file:
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [method-signature-style](https://typescript-eslint.io/rules/method-signature-style)<br>Enforce using a particular method signature syntax |  | 🔧 |  |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [no-shadow](https://typescript-eslint.io/rules/no-shadow)<br>Disallow variable declarations from shadowing variables declared in the outer scope |  |  |  |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [no-unused-expressions](https://typescript-eslint.io/rules/no-unused-expressions)<br>Disallow unused expressions |  |  |  |
+| [![functional](./icons/icons8/lambda.png)](https://github.com/eslint-functional/eslint-plugin-functional#readme) | [no-let](https://github.com/eslint-functional/eslint-plugin-functional/blob/v6.0.0/docs/rules/no-let.md)<br>Disallow mutable variables. |  |  | 🧪🚫 |
+| [![functional](./icons/icons8/lambda.png)](https://github.com/eslint-functional/eslint-plugin-functional#readme) | [no-loop-statements](https://github.com/eslint-functional/eslint-plugin-functional/blob/v6.0.0/docs/rules/no-loop-statements.md)<br>Disallow imperative loops. |  |  |  |
+| [![functional](./icons/icons8/lambda.png)](https://github.com/eslint-functional/eslint-plugin-functional#readme) | [prefer-property-signatures](https://github.com/eslint-functional/eslint-plugin-functional/blob/v6.0.0/docs/rules/prefer-property-signatures.md)<br>Prefer property signatures over method signatures. |  |  |  |
+| [![functional](./icons/icons8/lambda.png)](https://github.com/eslint-functional/eslint-plugin-functional#readme) | [prefer-tacit](https://github.com/eslint-functional/eslint-plugin-functional/blob/v6.0.0/docs/rules/prefer-tacit.md)<br>Replaces `x => f(x)` with just `f`. |  | 💡 |  |
 | [![import](./icons/icons8/import.png)](https://github.com/import-js/eslint-plugin-import#readme) | [extensions](https://github.com/import-js/eslint-plugin-import/blob/v2.29.0/docs/rules/extensions.md)<br>Ensure consistent use of file extension within the import path. | <details><summary>never, json: always</summary><pre>[<br>  "never",<br>  {<br>    "json": "always"<br>  }<br>]</pre></details> |  |  |
 | [![import](./icons/icons8/import.png)](https://github.com/import-js/eslint-plugin-import#readme) | [max-dependencies](https://github.com/import-js/eslint-plugin-import/blob/v2.29.0/docs/rules/max-dependencies.md)<br>Enforce the maximum number of dependencies a module can have. | <details><summary>ignoreTypeImports: true</summary><pre>{<br>  "ignoreTypeImports": true<br>}</pre></details> |  |  |
 | [![import](./icons/icons8/import.png)](https://github.com/import-js/eslint-plugin-import#readme) | [no-anonymous-default-export](https://github.com/import-js/eslint-plugin-import/blob/v2.29.0/docs/rules/no-anonymous-default-export.md)<br>Forbid anonymous values as default exports. |  |  |  |
@@ -181,7 +187,7 @@ Add to `extends` in your .eslintrc file:
 | [![unicorn](./icons/icons8/unicorn.png)](https://github.com/sindresorhus/eslint-plugin-unicorn#readme) | [better-regex](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v49.0.0/docs/rules/better-regex.md)<br>Improve regexes by making them shorter, consistent, and safer. |  | 🔧 |  |
 | [![unicorn](./icons/icons8/unicorn.png)](https://github.com/sindresorhus/eslint-plugin-unicorn#readme) | [catch-error-name](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v49.0.0/docs/rules/catch-error-name.md)<br>Enforce a specific parameter name in catch clauses. |  | 🔧 |  |
 | [![unicorn](./icons/icons8/unicorn.png)](https://github.com/sindresorhus/eslint-plugin-unicorn#readme) | [consistent-destructuring](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v49.0.0/docs/rules/consistent-destructuring.md)<br>Use destructured variables over properties. |  | 🔧, 💡 |  |
-| [![unicorn](./icons/icons8/unicorn.png)](https://github.com/sindresorhus/eslint-plugin-unicorn#readme) | [consistent-function-scoping](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v49.0.0/docs/rules/consistent-function-scoping.md)<br>Move function definitions to the highest possible scope. |  |  |  |
+| [![unicorn](./icons/icons8/unicorn.png)](https://github.com/sindresorhus/eslint-plugin-unicorn#readme) | [consistent-function-scoping](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v49.0.0/docs/rules/consistent-function-scoping.md)<br>Move function definitions to the highest possible scope. |  |  | 🧪🚫 |
 | [![unicorn](./icons/icons8/unicorn.png)](https://github.com/sindresorhus/eslint-plugin-unicorn#readme) | [empty-brace-spaces](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v49.0.0/docs/rules/empty-brace-spaces.md)<br>Enforce no spaces between braces. |  | 🔧 |  |
 | [![unicorn](./icons/icons8/unicorn.png)](https://github.com/sindresorhus/eslint-plugin-unicorn#readme) | [error-message](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v49.0.0/docs/rules/error-message.md)<br>Enforce passing a `message` value when creating a built-in error. |  |  |  |
 | [![unicorn](./icons/icons8/unicorn.png)](https://github.com/sindresorhus/eslint-plugin-unicorn#readme) | [escape-case](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v49.0.0/docs/rules/escape-case.md)<br>Require escape sequences to use uppercase values. |  | 🔧 |  |

@@ -10,6 +10,7 @@ module.exports = {
     'plugin:import/typescript',
     'plugin:deprecation/recommended',
   ],
+
   rules: {
     // CUSTOMIZED RULES FROM EXTENDED CONFIGS
 
@@ -30,6 +31,7 @@ module.exports = {
       ...NAMING_CONVENTION_OPTIONS,
     ],
   },
+
   overrides: [
     {
       files: TEST_FILE_PATTERNS,

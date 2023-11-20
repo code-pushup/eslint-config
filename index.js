@@ -16,7 +16,9 @@ module.exports = {
     ecmaVersion: 2020,
     sourceType: 'module',
   },
-  plugins: ['@typescript-eslint'],
+
+  plugins: ['@typescript-eslint', 'functional', 'no-secrets'],
+
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/eslint-recommended',
@@ -110,6 +112,19 @@ module.exports = {
     'import/no-self-import': 'error',
     'import/no-unassigned-import': 'warn',
     'import/no-useless-path-segments': 'warn',
+
+    // https://github.com/eslint-functional/eslint-plugin-functional#rules
+    'functional/immutable-data': ['error', { ignoreImmediateMutation: true }],
+    'functional/no-let': 'warn',
+    'functional/no-loop-statements': 'warn',
+    'functional/prefer-property-signatures': 'warn',
+    'functional/prefer-tacit': 'warn',
+
+    // https://github.com/nickdeis/eslint-plugin-no-secrets#readme
+    'no-secrets/no-secrets': [
+      'error',
+      { additionalDelimiters: ['-'], ignoreContent: 'https://' },
+    ],
   },
 
   overrides: [
@@ -123,6 +138,15 @@ module.exports = {
         curly: 'off',
         '@typescript-eslint/no-non-null-assertion': 'off',
         'sonarjs/no-duplicate-string': 'off',
+        'unicorn/consistent-function-scoping': 'off',
+        'functional/no-let': 'off',
+
+        // CUSTOMIZED RULES FOR TEST FILES
+
+        'functional/immutable-data': [
+          'warn',
+          { ignoreImmediateMutation: true },
+        ],
       },
     },
   ],

@@ -7,6 +7,12 @@ module.exports = {
       files: UNIT_TEST_FILE_PATTERNS,
       extends: ['plugin:vitest/recommended'],
       rules: {
+        // CUSTOMIZED RULES FROM EXTENDED CONFIGS
+
+        'vitest/prefer-to-be': 'warn',
+
+        // ADDITIONAL RULES
+
         // https://github.com/veritem/eslint-plugin-vitest#rules
         'vitest/consistent-test-filename': [
           'warn',
@@ -26,11 +32,11 @@ module.exports = {
         'vitest/no-test-return-statement': 'warn',
         'vitest/prefer-comparison-matcher': 'warn',
         'vitest/prefer-each': 'warn',
+        'vitest/prefer-expect-resolves': 'warn',
         'vitest/prefer-equality-matcher': 'warn',
         'vitest/prefer-hooks-on-top': 'warn',
         'vitest/prefer-mock-promise-shorthand': 'warn',
         'vitest/prefer-spy-on': 'warn',
-        'vitest/prefer-to-be': 'warn',
         'vitest/prefer-to-contain': 'warn',
         'vitest/prefer-to-have-length': 'warn',
         'vitest/prefer-todo': 'warn',

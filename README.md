@@ -10,10 +10,11 @@ Configurations are available for different tech stacks.
 
 | Stack | Config | Description |
 | :-: | :-- | :-- |
-| ![javascript](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/material/javascript.png) | [@code-pushup](https://github.com/code-pushup/eslint-config/blob/main/docs/index.md) | Default configuration, suitable for any JavaScript/TypeScript project. |
-| ![typescript](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/material/typescript.png) | [@code-pushup/eslint-config/typescript](https://github.com/code-pushup/eslint-config/blob/main/docs/typescript.md) | Configuration for strict TypeScript projects. |
-| ![nodejs](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/material/nodejs.png) | [@code-pushup/eslint-config/node](https://github.com/code-pushup/eslint-config/blob/main/docs/node.md) | Configuration for Node.js projects. |
-| ![vitest](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/material/vitest.png) | [@code-pushup/eslint-config/vitest](https://github.com/code-pushup/eslint-config/blob/main/docs/vitest.md) | Configuration for projects with tests written in Vitest. |
+| ![javascript](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/material/javascript.png) | [@code-pushup](https://github.com/code-pushup/eslint-config/blob/main/docs/index.md) | Default config, suitable for any JavaScript/TypeScript project. |
+| ![typescript](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/material/typescript.png) | [@code-pushup/eslint-config/typescript](https://github.com/code-pushup/eslint-config/blob/main/docs/typescript.md) | Config for strict TypeScript projects. |
+| ![nodejs](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/material/nodejs.png) | [@code-pushup/eslint-config/node](https://github.com/code-pushup/eslint-config/blob/main/docs/node.md) | Config for Node.js projects. |
+| ![jest](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/material/jest.png) | [@code-pushup/eslint-config/jest](https://github.com/code-pushup/eslint-config/blob/main/docs/jest.md) | Config for projects using Jest for testing. |
+| ![vitest](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/material/vitest.png) | [@code-pushup/eslint-config/vitest](https://github.com/code-pushup/eslint-config/blob/main/docs/vitest.md) | Config for projects using Vitest for testing. |
 
 ### 🧪 Test overrides
 

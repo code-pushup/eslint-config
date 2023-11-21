@@ -1,9 +1,9 @@
 const configDescriptions = {
-  index:
-    'Default configuration, suitable for any JavaScript/TypeScript project.',
-  typescript: 'Configuration for strict TypeScript projects.',
-  node: 'Configuration for Node.js projects.',
-  vitest: 'Configuration for projects with tests written in Vitest.',
+  index: 'Default config, suitable for any JavaScript/TypeScript project.',
+  typescript: 'Config for strict TypeScript projects.',
+  node: 'Config for Node.js projects.',
+  jest: 'Config for projects using Jest for testing.',
+  vitest: 'Config for projects using Vitest for testing.',
 };
 
 const configs = Object.keys(configDescriptions);
@@ -13,11 +13,13 @@ const configIcons = {
   index: 'material/javascript',
   typescript: 'material/typescript',
   node: 'material/nodejs',
+  jest: 'material/jest',
   vitest: 'material/vitest',
 };
 
 /** @type {Partial<Record<keyof typeof configDescriptions, string>>} */
 const configPatterns = {
+  jest: '*.test.ts',
   vitest: '*.test.ts',
 };
 

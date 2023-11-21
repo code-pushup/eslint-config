@@ -6,7 +6,11 @@ const {
   configRulesToMarkdown,
   configsToMarkdown,
 } = require('./helpers/format');
-const { configs, configPattern } = require('./helpers/configs');
+const {
+  configs,
+  configPattern,
+  isConfigForTests,
+} = require('./helpers/configs');
 const { ruleLevelFromEntry, getEnabledRuleIds } = require('./helpers/rules');
 
 const readmePath = path.join(__dirname, '..', 'README.md');
@@ -145,6 +149,9 @@ async function generateConfigDocs(name) {
       alias,
       rulesCount: rules.length,
     })),
+    {
+      hideOverrides: isConfigForTests(name),
+    },
   );
 
   const filePath = path.join(docsDir, `${name}.md`);

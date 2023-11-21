@@ -60,8 +60,9 @@ function configsToMarkdown(configs) {
  * @param {string} config Config name
  * @param {import('./types').RuleData[]} rules List of rules included in config
  * @param {import('./types').ExtendedConfig[]} extended List of extended Code PushUp
+ * @param {{hideOverrides?: boolean}} options Extra options
  */
-function configRulesToMarkdown(config, rules, extended) {
+function configRulesToMarkdown(config, rules, extended, options = {}) {
   const alias = configAlias(config);
 
   const errors = rules.filter(rule => rule.level === 'error');
@@ -106,25 +107,44 @@ function configRulesToMarkdown(config, rules, extended) {
       [
         '🔧 Automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/user-guide/command-line-interface#--fix).',
         '💡 Manually fixable by [editor suggestions](https://eslint.org/docs/developer-guide/working-with-rules#providing-suggestions).',
-        `🧪🚫 Disabled for [test files](${testGlobsLink}).`,
-        `🧪⚠️ Severity lessened to warning for [test files](${testGlobsLink}).`,
+        ...(options.hideOverrides
+          ? []
+          : [
+              `🧪🚫 Disabled for [test files](${testGlobsLink}).`,
+              `🧪⚠️ Severity lessened to warning for [test files](${testGlobsLink}).`,
+            ]),
       ].join('<br>'),
     ),
     ...(errors.length
-      ? [`### 🚨 Errors (${errors.length})`, rulesTable(errors)]
+      ? [
+          `### 🚨 Errors (${errors.length})`,
+          rulesTable(errors, options.hideOverrides),
+        ]
       : []),
     ...(warnings.length
-      ? [`### ⚠️ Warnings (${warnings.length})`, rulesTable(warnings)]
+      ? [
+          `### ⚠️ Warnings (${warnings.length})`,
+          rulesTable(warnings, options.hideOverrides),
+        ]
       : []),
   ];
 
   return blocks.join('\n\n');
 }
 
-/** @param {import('./types').RuleData[]} rules  */
-function rulesTable(rules) {
+/**
+ * @param {import('./types').RuleData[]} rules
+ * @param {boolean | undefined} hideOverrides
+ */
+function rulesTable(rules, hideOverrides) {
   return mdTable(
-    ['Plugin', 'Rule', 'Options', 'Autofix', 'Overrides'],
+    [
+      'Plugin',
+      'Rule',
+      'Options',
+      'Autofix',
+      ...(hideOverrides ? [] : ['Overrides']),
+    ],
     rules
       .sort((a, b) => {
         const { name: name1, plugin: plugin1 = '' } = parseRuleId(a.id);
@@ -172,11 +192,15 @@ function rulesTable(rules) {
             .filter(Boolean)
             .join(', ') || '',
 
-          rule.testOverride
-            ? rule.testOverride.level === 'off'
-              ? '🧪🚫'
-              : '🧪⚠️'
-            : '',
+          ...(hideOverrides
+            ? []
+            : [
+                rule.testOverride
+                  ? rule.testOverride.level === 'off'
+                    ? '🧪🚫'
+                    : '🧪⚠️'
+                  : '',
+              ]),
         ];
       }),
     ['c', 'l', 'l', 'c', 'c'],

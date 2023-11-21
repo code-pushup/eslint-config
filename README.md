@@ -15,6 +15,7 @@ Configurations are available for different tech stacks.
 | ![nodejs](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/material/nodejs.png) | [@code-pushup/eslint-config/node](https://github.com/code-pushup/eslint-config/blob/main/docs/node.md) | Config for Node.js projects. |
 | ![jest](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/material/jest.png) | [@code-pushup/eslint-config/jest](https://github.com/code-pushup/eslint-config/blob/main/docs/jest.md) | Config for projects using Jest for testing. |
 | ![vitest](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/material/vitest.png) | [@code-pushup/eslint-config/vitest](https://github.com/code-pushup/eslint-config/blob/main/docs/vitest.md) | Config for projects using Vitest for testing. |
+| ![cypress](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/material/cypress.png) | [@code-pushup/eslint-config/cypress](https://github.com/code-pushup/eslint-config/blob/main/docs/cypress.md) | Config for projects using Cypress for testing. |
 
 ### 🧪 Test overrides
 

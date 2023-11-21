@@ -4,6 +4,7 @@ const configDescriptions = {
   node: 'Config for Node.js projects.',
   jest: 'Config for projects using Jest for testing.',
   vitest: 'Config for projects using Vitest for testing.',
+  cypress: 'Config for projects using Cypress for testing.',
 };
 
 const configs = Object.keys(configDescriptions);
@@ -15,12 +16,14 @@ const configIcons = {
   node: 'material/nodejs',
   jest: 'material/jest',
   vitest: 'material/vitest',
+  cypress: 'material/cypress',
 };
 
 /** @type {Partial<Record<keyof typeof configDescriptions, string>>} */
 const configPatterns = {
   jest: '*.test.ts',
   vitest: '*.test.ts',
+  cypress: '*.cy.ts',
 };
 
 /**
@@ -79,6 +82,14 @@ function configPattern(name) {
   return configPatterns[name];
 }
 
+/**
+ * Is config targetting some testing framework?
+ * @param {string} name Config file name without extension
+ */
+function isConfigForTests(name) {
+  return name in configPatterns;
+}
+
 module.exports = {
   configs,
   configDescription,
@@ -86,4 +97,5 @@ module.exports = {
   configFromAlias,
   configIcon,
   configPattern,
+  isConfigForTests,
 };

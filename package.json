@@ -29,6 +29,7 @@
     "@typescript-eslint/parser": "^6.0.0",
     "eslint": "^8.0.0",
     "eslint-import-resolver-typescript": "^3.0.0",
+    "eslint-plugin-cypress": "^2.0.0",
     "eslint-plugin-deprecation": "^2.0.0",
     "eslint-plugin-functional": "^6.0.0",
     "eslint-plugin-import": "^2.25.0",
@@ -42,6 +43,9 @@
   },
   "peerDependenciesMeta": {
     "eslint-import-resolver-typescript": {
+      "optional": true
+    },
+    "eslint-plugin-cypress": {
       "optional": true
     },
     "eslint-plugin-deprecation": {
@@ -62,6 +66,7 @@
     "@typescript-eslint/parser": "^6.11.0",
     "eslint": "^8.53.0",
     "eslint-import-resolver-typescript": "^3.6.1",
+    "eslint-plugin-cypress": "^2.15.1",
     "eslint-plugin-deprecation": "^2.0.0",
     "eslint-plugin-functional": "^6.0.0",
     "eslint-plugin-import": "^2.29.0",

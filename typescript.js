@@ -1,51 +1,61 @@
-const { TEST_FILE_PATTERNS } = require('./lib/patterns');
+const {
+  TEST_FILE_PATTERNS,
+  TYPESCRIPT_FILE_PATTERNS,
+} = require('./lib/patterns');
 const { NAMING_CONVENTION_OPTIONS } = require('./lib/rule-options');
 
 /** @type {import('eslint').ESLint.ConfigData} */
 module.exports = {
-  extends: [
-    '@code-pushup',
-    'plugin:@typescript-eslint/recommended-type-checked',
-    'plugin:@typescript-eslint/strict',
-    'plugin:import/typescript',
-    'plugin:deprecation/recommended',
-  ],
-
-  rules: {
-    // CUSTOMIZED RULES FROM EXTENDED CONFIGS
-
-    '@typescript-eslint/prefer-nullish-coalescing': [
-      'warn',
-      { ignorePrimitives: { string: true } },
-    ],
-
-    // DISABLED RULES FROM EXTENDED CONFIGS
-
-    '@typescript-eslint/unbound-method': 'off',
-
-    // ADDITIONAL RULES
-
-    // https://typescript-eslint.io/rules/
-    '@typescript-eslint/naming-convention': [
-      'warn',
-      ...NAMING_CONVENTION_OPTIONS,
-    ],
-  },
+  extends: ['@code-pushup'],
 
   overrides: [
     {
-      files: TEST_FILE_PATTERNS,
+      files: TYPESCRIPT_FILE_PATTERNS,
+
+      extends: [
+        'plugin:@typescript-eslint/recommended-type-checked',
+        'plugin:@typescript-eslint/strict',
+        'plugin:import/typescript',
+        'plugin:deprecation/recommended',
+      ],
+
       rules: {
-        // DISABLED RULES FOR TEST FILES
+        // CUSTOMIZED RULES FROM EXTENDED CONFIGS
 
-        '@typescript-eslint/no-unsafe-assignment': 'off',
-        '@typescript-eslint/no-unsafe-return': 'off',
-        '@typescript-eslint/no-unsafe-member-access': 'off',
+        '@typescript-eslint/prefer-nullish-coalescing': [
+          'warn',
+          { ignorePrimitives: { string: true } },
+        ],
 
-        // CUSTOMIZED RULES FOR TEST FILES
+        // DISABLED RULES FROM EXTENDED CONFIGS
 
-        '@typescript-eslint/require-await': 'warn',
+        '@typescript-eslint/unbound-method': 'off',
+
+        // ADDITIONAL RULES
+
+        // https://typescript-eslint.io/rules/
+        '@typescript-eslint/naming-convention': [
+          'warn',
+          ...NAMING_CONVENTION_OPTIONS,
+        ],
       },
+
+      overrides: [
+        {
+          files: TEST_FILE_PATTERNS,
+          rules: {
+            // DISABLED RULES FOR TEST FILES
+
+            '@typescript-eslint/no-unsafe-assignment': 'off',
+            '@typescript-eslint/no-unsafe-return': 'off',
+            '@typescript-eslint/no-unsafe-member-access': 'off',
+
+            // CUSTOMIZED RULES FOR TEST FILES
+
+            '@typescript-eslint/require-await': 'warn',
+          },
+        },
+      ],
     },
   ],
 };

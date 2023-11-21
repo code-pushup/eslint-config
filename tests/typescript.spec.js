@@ -2,14 +2,11 @@ const { describe, expect, test } = require('@jest/globals');
 const { setupLintUtils } = require('./helpers/lint-utils');
 
 describe('typescript config', () => {
-  const { loadConfig, getRulesByIds } = setupLintUtils(
-    { extends: '@code-pushup/eslint-config/typescript' },
-    '*.ts',
-  );
-
-  test('should load config for JavaScript file', async () => {
-    await expect(loadConfig('src/utils.js')).resolves.not.toThrow();
-  });
+  const { loadConfig, getRulesByIds, getExplicitRuleIds, loadRules } =
+    setupLintUtils(
+      { extends: '@code-pushup/eslint-config/typescript' },
+      '*.ts',
+    );
 
   test('should load config for TypeScript file', async () => {
     await expect(loadConfig('index.ts')).resolves.not.toThrow();
@@ -41,10 +38,7 @@ describe('typescript config', () => {
 
   test('should only explicitly reference rules which require type checking', async () => {
     const config = require('../typescript');
-    const ruleIds = [
-      ...Object.keys(config.rules),
-      ...config.overrides.flatMap(({ rules }) => Object.keys(rules)),
-    ];
+    const ruleIds = getExplicitRuleIds(config);
     const rules = getRulesByIds(ruleIds);
     const rulesWithoutTypes = Object.entries(rules)
       .filter(([, meta]) => !meta.docs?.requiresTypeChecking)
@@ -57,5 +51,26 @@ describe('typescript config', () => {
     expect(config.rules['@typescript-eslint/no-unsafe-assignment']).toEqual([
       'off',
     ]);
+  });
+
+  test('should not include extra rules for non-TS file', async () => {
+    const config = await loadConfig('src/utils.js');
+    expect(config.rules).not.toHaveProperty(
+      '@typescript-eslint/naming-convention',
+    );
+    expect(config.rules).not.toHaveProperty(
+      '@typescript-eslint/no-non-null-assertion',
+    );
+    expect(config.rules).not.toHaveProperty(
+      '@typescript-eslint/no-unsafe-assignment',
+    );
+  });
+
+  test('should not include any rule which requires type checking for non-TS files', async () => {
+    const rules = await loadRules('src/utils.js');
+    const rulesWithTypes = Object.entries(rules)
+      .filter(([, meta]) => meta.docs.requiresTypeChecking)
+      .map(([ruleId]) => ruleId);
+    expect(rulesWithTypes).toHaveLength(0);
   });
 });

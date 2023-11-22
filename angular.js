@@ -13,6 +13,7 @@ module.exports = {
       extends: [
         '@code-pushup/eslint-config/typescript',
         'plugin:@angular-eslint/recommended',
+        'plugin:rxjs/recommended',
       ],
 
       rules: {
@@ -31,6 +32,9 @@ module.exports = {
         '@angular-eslint/no-output-on-prefix': 'warn',
         '@angular-eslint/no-output-rename': 'warn',
         '@angular-eslint/no-outputs-metadata-property': 'warn',
+        'rxjs/no-async-subscribe': 'warn',
+        'rxjs/no-create': 'warn',
+        'rxjs/no-nested-subscribe': 'warn',
 
         // ADDITIONAL RULES
 
@@ -59,6 +63,13 @@ module.exports = {
         '@angular-eslint/use-component-view-encapsulation': 'error',
         '@angular-eslint/use-injectable-provided-in': 'warn',
         '@angular-eslint/use-lifecycle-interface': 'warn',
+        // https://github.com/cartant/eslint-plugin-rxjs/tree/main#rules
+        'rxjs/finnish': 'warn',
+        'rxjs/no-compat': 'warn',
+        'rxjs/no-exposed-subjects': 'warn',
+        'rxjs/no-ignored-observable': 'warn',
+        'rxjs/prefer-observer': 'warn',
+        'rxjs/throw-error': 'warn',
       },
 
       overrides: [

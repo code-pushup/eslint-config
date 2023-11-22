@@ -12,9 +12,9 @@ Add to `extends` in your .eslintrc file:
 }
 ```
 
-## 📏 Rules (337)
+## 📏 Rules (358)
 
-**284** rules are included from `@code-pushup/eslint-config/typescript`. For brevity, only the **53** additional rules are listed in this document.
+**284** rules are included from `@code-pushup/eslint-config/typescript`. For brevity, only the **74** additional rules are listed in this document.
 
 Refer to the extended config's docs:
 
@@ -23,7 +23,7 @@ Refer to the extended config's docs:
 
 > 🔧 Automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/user-guide/command-line-interface#--fix).<br>💡 Manually fixable by [editor suggestions](https://eslint.org/docs/developer-guide/working-with-rules#providing-suggestions).<br>🧪🚫 Disabled for [test files](../README.md#🧪-test-overrides).<br>🧪⚠️ Severity lessened to warning for [test files](../README.md#🧪-test-overrides).
 
-### 🚨 Errors (20)
+### 🚨 Errors (32)
 
 | Plugin | Rule | Options | Autofix | Overrides |
 | :-: | :-- | :-- | :-: | :-: |
@@ -47,8 +47,20 @@ Refer to the extended config's docs:
 | [![@angular-eslint/template](./icons/material/angular_component.png)](https://github.com/angular-eslint/angular-eslint/tree/main/packages/eslint-plugin-template#readme) | [role-has-required-aria](https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin-template/docs/rules/role-has-required-aria.md)<br>[Accessibility] Ensures elements with ARIA roles have all required properties for that role. |  | 💡 |  |
 | [![@angular-eslint/template](./icons/material/angular_component.png)](https://github.com/angular-eslint/angular-eslint/tree/main/packages/eslint-plugin-template#readme) | [table-scope](https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin-template/docs/rules/table-scope.md)<br>[Accessibility] Ensures that the `scope` attribute is only used on the `<th>` element |  | 🔧 |  |
 | [![@angular-eslint/template](./icons/material/angular_component.png)](https://github.com/angular-eslint/angular-eslint/tree/main/packages/eslint-plugin-template#readme) | [valid-aria](https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin-template/docs/rules/valid-aria.md)<br>[Accessibility] Ensures that correct ARIA attributes and respective values are used |  | 💡 |  |
+| [![rxjs](./icons/other/rxjs.png)](https://github.com/cartant/eslint-plugin-rxjs#readme) | [no-ignored-notifier](https://github.com/cartant/eslint-plugin-rxjs/tree/main/docs/rules/no-ignored-notifier.md)<br>Forbids observables not composed from the `repeatWhen` or `retryWhen` notifier. |  |  |  |
+| [![rxjs](./icons/other/rxjs.png)](https://github.com/cartant/eslint-plugin-rxjs#readme) | [no-ignored-replay-buffer](https://github.com/cartant/eslint-plugin-rxjs/tree/main/docs/rules/no-ignored-replay-buffer.md)<br>Forbids using `ReplaySubject`, `publishReplay` or `shareReplay` without specifying the buffer size. |  |  |  |
+| [![rxjs](./icons/other/rxjs.png)](https://github.com/cartant/eslint-plugin-rxjs#readme) | [no-ignored-takewhile-value](https://github.com/cartant/eslint-plugin-rxjs/tree/main/docs/rules/no-ignored-takewhile-value.md)<br>Forbids ignoring the value within `takeWhile`. |  |  |  |
+| [![rxjs](./icons/other/rxjs.png)](https://github.com/cartant/eslint-plugin-rxjs#readme) | [no-implicit-any-catch](https://github.com/cartant/eslint-plugin-rxjs/tree/main/docs/rules/no-implicit-any-catch.md)<br>Forbids implicit `any` error parameters in `catchError` operators. |  | 🔧, 💡 |  |
+| [![rxjs](./icons/other/rxjs.png)](https://github.com/cartant/eslint-plugin-rxjs#readme) | [no-index](https://github.com/cartant/eslint-plugin-rxjs/tree/main/docs/rules/no-index.md)<br>Forbids the importation from index modules. |  |  |  |
+| [![rxjs](./icons/other/rxjs.png)](https://github.com/cartant/eslint-plugin-rxjs#readme) | [no-internal](https://github.com/cartant/eslint-plugin-rxjs/tree/main/docs/rules/no-internal.md)<br>Forbids the importation of internals. |  | 🔧, 💡 |  |
+| [![rxjs](./icons/other/rxjs.png)](https://github.com/cartant/eslint-plugin-rxjs#readme) | [no-redundant-notify](https://github.com/cartant/eslint-plugin-rxjs/tree/main/docs/rules/no-redundant-notify.md)<br>Forbids redundant notifications from completed or errored observables. |  |  |  |
+| [![rxjs](./icons/other/rxjs.png)](https://github.com/cartant/eslint-plugin-rxjs#readme) | [no-sharereplay](https://github.com/cartant/eslint-plugin-rxjs/tree/main/docs/rules/no-sharereplay.md)<br>Forbids using the `shareReplay` operator. | <details><summary>allowConfig: true</summary><pre>{<br>  "allowConfig": true<br>}</pre></details> |  |  |
+| [![rxjs](./icons/other/rxjs.png)](https://github.com/cartant/eslint-plugin-rxjs#readme) | [no-subject-unsubscribe](https://github.com/cartant/eslint-plugin-rxjs/tree/main/docs/rules/no-subject-unsubscribe.md)<br>Forbids calling the `unsubscribe` method of a subject instance. |  |  |  |
+| [![rxjs](./icons/other/rxjs.png)](https://github.com/cartant/eslint-plugin-rxjs#readme) | [no-unbound-methods](https://github.com/cartant/eslint-plugin-rxjs/tree/main/docs/rules/no-unbound-methods.md)<br>Forbids the passing of unbound methods. |  |  |  |
+| [![rxjs](./icons/other/rxjs.png)](https://github.com/cartant/eslint-plugin-rxjs#readme) | [no-unsafe-subject-next](https://github.com/cartant/eslint-plugin-rxjs/tree/main/docs/rules/no-unsafe-subject-next.md)<br>Forbids unsafe optional `next` calls. |  |  |  |
+| [![rxjs](./icons/other/rxjs.png)](https://github.com/cartant/eslint-plugin-rxjs#readme) | [no-unsafe-takeuntil](https://github.com/cartant/eslint-plugin-rxjs/tree/main/docs/rules/no-unsafe-takeuntil.md)<br>Forbids the application of operators after `takeUntil`. |  |  |  |
 
-### ⚠️ Warnings (33)
+### ⚠️ Warnings (42)
 
 | Plugin | Rule | Options | Autofix | Overrides |
 | :-: | :-- | :-- | :-: | :-: |
@@ -85,3 +97,12 @@ Refer to the extended config's docs:
 | [![@angular-eslint/template](./icons/material/angular_component.png)](https://github.com/angular-eslint/angular-eslint/tree/main/packages/eslint-plugin-template#readme) | [no-positive-tabindex](https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin-template/docs/rules/no-positive-tabindex.md)<br>Ensures that the `tabindex` attribute is not positive |  | 💡 |  |
 | [![@angular-eslint/template](./icons/material/angular_component.png)](https://github.com/angular-eslint/angular-eslint/tree/main/packages/eslint-plugin-template#readme) | [prefer-ngsrc](https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin-template/docs/rules/prefer-ngsrc.md)<br>Ensures ngSrc is used instead of src for img elements |  |  |  |
 | [![@angular-eslint/template](./icons/material/angular_component.png)](https://github.com/angular-eslint/angular-eslint/tree/main/packages/eslint-plugin-template#readme) | [use-track-by-function](https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin-template/docs/rules/use-track-by-function.md)<br>Ensures trackBy function is used |  |  |  |
+| [![rxjs](./icons/other/rxjs.png)](https://github.com/cartant/eslint-plugin-rxjs#readme) | [finnish](https://github.com/cartant/eslint-plugin-rxjs/tree/main/docs/rules/finnish.md)<br>Enforces the use of Finnish notation. |  |  |  |
+| [![rxjs](./icons/other/rxjs.png)](https://github.com/cartant/eslint-plugin-rxjs#readme) | [no-async-subscribe](https://github.com/cartant/eslint-plugin-rxjs/tree/main/docs/rules/no-async-subscribe.md)<br>Forbids passing `async` functions to `subscribe`. |  |  |  |
+| [![rxjs](./icons/other/rxjs.png)](https://github.com/cartant/eslint-plugin-rxjs#readme) | [no-compat](https://github.com/cartant/eslint-plugin-rxjs/tree/main/docs/rules/no-compat.md)<br>Forbids importation from locations that depend upon `rxjs-compat`. |  |  |  |
+| [![rxjs](./icons/other/rxjs.png)](https://github.com/cartant/eslint-plugin-rxjs#readme) | [no-create](https://github.com/cartant/eslint-plugin-rxjs/tree/main/docs/rules/no-create.md)<br>Forbids the calling of `Observable.create`. |  |  |  |
+| [![rxjs](./icons/other/rxjs.png)](https://github.com/cartant/eslint-plugin-rxjs#readme) | [no-exposed-subjects](https://github.com/cartant/eslint-plugin-rxjs/tree/main/docs/rules/no-exposed-subjects.md)<br>Forbids exposed (i.e. non-private) subjects. |  |  |  |
+| [![rxjs](./icons/other/rxjs.png)](https://github.com/cartant/eslint-plugin-rxjs#readme) | [no-ignored-observable](https://github.com/cartant/eslint-plugin-rxjs/tree/main/docs/rules/no-ignored-observable.md)<br>Forbids the ignoring of observables returned by functions. |  |  |  |
+| [![rxjs](./icons/other/rxjs.png)](https://github.com/cartant/eslint-plugin-rxjs#readme) | [no-nested-subscribe](https://github.com/cartant/eslint-plugin-rxjs/tree/main/docs/rules/no-nested-subscribe.md)<br>Forbids the calling of `subscribe` within a `subscribe` callback. |  |  |  |
+| [![rxjs](./icons/other/rxjs.png)](https://github.com/cartant/eslint-plugin-rxjs#readme) | [prefer-observer](https://github.com/cartant/eslint-plugin-rxjs/tree/main/docs/rules/prefer-observer.md)<br>Forbids the passing separate handlers to `subscribe` and `tap`. |  | 🔧, 💡 |  |
+| [![rxjs](./icons/other/rxjs.png)](https://github.com/cartant/eslint-plugin-rxjs#readme) | [throw-error](https://github.com/cartant/eslint-plugin-rxjs/tree/main/docs/rules/throw-error.md)<br>Enforces the passing of `Error` values to error notifications. |  |  |  |

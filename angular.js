@@ -70,6 +70,9 @@ module.exports = {
         'rxjs/no-ignored-observable': 'warn',
         'rxjs/prefer-observer': 'warn',
         'rxjs/throw-error': 'warn',
+        // https://github.com/import-js/eslint-plugin-import#rules
+        'import/no-namespace': 'error',
+        'import/no-nodejs-modules': 'error',
       },
 
       overrides: [

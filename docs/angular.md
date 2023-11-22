@@ -12,9 +12,9 @@ Add to `extends` in your .eslintrc file:
 }
 ```
 
-## 📏 Rules (358)
+## 📏 Rules (360)
 
-**284** rules are included from `@code-pushup/eslint-config/typescript`. For brevity, only the **74** additional rules are listed in this document.
+**284** rules are included from `@code-pushup/eslint-config/typescript`. For brevity, only the **76** additional rules are listed in this document.
 
 Refer to the extended config's docs:
 
@@ -23,7 +23,7 @@ Refer to the extended config's docs:
 
 > 🔧 Automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/user-guide/command-line-interface#--fix).<br>💡 Manually fixable by [editor suggestions](https://eslint.org/docs/developer-guide/working-with-rules#providing-suggestions).<br>🧪🚫 Disabled for [test files](../README.md#🧪-test-overrides).<br>🧪⚠️ Severity lessened to warning for [test files](../README.md#🧪-test-overrides).
 
-### 🚨 Errors (32)
+### 🚨 Errors (34)
 
 | Plugin | Rule | Options | Autofix | Overrides |
 | :-: | :-- | :-- | :-: | :-: |
@@ -47,6 +47,8 @@ Refer to the extended config's docs:
 | [![@angular-eslint/template](./icons/material/angular_component.png)](https://github.com/angular-eslint/angular-eslint/tree/main/packages/eslint-plugin-template#readme) | [role-has-required-aria](https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin-template/docs/rules/role-has-required-aria.md)<br>[Accessibility] Ensures elements with ARIA roles have all required properties for that role. |  | 💡 |  |
 | [![@angular-eslint/template](./icons/material/angular_component.png)](https://github.com/angular-eslint/angular-eslint/tree/main/packages/eslint-plugin-template#readme) | [table-scope](https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin-template/docs/rules/table-scope.md)<br>[Accessibility] Ensures that the `scope` attribute is only used on the `<th>` element |  | 🔧 |  |
 | [![@angular-eslint/template](./icons/material/angular_component.png)](https://github.com/angular-eslint/angular-eslint/tree/main/packages/eslint-plugin-template#readme) | [valid-aria](https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin-template/docs/rules/valid-aria.md)<br>[Accessibility] Ensures that correct ARIA attributes and respective values are used |  | 💡 |  |
+| [![import](./icons/icons8/import.png)](https://github.com/import-js/eslint-plugin-import#readme) | [no-namespace](https://github.com/import-js/eslint-plugin-import/blob/v2.29.0/docs/rules/no-namespace.md)<br>Forbid namespace (a.k.a. "wildcard" `*`) imports. |  | 🔧 |  |
+| [![import](./icons/icons8/import.png)](https://github.com/import-js/eslint-plugin-import#readme) | [no-nodejs-modules](https://github.com/import-js/eslint-plugin-import/blob/v2.29.0/docs/rules/no-nodejs-modules.md)<br>Forbid Node.js builtin modules. |  |  |  |
 | [![rxjs](./icons/other/rxjs.png)](https://github.com/cartant/eslint-plugin-rxjs#readme) | [no-ignored-notifier](https://github.com/cartant/eslint-plugin-rxjs/tree/main/docs/rules/no-ignored-notifier.md)<br>Forbids observables not composed from the `repeatWhen` or `retryWhen` notifier. |  |  |  |
 | [![rxjs](./icons/other/rxjs.png)](https://github.com/cartant/eslint-plugin-rxjs#readme) | [no-ignored-replay-buffer](https://github.com/cartant/eslint-plugin-rxjs/tree/main/docs/rules/no-ignored-replay-buffer.md)<br>Forbids using `ReplaySubject`, `publishReplay` or `shareReplay` without specifying the buffer size. |  |  |  |
 | [![rxjs](./icons/other/rxjs.png)](https://github.com/cartant/eslint-plugin-rxjs#readme) | [no-ignored-takewhile-value](https://github.com/cartant/eslint-plugin-rxjs/tree/main/docs/rules/no-ignored-takewhile-value.md)<br>Forbids ignoring the value within `takeWhile`. |  |  |  |

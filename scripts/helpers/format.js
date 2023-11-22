@@ -174,7 +174,7 @@ function rulesTable(rules, hideOverrides) {
 
           mdLink(rule.meta.docs?.url, name) +
             '<br>' +
-            (rule.meta.docs.description ?? ''),
+            (rule.meta.docs.description ?? '').replace(/\n/g, ''),
 
           options
             ? htmlDetails(

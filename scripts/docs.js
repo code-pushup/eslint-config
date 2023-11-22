@@ -10,6 +10,8 @@ const {
   configs,
   configPattern,
   isConfigForTests,
+  getConfigExtends,
+  configExtraPattern,
 } = require('./helpers/configs');
 const { ruleLevelFromEntry, getEnabledRuleIds } = require('./helpers/rules');
 
@@ -80,17 +82,15 @@ async function generateConfigDocs(name) {
   /** @type {import('eslint').Linter.Config} */
   const config = await eslint.calculateConfigForFile(configPattern(name));
 
+  /** @type {import('eslint').Linter.Config | null} */
+  const configExtra = configExtraPattern(name)
+    ? await eslint.calculateConfigForFile(configExtraPattern(name))
+    : null;
+
   /** @type {import('eslint').Linter.Config} */
   const testConfig = await eslint.calculateConfigForFile('*.test.ts');
 
-  /** @type {import('eslint').Linter.Config} */
-  const exportedConfig = require(`../${name}.js`);
-  const exportedConfigExtends = Array.isArray(exportedConfig.extends)
-    ? exportedConfig.extends
-    : typeof exportedConfig.extends === 'string'
-      ? [exportedConfig.extends]
-      : [];
-  const extendedConfigs = await exportedConfigExtends
+  const extendedConfigs = await getConfigExtends(name)
     .filter(alias => alias.startsWith('@code-pushup'))
     .reduce(
       /** @param {Promise<Record<string, string[]>>} acc  */
@@ -116,6 +116,7 @@ async function generateConfigDocs(name) {
   const ruleIds = getEnabledRuleIds({
     ...testConfig.rules,
     ...config.rules,
+    ...configExtra?.rules,
   }).filter(ruleId => !extendedRuleIds.includes(ruleId));
   const rules = eslint.getRulesMetaForResults([
     {
@@ -127,7 +128,7 @@ async function generateConfigDocs(name) {
   const markdown = configRulesToMarkdown(
     name,
     ruleIds.map(id => {
-      const entry = config.rules[id];
+      const entry = config.rules[id] ?? configExtra?.rules[id];
       const level = ruleLevelFromEntry(entry);
       const testLevel = ruleLevelFromEntry(testConfig.rules[id]);
       return {
@@ -138,11 +139,12 @@ async function generateConfigDocs(name) {
           entry.length > 1 && {
             options: entry.slice(1),
           }),
-        ...(testLevel !== level && {
-          testOverride: {
-            level: testLevel,
-          },
-        }),
+        ...(testLevel &&
+          testLevel !== level && {
+            testOverride: {
+              level: testLevel,
+            },
+          }),
       };
     }),
     Object.entries(extendedConfigs).map(([alias, rules]) => ({

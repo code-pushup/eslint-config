@@ -2,6 +2,7 @@ const configDescriptions = {
   index: 'Default config, suitable for any JavaScript/TypeScript project.',
   typescript: 'Config for strict TypeScript projects.',
   node: 'Config for Node.js projects.',
+  angular: 'Config for Angular projects.',
   jest: 'Config for projects using Jest for testing.',
   vitest: 'Config for projects using Vitest for testing.',
   cypress: 'Config for projects using Cypress for testing.',
@@ -14,6 +15,7 @@ const configIcons = {
   index: 'material/javascript',
   typescript: 'material/typescript',
   node: 'material/nodejs',
+  angular: 'material/angular',
   jest: 'material/jest',
   vitest: 'material/vitest',
   cypress: 'material/cypress',
@@ -25,6 +27,14 @@ const configPatterns = {
   vitest: '*.test.ts',
   cypress: '*.cy.ts',
 };
+
+/** @type {Partial<Record<keyof typeof configDescriptions, string>>} */
+const configExtraPatterns = {
+  angular: '*.html',
+};
+
+/** @type {(keyof typeof configDescriptions)[]} */
+const testConfigs = ['jest', 'vitest', 'cypress'];
 
 /**
  * Get config string as used with `extends` in .eslintrc file.
@@ -83,11 +93,42 @@ function configPattern(name) {
 }
 
 /**
+ * Get additional file pattern for given config.
+ * @param {string} name Config file name without extension
+ * @returns {string | undefined}
+ */
+function configExtraPattern(name) {
+  return configExtraPatterns[name];
+}
+
+/**
  * Is config targetting some testing framework?
  * @param {string} name Config file name without extension
  */
 function isConfigForTests(name) {
-  return name in configPatterns;
+  return testConfigs.includes(name);
+}
+
+/**
+ * Get all extended configs from config file.
+ * @param {string} name Config file name without extension
+ */
+function getConfigExtends(name) {
+  /** @param {import('eslint').Linter.Config['extends']} configExtends */
+  const normalizeExtends = configExtends =>
+    Array.isArray(configExtends)
+      ? configExtends
+      : typeof configExtends === 'string'
+        ? [configExtends]
+        : [];
+
+  /** @type {import('eslint').Linter.Config} */
+  const config = require(`../../${name}.js`);
+
+  return [
+    ...normalizeExtends(config.extends),
+    ...(config.overrides?.flatMap(cfg => normalizeExtends(cfg.extends)) ?? []),
+  ];
 }
 
 module.exports = {
@@ -97,5 +138,7 @@ module.exports = {
   configFromAlias,
   configIcon,
   configPattern,
+  configExtraPattern,
   isConfigForTests,
+  getConfigExtends,
 };

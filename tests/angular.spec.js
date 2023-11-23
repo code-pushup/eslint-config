@@ -2,8 +2,9 @@ const { describe, expect, test } = require('@jest/globals');
 const { setupLintUtils } = require('./helpers/lint-utils');
 
 describe('angular config', () => {
-  const { loadConfig, getRulesByIds, getExplicitRuleIds, loadRules } =
-    setupLintUtils({ extends: '@code-pushup/eslint-config/angular' });
+  const { loadConfig } = setupLintUtils({
+    extends: '@code-pushup/eslint-config/angular',
+  });
 
   test('should load config for TypeScript file', async () => {
     await expect(loadConfig('src/app/app.component.ts')).resolves.not.toThrow();

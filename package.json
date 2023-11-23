@@ -28,6 +28,7 @@
     "@angular-eslint/eslint-plugin": "^17.0.0",
     "@angular-eslint/eslint-plugin-template": "^17.0.0",
     "@angular-eslint/template-parser": "^17.0.0",
+    "@ngrx/eslint-plugin": "^17.0.0",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
     "eslint": "^8.0.0",
@@ -53,6 +54,9 @@
       "optional": true
     },
     "@angular-eslint/template-parser": {
+      "optional": true
+    },
+    "@ngrx/eslint-plugin": {
       "optional": true
     },
     "eslint-import-resolver-typescript": {
@@ -81,6 +85,7 @@
     "@angular-eslint/eslint-plugin": "^17.1.0",
     "@angular-eslint/eslint-plugin-template": "^17.1.0",
     "@angular-eslint/template-parser": "^17.1.0",
+    "@ngrx/eslint-plugin": "^17.0.0",
     "@typescript-eslint/eslint-plugin": "^6.11.0",
     "@typescript-eslint/parser": "^6.11.0",
     "eslint": "^8.53.0",

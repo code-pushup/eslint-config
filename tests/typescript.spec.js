@@ -36,14 +36,17 @@ describe('typescript config', () => {
     );
   });
 
-  test('should only explicitly reference rules which require type checking', async () => {
+  test('should only explicitly reference rules which require type checking (with specified exceptions)', async () => {
     const config = require('../typescript');
     const ruleIds = getExplicitRuleIds(config);
     const rules = getRulesByIds(ruleIds);
     const rulesWithoutTypes = Object.entries(rules)
       .filter(([, meta]) => !meta.docs?.requiresTypeChecking)
-      .map(([ruleId]) => ruleId);
-    expect(rulesWithoutTypes).toHaveLength(0);
+      .map(([ruleId]) => ruleId)
+      .sort();
+    expect(rulesWithoutTypes).toEqual([
+      '@typescript-eslint/consistent-type-assertions',
+    ]);
   });
 
   test('should have rule disabled if test file pattern matches', async () => {

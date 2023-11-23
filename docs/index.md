@@ -12,7 +12,7 @@ Add to `extends` in your .eslintrc file:
 }
 ```
 
-## 📏 Rules (255)
+## 📏 Rules (256)
 
 > 🔧 Automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/user-guide/command-line-interface#--fix).<br>💡 Manually fixable by [editor suggestions](https://eslint.org/docs/developer-guide/working-with-rules#providing-suggestions).<br>🧪🚫 Disabled for [test files](../README.md#🧪-test-overrides).<br>🧪⚠️ Severity lessened to warning for [test files](../README.md#🧪-test-overrides).
 
@@ -141,7 +141,7 @@ Add to `extends` in your .eslintrc file:
 | [![sonarjs](./icons/other/sonar.png)](https://github.com/SonarSource/eslint-plugin-sonarjs#readme) | [prefer-single-boolean-return](https://github.com/SonarSource/eslint-plugin-sonarjs/blob/master/docs/rules/prefer-single-boolean-return.md)<br>Return of boolean expressions should not be wrapped into an "if-then-else" statement |  | 💡 |  |
 | [![sonarjs](./icons/other/sonar.png)](https://github.com/SonarSource/eslint-plugin-sonarjs#readme) | [prefer-while](https://github.com/SonarSource/eslint-plugin-sonarjs/blob/master/docs/rules/prefer-while.md)<br>A "while" loop should be used instead of a "for" loop |  | 🔧 |  |
 
-### ⚠️ Warnings (135)
+### ⚠️ Warnings (136)
 
 | Plugin | Rule | Options | Autofix | Overrides |
 | :-: | :-- | :-- | :-: | :-: |
@@ -162,6 +162,7 @@ Add to `extends` in your .eslintrc file:
 |  | [yoda](https://eslint.org/docs/latest/rules/yoda)<br>Require or disallow "Yoda" conditions |  | 🔧 |  |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [consistent-type-definitions](https://typescript-eslint.io/rules/consistent-type-definitions)<br>Enforce type definitions to consistently use either `interface` or `type` | <details><summary>type</summary><pre>"type"</pre></details> | 🔧 |  |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [default-param-last](https://typescript-eslint.io/rules/default-param-last)<br>Enforce default parameters to be last |  |  |  |
+| [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [max-params](https://typescript-eslint.io/rules/max-params)<br>Enforce a maximum number of parameters in function definitions | <details><summary>max: 4</summary><pre>{<br>  "max": 4<br>}</pre></details> |  |  |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [method-signature-style](https://typescript-eslint.io/rules/method-signature-style)<br>Enforce using a particular method signature syntax |  | 🔧 |  |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [no-shadow](https://typescript-eslint.io/rules/no-shadow)<br>Disallow variable declarations from shadowing variables declared in the outer scope |  |  |  |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [no-unused-expressions](https://typescript-eslint.io/rules/no-unused-expressions)<br>Disallow unused expressions |  |  |  |

@@ -14,7 +14,7 @@ module.exports = {
 
       extends: [
         'plugin:@typescript-eslint/recommended-type-checked',
-        'plugin:@typescript-eslint/strict',
+        'plugin:@typescript-eslint/strict-type-checked',
         'plugin:import/typescript',
         'plugin:deprecation/recommended',
       ],
@@ -22,10 +22,18 @@ module.exports = {
       rules: {
         // CUSTOMIZED RULES FROM EXTENDED CONFIGS
 
+        '@typescript-eslint/no-confusing-void-expression': 'warn',
+        '@typescript-eslint/no-meaningless-void-operator': 'warn',
+        '@typescript-eslint/no-unnecessary-boolean-literal-compare': 'warn',
+        '@typescript-eslint/no-unnecessary-condition': 'warn',
+        '@typescript-eslint/no-unnecessary-type-arguments': 'warn',
+        '@typescript-eslint/prefer-includes': 'warn',
         '@typescript-eslint/prefer-nullish-coalescing': [
           'warn',
           { ignorePrimitives: { string: true } },
         ],
+        '@typescript-eslint/prefer-reduce-type-parameter': 'warn',
+        '@typescript-eslint/prefer-return-this-type': 'warn',
 
         // DISABLED RULES FROM EXTENDED CONFIGS
 
@@ -34,6 +42,13 @@ module.exports = {
         // ADDITIONAL RULES
 
         // https://typescript-eslint.io/rules/
+        '@typescript-eslint/consistent-type-assertions': [
+          'error',
+          {
+            assertionStyle: 'as',
+            objectLiteralTypeAssertions: 'never',
+          },
+        ],
         '@typescript-eslint/naming-convention': [
           'warn',
           ...NAMING_CONVENTION_OPTIONS,
@@ -49,9 +64,17 @@ module.exports = {
             '@typescript-eslint/no-unsafe-assignment': 'off',
             '@typescript-eslint/no-unsafe-return': 'off',
             '@typescript-eslint/no-unsafe-member-access': 'off',
+            '@typescript-eslint/prefer-reduce-type-parameter': 'off',
 
             // CUSTOMIZED RULES FOR TEST FILES
 
+            '@typescript-eslint/consistent-type-assertions': [
+              'warn',
+              {
+                assertionStyle: 'as',
+                objectLiteralTypeAssertions: 'allow',
+              },
+            ],
             '@typescript-eslint/require-await': 'warn',
           },
         },

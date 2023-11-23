@@ -94,6 +94,7 @@ module.exports = {
     // https://typescript-eslint.io/rules/
     '@typescript-eslint/no-require-imports': 'error',
     '@typescript-eslint/default-param-last': 'warn',
+    '@typescript-eslint/max-params': ['warn', { max: 4 }],
     '@typescript-eslint/method-signature-style': 'warn',
     '@typescript-eslint/no-shadow': 'warn',
     '@typescript-eslint/no-unused-expressions': 'warn',

@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "description": "Recommended ESLint presets by Code PushUp",
   "main": "index.js",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "prepare": "husky install",
     "test": "jest",

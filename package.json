@@ -43,9 +43,9 @@
     "eslint-plugin-no-secrets": "^0.8.0",
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-rxjs": "^5.0.0",
-    "eslint-plugin-sonarjs": "^0.22.0",
+    "eslint-plugin-sonarjs": ">=0.22.0",
     "eslint-plugin-storybook": "^0.6.0",
-    "eslint-plugin-unicorn": "^48.0.0",
+    "eslint-plugin-unicorn": ">=48.0.0",
     "eslint-plugin-vitest": "^0.3.0"
   },
   "peerDependenciesMeta": {
@@ -97,6 +97,7 @@
     "@ngrx/eslint-plugin": "^17.0.0",
     "@typescript-eslint/eslint-plugin": "^6.11.0",
     "@typescript-eslint/parser": "^6.11.0",
+    "compare-versions": "^6.1.0",
     "eslint": "^8.53.0",
     "eslint-import-resolver-typescript": "^3.6.1",
     "eslint-plugin-cypress": "^2.15.1",

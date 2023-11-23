@@ -1,5 +1,5 @@
 const { describe, expect, test } = require('@jest/globals');
-const { setupLintUtils } = require('./helpers/lint-utils');
+const { setupLintUtils } = require('../helpers/lint-utils');
 
 describe('typescript config', () => {
   const { loadConfig, getRulesByIds, getExplicitRuleIds, loadRules } =
@@ -37,7 +37,7 @@ describe('typescript config', () => {
   });
 
   test('should only explicitly reference rules which require type checking (with specified exceptions)', async () => {
-    const config = require('../typescript');
+    const config = require('../../typescript');
     const ruleIds = getExplicitRuleIds(config);
     const rules = getRulesByIds(ruleIds);
     const rulesWithoutTypes = Object.entries(rules)

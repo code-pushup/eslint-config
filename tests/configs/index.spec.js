@@ -1,5 +1,5 @@
 const { describe, expect, test } = require('@jest/globals');
-const { setupLintUtils } = require('./helpers/lint-utils');
+const { setupLintUtils } = require('../helpers/lint-utils');
 
 describe('base config', () => {
   const { loadConfig, loadRules, lint } = setupLintUtils(

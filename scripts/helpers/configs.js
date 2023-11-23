@@ -8,6 +8,7 @@ const configDescriptions = {
   jest: 'Config for projects using **Jest** for testing.',
   vitest: 'Config for projects using **Vitest** for testing.',
   cypress: 'Config for projects using **Cypress** for testing.',
+  storybook: 'Config for projects using **Storybook** for UI components.',
 };
 
 const configs = Object.keys(configDescriptions);
@@ -23,6 +24,7 @@ const configIcons = {
   jest: 'material/jest',
   vitest: 'material/vitest',
   cypress: 'material/cypress',
+  storybook: 'material/storybook',
 };
 
 /** @type {Partial<Record<keyof typeof configDescriptions, string>>} */
@@ -31,11 +33,13 @@ const configPatterns = {
   jest: '*.test.ts',
   vitest: '*.test.ts',
   cypress: '*.cy.ts',
+  storybook: '*.stories.ts',
 };
 
 /** @type {Partial<Record<keyof typeof configDescriptions, string>>} */
 const configExtraPatterns = {
   angular: '*.html',
+  storybook: '.storybook/main.ts',
 };
 
 /** @type {(keyof typeof configDescriptions)[]} */

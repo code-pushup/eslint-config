@@ -1,6 +1,6 @@
 # `@code-pushup/eslint-config/typescript` config
 
-Config for strict TypeScript projects.
+Config for strict **TypeScript** projects.
 
 ## ⚙️ Setup
 

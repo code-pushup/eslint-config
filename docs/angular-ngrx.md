@@ -1,6 +1,6 @@
 # `@code-pushup/eslint-config/angular-ngrx` config
 
-Config for Angular projects using NgRx library.
+Config for **Angular** projects using **NgRx** library.
 
 ## ⚙️ Setup
 

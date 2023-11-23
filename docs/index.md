@@ -1,6 +1,6 @@
 # `@code-pushup` config
 
-Default config, suitable for any JavaScript/TypeScript project.
+Default config, suitable for any **JavaScript/TypeScript** project.
 
 ## ⚙️ Setup
 

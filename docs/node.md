@@ -1,6 +1,6 @@
 # `@code-pushup/eslint-config/node` config
 
-Config for Node.js projects.
+Config for **Node.js** projects.
 
 ## ⚙️ Setup
 

@@ -1,6 +1,6 @@
 # `@code-pushup/eslint-config/jest` config
 
-Config for projects using Jest for testing.
+Config for projects using **Jest** for testing.
 
 ## ⚙️ Setup
 

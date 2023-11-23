@@ -2,13 +2,13 @@
 const pluginIcons = {
   '@angular-eslint': 'material/angular',
   '@angular-eslint/template': 'material/angular_component',
+  '@graphql-eslint': 'material/graphql',
   '@ngrx': 'other/ngrx',
   '@rx-angular': 'other/rx-angular',
   '@typescript-eslint': 'material/typescript',
   cypress: 'material/cypress',
   deprecation: 'icons8/expired',
   functional: 'icons8/lambda',
-  graphql: 'material/graphql',
   import: 'icons8/import',
   jest: 'material/jest',
   n: 'material/nodejs',
@@ -29,6 +29,7 @@ const pluginDocsUrls = {
     'https://github.com/angular-eslint/angular-eslint/tree/main/packages/eslint-plugin#readme',
   '@angular-eslint/template':
     'https://github.com/angular-eslint/angular-eslint/tree/main/packages/eslint-plugin-template#readme',
+  '@graphql-eslint': 'https://the-guild.dev/graphql/eslint/docs',
   '@ngrx': 'https://ngrx.io/guide/eslint-plugin',
   '@rx-angular': 'https://www.rx-angular.io/docs/eslint-plugin',
   '@typescript-eslint': 'https://typescript-eslint.io/',
@@ -36,7 +37,6 @@ const pluginDocsUrls = {
   deprecation: 'https://github.com/gund/eslint-plugin-deprecation#readme',
   functional:
     'https://github.com/eslint-functional/eslint-plugin-functional#readme',
-  graphql: 'https://the-guild.dev/graphql/eslint/docs',
   import: 'https://github.com/import-js/eslint-plugin-import#readme',
   jest: 'https://github.com/jest-community/eslint-plugin-jest#readme',
   n: 'https://github.com/eslint-community/eslint-plugin-n#readme',

@@ -1,6 +1,6 @@
 # `@code-pushup/eslint-config/angular` config
 
-Config for Angular projects.
+Config for **Angular** projects.
 
 ## ⚙️ Setup
 

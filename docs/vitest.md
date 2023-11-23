@@ -1,6 +1,6 @@
 # `@code-pushup/eslint-config/vitest` config
 
-Config for projects using Vitest for testing.
+Config for projects using **Vitest** for testing.
 
 ## ⚙️ Setup
 

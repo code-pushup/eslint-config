@@ -1,12 +1,13 @@
 const configDescriptions = {
-  index: 'Default config, suitable for any JavaScript/TypeScript project.',
-  typescript: 'Config for strict TypeScript projects.',
-  node: 'Config for Node.js projects.',
-  angular: 'Config for Angular projects.',
-  'angular-ngrx': 'Config for Angular projects using NgRx library.',
-  jest: 'Config for projects using Jest for testing.',
-  vitest: 'Config for projects using Vitest for testing.',
-  cypress: 'Config for projects using Cypress for testing.',
+  index: 'Default config, suitable for any **JavaScript/TypeScript** project.',
+  typescript: 'Config for strict **TypeScript** projects.',
+  node: 'Config for **Node.js** projects.',
+  angular: 'Config for **Angular** projects.',
+  'angular-ngrx': 'Config for **Angular** projects using **NgRx** library.',
+  graphql: 'Config for **GraphQL servers** implemented in Node.js.',
+  jest: 'Config for projects using **Jest** for testing.',
+  vitest: 'Config for projects using **Vitest** for testing.',
+  cypress: 'Config for projects using **Cypress** for testing.',
 };
 
 const configs = Object.keys(configDescriptions);
@@ -18,6 +19,7 @@ const configIcons = {
   node: 'material/nodejs',
   angular: 'material/angular',
   'angular-ngrx': 'other/ngrx',
+  graphql: 'material/graphql',
   jest: 'material/jest',
   vitest: 'material/vitest',
   cypress: 'material/cypress',
@@ -25,6 +27,7 @@ const configIcons = {
 
 /** @type {Partial<Record<keyof typeof configDescriptions, string>>} */
 const configPatterns = {
+  graphql: '*.graphql',
   jest: '*.test.ts',
   vitest: '*.test.ts',
   cypress: '*.cy.ts',

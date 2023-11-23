@@ -1,6 +1,6 @@
 # `@code-pushup/eslint-config/cypress` config
 
-Config for projects using Cypress for testing.
+Config for projects using **Cypress** for testing.
 
 ## ⚙️ Setup
 

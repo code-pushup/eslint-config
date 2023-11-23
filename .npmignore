@@ -1,0 +1,4 @@
+**/*
+!*.js
+!lib/**/*.js
+jest.config.js

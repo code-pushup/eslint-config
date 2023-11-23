@@ -6,7 +6,8 @@
   "scripts": {
     "prepare": "husky install",
     "test": "jest",
-    "docs": "node scripts/docs.js"
+    "docs": "node scripts/docs.js",
+    "release": "release-it"
   },
   "repository": {
     "type": "git",
@@ -115,6 +116,7 @@
     "eslint-plugin-vitest": "^0.3.10",
     "husky": "^8.0.0",
     "jest": "^29.7.0",
-    "prettier": "3.1.0"
+    "prettier": "3.1.0",
+    "release-it": "^17.0.0"
   }
 }

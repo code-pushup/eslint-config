@@ -12,13 +12,13 @@ Add to `extends` in your .eslintrc file:
 }
 ```
 
-## 📏 Rules (298)
+## 📏 Rules (297)
 
-**271** rules are included from `@code-pushup/eslint-config/node`. For brevity, only the **27** additional rules are listed in this document.
+**270** rules are included from `@code-pushup/eslint-config/node`. For brevity, only the **27** additional rules are listed in this document.
 
 Refer to the extended config's docs:
 
-- [`@code-pushup/eslint-config/node` rules](./node.md#📏-rules-271)
+- [`@code-pushup/eslint-config/node` rules](./node.md#📏-rules-270)
 
 
 > 🔧 Automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/user-guide/command-line-interface#--fix).<br>💡 Manually fixable by [editor suggestions](https://eslint.org/docs/developer-guide/working-with-rules#providing-suggestions).<br>🧪🚫 Disabled for [test files](../README.md#🧪-test-overrides).<br>🧪⚠️ Severity lessened to warning for [test files](../README.md#🧪-test-overrides).

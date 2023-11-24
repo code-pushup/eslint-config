@@ -12,13 +12,13 @@ Add to `extends` in your .eslintrc file:
 }
 ```
 
-## 📏 Rules (370)
+## 📏 Rules (368)
 
-**294** rules are included from `@code-pushup/eslint-config/typescript`. For brevity, only the **76** additional rules are listed in this document.
+**292** rules are included from `@code-pushup/eslint-config/typescript`. For brevity, only the **76** additional rules are listed in this document.
 
 Refer to the extended config's docs:
 
-- [`@code-pushup/eslint-config/typescript` rules](./typescript.md#📏-rules-294)
+- [`@code-pushup/eslint-config/typescript` rules](./typescript.md#📏-rules-292)
 
 
 > 🔧 Automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/user-guide/command-line-interface#--fix).<br>💡 Manually fixable by [editor suggestions](https://eslint.org/docs/developer-guide/working-with-rules#providing-suggestions).<br>🧪🚫 Disabled for [test files](../README.md#🧪-test-overrides).<br>🧪⚠️ Severity lessened to warning for [test files](../README.md#🧪-test-overrides).
@@ -99,7 +99,7 @@ Refer to the extended config's docs:
 | [![@angular-eslint/template](./icons/material/angular_component.png)](https://github.com/angular-eslint/angular-eslint/tree/main/packages/eslint-plugin-template#readme) | [no-positive-tabindex](https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin-template/docs/rules/no-positive-tabindex.md)<br>Ensures that the `tabindex` attribute is not positive |  | 💡 |  |
 | [![@angular-eslint/template](./icons/material/angular_component.png)](https://github.com/angular-eslint/angular-eslint/tree/main/packages/eslint-plugin-template#readme) | [prefer-ngsrc](https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin-template/docs/rules/prefer-ngsrc.md)<br>Ensures ngSrc is used instead of src for img elements |  |  |  |
 | [![@angular-eslint/template](./icons/material/angular_component.png)](https://github.com/angular-eslint/angular-eslint/tree/main/packages/eslint-plugin-template#readme) | [use-track-by-function](https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin-template/docs/rules/use-track-by-function.md)<br>Ensures trackBy function is used |  |  |  |
-| [![rxjs](./icons/other/rxjs.png)](https://github.com/cartant/eslint-plugin-rxjs#readme) | [finnish](https://github.com/cartant/eslint-plugin-rxjs/tree/main/docs/rules/finnish.md)<br>Enforces the use of Finnish notation. |  |  |  |
+| [![rxjs](./icons/other/rxjs.png)](https://github.com/cartant/eslint-plugin-rxjs#readme) | [finnish](https://github.com/cartant/eslint-plugin-rxjs/tree/main/docs/rules/finnish.md)<br>Enforces the use of Finnish notation. |  |  | 🧪🚫 |
 | [![rxjs](./icons/other/rxjs.png)](https://github.com/cartant/eslint-plugin-rxjs#readme) | [no-async-subscribe](https://github.com/cartant/eslint-plugin-rxjs/tree/main/docs/rules/no-async-subscribe.md)<br>Forbids passing `async` functions to `subscribe`. |  |  |  |
 | [![rxjs](./icons/other/rxjs.png)](https://github.com/cartant/eslint-plugin-rxjs#readme) | [no-compat](https://github.com/cartant/eslint-plugin-rxjs/tree/main/docs/rules/no-compat.md)<br>Forbids importation from locations that depend upon `rxjs-compat`. |  |  |  |
 | [![rxjs](./icons/other/rxjs.png)](https://github.com/cartant/eslint-plugin-rxjs#readme) | [no-create](https://github.com/cartant/eslint-plugin-rxjs/tree/main/docs/rules/no-create.md)<br>Forbids the calling of `Observable.create`. |  |  |  |

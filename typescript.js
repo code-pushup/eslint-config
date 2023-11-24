@@ -39,6 +39,7 @@ module.exports = {
 
         'no-case-declarations': 'off',
         '@typescript-eslint/unbound-method': 'off',
+        '@typescript-eslint/no-unsafe-enum-comparison': 'off',
 
         // ADDITIONAL RULES
 

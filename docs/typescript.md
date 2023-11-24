@@ -12,18 +12,18 @@ Add to `extends` in your .eslintrc file:
 }
 ```
 
-## 📏 Rules (296)
+## 📏 Rules (294)
 
-**255** rules are included from the default config. For brevity, only the **41** additional rules are listed in this document.
+**254** rules are included from the default config. For brevity, only the **40** additional rules are listed in this document.
 
 Refer to the extended config's docs:
 
-- [`@code-pushup` rules](./index.md#📏-rules-255)
+- [`@code-pushup` rules](./index.md#📏-rules-254)
 
 
 > 🔧 Automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/user-guide/command-line-interface#--fix).<br>💡 Manually fixable by [editor suggestions](https://eslint.org/docs/developer-guide/working-with-rules#providing-suggestions).<br>🧪🚫 Disabled for [test files](../README.md#🧪-test-overrides).<br>🧪⚠️ Severity lessened to warning for [test files](../README.md#🧪-test-overrides).
 
-### 🚨 Errors (31)
+### 🚨 Errors (30)
 
 | Plugin | Rule | Options | Autofix | Overrides |
 | :-: | :-- | :-- | :-: | :-: |
@@ -47,7 +47,6 @@ Refer to the extended config's docs:
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [no-unsafe-argument](https://typescript-eslint.io/rules/no-unsafe-argument)<br>Disallow calling a function with a value with type `any` |  |  |  |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [no-unsafe-assignment](https://typescript-eslint.io/rules/no-unsafe-assignment)<br>Disallow assigning a value with type `any` to variables and properties |  |  | 🧪🚫 |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [no-unsafe-call](https://typescript-eslint.io/rules/no-unsafe-call)<br>Disallow calling a value with type `any` |  |  |  |
-| [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [no-unsafe-enum-comparison](https://typescript-eslint.io/rules/no-unsafe-enum-comparison)<br>Disallow comparing an enum value with a non-enum value |  | 💡 |  |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [no-unsafe-member-access](https://typescript-eslint.io/rules/no-unsafe-member-access)<br>Disallow member access on a value with type `any` |  |  | 🧪🚫 |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [no-unsafe-return](https://typescript-eslint.io/rules/no-unsafe-return)<br>Disallow returning a value with type `any` from a function |  |  | 🧪🚫 |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [no-useless-constructor](https://typescript-eslint.io/rules/no-useless-constructor)<br>Disallow unnecessary constructors |  |  |  |

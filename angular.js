@@ -36,6 +36,10 @@ module.exports = {
         'rxjs/no-create': 'warn',
         'rxjs/no-nested-subscribe': 'warn',
 
+        // DISABLED RULES FROM EXTENDED CONFIGS
+
+        'unicorn/prefer-top-level-await': 'off',
+
         // ADDITIONAL RULES
 
         // https://github.com/angular-eslint/angular-eslint/tree/main/packages/eslint-plugin#rules
@@ -86,6 +90,7 @@ module.exports = {
             '@angular-eslint/prefer-standalone-component': 'off',
             '@angular-eslint/use-component-selector': 'off',
             '@angular-eslint/use-injectable-provided-in': 'off',
+            'rxjs/finnish': 'off',
 
             // CUSTOMIZED RULES FOR TEST FILES
 

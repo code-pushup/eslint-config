@@ -48,8 +48,10 @@ module.exports = {
     ),
     'unicorn/switch-case-braces': ['warn', 'avoid'],
     'unicorn/better-regex': ['warn', { sortCharacterClasses: false }],
+    'unicorn/no-useless-undefined': ['warn', { checkArguments: false }],
     'sonarjs/no-small-switch': 'warn',
     'sonarjs/prefer-immediate-return': 'warn',
+    'sonarjs/no-duplicate-string': 'warn',
     'promise/always-return': ['error', { ignoreLastCallback: true }],
 
     // DISABLED RULES FROM EXTENDED CONFIGS
@@ -63,6 +65,7 @@ module.exports = {
     'unicorn/prefer-export-from': 'off',
     'unicorn/no-object-as-default-parameter': 'off',
     'unicorn/no-await-expression-member': 'off',
+    'unicorn/no-nested-ternary': 'off',
 
     // ADDITIONAL RULES
 
@@ -134,7 +137,10 @@ module.exports = {
     // https://github.com/nickdeis/eslint-plugin-no-secrets#readme
     'no-secrets/no-secrets': [
       'error',
-      { additionalDelimiters: ['-'], ignoreContent: 'https://' },
+      {
+        additionalDelimiters: ['-'],
+        ignoreContent: ['https://', '__Zone_', '__zone_'],
+      },
     ],
   },
 

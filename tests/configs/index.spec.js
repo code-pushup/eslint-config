@@ -40,6 +40,18 @@ describe('base config', () => {
     ]);
   });
 
+  test('should have rule disabled if known config file pattern matches', async () => {
+    const config = await loadConfig('jest.config.ts');
+    expect(config.rules['import/no-anonymous-default-export']).toEqual(['off']);
+  });
+
+  test('should have rule disabled if generated file pattern matches', async () => {
+    const config = await loadConfig(
+      'src/graphql/generated/introspection-result.ts',
+    );
+    expect(config.rules['unicorn/no-abusive-eslint-disable']).toEqual(['off']);
+  });
+
   test('should not throw when linting project without tsconfig', async () => {
     await expect(lint(['*.js', 'lib/*.js'])).resolves.not.toThrow();
   });

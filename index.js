@@ -1,4 +1,8 @@
-const { TEST_FILE_PATTERNS } = require('./lib/patterns');
+const {
+  TEST_FILE_PATTERNS,
+  GENERATED_FILE_PATTERNS,
+  KNOWN_CONFIG_FILE_PATTERNS,
+} = require('./lib/patterns');
 const { packageExists } = require('./lib/utils');
 const unicorn = require('eslint-plugin-unicorn');
 
@@ -157,6 +161,20 @@ module.exports = {
           'warn',
           { ignoreImmediateMutation: true },
         ],
+      },
+    },
+
+    {
+      files: KNOWN_CONFIG_FILE_PATTERNS,
+      rules: {
+        'import/no-anonymous-default-export': 'off',
+      },
+    },
+
+    {
+      files: [...GENERATED_FILE_PATTERNS, ...KNOWN_CONFIG_FILE_PATTERNS],
+      rules: {
+        'unicorn/no-abusive-eslint-disable': 'off',
       },
     },
   ],

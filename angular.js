@@ -3,6 +3,7 @@ const {
   TYPESCRIPT_FILE_PATTERNS,
   HTML_FILE_PATTERNS,
 } = require('./lib/patterns');
+const { NAMING_CONVENTION_OPTIONS_ANGULAR } = require('./lib/rule-options');
 
 /** @type {import('eslint').ESLint.ConfigData} */
 module.exports = {
@@ -35,10 +36,18 @@ module.exports = {
         'rxjs/no-async-subscribe': 'warn',
         'rxjs/no-create': 'warn',
         'rxjs/no-nested-subscribe': 'warn',
+        '@typescript-eslint/naming-convention': [
+          'warn',
+          ...NAMING_CONVENTION_OPTIONS_ANGULAR,
+        ],
 
         // DISABLED RULES FROM EXTENDED CONFIGS
 
+        '@typescript-eslint/no-extraneous-class': 'off',
+        '@typescript-eslint/no-floating-promises': 'off', // because of router.navigate
+        'promise/catch-or-return': 'off',
         'unicorn/prefer-top-level-await': 'off',
+        'unicorn/prefer-event-target': 'off',
 
         // ADDITIONAL RULES
 

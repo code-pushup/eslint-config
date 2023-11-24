@@ -12,13 +12,13 @@ Add to `extends` in your .eslintrc file:
 }
 ```
 
-## 📏 Rules (294)
+## 📏 Rules (292)
 
-**254** rules are included from the default config. For brevity, only the **40** additional rules are listed in this document.
+**252** rules are included from the default config. For brevity, only the **40** additional rules are listed in this document.
 
 Refer to the extended config's docs:
 
-- [`@code-pushup` rules](./index.md#📏-rules-254)
+- [`@code-pushup` rules](./index.md#📏-rules-252)
 
 
 > 🔧 Automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/user-guide/command-line-interface#--fix).<br>💡 Manually fixable by [editor suggestions](https://eslint.org/docs/developer-guide/working-with-rules#providing-suggestions).<br>🧪🚫 Disabled for [test files](../README.md#🧪-test-overrides).<br>🧪⚠️ Severity lessened to warning for [test files](../README.md#🧪-test-overrides).
@@ -44,7 +44,7 @@ Refer to the extended config's docs:
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [no-redundant-type-constituents](https://typescript-eslint.io/rules/no-redundant-type-constituents)<br>Disallow members of unions and intersections that do nothing or override type information |  |  |  |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [no-throw-literal](https://typescript-eslint.io/rules/no-throw-literal)<br>Disallow throwing literals as exceptions |  |  |  |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [no-unnecessary-type-assertion](https://typescript-eslint.io/rules/no-unnecessary-type-assertion)<br>Disallow type assertions that do not change the type of an expression |  | 🔧 |  |
-| [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [no-unsafe-argument](https://typescript-eslint.io/rules/no-unsafe-argument)<br>Disallow calling a function with a value with type `any` |  |  |  |
+| [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [no-unsafe-argument](https://typescript-eslint.io/rules/no-unsafe-argument)<br>Disallow calling a function with a value with type `any` |  |  | 🧪🚫 |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [no-unsafe-assignment](https://typescript-eslint.io/rules/no-unsafe-assignment)<br>Disallow assigning a value with type `any` to variables and properties |  |  | 🧪🚫 |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [no-unsafe-call](https://typescript-eslint.io/rules/no-unsafe-call)<br>Disallow calling a value with type `any` |  |  |  |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [no-unsafe-member-access](https://typescript-eslint.io/rules/no-unsafe-member-access)<br>Disallow member access on a value with type `any` |  |  | 🧪🚫 |

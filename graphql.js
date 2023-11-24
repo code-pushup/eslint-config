@@ -1,4 +1,8 @@
-const { NODE_FILE_PATTERNS, GRAPHQL_FILE_PATTERN } = require('./lib/patterns');
+const {
+  NODE_FILE_PATTERNS,
+  GRAPHQL_FILE_PATTERN,
+  TYPESCRIPT_FILE_PATTERNS,
+} = require('./lib/patterns');
 const { NAMING_CONVENTION_OPTIONS_GRAPHQL } = require('./lib/rule-options');
 
 /** @type {import('eslint').ESLint.ConfigData} */
@@ -7,11 +11,7 @@ module.exports = {
 
   overrides: [
     {
-      files: GRAPHQL_FILE_PATTERN,
-      extends: [
-        'plugin:@graphql-eslint/schema-recommended',
-        'plugin:@graphql-eslint/relay',
-      ],
+      files: TYPESCRIPT_FILE_PATTERNS,
       rules: {
         // CUSTOMIZED RULES FROM EXTENDED CONFIGS
 
@@ -19,6 +19,15 @@ module.exports = {
           'warn',
           ...NAMING_CONVENTION_OPTIONS_GRAPHQL,
         ],
+      },
+    },
+    {
+      files: GRAPHQL_FILE_PATTERN,
+      extends: [
+        'plugin:@graphql-eslint/schema-recommended',
+        'plugin:@graphql-eslint/relay',
+      ],
+      rules: {
         // https://the-guild.dev/graphql/eslint/rules
         '@graphql-eslint/description-style': ['warn', { style: 'inline' }],
         '@graphql-eslint/no-hashtag-description': 'warn',

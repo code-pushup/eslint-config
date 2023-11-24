@@ -12,11 +12,11 @@ Add to `extends` in your .eslintrc file:
 }
 ```
 
-## 📏 Rules (254)
+## 📏 Rules (252)
 
 > 🔧 Automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/user-guide/command-line-interface#--fix).<br>💡 Manually fixable by [editor suggestions](https://eslint.org/docs/developer-guide/working-with-rules#providing-suggestions).<br>🧪🚫 Disabled for [test files](../README.md#🧪-test-overrides).<br>🧪⚠️ Severity lessened to warning for [test files](../README.md#🧪-test-overrides).
 
-### 🚨 Errors (117)
+### 🚨 Errors (116)
 
 | Plugin | Rule | Options | Autofix | Overrides |
 | :-: | :-- | :-- | :-: | :-: |
@@ -24,7 +24,6 @@ Add to `extends` in your .eslintrc file:
 |  | [for-direction](https://eslint.org/docs/latest/rules/for-direction)<br>Enforce "for" loop update clause moving the counter in the right direction |  |  |  |
 |  | [guard-for-in](https://eslint.org/docs/latest/rules/guard-for-in)<br>Require `for-in` loops to include an `if` statement |  |  |  |
 |  | [no-async-promise-executor](https://eslint.org/docs/latest/rules/no-async-promise-executor)<br>Disallow using an async function as a Promise executor |  |  |  |
-|  | [no-case-declarations](https://eslint.org/docs/latest/rules/no-case-declarations)<br>Disallow lexical declarations in case clauses |  |  |  |
 |  | [no-class-assign](https://eslint.org/docs/latest/rules/no-class-assign)<br>Disallow reassigning class members |  |  |  |
 |  | [no-compare-neg-zero](https://eslint.org/docs/latest/rules/no-compare-neg-zero)<br>Disallow comparing against -0 |  |  |  |
 |  | [no-cond-assign](https://eslint.org/docs/latest/rules/no-cond-assign)<br>Disallow assignment operators in conditional expressions |  |  |  |
@@ -92,7 +91,7 @@ Add to `extends` in your .eslintrc file:
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [no-var-requires](https://typescript-eslint.io/rules/no-var-requires)<br>Disallow `require` statements except in import statements |  |  |  |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [prefer-as-const](https://typescript-eslint.io/rules/prefer-as-const)<br>Enforce the use of `as const` over literal type |  | 🔧, 💡 |  |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [triple-slash-reference](https://typescript-eslint.io/rules/triple-slash-reference)<br>Disallow certain triple slash directives in favor of ES6-style import declarations |  |  |  |
-| [![functional](./icons/icons8/lambda.png)](https://github.com/eslint-functional/eslint-plugin-functional#readme) | [immutable-data](https://github.com/eslint-functional/eslint-plugin-functional/blob/v6.0.0/docs/rules/immutable-data.md)<br>Enforce treating data as immutable. | <details><summary>ignoreImmediateMutation: true</summary><pre>{<br>  "ignoreImmediateMutation": true<br>}</pre></details> |  | 🧪⚠️ |
+| [![functional](./icons/icons8/lambda.png)](https://github.com/eslint-functional/eslint-plugin-functional#readme) | [immutable-data](https://github.com/eslint-functional/eslint-plugin-functional/blob/v6.0.0/docs/rules/immutable-data.md)<br>Enforce treating data as immutable. | <details><summary>ignoreImmediateMutation: tr...</summary><pre>{<br>  "ignoreImmediateMutation": true,<br>  "ignoreClasses": true<br>}</pre></details> |  | 🧪⚠️ |
 | [![import](./icons/icons8/import.png)](https://github.com/import-js/eslint-plugin-import#readme) | [default](https://github.com/import-js/eslint-plugin-import/blob/v2.29.0/docs/rules/default.md)<br>Ensure a default export is present, given a default import. |  |  |  |
 | [![import](./icons/icons8/import.png)](https://github.com/import-js/eslint-plugin-import#readme) | [export](https://github.com/import-js/eslint-plugin-import/blob/v2.29.0/docs/rules/export.md)<br>Forbid any invalid exports, i.e. re-export of the same name. |  |  |  |
 | [![import](./icons/icons8/import.png)](https://github.com/import-js/eslint-plugin-import#readme) | [named](https://github.com/import-js/eslint-plugin-import/blob/v2.29.0/docs/rules/named.md)<br>Ensure named imports correspond to a named export in the remote file. |  |  |  |
@@ -138,7 +137,7 @@ Add to `extends` in your .eslintrc file:
 | [![sonarjs](./icons/other/sonar.png)](https://github.com/SonarSource/eslint-plugin-sonarjs#readme) | [prefer-single-boolean-return](https://github.com/SonarSource/eslint-plugin-sonarjs/blob/master/docs/rules/prefer-single-boolean-return.md)<br>Return of boolean expressions should not be wrapped into an "if-then-else" statement |  | 💡 |  |
 | [![sonarjs](./icons/other/sonar.png)](https://github.com/SonarSource/eslint-plugin-sonarjs#readme) | [prefer-while](https://github.com/SonarSource/eslint-plugin-sonarjs/blob/master/docs/rules/prefer-while.md)<br>A "while" loop should be used instead of a "for" loop |  | 🔧 |  |
 
-### ⚠️ Warnings (137)
+### ⚠️ Warnings (136)
 
 | Plugin | Rule | Options | Autofix | Overrides |
 | :-: | :-- | :-- | :-: | :-: |
@@ -152,7 +151,7 @@ Add to `extends` in your .eslintrc file:
 |  | [no-bitwise](https://eslint.org/docs/latest/rules/no-bitwise)<br>Disallow bitwise operators |  |  |  |
 |  | [no-console](https://eslint.org/docs/latest/rules/no-console)<br>Disallow the use of `console` | <details><summary>allow: error, warn, info</summary><pre>{<br>  "allow": [<br>    "error",<br>    "warn",<br>    "info"<br>  ]<br>}</pre></details> |  |  |
 |  | [no-duplicate-imports](https://eslint.org/docs/latest/rules/no-duplicate-imports)<br>Disallow duplicate module imports |  |  |  |
-|  | [no-magic-numbers](https://eslint.org/docs/latest/rules/no-magic-numbers)<br>Disallow magic numbers | <details><summary>ignore: -1, 0, 1, 2, 7, 10,...</summary><pre>{<br>  "ignore": [<br>    -1,<br>    0,<br>    1,<br>    2,<br>    7,<br>    10,<br>    24,<br>    60,<br>    100,<br>    1000,<br>    3600<br>  ],<br>  "ignoreDefaultValues": true,<br>  "enforceConst": true,<br>  "detectObjects": true,<br>  "ignoreArrayIndexes": false,<br>  "ignoreClassFieldInitialValues": false<br>}</pre></details> |  | 🧪🚫 |
+|  | [no-magic-numbers](https://eslint.org/docs/latest/rules/no-magic-numbers)<br>Disallow magic numbers | <details><summary>ignore: -1, 0, 1, 2, 7, 10,...</summary><pre>{<br>  "ignore": [<br>    -1,<br>    0,<br>    1,<br>    2,<br>    7,<br>    10,<br>    24,<br>    60,<br>    100,<br>    1000,<br>    3600<br>  ],<br>  "ignoreDefaultValues": true,<br>  "ignoreClassFieldInitialValues": true,<br>  "enforceConst": true,<br>  "detectObjects": true,<br>  "ignoreArrayIndexes": false<br>}</pre></details> |  | 🧪🚫 |
 |  | [no-undef-init](https://eslint.org/docs/latest/rules/no-undef-init)<br>Disallow initializing variables to `undefined` |  | 🔧 |  |
 |  | [prefer-template](https://eslint.org/docs/latest/rules/prefer-template)<br>Require template literals instead of string concatenation |  | 🔧 |  |
 |  | [radix](https://eslint.org/docs/latest/rules/radix)<br>Enforce the consistent use of the radix argument when using `parseInt()` |  | 💡 |  |
@@ -188,7 +187,7 @@ Add to `extends` in your .eslintrc file:
 | [![unicorn](./icons/icons8/unicorn.png)](https://github.com/sindresorhus/eslint-plugin-unicorn#readme) | [better-regex](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v49.0.0/docs/rules/better-regex.md)<br>Improve regexes by making them shorter, consistent, and safer. | <details><summary>sortCharacterClasses: false</summary><pre>{<br>  "sortCharacterClasses": false<br>}</pre></details> | 🔧 |  |
 | [![unicorn](./icons/icons8/unicorn.png)](https://github.com/sindresorhus/eslint-plugin-unicorn#readme) | [catch-error-name](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v49.0.0/docs/rules/catch-error-name.md)<br>Enforce a specific parameter name in catch clauses. |  | 🔧 |  |
 | [![unicorn](./icons/icons8/unicorn.png)](https://github.com/sindresorhus/eslint-plugin-unicorn#readme) | [consistent-destructuring](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v49.0.0/docs/rules/consistent-destructuring.md)<br>Use destructured variables over properties. |  | 🔧, 💡 |  |
-| [![unicorn](./icons/icons8/unicorn.png)](https://github.com/sindresorhus/eslint-plugin-unicorn#readme) | [consistent-function-scoping](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v49.0.0/docs/rules/consistent-function-scoping.md)<br>Move function definitions to the highest possible scope. |  |  | 🧪🚫 |
+| [![unicorn](./icons/icons8/unicorn.png)](https://github.com/sindresorhus/eslint-plugin-unicorn#readme) | [consistent-function-scoping](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v49.0.0/docs/rules/consistent-function-scoping.md)<br>Move function definitions to the highest possible scope. | <details><summary>checkArrowFunctions: false</summary><pre>{<br>  "checkArrowFunctions": false<br>}</pre></details> |  | 🧪🚫 |
 | [![unicorn](./icons/icons8/unicorn.png)](https://github.com/sindresorhus/eslint-plugin-unicorn#readme) | [empty-brace-spaces](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v49.0.0/docs/rules/empty-brace-spaces.md)<br>Enforce no spaces between braces. |  | 🔧 |  |
 | [![unicorn](./icons/icons8/unicorn.png)](https://github.com/sindresorhus/eslint-plugin-unicorn#readme) | [error-message](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v49.0.0/docs/rules/error-message.md)<br>Enforce passing a `message` value when creating a built-in error. |  |  |  |
 | [![unicorn](./icons/icons8/unicorn.png)](https://github.com/sindresorhus/eslint-plugin-unicorn#readme) | [escape-case](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v49.0.0/docs/rules/escape-case.md)<br>Require escape sequences to use uppercase values. |  | 🔧 |  |
@@ -264,7 +263,6 @@ Add to `extends` in your .eslintrc file:
 | [![unicorn](./icons/icons8/unicorn.png)](https://github.com/sindresorhus/eslint-plugin-unicorn#readme) | [prefer-set-has](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v49.0.0/docs/rules/prefer-set-has.md)<br>Prefer `Set#has()` over `Array#includes()` when checking for existence or non-existence. |  | 🔧, 💡 |  |
 | [![unicorn](./icons/icons8/unicorn.png)](https://github.com/sindresorhus/eslint-plugin-unicorn#readme) | [prefer-set-size](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v49.0.0/docs/rules/prefer-set-size.md)<br>Prefer using `Set#size` instead of `Array#length`. |  | 🔧 |  |
 | [![unicorn](./icons/icons8/unicorn.png)](https://github.com/sindresorhus/eslint-plugin-unicorn#readme) | [prefer-spread](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v49.0.0/docs/rules/prefer-spread.md)<br>Prefer the spread operator over `Array.from(…)`, `Array#concat(…)`, `Array#{slice,toSpliced}()` and `String#split('')`. |  | 🔧, 💡 |  |
-| [![unicorn](./icons/icons8/unicorn.png)](https://github.com/sindresorhus/eslint-plugin-unicorn#readme) | [prefer-string-replace-all](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v49.0.0/docs/rules/prefer-string-replace-all.md)<br>Prefer `String#replaceAll()` over regex searches with the global flag. |  | 🔧 |  |
 | [![unicorn](./icons/icons8/unicorn.png)](https://github.com/sindresorhus/eslint-plugin-unicorn#readme) | [prefer-string-slice](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v49.0.0/docs/rules/prefer-string-slice.md)<br>Prefer `String#slice()` over `String#substr()` and `String#substring()`. |  | 🔧 |  |
 | [![unicorn](./icons/icons8/unicorn.png)](https://github.com/sindresorhus/eslint-plugin-unicorn#readme) | [prefer-string-starts-ends-with](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v49.0.0/docs/rules/prefer-string-starts-ends-with.md)<br>Prefer `String#startsWith()` & `String#endsWith()` over `RegExp#test()`. |  | 🔧, 💡 |  |
 | [![unicorn](./icons/icons8/unicorn.png)](https://github.com/sindresorhus/eslint-plugin-unicorn#readme) | [prefer-string-trim-start-end](https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v49.0.0/docs/rules/prefer-string-trim-start-end.md)<br>Prefer `String#trimStart()` / `String#trimEnd()` over `String#trimLeft()` / `String#trimRight()`. |  | 🔧 |  |

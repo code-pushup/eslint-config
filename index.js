@@ -49,6 +49,10 @@ module.exports = {
     'unicorn/switch-case-braces': ['warn', 'avoid'],
     'unicorn/better-regex': ['warn', { sortCharacterClasses: false }],
     'unicorn/no-useless-undefined': ['warn', { checkArguments: false }],
+    'unicorn/consistent-function-scoping': [
+      'warn',
+      { checkArrowFunctions: false },
+    ],
     'sonarjs/no-small-switch': 'warn',
     'sonarjs/prefer-immediate-return': 'warn',
     'sonarjs/no-duplicate-string': 'warn',
@@ -56,6 +60,7 @@ module.exports = {
 
     // DISABLED RULES FROM EXTENDED CONFIGS
 
+    'no-case-declarations': 'off',
     '@typescript-eslint/consistent-indexed-object-style': 'off',
     'unicorn/prevent-abbreviations': 'off',
     'unicorn/no-array-for-each': 'off',
@@ -66,6 +71,7 @@ module.exports = {
     'unicorn/no-object-as-default-parameter': 'off',
     'unicorn/no-await-expression-member': 'off',
     'unicorn/no-nested-ternary': 'off',
+    'unicorn/prefer-string-replace-all': 'off',
 
     // ADDITIONAL RULES
 
@@ -91,6 +97,7 @@ module.exports = {
       {
         ignore: [-1, 0, 1, 2, 7, 10, 24, 60, 100, 1000, 3600],
         ignoreDefaultValues: true,
+        ignoreClassFieldInitialValues: true,
         enforceConst: true,
         detectObjects: true,
       },
@@ -128,7 +135,10 @@ module.exports = {
     'import/no-useless-path-segments': 'warn',
 
     // https://github.com/eslint-functional/eslint-plugin-functional#rules
-    'functional/immutable-data': ['error', { ignoreImmediateMutation: true }],
+    'functional/immutable-data': [
+      'error',
+      { ignoreImmediateMutation: true, ignoreClasses: true },
+    ],
     'functional/no-let': 'warn',
     'functional/no-loop-statements': 'warn',
     'functional/prefer-property-signatures': 'warn',

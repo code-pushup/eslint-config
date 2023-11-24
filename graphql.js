@@ -1,4 +1,5 @@
 const { NODE_FILE_PATTERNS, GRAPHQL_FILE_PATTERN } = require('./lib/patterns');
+const { NAMING_CONVENTION_OPTIONS_GRAPHQL } = require('./lib/rule-options');
 
 /** @type {import('eslint').ESLint.ConfigData} */
 module.exports = {
@@ -14,6 +15,10 @@ module.exports = {
       rules: {
         // CUSTOMIZED RULES FROM EXTENDED CONFIGS
 
+        '@typescript-eslint/naming-convention': [
+          'warn',
+          ...NAMING_CONVENTION_OPTIONS_GRAPHQL,
+        ],
         // https://the-guild.dev/graphql/eslint/rules
         '@graphql-eslint/description-style': ['warn', { style: 'inline' }],
         '@graphql-eslint/no-hashtag-description': 'warn',

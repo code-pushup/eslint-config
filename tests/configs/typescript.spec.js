@@ -46,6 +46,7 @@ describe('typescript config', () => {
       .sort();
     expect(rulesWithoutTypes).toEqual([
       '@typescript-eslint/consistent-type-assertions',
+      'no-case-declarations',
     ]);
   });
 

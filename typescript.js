@@ -37,6 +37,7 @@ module.exports = {
 
         // DISABLED RULES FROM EXTENDED CONFIGS
 
+        'no-case-declarations': 'off',
         '@typescript-eslint/unbound-method': 'off',
 
         // ADDITIONAL RULES
@@ -65,6 +66,7 @@ module.exports = {
             '@typescript-eslint/no-unsafe-return': 'off',
             '@typescript-eslint/no-unsafe-member-access': 'off',
             '@typescript-eslint/prefer-reduce-type-parameter': 'off',
+            '@typescript-eslint/restrict-template-expressions': 'off',
 
             // CUSTOMIZED RULES FOR TEST FILES
 

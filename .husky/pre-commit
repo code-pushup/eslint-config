@@ -3,7 +3,7 @@
 
 # docs script
 npm run docs
-git add docs
+git add docs README.md
 
 # Prettier (https://prettier.io/docs/en/precommit.html#option-5-shell-script)
 FILES=$(git diff --cached --name-only --diff-filter=ACMR | sed 's| |\\ |g')

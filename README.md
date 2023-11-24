@@ -36,8 +36,9 @@ This applies to file paths matching any of the following globs:
 - `__mocks__/**/*.[jt]s?(x)`
 - `*.cy.[jt]s?(x)`
 - `*.stories.[jt]s?(x)`
-- `*.mock.[jt]s?(x)`
 - `*.e2e.[jt]s?(x)`
+- `*.mock.[jt]s?(x)`
+- `*.mocks.[jt]s?(x)`
 - `test/**/*.[jt]s?(x)`
 - `tests/**/*.[jt]s?(x)`
 - `mocks/**/*.[jt]s?(x)`

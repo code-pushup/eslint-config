@@ -42,6 +42,11 @@ module.exports = {
       }),
       {},
     ),
+    'unicorn/switch-case-braces': ['warn', 'avoid'],
+    'unicorn/better-regex': ['warn', { sortCharacterClasses: false }],
+    'sonarjs/no-small-switch': 'warn',
+    'sonarjs/prefer-immediate-return': 'warn',
+    'promise/always-return': ['error', { ignoreLastCallback: true }],
 
     // DISABLED RULES FROM EXTENDED CONFIGS
 
@@ -53,6 +58,7 @@ module.exports = {
     'unicorn/no-null': 'off',
     'unicorn/prefer-export-from': 'off',
     'unicorn/no-object-as-default-parameter': 'off',
+    'unicorn/no-await-expression-member': 'off',
 
     // ADDITIONAL RULES
 
@@ -136,14 +142,17 @@ module.exports = {
 
         'no-magic-numbers': 'off',
         'max-lines-per-function': 'off',
+        'max-lines': 'off',
         curly: 'off',
         '@typescript-eslint/no-non-null-assertion': 'off',
+        '@typescript-eslint/no-explicit-any': 'off',
         'sonarjs/no-duplicate-string': 'off',
         'unicorn/consistent-function-scoping': 'off',
         'functional/no-let': 'off',
 
         // CUSTOMIZED RULES FOR TEST FILES
 
+        'max-nested-callbacks': ['warn', { max: 10 }],
         'functional/immutable-data': [
           'warn',
           { ignoreImmediateMutation: true },

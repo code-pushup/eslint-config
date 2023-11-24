@@ -33,7 +33,10 @@ function setupLintUtils(config, defaultFilePath = '*.ts') {
   /** @param {string | string[]} patterns */
   const lint = (patterns = defaultFilePath) => eslint.lintFiles(patterns);
 
-  /** @param {import('eslint').ESLint.ConfigData} config */
+  /**
+   * @param {import('eslint').ESLint.ConfigData} config
+   * @returns {string[]}
+   */
   const getExplicitRuleIds = config => [
     ...Object.keys(config.rules ?? {}),
     ...(config.overrides?.flatMap(getExplicitRuleIds) ?? []),

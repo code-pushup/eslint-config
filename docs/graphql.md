@@ -14,11 +14,11 @@ Add to `extends` in your .eslintrc file:
 
 ## 📏 Rules (298)
 
-**272** rules are included from `@code-pushup/eslint-config/node`. For brevity, only the **26** additional rules are listed in this document.
+**271** rules are included from `@code-pushup/eslint-config/node`. For brevity, only the **27** additional rules are listed in this document.
 
 Refer to the extended config's docs:
 
-- [`@code-pushup/eslint-config/node` rules](./node.md#📏-rules-272)
+- [`@code-pushup/eslint-config/node` rules](./node.md#📏-rules-271)
 
 
 > 🔧 Automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/user-guide/command-line-interface#--fix).<br>💡 Manually fixable by [editor suggestions](https://eslint.org/docs/developer-guide/working-with-rules#providing-suggestions).<br>🧪🚫 Disabled for [test files](../README.md#🧪-test-overrides).<br>🧪⚠️ Severity lessened to warning for [test files](../README.md#🧪-test-overrides).
@@ -48,9 +48,10 @@ Refer to the extended config's docs:
 | [![@graphql-eslint](./icons/material/graphql.png)](https://the-guild.dev/graphql/eslint/docs) | [unique-operation-types](https://the-guild.dev/graphql/eslint/rules/unique-operation-types)<br>A GraphQL document is only valid if it has only one type per operation.> This rule is a wrapper around a `graphql-js` validation function. |  |  |  |
 | [![@graphql-eslint](./icons/material/graphql.png)](https://the-guild.dev/graphql/eslint/docs) | [unique-type-names](https://the-guild.dev/graphql/eslint/rules/unique-type-names)<br>A GraphQL document is only valid if all defined types have unique names.> This rule is a wrapper around a `graphql-js` validation function. |  |  |  |
 
-### ⚠️ Warnings (2)
+### ⚠️ Warnings (3)
 
 | Plugin | Rule | Options | Autofix | Overrides |
 | :-: | :-- | :-- | :-: | :-: |
 | [![@graphql-eslint](./icons/material/graphql.png)](https://the-guild.dev/graphql/eslint/docs) | [description-style](https://the-guild.dev/graphql/eslint/rules/description-style)<br>Require all comments to follow the same style (either block or inline). | <details><summary>style: inline</summary><pre>{<br>  "style": "inline"<br>}</pre></details> | 💡 |  |
 | [![@graphql-eslint](./icons/material/graphql.png)](https://the-guild.dev/graphql/eslint/docs) | [no-hashtag-description](https://the-guild.dev/graphql/eslint/rules/no-hashtag-description)<br>Requires to use `"""` or `"` for adding a GraphQL description instead of `#`.Allows to use hashtag for comments, as long as it's not attached to an AST definition. |  | 💡 |  |
+| [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [naming-convention](https://typescript-eslint.io/rules/naming-convention)<br>Enforce naming conventions for everything across a codebase | <details><summary>selector: variableLike, met...</summary><pre>[<br>  {<br>    "selector": [<br>      "variableLike",<br>      "method",<br>      "typeProperty",<br>      "parameterProperty",<br>      "classProperty"<br>    ],<br>    "format": [<br>      "camelCase"<br>    ],<br>    "filter": {<br>      "regex": "^(_id\|__typename|__resolveType)$",<br>      "match": false<br>    }<br>  },<br>  {<br>    "selector": "variable",<br>    "format": [<br>      "camelCase",<br>      "UPPER_CASE"<br>    ]<br>  },<br>  {<br>    "selector": "typeLike",<br>    "format": [<br>      "PascalCase"<br>    ]<br>  },<br>  {<br>    "selector": "enumMember",<br>    "format": [<br>      "PascalCase"<br>    ]<br>  },<br>  {<br>    "selector": "parameter",<br>    "modifiers": [<br>      "unused"<br>    ],<br>    "format": null,<br>    "custom": {<br>      "regex": "^(_+|[a-z][a-zA-Z0-9]\*)$",<br>      "match": true<br>    }<br>  },<br>  {<br>    "selector": "objectLiteralProperty",<br>    "modifiers": [<br>      "requiresQuotes"<br>    ],<br>    "format": null<br>  },<br>  {<br>    "selector": [<br>      "variable",<br>      "parameter"<br>    ],<br>    "modifiers": [<br>      "destructured"<br>    ],<br>    "format": null<br>  }<br>]</pre></details> |  |  |

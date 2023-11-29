@@ -2,7 +2,7 @@
 
 Config for **GraphQL servers** implemented in Node.js.
 
-## ⚙️ Setup
+## 🏗️ Setup
 
 Add to `extends` in your .eslintrc file:
 

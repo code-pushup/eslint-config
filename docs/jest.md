@@ -2,7 +2,7 @@
 
 Config for projects using **Jest** for testing.
 
-## ⚙️ Setup
+## 🏗️ Setup
 
 Add to `extends` in your .eslintrc file:
 

@@ -2,7 +2,7 @@
 
 Config for projects using **Storybook** for UI components.
 
-## ⚙️ Setup
+## 🏗️ Setup
 
 Add to `extends` in your .eslintrc file:
 

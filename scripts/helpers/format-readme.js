@@ -11,9 +11,16 @@ const {
   mdList,
   mdCodeInline,
   mdMermaidDiagram,
+  mdCodeBlock,
+  mdListOrdered,
 } = require('./markdown');
 const { TEST_FILE_PATTERNS } = require('../../lib/patterns');
-const { packageDocs, packageIcon, sortPeerDeps } = require('./packages');
+const {
+  packageDocs,
+  packageIcon,
+  sortPeerDeps,
+  abbreviatePackageList,
+} = require('./packages');
 
 /**
  * Format Markdown documentation for README
@@ -37,7 +44,7 @@ function configsToMarkdown(configs, peerDeps, extended) {
       ]),
       ['c', 'l', 'l'],
     ),
-    'Some configs extend other configs, so for example adding `"extends": ["@code-pushup/eslint-config/angular"]` implicitly includes `@code-pushup/eslint-config/typescript` and `@code-pushup` as well.',
+    'Some configs extend other configs, as illustrated below. So, for example, adding `"extends": ["@code-pushup/eslint-config/angular"]` implicitly includes `@code-pushup/eslint-config/typescript` and `@code-pushup` as well.',
     mdMermaidDiagram(
       [
         { id: 'index', label: configAlias('index') },
@@ -54,7 +61,43 @@ function configsToMarkdown(configs, peerDeps, extended) {
       ),
       'BT',
     ),
-    '### 📦 Peer dependencies',
+    '### 🏗️ Setup',
+    'To use the default config, follow these steps:',
+    mdListOrdered([
+      [
+        "You must first install all the required peer dependencies (if you haven't already):",
+        mdCodeBlock(
+          `npm install -D ${abbreviatePackageList(
+            sortPeerDeps(peerDeps)
+              .filter(({ optional }) => !optional)
+              .map(({ pkg }) => pkg),
+          )}`,
+        ),
+      ].join('\n\n'),
+      [
+        'Install `@code-pushup/eslint-config` with:',
+        mdCodeBlock('npm install -D @code-pushup/eslint-config'),
+      ].join('\n\n'),
+      [
+        `Add default config to ${mdCodeInline(
+          'extends',
+        )} section in your ${mdLink(
+          'https://eslint.org/docs/latest/use/configure/configuration-files',
+          'ESLint configuration file',
+        )} (usually called ${mdCodeInline('.eslintrc.json')} or ${mdCodeInline(
+          '.eslintrc.js',
+        )}):`,
+        mdCodeBlock('{\n  "extends": ["@code-pushup"]\n}', 'json'),
+      ].join('\n\n'),
+    ]),
+    `Depending on your tech stack, you may wish to extend other configs as well (${mdLink(
+      '#⚙️-configs',
+      'listed above',
+    )}). This will require installing additional peer dependencies. For more details, refer to setup docs for the configs you're interested in using.`,
+    '#### 📦 Peer dependencies',
+    `All peer dependencies used by ${mdCodeInline(
+      '@code-pushup/eslint-config',
+    )} are listed below, along with their supported versions. Only the default config's dependencies are required, others are optional.`,
     mdTable(
       ['', 'NPM package', 'Version', 'Required'],
       sortPeerDeps(peerDeps).map(({ pkg, version, optional }) => [

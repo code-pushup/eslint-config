@@ -2,7 +2,7 @@
 
 Default config, suitable for any **JavaScript/TypeScript** project.
 
-## ⚙️ Setup
+## 🏗️ Setup
 
 Add to `extends` in your .eslintrc file:
 

@@ -21,7 +21,22 @@ function mdImage(url, alt) {
  * @param {string[]} items
  */
 function mdList(items) {
-  return items.map(item => `- ${item}\n`).join('');
+  return items.map(item => `- ${item.replace(/\n/g, '\n  ')}\n`).join('');
+}
+
+/**
+ * @param {string[]} items
+ */
+function mdListOrdered(items) {
+  const indentChars = `${items.length}. `.length;
+  return items
+    .map((item, i) => {
+      const prefix = `${i + 1}. `.padStart(indentChars, ' ');
+      return (
+        prefix + item.replace(/\n/g, '\n' + ' '.repeat(indentChars)) + '\n'
+      );
+    })
+    .join('');
 }
 
 /**
@@ -33,9 +48,9 @@ function mdCodeInline(content) {
 
 /**
  * @param {string} content
- * @param {'ts' | 'js' | 'json'} [lang='ts']
+ * @param {'ts' | 'js' | 'json' | 'sh'} [lang='ts']
  */
-function mdCodeBlock(content, lang = 'ts') {
+function mdCodeBlock(content, lang = 'sh') {
   return ['```' + lang, content, '```'].join('\n');
 }
 
@@ -125,6 +140,7 @@ module.exports = {
   mdLink,
   mdImage,
   mdList,
+  mdListOrdered,
   mdTable,
   mdCodeInline,
   mdCodeBlock,

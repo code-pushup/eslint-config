@@ -40,7 +40,7 @@ function configRulesToMarkdown(config, rules, extended, options = {}) {
   const blocks = [
     `# \`${alias}\` config`,
     configDescription(config),
-    '## ⚙️ Setup',
+    '## 🏗️ Setup',
     'Add to `extends` in your .eslintrc file:',
     mdCodeBlock(`{\n  "extends": ["${alias}"]\n}`, 'json'),
     `## 📏 Rules (${totalRulesCount})`,

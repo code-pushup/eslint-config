@@ -24,7 +24,7 @@ Configurations are available for different tech stacks.
 | ![cypress](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/material/cypress.png) | [@code-pushup/eslint-config/cypress](https://github.com/code-pushup/eslint-config/blob/main/docs/cypress.md) | Config for projects using **Cypress** for testing. |
 | ![storybook](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/material/storybook.png) | [@code-pushup/eslint-config/storybook](https://github.com/code-pushup/eslint-config/blob/main/docs/storybook.md) | Config for projects using **Storybook** for UI components. |
 
-Some configs extend other configs, so for example adding `"extends": ["@code-pushup/eslint-config/angular"]` implicitly includes `@code-pushup/eslint-config/typescript` and `@code-pushup` as well.
+Some configs extend other configs, as illustrated below. So, for example, adding `"extends": ["@code-pushup/eslint-config/angular"]` implicitly includes `@code-pushup/eslint-config/typescript` and `@code-pushup` as well.
 
 ```mermaid
   graph BT;
@@ -41,7 +41,34 @@ Some configs extend other configs, so for example adding `"extends": ["@code-pus
     graphql --extends--> node
 ```
 
-### 📦 Peer dependencies
+### 🏗️ Setup
+
+To use the default config, follow these steps:
+
+1. You must first install all the required peer dependencies (if you haven't already):
+   
+   ```sh
+   npm install -D eslint @typescript-eslint/{eslint-plugin,parser} eslint-plugin-{functional,import,no-secrets,promise,sonarjs,unicorn}
+   ```
+2. Install `@code-pushup/eslint-config` with:
+   
+   ```sh
+   npm install -D @code-pushup/eslint-config
+   ```
+3. Add default config to ```extends``` section in your [ESLint configuration file](https://eslint.org/docs/latest/use/configure/configuration-files) (usually called ```.eslintrc.json``` or ```.eslintrc.js```):
+   
+   ```json
+   {
+     "extends": ["@code-pushup"]
+   }
+   ```
+
+
+Depending on your tech stack, you may wish to extend other configs as well ([listed above](#⚙️-configs)). This will require installing additional peer dependencies. For more details, refer to setup docs for the configs you're interested in using.
+
+#### 📦 Peer dependencies
+
+All peer dependencies used by ```@code-pushup/eslint-config``` are listed below, along with their supported versions. Only the default config's dependencies are required, others are optional.
 
 |  | NPM package | Version | Required |
 | :-: | :-- | :-: | :-: |

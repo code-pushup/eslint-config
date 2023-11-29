@@ -31,6 +31,7 @@ function packageDocs(pkg) {
 
 /**
  * @param {import('./types').PeerDep[]} peerDeps
+ * @returns {import('./types').PeerDep[]}
  */
 function sortPeerDeps(peerDeps) {
   return Object.values(
@@ -57,8 +58,48 @@ function sortPeerDeps(peerDeps) {
   ).flat();
 }
 
+/** @param {string[]} packages */
+function abbreviatePackageList(packages) {
+  const groups = packages.reduce((acc, pkg) => {
+    if (pkg.startsWith('@')) {
+      const prefix = pkg.slice(0, pkg.indexOf('/') + 1);
+      return {
+        ...acc,
+        [prefix]: [...(acc[prefix] ?? []), pkg],
+      };
+    }
+    const pluginPrefix = 'eslint-plugin-';
+    if (pkg.startsWith(pluginPrefix)) {
+      return {
+        ...acc,
+        [pluginPrefix]: [...(acc[pluginPrefix] ?? []), pkg],
+      };
+    }
+    return acc;
+  }, {});
+  return packages
+    .map(pkg => {
+      const group = Object.entries(groups).find(([, packages]) =>
+        packages.includes(pkg),
+      );
+      if (!group) {
+        return pkg;
+      }
+      const [prefix, packages] = group;
+      if (packages[0] !== pkg) {
+        return null;
+      }
+      return `${prefix}{${packages
+        .map(pkg => pkg.slice(prefix.length))
+        .join(',')}}`;
+    })
+    .filter(val => val != null)
+    .join(' ');
+}
+
 module.exports = {
   packageIcon,
   packageDocs,
   sortPeerDeps,
+  abbreviatePackageList,
 };

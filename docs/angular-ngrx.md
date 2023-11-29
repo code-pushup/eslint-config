@@ -2,7 +2,7 @@
 
 Config for **Angular** projects using **NgRx** library.
 
-## ⚙️ Setup
+## 🏗️ Setup
 
 Add to `extends` in your .eslintrc file:
 

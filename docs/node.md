@@ -2,7 +2,7 @@
 
 Config for **Node.js** projects.
 
-## ⚙️ Setup
+## 🏗️ Setup
 
 Add to `extends` in your .eslintrc file:
 

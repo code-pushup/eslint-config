@@ -19,6 +19,7 @@ export type PeerDep = {
   pkg: string;
   version: string;
   optional: boolean;
+  usedByConfigs: string[];
 };
 
 // corresponds to PNG file names in docs/icons

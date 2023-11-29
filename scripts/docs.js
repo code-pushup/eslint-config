@@ -21,7 +21,7 @@ async function generateDocs() {
   execSync('npm link @code-pushup/eslint-config');
 
   try {
-    const peerDeps = findPeerDependencies();
+    const peerDeps = await loadPeerDependencies();
 
     await fs.mkdir(docsDir, { recursive: true });
 
@@ -35,12 +35,57 @@ async function generateDocs() {
   }
 }
 
-function findPeerDependencies() {
+async function loadPeerDependencies() {
   const packageJson = require('../package.json');
+
+  /** @type {Record<string, string[]>} */
+  const pkgConfigs = {};
+
+  for (const config of configs) {
+    const eslint = new ESLint({
+      baseConfig: { extends: `./${config}.js` },
+      useEslintrc: false,
+    });
+    /** @type {import('eslint').Linter.Config} */
+    const eslintConfig = await eslint.calculateConfigForFile(
+      configPattern(config),
+    );
+
+    /** @type {import('eslint').Linter.Config | null} */
+    const eslintConfigExtra = configExtraPattern(config)
+      ? await eslint.calculateConfigForFile(configExtraPattern(config))
+      : null;
+
+    for (const pkg in packageJson.peerDependencies) {
+      if (pkg === 'eslint') {
+        continue;
+      }
+      const plugins = [
+        ...(eslintConfig.plugins ?? []),
+        ...(eslintConfigExtra?.plugins ?? []),
+      ];
+      const parsers = [
+        ...(eslintConfig.parser ? [eslintConfig.parser] : []),
+        ...(eslintConfigExtra?.parser ? [eslintConfigExtra.parser] : []),
+      ];
+      if (
+        plugins.includes(pkg) ||
+        plugins.includes(
+          pkg.replace(/eslint-plugin-?/, '').replace(/\/$/, ''),
+        ) ||
+        parsers.some(parser => parser.includes(pkg))
+      ) {
+        pkgConfigs[pkg] ??= [];
+        pkgConfigs[pkg].push(config);
+      }
+    }
+  }
+
   return Object.entries(packageJson.peerDependencies).map(([pkg, version]) => ({
     pkg,
     version,
     optional: packageJson.peerDependenciesMeta[pkg]?.optional ?? false,
+    usedByConfigs: pkgConfigs[pkg] ?? [],
   }));
 }
 

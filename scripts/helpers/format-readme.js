@@ -32,14 +32,21 @@ function configsToMarkdown(configs, peerDeps) {
     ),
     '### 📦 Peer dependencies',
     mdTable(
-      ['', 'NPM package', 'Version', 'Required'],
-      sortPeerDeps(peerDeps).map(({ pkg, version, optional }) => [
+      [
+        '',
+        'NPM package',
+        'Version',
+        ...configs.map(configIcon).map(iconToImage),
+      ],
+      sortPeerDeps(peerDeps).map(({ pkg, version, usedByConfigs }) => [
         iconToImage(packageIcon(pkg)),
         mdLink(packageDocs(pkg), pkg),
         mdCodeInline(version),
-        optional ? '' : '✅',
+        ...configs.map(config =>
+          usedByConfigs.includes(config) ? '✅' : '❌',
+        ),
       ]),
-      ['c', 'l', 'c', 'c'],
+      ['c', 'l', 'c', ...configs.map(() => 'c')],
     ),
     '### 🧪 Test overrides',
     'For non-production code, some rules are disabled (or downgraded from errors to warnings).',

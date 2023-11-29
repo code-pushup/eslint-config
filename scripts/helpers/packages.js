@@ -31,6 +31,7 @@ function packageDocs(pkg) {
 
 /**
  * @param {import('./types').PeerDep[]} peerDeps
+ * @returns {import('./types').PeerDep[]}
  */
 function sortPeerDeps(peerDeps) {
   return Object.values(

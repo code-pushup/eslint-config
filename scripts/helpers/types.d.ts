@@ -15,6 +15,12 @@ export type ExtendedConfig = {
   rulesCount: number;
 };
 
+export type PeerDep = {
+  pkg: string;
+  version: string;
+  optional: boolean;
+};
+
 // corresponds to PNG file names in docs/icons
 export type Icon =
   | 'icons8/expired'
@@ -26,6 +32,7 @@ export type Icon =
   | 'material/angular_component'
   | 'material/angular'
   | 'material/cypress'
+  | 'material/eslint'
   | 'material/graphql'
   | 'material/javascript'
   | 'material/jest'

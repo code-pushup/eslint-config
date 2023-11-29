@@ -1,7 +1,6 @@
 const {
   configDescription,
   configAlias,
-  configIcon,
   configFromAlias,
 } = require('./configs');
 const { pluginIcon, pluginDocs } = require('./plugins');
@@ -16,44 +15,8 @@ const {
   mdQuote,
   mdTableCellSanitize,
 } = require('./markdown');
-const { TEST_FILE_PATTERNS } = require('../../lib/patterns');
 
 const testGlobsLink = '../README.md#🧪-test-overrides';
-
-/**
- * Format Markdown documentation for README
- * @param {string[]} configs Config names
- */
-function configsToMarkdown(configs) {
-  const blocks = [
-    '## ⚙️ Configs',
-    'Configurations are available for different tech stacks.',
-    mdTable(
-      ['Stack', 'Config', 'Description'],
-      configs.map(config => {
-        const icon = configIcon(config);
-        return [
-          mdImage(
-            `https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/${icon}.png`,
-            icon.replace(/^\w+\//, ''),
-          ),
-          mdLink(
-            `https://github.com/code-pushup/eslint-config/blob/main/docs/${config}.md`,
-            configAlias(config),
-          ),
-          configDescription(config),
-        ];
-      }),
-      ['c', 'l', 'l'],
-    ),
-    '### 🧪 Test overrides',
-    'For non-production code, some rules are disabled (or downgraded from errors to warnings).',
-    'This applies to file paths matching any of the following globs:',
-    mdList(TEST_FILE_PATTERNS.map(pattern => '`' + pattern + '`')),
-  ];
-
-  return blocks.join('\n\n');
-}
 
 /**
  * Format Markdown documentation for given config.
@@ -172,9 +135,9 @@ function rulesTable(rules, hideOverrides) {
               )
             : '',
 
-          mdLink(rule.meta.docs?.url, name) +
+          mdLink(rule.meta?.docs?.url, name) +
             '<br>' +
-            (rule.meta.docs.description ?? '').replace(/\n/g, ''),
+            (rule.meta?.docs.description ?? '').replace(/\n/g, ''),
 
           options
             ? htmlDetails(
@@ -188,7 +151,10 @@ function rulesTable(rules, hideOverrides) {
               )
             : '',
 
-          [rule.meta.fixable ? '🔧' : '', rule.meta.hasSuggestions ? '💡' : '']
+          [
+            rule.meta?.fixable ? '🔧' : '',
+            rule.meta?.hasSuggestions ? '💡' : '',
+          ]
             .filter(Boolean)
             .join(', ') || '',
 
@@ -253,6 +219,5 @@ function truncate(text, max) {
 }
 
 module.exports = {
-  configsToMarkdown,
   configRulesToMarkdown,
 };

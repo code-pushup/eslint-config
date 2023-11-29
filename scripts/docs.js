@@ -2,10 +2,8 @@ const { ESLint } = require('eslint');
 const fs = require('node:fs/promises');
 const path = require('node:path');
 const { execSync } = require('node:child_process');
-const {
-  configRulesToMarkdown,
-  configsToMarkdown,
-} = require('./helpers/format');
+const { configRulesToMarkdown } = require('./helpers/format-config');
+const { configsToMarkdown } = require('./helpers/format-readme');
 const {
   configs,
   configPattern,
@@ -23,19 +21,34 @@ async function generateDocs() {
   execSync('npm link @code-pushup/eslint-config');
 
   try {
+    const peerDeps = findPeerDependencies();
+
     await fs.mkdir(docsDir, { recursive: true });
 
     for (const config of configs) {
-      await generateConfigDocs(config);
+      await generateConfigDocs(config, peerDeps);
     }
 
-    await generateReadmeDocs();
+    await generateReadmeDocs(peerDeps);
   } finally {
     execSync('npm unlink @code-pushup/eslint-config');
   }
 }
 
-async function generateReadmeDocs() {
+function findPeerDependencies() {
+  const packageJson = require('../package.json');
+  return Object.entries(packageJson.peerDependencies).map(([pkg, version]) => ({
+    pkg,
+    version,
+    optional: packageJson.peerDependenciesMeta[pkg]?.optional ?? false,
+  }));
+}
+
+/**
+ * Update auto-generated part of README.md
+ * @param {import('./helpers/types').PeerDep[]} peerDeps Peer depdendencies
+ */
+async function generateReadmeDocs(peerDeps) {
   const buffer = await fs.readFile(readmePath);
   const mdPrevious = buffer.toString('utf8');
 
@@ -48,7 +61,7 @@ async function generateReadmeDocs() {
     startIndex + startComment.length,
   );
 
-  const mdGenerated = configsToMarkdown(configs);
+  const mdGenerated = configsToMarkdown(configs, peerDeps);
   const mdGeneratedBlock = [
     startComment,
     mdGenerated.replace(/\n$/, ''),
@@ -72,8 +85,9 @@ async function generateReadmeDocs() {
 /**
  * Generate Markdown file for specified ESLint config.
  * @param {string} name Config file name without extension
+ * @param {import('./helpers/types').PeerDep[]} peerDeps Peer depdendencies
  */
-async function generateConfigDocs(name) {
+async function generateConfigDocs(name, peerDeps) {
   const eslint = new ESLint({
     baseConfig: { extends: `./${name}.js` },
     useEslintrc: false,

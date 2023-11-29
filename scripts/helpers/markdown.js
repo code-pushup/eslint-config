@@ -26,6 +26,13 @@ function mdList(items) {
 
 /**
  * @param {string} content
+ */
+function mdCodeInline(content) {
+  return '```' + content + '```';
+}
+
+/**
+ * @param {string} content
  * @param {'ts' | 'js' | 'json'} [lang='ts']
  */
 function mdCodeBlock(content, lang = 'ts') {
@@ -97,6 +104,7 @@ module.exports = {
   mdImage,
   mdList,
   mdTable,
+  mdCodeInline,
   mdCodeBlock,
   mdQuote,
   htmlDetails,

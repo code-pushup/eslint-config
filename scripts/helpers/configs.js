@@ -45,6 +45,53 @@ const configExtraPatterns = {
 /** @type {(keyof typeof configDescriptions)[]} */
 const testConfigs = ['jest', 'vitest', 'cypress'];
 
+/** @type {Partial<Record<keyof typeof configDescriptions, string>>} */
+const configExtraSetupDocs = {
+  typescript: `Because this config includes rules which require type information, make sure to configure \`parserOptions.project\` in your .eslintrc with correct tsconfig.
+For more information, refer to [_Linting with Type Information_ (typescript-eslint)](https://typescript-eslint.io/linting/typed-linting), or [_Configuring ESLint with Typescript_ (Nx)](https://nx.dev/recipes/tips-n-tricks/eslint) if using Nx monorepo.
+
+- Example for library in Nx monorepo:
+  \`\`\`json
+  {
+    "extends": ["../../.eslintrc.json"],
+    "ignorePatterns": ["!**/*"],
+    "overrides": [
+      {
+        "files": "*.ts",
+        "parserOptions": {
+          "project": ["libs/shared-utils/tsconfig.*?.json"]
+        }
+      }
+    ]
+  }
+  \`\`\`
+
+Similarly, you may need to [configure a tsconfig file for \`eslint-plugin-import\` rules](https://www.npmjs.com/package/eslint-plugin-import#typescript) (e.g. if using path aliases in \`.ts\` files):
+
+- Install additional import resolver:
+  \`\`\`sh
+  npm i -D eslint-import-resolver-typescript
+  \`\`\`
+  
+- Example \`.eslintrc.json\` for Nx monorepo:
+  \`\`\`jsonc
+  {
+    // ...
+    "settings": {
+      "import/resolver": {
+        "typescript": {
+          "alwaysTryTypes": true,
+          "project": "tsconfig.base.json"
+          // or if using RxJS:
+          // "project": ["tsconfig.base.json", "node_modules/rxjs/tsconfig.json"]
+        }
+      }
+    }
+  }
+  \`\`\`
+`,
+};
+
 /**
  * Get config string as used with `extends` in .eslintrc file.
  * @param {string} name Config file name without extension
@@ -150,4 +197,5 @@ module.exports = {
   configExtraPattern,
   isConfigForTests,
   getConfigExtends,
+  configExtraSetupDocs,
 };

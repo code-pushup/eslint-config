@@ -25,7 +25,7 @@ const {
 /**
  * Format Markdown documentation for README
  * @param {string[]} configs Config names
- * @param {import('./types').PeerDep[]} peerDeps Peer depdendencies
+ * @param {import('./types').PeerDep[]} peerDeps Peer dependencies
  * @param {Record<string, string[]>} extended Map of extended configs
  */
 function configsToMarkdown(configs, peerDeps, extended) {

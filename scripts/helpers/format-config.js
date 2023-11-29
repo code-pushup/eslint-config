@@ -14,18 +14,28 @@ const {
   mdList,
   mdQuote,
   mdTableCellSanitize,
+  mdListOrdered,
 } = require('./markdown');
+const { sortPeerDeps, abbreviatePackageList } = require('./packages');
 
 const testGlobsLink = '../README.md#🧪-test-overrides';
+const setupLink = '../README.md#🏗️-setup';
 
 /**
  * Format Markdown documentation for given config.
  * @param {string} config Config name
  * @param {import('./types').RuleData[]} rules List of rules included in config
  * @param {import('./types').ExtendedConfig[]} extended List of extended Code PushUp configs
+ * @param {import('./types').PeerDep[]} peerDeps Peer dependencies
  * @param {{hideOverrides?: boolean}} options Extra options
  */
-function configRulesToMarkdown(config, rules, extended, options = {}) {
+function configRulesToMarkdown(
+  config,
+  rules,
+  extended,
+  peerDeps,
+  options = {},
+) {
   const alias = configAlias(config);
 
   const errors = rules.filter(rule => rule.level === 'error');
@@ -41,8 +51,33 @@ function configRulesToMarkdown(config, rules, extended, options = {}) {
     `# \`${alias}\` config`,
     configDescription(config),
     '## 🏗️ Setup',
-    'Add to `extends` in your .eslintrc file:',
-    mdCodeBlock(`{\n  "extends": ["${alias}"]\n}`, 'json'),
+    config === 'index'
+      ? `Refer to ${mdLink(setupLink, 'setup instructions in README')}.`
+      : mdListOrdered([
+          [
+            `If you haven't already, make sure to ${mdLink(
+              setupLink,
+              'install `@code-pushup/eslint-config` and its required peer dependencies',
+            )}.`,
+          ].join('\n\n'),
+          [
+            'Since this plugin requires additional peer dependencies, you have to install them as well:',
+            mdCodeBlock(
+              `npm install -D ${abbreviatePackageList(
+                sortPeerDeps(peerDeps)
+                  .filter(
+                    ({ usedByConfigs, optional }) =>
+                      usedByConfigs.includes(config) && optional,
+                  )
+                  .map(({ pkg }) => pkg),
+              )}`,
+            ),
+          ].join('\n\n'),
+          [
+            'Add to `extends` in your .eslintrc file:',
+            mdCodeBlock(`{\n  "extends": ["${alias}"]\n}`, 'json'),
+          ].join('\n\n'),
+        ]),
     `## 📏 Rules (${totalRulesCount})`,
     ...(extended.length
       ? [

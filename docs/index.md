@@ -4,13 +4,7 @@ Default config, suitable for any **JavaScript/TypeScript** project.
 
 ## 🏗️ Setup
 
-Add to `extends` in your .eslintrc file:
-
-```json
-{
-  "extends": ["@code-pushup"]
-}
-```
+Refer to [setup instructions in README](../README.md#🏗️-setup).
 
 ## 📏 Rules (252)
 

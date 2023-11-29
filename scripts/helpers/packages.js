@@ -89,6 +89,9 @@ function abbreviatePackageList(packages) {
       if (packages[0] !== pkg) {
         return null;
       }
+      if (packages.length === 1) {
+        return pkg;
+      }
       return `${prefix}{${packages
         .map(pkg => pkg.slice(prefix.length))
         .join(',')}}`;

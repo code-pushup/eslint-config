@@ -4,13 +4,20 @@ Config for **Angular** projects using **NgRx** library.
 
 ## 🏗️ Setup
 
-Add to `extends` in your .eslintrc file:
+1. If you haven't already, make sure to [install `@code-pushup/eslint-config` and its required peer dependencies](../README.md#🏗️-setup).
+2. Since this plugin requires additional peer dependencies, you have to install them as well:
+   
+   ```sh
+   npm install -D @angular-eslint/eslint-plugin @ngrx/eslint-plugin eslint-plugin-{deprecation,rxjs}
+   ```
+3. Add to `extends` in your .eslintrc file:
+   
+   ```json
+   {
+     "extends": ["@code-pushup/eslint-config/angular-ngrx"]
+   }
+   ```
 
-```json
-{
-  "extends": ["@code-pushup/eslint-config/angular-ngrx"]
-}
-```
 
 ## 📏 Rules (369)
 

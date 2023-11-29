@@ -15,6 +15,7 @@ const {
   mdQuote,
   mdTableCellSanitize,
   mdListOrdered,
+  mdCodeInline,
 } = require('./markdown');
 const { sortPeerDeps, abbreviatePackageList } = require('./packages');
 
@@ -81,24 +82,19 @@ function configRulesToMarkdown(
     `## 📏 Rules (${totalRulesCount})`,
     ...(extended.length
       ? [
-          `**${extendedRulesCount}** rules are included from ${
-            extended.length > 1
-              ? `${extended.length} other configs`
-              : extended[0].alias === '@code-pushup'
-                ? 'the default config'
-                : '`' + extended[0].alias + '`'
-          }. For brevity, only the **${
-            rules.length
-          }** additional rules are listed in this document.`,
-          "Refer to the extended config's docs:",
-          mdList(
-            extended.map(({ alias, rulesCount }) =>
+          `**${extendedRulesCount}** rules are included from ${extended
+            .map(({ alias, rulesCount }, _, { length }) =>
               mdLink(
                 `./${configFromAlias(alias)}.md#📏-rules-${rulesCount}`,
-                `\`${alias}\` rules`,
+                (alias === '@code-pushup'
+                  ? 'the default config'
+                  : mdCodeInline(alias)) +
+                  (length > 1 ? ` (${rulesCount})` : ''),
               ),
-            ),
-          ),
+            )
+            .join(' and ')}. For brevity, only the **${
+            rules.length
+          }** additional rules are listed in this document.`,
         ]
       : []),
     mdQuote(

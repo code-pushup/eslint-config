@@ -43,7 +43,7 @@ function mdListOrdered(items) {
  * @param {string} content
  */
 function mdCodeInline(content) {
-  return '```' + content + '```';
+  return '`' + content + '`';
 }
 
 /**

@@ -1,10 +1,16 @@
-const { configDescription, configAlias, configIcon } = require('./configs');
+const {
+  configDescription,
+  configAlias,
+  configIcon,
+  configFromAlias,
+} = require('./configs');
 const {
   mdLink,
   mdImage,
   mdTable,
   mdList,
   mdCodeInline,
+  mdMermaidDiagram,
 } = require('./markdown');
 const { TEST_FILE_PATTERNS } = require('../../lib/patterns');
 const { packageDocs, packageIcon, sortPeerDeps } = require('./packages');
@@ -13,8 +19,9 @@ const { packageDocs, packageIcon, sortPeerDeps } = require('./packages');
  * Format Markdown documentation for README
  * @param {string[]} configs Config names
  * @param {import('./types').PeerDep[]} peerDeps Peer depdendencies
+ * @param {Record<string, string[]>} extended Map of extended configs
  */
-function configsToMarkdown(configs, peerDeps) {
+function configsToMarkdown(configs, peerDeps, extended) {
   const blocks = [
     '## ⚙️ Configs',
     'Configurations are available for different tech stacks.',
@@ -29,6 +36,23 @@ function configsToMarkdown(configs, peerDeps) {
         configDescription(config),
       ]),
       ['c', 'l', 'l'],
+    ),
+    'Some configs extend other configs, so for example adding `"extends": ["@code-pushup/eslint-config/angular"]` implicitly includes `@code-pushup/eslint-config/typescript` and `@code-pushup` as well.',
+    mdMermaidDiagram(
+      [
+        { id: 'index', label: configAlias('index') },
+        ...Object.entries(extended)
+          .filter(([, aliases]) => aliases.length > 0)
+          .map(([config]) => ({ id: config, label: configAlias(config) })),
+      ],
+      Object.entries(extended).flatMap(([config, aliases]) =>
+        aliases.map(tgt => ({
+          from: config,
+          to: configFromAlias(tgt),
+          label: 'extends',
+        })),
+      ),
+      'BT',
     ),
     '### 📦 Peer dependencies',
     mdTable(

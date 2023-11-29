@@ -24,6 +24,23 @@ Configurations are available for different tech stacks.
 | ![cypress](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/material/cypress.png) | [@code-pushup/eslint-config/cypress](https://github.com/code-pushup/eslint-config/blob/main/docs/cypress.md) | Config for projects using **Cypress** for testing. |
 | ![storybook](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/material/storybook.png) | [@code-pushup/eslint-config/storybook](https://github.com/code-pushup/eslint-config/blob/main/docs/storybook.md) | Config for projects using **Storybook** for UI components. |
 
+Some configs extend other configs, so for example adding `"extends": ["@code-pushup/eslint-config/angular"]` implicitly includes `@code-pushup/eslint-config/typescript` and `@code-pushup` as well.
+
+```mermaid
+  graph BT;
+    index("@code-pushup")
+    typescript("@code-pushup/eslint-config/typescript")
+    node("@code-pushup/eslint-config/node")
+    angular("@code-pushup/eslint-config/angular")
+    angular-ngrx("@code-pushup/eslint-config/angular-ngrx")
+    graphql("@code-pushup/eslint-config/graphql")
+    typescript --extends--> index
+    node --extends--> index
+    angular --extends--> typescript
+    angular-ngrx --extends--> angular
+    graphql --extends--> node
+```
+
 ### 📦 Peer dependencies
 
 |  | NPM package | Version | Required |

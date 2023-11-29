@@ -22,7 +22,7 @@ const testGlobsLink = '../README.md#🧪-test-overrides';
  * Format Markdown documentation for given config.
  * @param {string} config Config name
  * @param {import('./types').RuleData[]} rules List of rules included in config
- * @param {import('./types').ExtendedConfig[]} extended List of extended Code PushUp
+ * @param {import('./types').ExtendedConfig[]} extended List of extended Code PushUp configs
  * @param {{hideOverrides?: boolean}} options Extra options
  */
 function configRulesToMarkdown(config, rules, extended, options = {}) {

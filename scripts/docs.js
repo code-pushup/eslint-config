@@ -49,6 +49,15 @@ function findPeerDependencies() {
  * @param {import('./helpers/types').PeerDep[]} peerDeps Peer depdendencies
  */
 async function generateReadmeDocs(peerDeps) {
+  const extended = Object.fromEntries(
+    configs.map(config => [
+      config,
+      getConfigExtends(config).filter(alias =>
+        alias.startsWith('@code-pushup'),
+      ),
+    ]),
+  );
+
   const buffer = await fs.readFile(readmePath);
   const mdPrevious = buffer.toString('utf8');
 
@@ -61,7 +70,7 @@ async function generateReadmeDocs(peerDeps) {
     startIndex + startComment.length,
   );
 
-  const mdGenerated = configsToMarkdown(configs, peerDeps);
+  const mdGenerated = configsToMarkdown(configs, peerDeps, extended);
   const mdGeneratedBlock = [
     startComment,
     mdGenerated.replace(/\n$/, ''),

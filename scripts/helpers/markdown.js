@@ -99,6 +99,28 @@ function mdTableCellSanitize(content) {
     .replace(/\*/g, '\\*');
 }
 
+/**
+ *
+ * @param {{ id: string, label: string }[]} nodes
+ * @param {{ from: string, to: string; label?: string }[]} edges
+ * @param {'TD' | 'TB' | 'BT' | 'LR' | 'RL'} orientation
+ */
+function mdMermaidDiagram(nodes, edges, orientation = 'TD') {
+  return [
+    '```mermaid',
+    `  graph ${orientation};`,
+    ...nodes.map(node => `    ${node.id}("${node.label}")`),
+    ...edges.map(
+      edge =>
+        '    ' +
+        [edge.from, edge.label ? `--${edge.label}-->` : '-->', edge.to].join(
+          ' ',
+        ),
+    ),
+    '```',
+  ].join('\n');
+}
+
 module.exports = {
   mdLink,
   mdImage,
@@ -109,4 +131,5 @@ module.exports = {
   mdQuote,
   htmlDetails,
   mdTableCellSanitize,
+  mdMermaidDiagram,
 };

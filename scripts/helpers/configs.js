@@ -45,6 +45,9 @@ const configExtraPatterns = {
 /** @type {(keyof typeof configDescriptions)[]} */
 const testConfigs = ['jest', 'vitest', 'cypress'];
 
+const tsConfigDocsReference =
+  "Refer to [step 3 in TypeScript config's setup docs](./typescript.md#🏗️-setup) for how to set up tsconfig properly.";
+
 /** @type {Partial<Record<keyof typeof configDescriptions, string>>} */
 const configExtraSetupDocs = {
   typescript: `Because this config includes rules which require type information, make sure to configure \`parserOptions.project\` in your .eslintrc with correct tsconfig.
@@ -90,6 +93,8 @@ Similarly, you may need to [configure a tsconfig file for \`eslint-plugin-import
   }
   \`\`\`
 `,
+  angular: tsConfigDocsReference,
+  'angular-ngrx': tsConfigDocsReference,
 };
 
 /**

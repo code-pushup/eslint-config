@@ -10,7 +10,8 @@ Config for **Angular** projects using **NgRx** library.
    ```sh
    npm install -D @angular-eslint/eslint-plugin @ngrx/eslint-plugin eslint-plugin-{deprecation,rxjs}
    ```
-3. Add to `extends` in your .eslintrc file:
+3. Refer to [step 3 in TypeScript config's setup docs](./typescript.md#🏗️-setup) for how to set up tsconfig properly.
+4. Add to `extends` in your .eslintrc file:
    
    ```json
    {

@@ -10,7 +10,7 @@ Config for strict **TypeScript** projects.
    ```sh
    npm install -D eslint-plugin-deprecation
    ```
-3. Because this config includes rules which require type information, make sure to configure `parserOptions.project` in your .eslintrc with correct tsconfig.
+3. Because this config includes rules which require type information, make sure to configure `parserOptions.project` in your .eslintrc points to your project's tsconfig.
    For more information, refer to [_Linting with Type Information_ (typescript-eslint)](https://typescript-eslint.io/linting/typed-linting), or [_Configuring ESLint with Typescript_ (Nx)](https://nx.dev/recipes/tips-n-tricks/eslint) if using Nx monorepo.
    
    - Example for library in Nx monorepo:

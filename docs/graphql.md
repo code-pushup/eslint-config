@@ -10,7 +10,22 @@ Config for **GraphQL servers** implemented in Node.js.
    ```sh
    npm install -D @graphql-eslint/eslint-plugin eslint-plugin-n
    ```
-3. Add to `extends` in your .eslintrc file:
+3. The GraphQL ESLint plugin needs to know where your GraphQL schema is located. For more information, refer to [_Extended Linting Rules with GraphQL Schema_ in GraphQL ESLint docs](https://the-guild.dev/graphql/eslint/docs/getting-started#extended-linting-rules-with-graphql-schema).
+     
+   - If you're using [graphql-config](https://the-guild.dev/graphql/config/docs), then your GraphQL schema will be loaded automatically from your `.graphqlrc.yml` (or equivalent) file. So no extra setup is required in this case.
+   - Otherwise, you can use [`parserOptions.schema`](https://the-guild.dev/graphql/eslint/docs/getting-started/parser-options#schema), e.g.:
+     ```jsonc
+     {
+       // ...
+       "parserOptions": {
+         "schema": "./schema.graphql"
+         // globs are also supported:
+         // "schema": "./src/schema/**/*.graphql.ts"
+       }
+     }
+     ```
+   
+4. Add to `extends` in your .eslintrc file:
    
    ```json
    {

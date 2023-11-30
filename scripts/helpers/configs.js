@@ -50,7 +50,7 @@ const tsConfigDocsReference =
 
 /** @type {Partial<Record<keyof typeof configDescriptions, string>>} */
 const configExtraSetupDocs = {
-  typescript: `Because this config includes rules which require type information, make sure to configure \`parserOptions.project\` in your .eslintrc with correct tsconfig.
+  typescript: `Because this config includes rules which require type information, make sure to configure \`parserOptions.project\` in your .eslintrc points to your project's tsconfig.
 For more information, refer to [_Linting with Type Information_ (typescript-eslint)](https://typescript-eslint.io/linting/typed-linting), or [_Configuring ESLint with Typescript_ (Nx)](https://nx.dev/recipes/tips-n-tricks/eslint) if using Nx monorepo.
 
 - Example for library in Nx monorepo:
@@ -93,8 +93,25 @@ Similarly, you may need to [configure a tsconfig file for \`eslint-plugin-import
   }
   \`\`\`
 `,
+
   angular: tsConfigDocsReference,
   'angular-ngrx': tsConfigDocsReference,
+
+  graphql: `The GraphQL ESLint plugin needs to know where your GraphQL schema is located. For more information, refer to [_Extended Linting Rules with GraphQL Schema_ in GraphQL ESLint docs](https://the-guild.dev/graphql/eslint/docs/getting-started#extended-linting-rules-with-graphql-schema).
+  
+- If you're using [graphql-config](https://the-guild.dev/graphql/config/docs), then your GraphQL schema will be loaded automatically from your \`.graphqlrc.yml\` (or equivalent) file. So no extra setup is required in this case.
+- Otherwise, you can use [\`parserOptions.schema\`](https://the-guild.dev/graphql/eslint/docs/getting-started/parser-options#schema), e.g.:
+  \`\`\`jsonc
+  {
+    // ...
+    "parserOptions": {
+      "schema": "./schema.graphql"
+      // globs are also supported:
+      // "schema": "./src/schema/**/*.graphql.ts"
+    }
+  }
+  \`\`\`
+`,
 };
 
 /**

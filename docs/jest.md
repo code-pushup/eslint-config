@@ -14,7 +14,12 @@ Config for projects using **Jest** for testing.
    
    ```jsonc
    {
-     "extends": ["@code-pushup/eslint-config/jest"]
+     "extends": ["@code-pushup/eslint-config/jest"],
+     // customize rules if needed:
+     "rules": {
+       // e.g. to customize `test` or `it` usage (default is `it` in `describe` and `test` at top-level):
+       "jest/consistent-test-it": ["warn", { "fn": "test", "withinDescribe": "test" }]
+     }
    }
    ```
 

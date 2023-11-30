@@ -14,7 +14,17 @@ Config for projects using **Vitest** for testing.
    
    ```jsonc
    {
-     "extends": ["@code-pushup/eslint-config/vitest"]
+     "extends": ["@code-pushup/eslint-config/vitest"],
+     // customize rules if needed:
+     "rules": {
+       // e.g. to customize file naming convention (default pattern is ".*\\.spec\\.[tj]sx?$"):
+       "vitest/consistent-test-filename": [
+         "warn",
+         { "pattern": ".*\\.(unit|integration|e2e)\\.test\\.ts$" }
+       ],
+       // e.g. to customize `test` or `it` usage (default is `it` in `describe` and `test` at top-level):
+       "vitest/consistent-test-it": ["warn", { "fn": "test", "withinDescribe": "test" }]
+     }
    }
    ```
 

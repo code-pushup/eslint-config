@@ -49,7 +49,7 @@ const tsConfigDocsReference =
   "Refer to [step 3 in TypeScript config's setup docs](./typescript.md#🏗️-setup) for how to set up tsconfig properly.";
 
 /** @type {Partial<Record<keyof typeof configDescriptions, string>>} */
-const configExtraSetupDocs = {
+const configsExtraSetupDocs = {
   typescript: `Because this config includes rules which require type information, make sure to configure \`parserOptions.project\` in your .eslintrc points to your project's tsconfig.
 For more information, refer to [_Linting with Type Information_ (typescript-eslint)](https://typescript-eslint.io/linting/typed-linting), or [_Configuring ESLint with Typescript_ (Nx)](https://nx.dev/recipes/tips-n-tricks/eslint) if using Nx monorepo.
 
@@ -112,6 +112,41 @@ Similarly, you may need to [configure a tsconfig file for \`eslint-plugin-import
   }
   \`\`\`
 `,
+};
+
+const angularExtraEslintrc = `,
+  // It is recommended that selectors in Angular use a common custom prefix
+  // - see https://angular.io/guide/styleguide#style-02-07
+  // To enforce this consistently, add the following rules:
+  "rules": {
+    "@angular-eslint/component-selector": [
+      "warn",
+      {
+        "type": "element",
+        "style": "kebab-case",
+        "prefix": ["cp"] // <-- replace with your own prefix
+      }
+    ],
+    "@angular-eslint/directive-selector": [
+      "warn",
+      {
+        "type": "attribute",
+        "style": "camelCase",
+        "prefix": "cp" // <-- replace with your own prefix
+      }
+    ],
+    "@angular-eslint/pipe-prefix": [
+      "warn",
+      {
+        "prefixes": ["cp"] // <-- replace with your own prefix
+      }
+    ]
+  }`;
+
+/** @type {Partial<Record<keyof typeof configDescriptions, string>>} */
+const configsExtraEslintrc = {
+  angular: angularExtraEslintrc,
+  'angular-ngrx': angularExtraEslintrc,
 };
 
 /**
@@ -219,5 +254,6 @@ module.exports = {
   configExtraPattern,
   isConfigForTests,
   getConfigExtends,
-  configExtraSetupDocs,
+  configsExtraSetupDocs,
+  configsExtraEslintrc,
 };

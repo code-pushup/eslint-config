@@ -55,7 +55,7 @@ Config for strict **TypeScript** projects.
    
 4. Add to `extends` in your .eslintrc file:
    
-   ```json
+   ```jsonc
    {
      "extends": ["@code-pushup/eslint-config/typescript"]
    }

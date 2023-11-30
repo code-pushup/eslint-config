@@ -2,7 +2,8 @@ const {
   configDescription,
   configAlias,
   configFromAlias,
-  configExtraSetupDocs,
+  configsExtraSetupDocs,
+  configsExtraEslintrc,
 } = require('./configs');
 const { pluginIcon, pluginDocs } = require('./plugins');
 const { parseRuleId } = require('./rules');
@@ -49,7 +50,7 @@ function configRulesToMarkdown(
   );
   const totalRulesCount = extendedRulesCount + rules.length;
 
-  const extraSetupDocs = configExtraSetupDocs[config];
+  const extraSetupDocs = configsExtraSetupDocs[config];
 
   const blocks = [
     `# \`${alias}\` config`,
@@ -80,7 +81,12 @@ function configRulesToMarkdown(
           ...(extraSetupDocs ? [extraSetupDocs] : []),
           [
             'Add to `extends` in your .eslintrc file:',
-            mdCodeBlock(`{\n  "extends": ["${alias}"]\n}`, 'json'),
+            mdCodeBlock(
+              `{\n  "extends": ["${alias}"]${
+                configsExtraEslintrc[config] ?? ''
+              }\n}`,
+              'jsonc',
+            ),
           ].join('\n\n'),
         ]),
     `## 📏 Rules (${totalRulesCount})`,

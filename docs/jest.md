@@ -12,7 +12,7 @@ Config for projects using **Jest** for testing.
    ```
 3. Add to `extends` in your .eslintrc file:
    
-   ```json
+   ```jsonc
    {
      "extends": ["@code-pushup/eslint-config/jest"]
    }

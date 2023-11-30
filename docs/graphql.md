@@ -27,7 +27,7 @@ Config for **GraphQL servers** implemented in Node.js.
    
 4. Add to `extends` in your .eslintrc file:
    
-   ```json
+   ```jsonc
    {
      "extends": ["@code-pushup/eslint-config/graphql"]
    }

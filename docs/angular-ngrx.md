@@ -13,9 +13,36 @@ Config for **Angular** projects using **NgRx** library.
 3. Refer to [step 3 in TypeScript config's setup docs](./typescript.md#🏗️-setup) for how to set up tsconfig properly.
 4. Add to `extends` in your .eslintrc file:
    
-   ```json
+   ```jsonc
    {
-     "extends": ["@code-pushup/eslint-config/angular-ngrx"]
+     "extends": ["@code-pushup/eslint-config/angular-ngrx"],
+     // It is recommended that selectors in Angular use a common custom prefix
+     // - see https://angular.io/guide/styleguide#style-02-07
+     // To enforce this consistently, add the following rules:
+     "rules": {
+       "@angular-eslint/component-selector": [
+         "warn",
+         {
+           "type": "element",
+           "style": "kebab-case",
+           "prefix": ["cp"] // <-- replace with your own prefix
+         }
+       ],
+       "@angular-eslint/directive-selector": [
+         "warn",
+         {
+           "type": "attribute",
+           "style": "camelCase",
+           "prefix": "cp" // <-- replace with your own prefix
+         }
+       ],
+       "@angular-eslint/pipe-prefix": [
+         "warn",
+         {
+           "prefixes": ["cp"] // <-- replace with your own prefix
+         }
+       ]
+     }
    }
    ```
 

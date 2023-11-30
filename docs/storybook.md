@@ -12,7 +12,7 @@ Config for projects using **Storybook** for UI components.
    ```
 3. Add to `extends` in your .eslintrc file:
    
-   ```json
+   ```jsonc
    {
      "extends": ["@code-pushup/eslint-config/storybook"]
    }

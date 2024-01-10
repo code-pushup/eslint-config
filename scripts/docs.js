@@ -157,6 +157,12 @@ async function generateConfigDocs(name, peerDeps) {
 
   /** @type {import('eslint').Linter.Config} */
   const testConfig = await eslint.calculateConfigForFile('*.test.ts');
+  const testConfigRules = configExtraPattern(name)?.endsWith('.html')
+    ? {
+        ...testConfig.rules,
+        ...(await eslint.calculateConfigForFile('*.test.ts.html')).rules,
+      }
+    : testConfig.rules;
 
   const extendedConfigs = await getConfigExtends(name)
     .filter(alias => alias.startsWith('@code-pushup'))
@@ -182,7 +188,7 @@ async function generateConfigDocs(name, peerDeps) {
   const extendedRuleIds = Object.values(extendedConfigs).flat();
 
   const ruleIds = getEnabledRuleIds({
-    ...testConfig.rules,
+    ...testConfigRules,
     ...config.rules,
     ...configExtra?.rules,
   }).filter(ruleId => !extendedRuleIds.includes(ruleId));
@@ -198,7 +204,7 @@ async function generateConfigDocs(name, peerDeps) {
     ruleIds.map(id => {
       const entry = config.rules[id] ?? configExtra?.rules[id];
       const level = ruleLevelFromEntry(entry);
-      const testLevel = ruleLevelFromEntry(testConfig.rules[id]);
+      const testLevel = ruleLevelFromEntry(testConfigRules[id]);
       return {
         id,
         meta: rules[id],

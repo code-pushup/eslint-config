@@ -1,5 +1,6 @@
 const {
   TEST_FILE_PATTERNS,
+  TEST_FILE_PATTERNS_INLINE_TEMPLATES,
   TYPESCRIPT_FILE_PATTERNS,
   HTML_FILE_PATTERNS,
 } = require('./lib/patterns');
@@ -147,6 +148,20 @@ module.exports = {
         '@angular-eslint/template/role-has-required-aria': 'error',
         '@angular-eslint/template/use-track-by-function': 'warn',
       },
+
+      overrides: [
+        {
+          files: TEST_FILE_PATTERNS_INLINE_TEMPLATES,
+          rules: {
+            // DISABLED RULES FOR TEST FILES
+
+            '@angular-eslint/template/no-inline-styles': 'off',
+            '@angular-eslint/template/no-any': 'off',
+            '@angular-eslint/template/prefer-ngsrc': 'off',
+            '@angular-eslint/template/use-track-by-function': 'off',
+          },
+        },
+      ],
     },
   ],
 };

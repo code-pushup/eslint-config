@@ -6,11 +6,11 @@ Default config, suitable for any **JavaScript/TypeScript** project.
 
 Refer to [setup instructions in README](../README.md#🏗️-setup).
 
-## 📏 Rules (252)
+## 📏 Rules (251)
 
 > 🔧 Automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/user-guide/command-line-interface#--fix).<br>💡 Manually fixable by [editor suggestions](https://eslint.org/docs/developer-guide/working-with-rules#providing-suggestions).<br>🧪🚫 Disabled for [test files](../README.md#🧪-test-overrides).<br>🧪⚠️ Severity lessened to warning for [test files](../README.md#🧪-test-overrides).
 
-### 🚨 Errors (116)
+### 🚨 Errors (115)
 
 | Plugin | Rule | Options | Autofix | Overrides |
 | :-: | :-- | :-- | :-: | :-: |
@@ -97,7 +97,6 @@ Refer to [setup instructions in README](../README.md#🏗️-setup).
 | [![import](./icons/icons8/import.png)](https://github.com/import-js/eslint-plugin-import#readme) | [no-mutable-exports](https://github.com/import-js/eslint-plugin-import/blob/v2.29.0/docs/rules/no-mutable-exports.md)<br>Forbid the use of mutable exports with `var` or `let`. |  |  |  |
 | [![import](./icons/icons8/import.png)](https://github.com/import-js/eslint-plugin-import#readme) | [no-self-import](https://github.com/import-js/eslint-plugin-import/blob/v2.29.0/docs/rules/no-self-import.md)<br>Forbid a module from importing itself. |  |  |  |
 | [![import](./icons/icons8/import.png)](https://github.com/import-js/eslint-plugin-import#readme) | [no-unresolved](https://github.com/import-js/eslint-plugin-import/blob/v2.29.0/docs/rules/no-unresolved.md)<br>Ensure imports point to a file/module that can be resolved. |  |  |  |
-| [![no-secrets](./icons/icons8/secure.png)](https://github.com/nickdeis/eslint-plugin-no-secrets#readme) | no-secrets<br>An eslint rule that looks for possible leftover secrets in code | <details><summary>additionalDelimiters: -, ig...</summary><pre>{<br>  "additionalDelimiters": [<br>    "-"<br>  ],<br>  "ignoreContent": [<br>    "https://",<br>    "__Zone_",<br>    "__zone_"<br>  ]<br>}</pre></details> |  |  |
 | [![promise](./icons/icons8/promise.png)](https://github.com/eslint-community/eslint-plugin-promise#readme) | [always-return](https://github.com/eslint-community/eslint-plugin-promise/blob/main/docs/rules/always-return.md)<br> | <details><summary>ignoreLastCallback: true</summary><pre>{<br>  "ignoreLastCallback": true<br>}</pre></details> |  |  |
 | [![promise](./icons/icons8/promise.png)](https://github.com/eslint-community/eslint-plugin-promise#readme) | [catch-or-return](https://github.com/eslint-community/eslint-plugin-promise/blob/main/docs/rules/catch-or-return.md)<br> |  |  |  |
 | [![promise](./icons/icons8/promise.png)](https://github.com/eslint-community/eslint-plugin-promise#readme) | [no-new-statics](https://github.com/eslint-community/eslint-plugin-promise/blob/main/docs/rules/no-new-statics.md)<br> |  | 🔧 |  |

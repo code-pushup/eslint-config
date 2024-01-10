@@ -21,7 +21,7 @@ module.exports = {
     sourceType: 'module',
   },
 
-  plugins: ['@typescript-eslint', 'functional', 'no-secrets'],
+  plugins: ['@typescript-eslint', 'functional'],
 
   extends: [
     'eslint:recommended',
@@ -143,15 +143,6 @@ module.exports = {
     'functional/no-loop-statements': 'warn',
     'functional/prefer-property-signatures': 'warn',
     'functional/prefer-tacit': 'warn',
-
-    // https://github.com/nickdeis/eslint-plugin-no-secrets#readme
-    'no-secrets/no-secrets': [
-      'error',
-      {
-        additionalDelimiters: ['-'],
-        ignoreContent: ['https://', '__Zone_', '__zone_'],
-      },
-    ],
   },
 
   overrides: [

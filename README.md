@@ -48,7 +48,7 @@ To use the default config, follow these steps:
 1. You must first install all the required peer dependencies (if you haven't already):
    
    ```sh
-   npm install -D eslint @typescript-eslint/{eslint-plugin,parser} eslint-plugin-{functional,import,no-secrets,promise,sonarjs,unicorn}
+   npm install -D eslint @typescript-eslint/{eslint-plugin,parser} eslint-plugin-{functional,import,promise,sonarjs,unicorn}
    ```
 2. Install `@code-pushup/eslint-config` with:
    
@@ -78,7 +78,6 @@ All peer dependencies used by `@code-pushup/eslint-config` are listed below, alo
 | ![lambda](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/icons8/lambda.png) | [eslint-plugin-functional](https://www.npmjs.com/package/eslint-plugin-functional) | `^6.0.0` | ✅ |
 | ![import](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/icons8/import.png) | [eslint-plugin-import](https://www.npmjs.com/package/eslint-plugin-import) | `^2.25.0` | ✅ |
 | ![import](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/icons8/import.png) | [eslint-import-resolver-typescript](https://www.npmjs.com/package/eslint-import-resolver-typescript) | `^3.0.0` |  |
-| ![secure](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/icons8/secure.png) | [eslint-plugin-no-secrets](https://www.npmjs.com/package/eslint-plugin-no-secrets) | `^0.8.0` | ✅ |
 | ![promise](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/icons8/promise.png) | [eslint-plugin-promise](https://www.npmjs.com/package/eslint-plugin-promise) | `^6.0.0` | ✅ |
 | ![sonar](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/other/sonar.png) | [eslint-plugin-sonarjs](https://www.npmjs.com/package/eslint-plugin-sonarjs) | `>=0.22.0` | ✅ |
 | ![unicorn](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/icons8/unicorn.png) | [eslint-plugin-unicorn](https://www.npmjs.com/package/eslint-plugin-unicorn) | `>=48.0.0` | ✅ |

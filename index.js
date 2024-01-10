@@ -160,6 +160,7 @@ module.exports = {
         'sonarjs/no-duplicate-string': 'off',
         'unicorn/consistent-function-scoping': 'off',
         'functional/no-let': 'off',
+        'promise/catch-or-return': 'off',
 
         // CUSTOMIZED RULES FOR TEST FILES
 

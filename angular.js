@@ -14,6 +14,7 @@ module.exports = {
       extends: [
         '@code-pushup/eslint-config/typescript',
         'plugin:@angular-eslint/recommended',
+        'plugin:@angular-eslint/template/process-inline-templates',
         'plugin:rxjs/recommended',
       ],
 

@@ -8,7 +8,7 @@ Config for **Angular** projects using **NgRx** library.
 2. Since this plugin requires additional peer dependencies, you have to install them as well:
    
    ```sh
-   npm install -D @angular-eslint/eslint-plugin @ngrx/eslint-plugin eslint-plugin-{deprecation,rxjs}
+   npm install -D @angular-eslint/{eslint-plugin,eslint-plugin-template} @ngrx/eslint-plugin eslint-plugin-{deprecation,rxjs}
    ```
 3. Refer to [step 3 in TypeScript config's setup docs](./typescript.md#🏗️-setup) for how to set up tsconfig properly.
 4. Add to `extends` in your .eslintrc file:

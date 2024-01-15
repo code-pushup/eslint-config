@@ -2,6 +2,7 @@ const {
   TEST_FILE_PATTERNS,
   GENERATED_FILE_PATTERNS,
   CONFIG_FILE_PATTERNS,
+  JSON_FILE_PATTERNS,
 } = require('./lib/patterns');
 const { packageExists } = require('./lib/utils');
 const unicorn = require('eslint-plugin-unicorn');
@@ -190,6 +191,16 @@ module.exports = {
         // DISABLED RULES FOR GENERATED FILES
 
         'unicorn/no-abusive-eslint-disable': 'off',
+      },
+    },
+
+    {
+      files: JSON_FILE_PATTERNS,
+      rules: {
+        // DISABLED RULES FOR JSON FILES
+
+        'no-unused-expressions': 'off',
+        '@typescript-eslint/no-unused-expressions': 'off',
       },
     },
   ],

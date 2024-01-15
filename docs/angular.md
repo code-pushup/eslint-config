@@ -47,9 +47,9 @@ Config for **Angular** projects.
    ```
 
 
-## 📏 Rules (366)
+## 📏 Rules (367)
 
-**290** rules are included from [`@code-pushup/eslint-config/typescript`](./typescript.md#📏-rules-290). For brevity, only the **76** additional rules are listed in this document.
+**290** rules are included from [`@code-pushup/eslint-config/typescript`](./typescript.md#📏-rules-290). For brevity, only the **77** additional rules are listed in this document.
 
 > 🔧 Automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/user-guide/command-line-interface#--fix).<br>💡 Manually fixable by [editor suggestions](https://eslint.org/docs/developer-guide/working-with-rules#providing-suggestions).<br>🧪🚫 Disabled for [test files](../README.md#🧪-test-overrides).<br>🧪⚠️ Severity lessened to warning for [test files](../README.md#🧪-test-overrides).
 
@@ -92,7 +92,7 @@ Config for **Angular** projects.
 | [![rxjs](./icons/other/rxjs.png)](https://github.com/cartant/eslint-plugin-rxjs#readme) | [no-unsafe-subject-next](https://github.com/cartant/eslint-plugin-rxjs/tree/main/docs/rules/no-unsafe-subject-next.md)<br>Forbids unsafe optional `next` calls. |  |  |  |
 | [![rxjs](./icons/other/rxjs.png)](https://github.com/cartant/eslint-plugin-rxjs#readme) | [no-unsafe-takeuntil](https://github.com/cartant/eslint-plugin-rxjs/tree/main/docs/rules/no-unsafe-takeuntil.md)<br>Forbids the application of operators after `takeUntil`. |  |  |  |
 
-### ⚠️ Warnings (42)
+### ⚠️ Warnings (43)
 
 | Plugin | Rule | Options | Autofix | Overrides |
 | :-: | :-- | :-- | :-: | :-: |
@@ -128,6 +128,7 @@ Config for **Angular** projects.
 | [![@angular-eslint/template](./icons/material/angular_component.png)](https://github.com/angular-eslint/angular-eslint/tree/main/packages/eslint-plugin-template#readme) | [no-interpolation-in-attributes](https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin-template/docs/rules/no-interpolation-in-attributes.md)<br>Ensures that property-binding is used instead of interpolation in attributes. |  |  |  |
 | [![@angular-eslint/template](./icons/material/angular_component.png)](https://github.com/angular-eslint/angular-eslint/tree/main/packages/eslint-plugin-template#readme) | [no-positive-tabindex](https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin-template/docs/rules/no-positive-tabindex.md)<br>Ensures that the `tabindex` attribute is not positive |  | 💡 |  |
 | [![@angular-eslint/template](./icons/material/angular_component.png)](https://github.com/angular-eslint/angular-eslint/tree/main/packages/eslint-plugin-template#readme) | [prefer-ngsrc](https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin-template/docs/rules/prefer-ngsrc.md)<br>Ensures ngSrc is used instead of src for img elements |  |  | 🧪🚫 |
+| [![@angular-eslint/template](./icons/material/angular_component.png)](https://github.com/angular-eslint/angular-eslint/tree/main/packages/eslint-plugin-template#readme) | [prefer-self-closing-tags](https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin-template/docs/rules/prefer-self-closing-tags.md)<br>Ensures that self-closing tags are used for elements with a closing tag but no content. |  | 🔧 |  |
 | [![@angular-eslint/template](./icons/material/angular_component.png)](https://github.com/angular-eslint/angular-eslint/tree/main/packages/eslint-plugin-template#readme) | [use-track-by-function](https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin-template/docs/rules/use-track-by-function.md)<br>Ensures trackBy function is used |  |  | 🧪🚫 |
 | [![rxjs](./icons/other/rxjs.png)](https://github.com/cartant/eslint-plugin-rxjs#readme) | [finnish](https://github.com/cartant/eslint-plugin-rxjs/tree/main/docs/rules/finnish.md)<br>Enforces the use of Finnish notation. |  |  | 🧪🚫 |
 | [![rxjs](./icons/other/rxjs.png)](https://github.com/cartant/eslint-plugin-rxjs#readme) | [no-async-subscribe](https://github.com/cartant/eslint-plugin-rxjs/tree/main/docs/rules/no-async-subscribe.md)<br>Forbids passing `async` functions to `subscribe`. |  |  |  |

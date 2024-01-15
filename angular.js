@@ -145,6 +145,7 @@ module.exports = {
         '@angular-eslint/template/no-positive-tabindex': 'warn',
         // "@angular-eslint/template/prefer-control-flow": "warn", <-- disabled until control flow out of developer preview
         '@angular-eslint/template/prefer-ngsrc': 'warn',
+        '@angular-eslint/template/prefer-self-closing-tags': 'warn',
         '@angular-eslint/template/role-has-required-aria': 'error',
         '@angular-eslint/template/use-track-by-function': 'warn',
       },

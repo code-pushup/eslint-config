@@ -178,6 +178,7 @@ module.exports = {
         // DISABLED RULES FOR CONFIG FILES
 
         'import/no-anonymous-default-export': 'off',
+        'import/no-unassigned-import': 'off',
         'unicorn/no-abusive-eslint-disable': 'off',
         'unicorn/prefer-module': 'off',
       },

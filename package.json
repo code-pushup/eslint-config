@@ -1,6 +1,6 @@
 {
   "name": "@code-pushup/eslint-config",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Recommended ESLint presets by Code PushUp",
   "main": "index.js",
   "publishConfig": {

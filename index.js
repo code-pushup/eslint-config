@@ -39,7 +39,6 @@ module.exports = {
     // CUSTOMIZED RULES FROM EXTENDED CONFIGS
 
     '@typescript-eslint/consistent-type-definitions': ['warn', 'type'],
-    '@typescript-eslint/no-useless-template-literals': 'warn',
     // convert unicorn errors to warnings
     ...Object.entries(unicorn.configs.recommended.rules).reduce(
       (acc, [ruleId, entry]) => ({

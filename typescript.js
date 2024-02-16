@@ -3,6 +3,7 @@ const {
   TYPESCRIPT_FILE_PATTERNS,
 } = require('./lib/patterns');
 const { NAMING_CONVENTION_OPTIONS } = require('./lib/rule-options');
+const typescriptEslint = require('@typescript-eslint/eslint-plugin');
 
 /** @type {import('eslint').ESLint.ConfigData} */
 module.exports = {
@@ -27,6 +28,12 @@ module.exports = {
         '@typescript-eslint/no-unnecessary-boolean-literal-compare': 'warn',
         '@typescript-eslint/no-unnecessary-condition': 'warn',
         '@typescript-eslint/no-unnecessary-type-arguments': 'warn',
+        // convert new "no-useless-template-literals" rule to warning (added in @typescript-eslint/eslint-plugin@6.15.0)
+        ...(typescriptEslint.rules['no-useless-template-literals']
+          ? {
+              '@typescript-eslint/no-useless-template-literals': 'warn',
+            }
+          : {}),
         '@typescript-eslint/prefer-includes': 'warn',
         '@typescript-eslint/prefer-nullish-coalescing': [
           'warn',

@@ -68,7 +68,7 @@ Config for strict **TypeScript** projects.
 
 > 🔧 Automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/user-guide/command-line-interface#--fix).<br>💡 Manually fixable by [editor suggestions](https://eslint.org/docs/developer-guide/working-with-rules#providing-suggestions).<br>🧪🚫 Disabled for [test files](../README.md#🧪-test-overrides).<br>🧪⚠️ Severity lessened to warning for [test files](../README.md#🧪-test-overrides).
 
-### 🚨 Errors (32)
+### 🚨 Errors (31)
 
 | Plugin | Rule | Options | Autofix | Overrides |
 | :-: | :-- | :-- | :-: | :-: |
@@ -97,7 +97,6 @@ Config for strict **TypeScript** projects.
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [no-unsafe-return](https://typescript-eslint.io/rules/no-unsafe-return)<br>Disallow returning a value with type `any` from a function |  |  | 🧪🚫 |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [no-useless-constructor](https://typescript-eslint.io/rules/no-useless-constructor)<br>Disallow unnecessary constructors |  |  |  |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [prefer-literal-enum-member](https://typescript-eslint.io/rules/prefer-literal-enum-member)<br>Require all enum members to be literal values |  |  |  |
-| [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [prefer-promise-reject-errors](https://typescript-eslint.io/rules/prefer-promise-reject-errors)<br>Require using Error objects as Promise rejection reasons |  |  |  |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [prefer-ts-expect-error](https://typescript-eslint.io/rules/prefer-ts-expect-error)<br>Enforce using `@ts-expect-error` over `@ts-ignore` |  | 🔧 |  |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [require-await](https://typescript-eslint.io/rules/require-await)<br>Disallow async functions which have no `await` expression |  |  | 🧪⚠️ |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [restrict-plus-operands](https://typescript-eslint.io/rules/restrict-plus-operands)<br>Require both operands of addition to be the same type and be `bigint`, `number`, or `string` |  |  |  |
@@ -105,7 +104,7 @@ Config for strict **TypeScript** projects.
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [unified-signatures](https://typescript-eslint.io/rules/unified-signatures)<br>Disallow two overloads that could be unified into one with a union or an optional/rest parameter |  |  |  |
 | [![deprecation](./icons/icons8/expired.png)](https://github.com/gund/eslint-plugin-deprecation#readme) | [deprecation](https://github.com/gund/eslint-plugin-deprecation)<br>Do not use deprecated APIs. |  |  |  |
 
-### ⚠️ Warnings (11)
+### ⚠️ Warnings (12)
 
 | Plugin | Rule | Options | Autofix | Overrides |
 | :-: | :-- | :-- | :-: | :-: |
@@ -118,5 +117,6 @@ Config for strict **TypeScript** projects.
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [no-useless-template-literals](https://typescript-eslint.io/rules/no-useless-template-literals)<br>Disallow unnecessary template literals |  | 🔧 |  |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [prefer-includes](https://typescript-eslint.io/rules/prefer-includes)<br>Enforce `includes` method over `indexOf` method |  | 🔧 |  |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [prefer-nullish-coalescing](https://typescript-eslint.io/rules/prefer-nullish-coalescing)<br>Enforce using the nullish coalescing operator instead of logical assignments or chaining | <details><summary>ignorePrimitives: {"string"...</summary><pre>{<br>  "ignorePrimitives": {<br>    "string": true<br>  }<br>}</pre></details> | 💡 |  |
+| [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [prefer-promise-reject-errors](https://typescript-eslint.io/rules/prefer-promise-reject-errors)<br>Require using Error objects as Promise rejection reasons |  |  |  |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [prefer-reduce-type-parameter](https://typescript-eslint.io/rules/prefer-reduce-type-parameter)<br>Enforce using type parameter when calling `Array#reduce` instead of casting |  | 🔧 | 🧪🚫 |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [prefer-return-this-type](https://typescript-eslint.io/rules/prefer-return-this-type)<br>Enforce that `this` is used when only `this` type is returned |  | 🔧 |  |

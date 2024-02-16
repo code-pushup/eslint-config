@@ -99,7 +99,7 @@
     "@graphql-eslint/eslint-plugin": "^3.20.1",
     "@ngrx/eslint-plugin": "^17.0.0",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
-    "@typescript-eslint/parser": "^6.11.0",
+    "@typescript-eslint/parser": "^6.21.0",
     "compare-versions": "^6.1.0",
     "eslint": "^8.53.0",
     "eslint-import-resolver-typescript": "^3.6.1",

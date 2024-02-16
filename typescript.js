@@ -28,12 +28,14 @@ module.exports = {
         '@typescript-eslint/no-unnecessary-boolean-literal-compare': 'warn',
         '@typescript-eslint/no-unnecessary-condition': 'warn',
         '@typescript-eslint/no-unnecessary-type-arguments': 'warn',
+        // TODO - remove condition after updating to "@typescript-eslint/eslint-plugin": "^7.0.0" in peerDependencies
         // convert new "no-useless-template-literals" rule to warning (added in @typescript-eslint/eslint-plugin@6.15.0)
         ...(typescriptEslint.rules['no-useless-template-literals']
           ? {
               '@typescript-eslint/no-useless-template-literals': 'warn',
             }
           : {}),
+        // TODO - remove condition after updating to "@typescript-eslint/eslint-plugin": "^7.0.0" in peerDependencies
         // convert new "prefer-promise-reject-errors" rule to warning (added in @typescript-eslint/eslint-plugin@6.19.0)
         ...(typescriptEslint.rules['prefer-promise-reject-errors']
           ? {
@@ -67,6 +69,7 @@ module.exports = {
           'warn',
           ...NAMING_CONVENTION_OPTIONS,
         ],
+        // TODO - remove condition after updating to "@typescript-eslint/eslint-plugin": "^7.0.0" in peerDependencies
         // add new "no-unsafe-unary-minus" rule (added in @typescript-eslint/eslint-plugin@6.11.0)
         ...(typescriptEslint.rules['no-unsafe-unary-minus']
           ? {

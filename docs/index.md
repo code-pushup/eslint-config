@@ -10,7 +10,7 @@ Refer to [setup instructions in README](../README.md#🏗️-setup).
 
 > 🔧 Automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/user-guide/command-line-interface#--fix).<br>💡 Manually fixable by [editor suggestions](https://eslint.org/docs/developer-guide/working-with-rules#providing-suggestions).<br>🧪🚫 Disabled for [test files](../README.md#🧪-test-overrides).<br>🧪⚠️ Severity lessened to warning for [test files](../README.md#🧪-test-overrides).
 
-### 🚨 Errors (116)
+### 🚨 Errors (115)
 
 | Plugin | Rule | Options | Autofix | Overrides |
 | :-: | :-- | :-- | :-: | :-: |
@@ -69,7 +69,6 @@ Refer to [setup instructions in README](../README.md#🏗️-setup).
 |  | [valid-typeof](https://eslint.org/docs/latest/rules/valid-typeof)<br>Enforce comparing `typeof` expressions against valid strings |  | 💡 |  |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [ban-ts-comment](https://typescript-eslint.io/rules/ban-ts-comment)<br>Disallow `@ts-<directive>` comments or require descriptions after directives |  | 💡 |  |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [ban-types](https://typescript-eslint.io/rules/ban-types)<br>Disallow certain types |  | 🔧, 💡 |  |
-| [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [class-methods-use-this](https://typescript-eslint.io/rules/class-methods-use-this)<br>Enforce that class methods utilize `this` |  |  |  |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [no-array-constructor](https://typescript-eslint.io/rules/no-array-constructor)<br>Disallow generic `Array` constructors |  | 🔧 |  |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [no-duplicate-enum-values](https://typescript-eslint.io/rules/no-duplicate-enum-values)<br>Disallow duplicate enum member values |  |  |  |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [no-explicit-any](https://typescript-eslint.io/rules/no-explicit-any)<br>Disallow the `any` type |  | 🔧, 💡 | 🧪🚫 |
@@ -131,7 +130,7 @@ Refer to [setup instructions in README](../README.md#🏗️-setup).
 | [![sonarjs](./icons/other/sonar.png)](https://github.com/SonarSource/eslint-plugin-sonarjs#readme) | [prefer-single-boolean-return](https://github.com/SonarSource/eslint-plugin-sonarjs/blob/master/docs/rules/prefer-single-boolean-return.md)<br>Return of boolean expressions should not be wrapped into an "if-then-else" statement |  | 💡 |  |
 | [![sonarjs](./icons/other/sonar.png)](https://github.com/SonarSource/eslint-plugin-sonarjs#readme) | [prefer-while](https://github.com/SonarSource/eslint-plugin-sonarjs/blob/master/docs/rules/prefer-while.md)<br>A "while" loop should be used instead of a "for" loop |  | 🔧 |  |
 
-### ⚠️ Warnings (135)
+### ⚠️ Warnings (136)
 
 | Plugin | Rule | Options | Autofix | Overrides |
 | :-: | :-- | :-- | :-: | :-: |
@@ -150,6 +149,7 @@ Refer to [setup instructions in README](../README.md#🏗️-setup).
 |  | [prefer-template](https://eslint.org/docs/latest/rules/prefer-template)<br>Require template literals instead of string concatenation |  | 🔧 |  |
 |  | [radix](https://eslint.org/docs/latest/rules/radix)<br>Enforce the consistent use of the radix argument when using `parseInt()` |  | 💡 |  |
 |  | [yoda](https://eslint.org/docs/latest/rules/yoda)<br>Require or disallow "Yoda" conditions |  | 🔧 |  |
+| [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [class-methods-use-this](https://typescript-eslint.io/rules/class-methods-use-this)<br>Enforce that class methods utilize `this` |  |  |  |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [consistent-type-definitions](https://typescript-eslint.io/rules/consistent-type-definitions)<br>Enforce type definitions to consistently use either `interface` or `type` | <details><summary>type</summary><pre>"type"</pre></details> | 🔧 |  |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [default-param-last](https://typescript-eslint.io/rules/default-param-last)<br>Enforce default parameters to be last |  |  |  |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [max-params](https://typescript-eslint.io/rules/max-params)<br>Enforce a maximum number of parameters in function definitions | <details><summary>max: 4</summary><pre>{<br>  "max": 4<br>}</pre></details> |  |  |

@@ -39,6 +39,7 @@ module.exports = {
     // CUSTOMIZED RULES FROM EXTENDED CONFIGS
 
     '@typescript-eslint/consistent-type-definitions': ['warn', 'type'],
+    '@typescript-eslint/no-useless-template-literals': 'warn',
     // convert unicorn errors to warnings
     ...Object.entries(unicorn.configs.recommended.rules).reduce(
       (acc, [ruleId, entry]) => ({
@@ -113,10 +114,10 @@ module.exports = {
     yoda: 'warn',
 
     // https://typescript-eslint.io/rules/
-    '@typescript-eslint/no-require-imports': 'error',
     '@typescript-eslint/default-param-last': 'warn',
     '@typescript-eslint/max-params': ['warn', { max: 4 }],
     '@typescript-eslint/method-signature-style': 'warn',
+    '@typescript-eslint/no-require-imports': 'error',
     '@typescript-eslint/no-shadow': 'warn',
     '@typescript-eslint/no-unused-expressions': 'warn',
 

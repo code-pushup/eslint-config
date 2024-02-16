@@ -34,6 +34,12 @@ module.exports = {
               '@typescript-eslint/no-useless-template-literals': 'warn',
             }
           : {}),
+        // convert new "prefer-promise-reject-errors" rule to warning (added in @typescript-eslint/eslint-plugin@6.19.0)
+        ...(typescriptEslint.rules['prefer-promise-reject-errors']
+          ? {
+              '@typescript-eslint/prefer-promise-reject-errors': 'warn',
+            }
+          : {}),
         '@typescript-eslint/prefer-includes': 'warn',
         '@typescript-eslint/prefer-nullish-coalescing': [
           'warn',

@@ -6,6 +6,7 @@ const {
 } = require('./lib/patterns');
 const { packageExists } = require('./lib/utils');
 const unicorn = require('eslint-plugin-unicorn');
+const typescriptEslint = require('@typescript-eslint/eslint-plugin');
 
 const isPrettierAvailable =
   packageExists('prettier') && packageExists('eslint-config-prettier');
@@ -114,6 +115,13 @@ module.exports = {
 
     // https://typescript-eslint.io/rules/
     '@typescript-eslint/default-param-last': 'warn',
+    // TODO - remove condition after updating to "@typescript-eslint/eslint-plugin": "^7.0.0" in peerDependencies
+    // add new "class-methods-use-this" rule (added in @typescript-eslint/eslint-plugin@6.2.0)
+    ...(typescriptEslint.rules['class-methods-use-this']
+      ? {
+          '@typescript-eslint/class-methods-use-this': 'error',
+        }
+      : {}),
     '@typescript-eslint/max-params': ['warn', { max: 4 }],
     '@typescript-eslint/method-signature-style': 'warn',
     '@typescript-eslint/no-require-imports': 'error',

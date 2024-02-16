@@ -5,6 +5,7 @@ const {
   HTML_FILE_PATTERNS,
 } = require('./lib/patterns');
 const { NAMING_CONVENTION_OPTIONS_ANGULAR } = require('./lib/rule-options');
+const typescriptEslint = require('@typescript-eslint/eslint-plugin');
 
 /** @type {import('eslint').ESLint.ConfigData} */
 module.exports = {
@@ -45,6 +46,13 @@ module.exports = {
 
         // DISABLED RULES FROM EXTENDED CONFIGS
 
+        // TODO - remove condition after updating to "@typescript-eslint/eslint-plugin": "^7.0.0" in peerDependencies
+        // override new "class-methods-use-this" rule from defaults in index.js (added in @typescript-eslint/eslint-plugin@6.2.0)
+        ...(typescriptEslint.rules['class-methods-use-this']
+          ? {
+              '@typescript-eslint/class-methods-use-this': 'off',
+            }
+          : {}),
         '@typescript-eslint/no-extraneous-class': 'off',
         '@typescript-eslint/no-floating-promises': 'off', // because of router.navigate
         'promise/catch-or-return': 'off',

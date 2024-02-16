@@ -128,7 +128,6 @@ module.exports = {
     'import/no-anonymous-default-export': 'warn',
     'import/no-commonjs': 'error',
     'import/no-cycle': 'error',
-    'import/no-deprecated': 'warn',
     'import/no-mutable-exports': 'error',
     'import/no-named-default': 'warn',
     'import/no-self-import': 'error',

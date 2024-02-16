@@ -67,6 +67,12 @@ module.exports = {
           'warn',
           ...NAMING_CONVENTION_OPTIONS,
         ],
+        // add new "no-unsafe-unary-minus" rule (added in @typescript-eslint/eslint-plugin@6.11.0)
+        ...(typescriptEslint.rules['no-unsafe-unary-minus']
+          ? {
+              '@typescript-eslint/no-unsafe-unary-minus': 'error',
+            }
+          : {}),
       },
 
       overrides: [

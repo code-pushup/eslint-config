@@ -6,7 +6,7 @@ Default config, suitable for any **JavaScript/TypeScript** project.
 
 Refer to [setup instructions in README](../README.md#🏗️-setup).
 
-## 📏 Rules (251)
+## 📏 Rules (250)
 
 > 🔧 Automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/user-guide/command-line-interface#--fix).<br>💡 Manually fixable by [editor suggestions](https://eslint.org/docs/developer-guide/working-with-rules#providing-suggestions).<br>🧪🚫 Disabled for [test files](../README.md#🧪-test-overrides).<br>🧪⚠️ Severity lessened to warning for [test files](../README.md#🧪-test-overrides).
 
@@ -130,7 +130,7 @@ Refer to [setup instructions in README](../README.md#🏗️-setup).
 | [![sonarjs](./icons/other/sonar.png)](https://github.com/SonarSource/eslint-plugin-sonarjs#readme) | [prefer-single-boolean-return](https://github.com/SonarSource/eslint-plugin-sonarjs/blob/master/docs/rules/prefer-single-boolean-return.md)<br>Return of boolean expressions should not be wrapped into an "if-then-else" statement |  | 💡 |  |
 | [![sonarjs](./icons/other/sonar.png)](https://github.com/SonarSource/eslint-plugin-sonarjs#readme) | [prefer-while](https://github.com/SonarSource/eslint-plugin-sonarjs/blob/master/docs/rules/prefer-while.md)<br>A "while" loop should be used instead of a "for" loop |  | 🔧 |  |
 
-### ⚠️ Warnings (136)
+### ⚠️ Warnings (135)
 
 | Plugin | Rule | Options | Autofix | Overrides |
 | :-: | :-- | :-- | :-: | :-: |
@@ -162,7 +162,6 @@ Refer to [setup instructions in README](../README.md#🏗️-setup).
 | [![import](./icons/icons8/import.png)](https://github.com/import-js/eslint-plugin-import#readme) | [extensions](https://github.com/import-js/eslint-plugin-import/blob/v2.29.0/docs/rules/extensions.md)<br>Ensure consistent use of file extension within the import path. | <details><summary>never, json: always</summary><pre>[<br>  "never",<br>  {<br>    "json": "always"<br>  }<br>]</pre></details> |  |  |
 | [![import](./icons/icons8/import.png)](https://github.com/import-js/eslint-plugin-import#readme) | [max-dependencies](https://github.com/import-js/eslint-plugin-import/blob/v2.29.0/docs/rules/max-dependencies.md)<br>Enforce the maximum number of dependencies a module can have. | <details><summary>ignoreTypeImports: true</summary><pre>{<br>  "ignoreTypeImports": true<br>}</pre></details> |  |  |
 | [![import](./icons/icons8/import.png)](https://github.com/import-js/eslint-plugin-import#readme) | [no-anonymous-default-export](https://github.com/import-js/eslint-plugin-import/blob/v2.29.0/docs/rules/no-anonymous-default-export.md)<br>Forbid anonymous values as default exports. |  |  |  |
-| [![import](./icons/icons8/import.png)](https://github.com/import-js/eslint-plugin-import#readme) | [no-deprecated](https://github.com/import-js/eslint-plugin-import/blob/v2.29.0/docs/rules/no-deprecated.md)<br>Forbid imported names marked with `@deprecated` documentation tag. |  |  |  |
 | [![import](./icons/icons8/import.png)](https://github.com/import-js/eslint-plugin-import#readme) | [no-duplicates](https://github.com/import-js/eslint-plugin-import/blob/v2.29.0/docs/rules/no-duplicates.md)<br>Forbid repeated import of the same module in multiple places. |  | 🔧 |  |
 | [![import](./icons/icons8/import.png)](https://github.com/import-js/eslint-plugin-import#readme) | [no-named-as-default](https://github.com/import-js/eslint-plugin-import/blob/v2.29.0/docs/rules/no-named-as-default.md)<br>Forbid use of exported name as identifier of default export. |  |  |  |
 | [![import](./icons/icons8/import.png)](https://github.com/import-js/eslint-plugin-import#readme) | [no-named-as-default-member](https://github.com/import-js/eslint-plugin-import/blob/v2.29.0/docs/rules/no-named-as-default-member.md)<br>Forbid use of exported name as property of default export. |  |  |  |

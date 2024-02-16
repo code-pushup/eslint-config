@@ -119,7 +119,7 @@ module.exports = {
     // add new "class-methods-use-this" rule (added in @typescript-eslint/eslint-plugin@6.2.0)
     ...(typescriptEslint.rules['class-methods-use-this']
       ? {
-          '@typescript-eslint/class-methods-use-this': 'error',
+          '@typescript-eslint/class-methods-use-this': 'warn',
         }
       : {}),
     '@typescript-eslint/max-params': ['warn', { max: 4 }],

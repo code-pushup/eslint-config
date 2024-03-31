@@ -1,0 +1,60 @@
+name: Change request
+description: Do you believe a rule should have different presets? Open a change request.
+title: 'Change request'
+body:
+  - type: textarea
+    id: user-story
+    attributes:
+      label: User story
+      description: Here you can phrase your request in a user story format which highlights the added value of the requested change.
+      placeholder: e.g. As a developer, I want to <request>, so that <added value>.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: Acceptance criteria
+      description: What is the expected state? Listing a set of criteria helps us determine whether the scope of the request was fully addressed.
+      placeholder: |
+        For example:
+        - [ ] The `consistent-test-it` rule in `@code-pushup/eslint-config/jest` has a preset pattern set to `*.test.ts` files as that is the most common scenario.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal reproduction of current behaviour
+      description: Sharing a code snippet or a link to a minimal reproduction example simplifies understanding and testing the changes. Feel free to share your current workaround as well.
+    validations:
+      required: true
+  - type: textarea
+    id: desired-behaviour
+    attributes:
+      label: Desired behaviour showcase
+      description: Providing a snippet of the setup and behaviour showcasing the requested change helps understand and verify the requirements.
+    validations:
+      required: false
+  - type: dropdown
+    id: config
+    attributes:
+      label: Which configuration is this related to?
+      options:
+        - default
+        - TypeScript
+        - Node.js
+        - Angular
+        - NgRx
+        - Jest
+        - Vitest
+        - Cypress
+        - Storybook
+    validations:
+      required: true
+  - type: input
+    id: eslint-version
+    attributes:
+      label: ESLint version
+      description: What ESLint version are you running? (check in your `package.json`)
+      placeholder: e.g. 8.57.0
+    validations:
+      required: false

@@ -1,0 +1,60 @@
+name: Feature request
+description: Are you missing a rule or a plugin? Open a feature request.
+title: 'Feature request'
+body:
+  - type: textarea
+    id: user-story
+    attributes:
+      label: User story
+      description: Here you can phrase your request in a user story format which highlights the added value of the requested feature.
+      placeholder: e.g. As a developer, I want to <request>, so that <added value>.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: Acceptance criteria
+      description: What requirements should the feature meet? Listing a set of criteria helps us determine whether the scope of the request was fully addressed.
+      placeholder: |
+        For example:
+        - [ ] The `@code-pushup/eslint-config/typescript` includes the `require-await` rule.
+    validations:
+      required: true
+  - type: textarea
+    id: current-usage
+    attributes:
+      label: Current usage
+      description: Providing an ESLint configuration snippet or a link to the current state helps us understand your use case. Feel free to share your current workaround.
+    validations:
+      required: true
+  - type: textarea
+    id: desired-usage
+    attributes:
+      label: Desired usage showcase
+      description: Providing an ESLint configuration snippet or a link to the showcase of desired state helps us understand and verify the requirements.
+    validations:
+      required: false
+  - type: dropdown
+    id: config
+    attributes:
+      label: Which configuration is this related to?
+      options:
+        - default
+        - TypeScript
+        - Node.js
+        - Angular
+        - NgRx
+        - Jest
+        - Vitest
+        - Cypress
+        - Storybook
+    validations:
+      required: true
+  - type: input
+    id: eslint-version
+    attributes:
+      label: ESLint version
+      description: What ESLint version are you running? (check in your `package.json`)
+      placeholder: e.g. 8.57.0
+    validations:
+      required: false

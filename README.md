@@ -73,8 +73,8 @@ All peer dependencies used by `@code-pushup/eslint-config` are listed below, alo
 |  | NPM package | Version | Required |
 | :-: | :-- | :-: | :-: |
 | ![eslint](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/material/eslint.png) | [eslint](https://www.npmjs.com/package/eslint) | `^8.0.0` | ✅ |
-| ![typescript](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/material/typescript.png) | [@typescript-eslint/eslint-plugin](https://www.npmjs.com/package/@typescript-eslint/eslint-plugin) | `^6.0.0` | ✅ |
-| ![typescript](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/material/typescript.png) | [@typescript-eslint/parser](https://www.npmjs.com/package/@typescript-eslint/parser) | `^6.0.0` | ✅ |
+| ![typescript](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/material/typescript.png) | [@typescript-eslint/eslint-plugin](https://www.npmjs.com/package/@typescript-eslint/eslint-plugin) | `^6.0.0 \|\| ^7.0.0` | ✅ |
+| ![typescript](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/material/typescript.png) | [@typescript-eslint/parser](https://www.npmjs.com/package/@typescript-eslint/parser) | `^6.0.0 \|\| ^7.0.0` | ✅ |
 | ![lambda](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/icons8/lambda.png) | [eslint-plugin-functional](https://www.npmjs.com/package/eslint-plugin-functional) | `^6.0.0` | ✅ |
 | ![import](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/icons8/import.png) | [eslint-plugin-import](https://www.npmjs.com/package/eslint-plugin-import) | `^2.25.0` | ✅ |
 | ![import](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/icons8/import.png) | [eslint-import-resolver-typescript](https://www.npmjs.com/package/eslint-import-resolver-typescript) | `^3.0.0` |  |
@@ -88,7 +88,7 @@ All peer dependencies used by `@code-pushup/eslint-config` are listed below, alo
 | ![ngrx](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/other/ngrx.png) | [@ngrx/eslint-plugin](https://www.npmjs.com/package/@ngrx/eslint-plugin) | `^17.0.0` |  |
 | ![cypress](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/material/cypress.png) | [eslint-plugin-cypress](https://www.npmjs.com/package/eslint-plugin-cypress) | `^2.0.0` |  |
 | ![expired](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/icons8/expired.png) | [eslint-plugin-deprecation](https://www.npmjs.com/package/eslint-plugin-deprecation) | `^2.0.0` |  |
-| ![jest](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/material/jest.png) | [eslint-plugin-jest](https://www.npmjs.com/package/eslint-plugin-jest) | `^27.0.0` |  |
+| ![jest](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/material/jest.png) | [eslint-plugin-jest](https://www.npmjs.com/package/eslint-plugin-jest) | `^27.0.0 \|\| ^28.0.0` |  |
 | ![nodejs](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/material/nodejs.png) | [eslint-plugin-n](https://www.npmjs.com/package/eslint-plugin-n) | `^16.0.0` |  |
 | ![rxjs](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/other/rxjs.png) | [eslint-plugin-rxjs](https://www.npmjs.com/package/eslint-plugin-rxjs) | `^5.0.0` |  |
 | ![storybook](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/material/storybook.png) | [eslint-plugin-storybook](https://www.npmjs.com/package/eslint-plugin-storybook) | `^0.6.0` |  |

@@ -62,13 +62,13 @@ Config for strict **TypeScript** projects.
    ```
 
 
-## 📏 Rules (295)
+## 📏 Rules (297)
 
-**251** rules are included from [the default config](./index.md#📏-rules-251). For brevity, only the **44** additional rules are listed in this document.
+**251** rules are included from [the default config](./index.md#📏-rules-251). For brevity, only the **46** additional rules are listed in this document.
 
 > 🔧 Automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/user-guide/command-line-interface#--fix).<br>💡 Manually fixable by [editor suggestions](https://eslint.org/docs/developer-guide/working-with-rules#providing-suggestions).<br>🧪🚫 Disabled for [test files](../README.md#🧪-test-overrides).<br>🧪⚠️ Severity lessened to warning for [test files](../README.md#🧪-test-overrides).
 
-### 🚨 Errors (32)
+### 🚨 Errors (33)
 
 | Plugin | Rule | Options | Autofix | Overrides |
 | :-: | :-- | :-- | :-: | :-: |
@@ -88,7 +88,6 @@ Config for strict **TypeScript** projects.
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [no-non-null-asserted-nullish-coalescing](https://typescript-eslint.io/rules/no-non-null-asserted-nullish-coalescing)<br>Disallow non-null assertions in the left operand of a nullish coalescing operator |  | 💡 |  |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [no-non-null-assertion](https://typescript-eslint.io/rules/no-non-null-assertion)<br>Disallow non-null assertions using the `!` postfix operator |  | 💡 |  |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [no-redundant-type-constituents](https://typescript-eslint.io/rules/no-redundant-type-constituents)<br>Disallow members of unions and intersections that do nothing or override type information |  |  |  |
-| [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [no-throw-literal](https://typescript-eslint.io/rules/no-throw-literal)<br>Disallow throwing literals as exceptions |  |  |  |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [no-unnecessary-type-assertion](https://typescript-eslint.io/rules/no-unnecessary-type-assertion)<br>Disallow type assertions that do not change the type of an expression |  | 🔧 |  |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [no-unsafe-argument](https://typescript-eslint.io/rules/no-unsafe-argument)<br>Disallow calling a function with a value with type `any` |  |  | 🧪🚫 |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [no-unsafe-assignment](https://typescript-eslint.io/rules/no-unsafe-assignment)<br>Disallow assigning a value with type `any` to variables and properties |  |  | 🧪🚫 |
@@ -97,18 +96,21 @@ Config for strict **TypeScript** projects.
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [no-unsafe-return](https://typescript-eslint.io/rules/no-unsafe-return)<br>Disallow returning a value with type `any` from a function |  |  | 🧪🚫 |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [no-unsafe-unary-minus](https://typescript-eslint.io/rules/no-unsafe-unary-minus)<br>Require unary negation to take a number |  |  |  |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [no-useless-constructor](https://typescript-eslint.io/rules/no-useless-constructor)<br>Disallow unnecessary constructors |  |  |  |
+| [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [only-throw-error](https://typescript-eslint.io/rules/only-throw-error)<br>Disallow throwing non-`Error` values as exceptions |  |  |  |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [prefer-literal-enum-member](https://typescript-eslint.io/rules/prefer-literal-enum-member)<br>Require all enum members to be literal values |  |  |  |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [prefer-ts-expect-error](https://typescript-eslint.io/rules/prefer-ts-expect-error)<br>Enforce using `@ts-expect-error` over `@ts-ignore` |  | 🔧 |  |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [require-await](https://typescript-eslint.io/rules/require-await)<br>Disallow async functions which have no `await` expression |  |  | 🧪⚠️ |
-| [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [restrict-plus-operands](https://typescript-eslint.io/rules/restrict-plus-operands)<br>Require both operands of addition to be the same type and be `bigint`, `number`, or `string` |  |  |  |
-| [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [restrict-template-expressions](https://typescript-eslint.io/rules/restrict-template-expressions)<br>Enforce template literal expressions to be of `string` type |  |  | 🧪🚫 |
+| [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [restrict-plus-operands](https://typescript-eslint.io/rules/restrict-plus-operands)<br>Require both operands of addition to be the same type and be `bigint`, `number`, or `string` | <details><summary>allowAny: false, allowBoole...</summary><pre>{<br>  "allowAny": false,<br>  "allowBoolean": false,<br>  "allowNullish": false,<br>  "allowNumberAndString": false,<br>  "allowRegExp": false<br>}</pre></details> |  |  |
+| [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [restrict-template-expressions](https://typescript-eslint.io/rules/restrict-template-expressions)<br>Enforce template literal expressions to be of `string` type | <details><summary>allowAny: false, allowBoole...</summary><pre>{<br>  "allowAny": false,<br>  "allowBoolean": false,<br>  "allowNullish": false,<br>  "allowNumber": false,<br>  "allowRegExp": false,<br>  "allowNever": false<br>}</pre></details> |  | 🧪🚫 |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [unified-signatures](https://typescript-eslint.io/rules/unified-signatures)<br>Disallow two overloads that could be unified into one with a union or an optional/rest parameter |  |  |  |
+| [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [use-unknown-in-catch-callback-variable](https://typescript-eslint.io/rules/use-unknown-in-catch-callback-variable)<br>Enforce typing arguments in `.catch()` callbacks as `unknown` |  | 🔧, 💡 |  |
 | [![deprecation](./icons/icons8/expired.png)](https://github.com/gund/eslint-plugin-deprecation#readme) | [deprecation](https://github.com/gund/eslint-plugin-deprecation)<br>Do not use deprecated APIs. |  |  |  |
 
-### ⚠️ Warnings (12)
+### ⚠️ Warnings (13)
 
 | Plugin | Rule | Options | Autofix | Overrides |
 | :-: | :-- | :-- | :-: | :-: |
+| [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [consistent-return](https://typescript-eslint.io/rules/consistent-return)<br>Require `return` statements to either always or never specify values |  |  |  |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [naming-convention](https://typescript-eslint.io/rules/naming-convention)<br>Enforce naming conventions for everything across a codebase | <details><summary>selector: variableLike, met...</summary><pre>[<br>  {<br>    "selector": [<br>      "variableLike",<br>      "method",<br>      "typeProperty",<br>      "parameterProperty",<br>      "classProperty"<br>    ],<br>    "format": [<br>      "camelCase"<br>    ]<br>  },<br>  {<br>    "selector": "variable",<br>    "format": [<br>      "camelCase",<br>      "UPPER_CASE"<br>    ]<br>  },<br>  {<br>    "selector": "typeLike",<br>    "format": [<br>      "PascalCase"<br>    ]<br>  },<br>  {<br>    "selector": "enumMember",<br>    "format": [<br>      "PascalCase"<br>    ]<br>  },<br>  {<br>    "selector": "parameter",<br>    "modifiers": [<br>      "unused"<br>    ],<br>    "format": null,<br>    "custom": {<br>      "regex": "^(_+\|[a-z][a-zA-Z0-9]\*)$",<br>      "match": true<br>    }<br>  },<br>  {<br>    "selector": "objectLiteralProperty",<br>    "modifiers": [<br>      "requiresQuotes"<br>    ],<br>    "format": null<br>  },<br>  {<br>    "selector": [<br>      "variable",<br>      "parameter"<br>    ],<br>    "modifiers": [<br>      "destructured"<br>    ],<br>    "format": null<br>  }<br>]</pre></details> |  |  |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [no-confusing-void-expression](https://typescript-eslint.io/rules/no-confusing-void-expression)<br>Require expressions of type void to appear in statement position |  | 🔧, 💡 |  |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [no-meaningless-void-operator](https://typescript-eslint.io/rules/no-meaningless-void-operator)<br>Disallow the `void` operator except when used to discard a value |  | 🔧, 💡 |  |

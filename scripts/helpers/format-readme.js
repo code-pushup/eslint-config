@@ -103,7 +103,7 @@ function configsToMarkdown(configs, peerDeps, extended) {
       sortPeerDeps(peerDeps).map(({ pkg, version, optional }) => [
         iconToImage(packageIcon(pkg)),
         mdLink(packageDocs(pkg), pkg),
-        mdCodeInline(version),
+        mdCodeInline(version.replace(/\|/g, '\\|')),
         optional ? '' : '✅',
       ]),
       ['c', 'l', 'c', 'c'],

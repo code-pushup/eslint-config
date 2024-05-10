@@ -163,7 +163,7 @@ module.exports = {
       rules: {
         // DISABLED RULES FOR TEST FILES
 
-        'no-magic-numbers': 'off',
+        '@typescript-eslint/no-magic-numbers': 'off',
         'max-lines-per-function': 'off',
         'max-lines': 'off',
         curly: 'off',

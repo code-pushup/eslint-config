@@ -49,6 +49,10 @@ module.exports = {
         ],
         '@typescript-eslint/prefer-reduce-type-parameter': 'warn',
         '@typescript-eslint/prefer-return-this-type': 'warn',
+        '@typescript-eslint/restrict-template-expressions': [
+          'error',
+          { allowNumber: true },
+        ],
 
         // DISABLED RULES FROM EXTENDED CONFIGS
 

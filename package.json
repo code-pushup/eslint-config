@@ -9,7 +9,7 @@
   "scripts": {
     "prepare": "husky install",
     "test": "jest",
-    "docs": "node scripts/docs.js",
+    "docs": "scripts/docs.js",
     "release": "release-it"
   },
   "repository": {

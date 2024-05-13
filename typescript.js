@@ -51,7 +51,10 @@ module.exports = {
         '@typescript-eslint/prefer-return-this-type': 'warn',
         '@typescript-eslint/restrict-template-expressions': [
           'error',
-          { allowNumber: true },
+          {
+            allowBoolean: true,
+            allowNumber: true,
+          },
         ],
 
         // DISABLED RULES FROM EXTENDED CONFIGS

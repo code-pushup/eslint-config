@@ -117,6 +117,14 @@ module.exports = {
             '@angular-eslint/no-lifecycle-call': 'warn',
           },
         },
+
+        {
+          files: ANGULAR_PIPE_FILE_PATTERNS,
+          rules: {
+            // DISABLED RULES FOR ANGULAR PIPES
+            'prefer-tacit': 'off',
+          },
+        },
       ],
     },
 
@@ -172,14 +180,6 @@ module.exports = {
           },
         },
       ],
-    },
-
-    {
-      files: ANGULAR_PIPE_FILE_PATTERNS,
-      rules: {
-        // DISABLED RULES FOR ANGULAR PIPES
-        'prefer-tacit': 'off',
-      },
     },
   ],
 };

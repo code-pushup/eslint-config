@@ -3,6 +3,7 @@ const {
   TEST_FILE_PATTERNS_INLINE_TEMPLATES,
   TYPESCRIPT_FILE_PATTERNS,
   HTML_FILE_PATTERNS,
+  ANGULAR_PIPE_FILE_PATTERNS,
 } = require('./lib/patterns');
 const { NAMING_CONVENTION_OPTIONS_ANGULAR } = require('./lib/rule-options');
 const typescriptEslint = require('@typescript-eslint/eslint-plugin');
@@ -171,6 +172,14 @@ module.exports = {
           },
         },
       ],
+    },
+
+    {
+      files: ANGULAR_PIPE_FILE_PATTERNS,
+      rules: {
+        // DISABLED RULES FOR ANGULAR PIPES
+        'prefer-tacit': 'off',
+      },
     },
   ],
 };

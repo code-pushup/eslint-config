@@ -65,12 +65,6 @@ module.exports = {
         // ADDITIONAL RULES
 
         // https://typescript-eslint.io/rules/
-        // add new "consistent-return" rule (added in @typescript-eslint/eslint-plugin@7.1.0)
-        ...(typescriptEslint.rules['consistent-return'] // TODO - remove condition after updating to "@typescript-eslint/eslint-plugin": "^8.0.0" in peerDependencies
-          ? {
-              '@typescript-eslint/consistent-return': 'warn',
-            }
-          : {}),
         '@typescript-eslint/consistent-type-assertions': [
           'error',
           {

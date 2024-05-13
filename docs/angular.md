@@ -47,9 +47,9 @@ Config for **Angular** projects.
    ```
 
 
-## 📏 Rules (373)
+## 📏 Rules (372)
 
-**296** rules are included from [`@code-pushup/eslint-config/typescript`](./typescript.md#📏-rules-296). For brevity, only the **77** additional rules are listed in this document.
+**295** rules are included from [`@code-pushup/eslint-config/typescript`](./typescript.md#📏-rules-295). For brevity, only the **77** additional rules are listed in this document.
 
 > 🔧 Automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/user-guide/command-line-interface#--fix).<br>💡 Manually fixable by [editor suggestions](https://eslint.org/docs/developer-guide/working-with-rules#providing-suggestions).<br>🧪🚫 Disabled for [test files](../README.md#🧪-test-overrides).<br>🧪⚠️ Severity lessened to warning for [test files](../README.md#🧪-test-overrides).
 

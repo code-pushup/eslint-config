@@ -62,9 +62,9 @@ Config for strict **TypeScript** projects.
    ```
 
 
-## 📏 Rules (297)
+## 📏 Rules (296)
 
-**251** rules are included from [the default config](./index.md#📏-rules-251). For brevity, only the **46** additional rules are listed in this document.
+**251** rules are included from [the default config](./index.md#📏-rules-251). For brevity, only the **45** additional rules are listed in this document.
 
 > 🔧 Automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/user-guide/command-line-interface#--fix).<br>💡 Manually fixable by [editor suggestions](https://eslint.org/docs/developer-guide/working-with-rules#providing-suggestions).<br>🧪🚫 Disabled for [test files](../README.md#🧪-test-overrides).<br>🧪⚠️ Severity lessened to warning for [test files](../README.md#🧪-test-overrides).
 
@@ -106,11 +106,10 @@ Config for strict **TypeScript** projects.
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [use-unknown-in-catch-callback-variable](https://typescript-eslint.io/rules/use-unknown-in-catch-callback-variable)<br>Enforce typing arguments in `.catch()` callbacks as `unknown` |  | 🔧, 💡 |  |
 | [![deprecation](./icons/icons8/expired.png)](https://github.com/gund/eslint-plugin-deprecation#readme) | [deprecation](https://github.com/gund/eslint-plugin-deprecation)<br>Do not use deprecated APIs. |  |  |  |
 
-### ⚠️ Warnings (13)
+### ⚠️ Warnings (12)
 
 | Plugin | Rule | Options | Autofix | Overrides |
 | :-: | :-- | :-- | :-: | :-: |
-| [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [consistent-return](https://typescript-eslint.io/rules/consistent-return)<br>Require `return` statements to either always or never specify values |  |  |  |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [naming-convention](https://typescript-eslint.io/rules/naming-convention)<br>Enforce naming conventions for everything across a codebase | <details><summary>selector: variableLike, met...</summary><pre>[<br>  {<br>    "selector": [<br>      "variableLike",<br>      "method",<br>      "typeProperty",<br>      "parameterProperty",<br>      "classProperty"<br>    ],<br>    "format": [<br>      "camelCase"<br>    ]<br>  },<br>  {<br>    "selector": "variable",<br>    "format": [<br>      "camelCase",<br>      "UPPER_CASE"<br>    ]<br>  },<br>  {<br>    "selector": "typeLike",<br>    "format": [<br>      "PascalCase"<br>    ]<br>  },<br>  {<br>    "selector": "enumMember",<br>    "format": [<br>      "PascalCase"<br>    ]<br>  },<br>  {<br>    "selector": "parameter",<br>    "modifiers": [<br>      "unused"<br>    ],<br>    "format": null,<br>    "custom": {<br>      "regex": "^(_+\|[a-z][a-zA-Z0-9]\*)$",<br>      "match": true<br>    }<br>  },<br>  {<br>    "selector": "objectLiteralProperty",<br>    "modifiers": [<br>      "requiresQuotes"<br>    ],<br>    "format": null<br>  },<br>  {<br>    "selector": [<br>      "variable",<br>      "parameter"<br>    ],<br>    "modifiers": [<br>      "destructured"<br>    ],<br>    "format": null<br>  }<br>]</pre></details> |  |  |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [no-confusing-void-expression](https://typescript-eslint.io/rules/no-confusing-void-expression)<br>Require expressions of type void to appear in statement position |  | 🔧, 💡 |  |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [no-meaningless-void-operator](https://typescript-eslint.io/rules/no-meaningless-void-operator)<br>Disallow the `void` operator except when used to discard a value |  | 🔧, 💡 |  |

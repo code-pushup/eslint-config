@@ -122,7 +122,7 @@ module.exports = {
           files: ANGULAR_PIPE_FILE_PATTERNS,
           rules: {
             // DISABLED RULES FOR ANGULAR PIPES
-            'prefer-tacit': 'off',
+            'functional/prefer-tacit': 'off',
           },
         },
       ],

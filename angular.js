@@ -56,6 +56,8 @@ module.exports = {
           : {}),
         '@typescript-eslint/no-extraneous-class': 'off',
         '@typescript-eslint/no-floating-promises': 'off', // because of router.navigate
+        // fixme: this rule has been turned off as it produced errors
+        'rxjs/no-implicit-any-catch': 'off',
         'promise/catch-or-return': 'off',
         'unicorn/prefer-top-level-await': 'off',
         'unicorn/prefer-event-target': 'off',

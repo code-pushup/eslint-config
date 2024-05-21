@@ -47,13 +47,13 @@ Config for **Angular** projects.
    ```
 
 
-## 📏 Rules (372)
+## 📏 Rules (371)
 
-**295** rules are included from [`@code-pushup/eslint-config/typescript`](./typescript.md#📏-rules-295). For brevity, only the **77** additional rules are listed in this document.
+**295** rules are included from [`@code-pushup/eslint-config/typescript`](./typescript.md#📏-rules-295). For brevity, only the **76** additional rules are listed in this document.
 
 > 🔧 Automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/user-guide/command-line-interface#--fix).<br>💡 Manually fixable by [editor suggestions](https://eslint.org/docs/developer-guide/working-with-rules#providing-suggestions).<br>🧪🚫 Disabled for [test files](../README.md#🧪-test-overrides).<br>🧪⚠️ Severity lessened to warning for [test files](../README.md#🧪-test-overrides).
 
-### 🚨 Errors (34)
+### 🚨 Errors (33)
 
 | Plugin | Rule | Options | Autofix | Overrides |
 | :-: | :-- | :-- | :-: | :-: |
@@ -82,7 +82,6 @@ Config for **Angular** projects.
 | [![rxjs](./icons/other/rxjs.png)](https://github.com/cartant/eslint-plugin-rxjs#readme) | [no-ignored-notifier](https://github.com/cartant/eslint-plugin-rxjs/tree/main/docs/rules/no-ignored-notifier.md)<br>Forbids observables not composed from the `repeatWhen` or `retryWhen` notifier. |  |  |  |
 | [![rxjs](./icons/other/rxjs.png)](https://github.com/cartant/eslint-plugin-rxjs#readme) | [no-ignored-replay-buffer](https://github.com/cartant/eslint-plugin-rxjs/tree/main/docs/rules/no-ignored-replay-buffer.md)<br>Forbids using `ReplaySubject`, `publishReplay` or `shareReplay` without specifying the buffer size. |  |  |  |
 | [![rxjs](./icons/other/rxjs.png)](https://github.com/cartant/eslint-plugin-rxjs#readme) | [no-ignored-takewhile-value](https://github.com/cartant/eslint-plugin-rxjs/tree/main/docs/rules/no-ignored-takewhile-value.md)<br>Forbids ignoring the value within `takeWhile`. |  |  |  |
-| [![rxjs](./icons/other/rxjs.png)](https://github.com/cartant/eslint-plugin-rxjs#readme) | [no-implicit-any-catch](https://github.com/cartant/eslint-plugin-rxjs/tree/main/docs/rules/no-implicit-any-catch.md)<br>Forbids implicit `any` error parameters in `catchError` operators. |  | 🔧, 💡 |  |
 | [![rxjs](./icons/other/rxjs.png)](https://github.com/cartant/eslint-plugin-rxjs#readme) | [no-index](https://github.com/cartant/eslint-plugin-rxjs/tree/main/docs/rules/no-index.md)<br>Forbids the importation from index modules. |  |  |  |
 | [![rxjs](./icons/other/rxjs.png)](https://github.com/cartant/eslint-plugin-rxjs#readme) | [no-internal](https://github.com/cartant/eslint-plugin-rxjs/tree/main/docs/rules/no-internal.md)<br>Forbids the importation of internals. |  | 🔧, 💡 |  |
 | [![rxjs](./icons/other/rxjs.png)](https://github.com/cartant/eslint-plugin-rxjs#readme) | [no-redundant-notify](https://github.com/cartant/eslint-plugin-rxjs/tree/main/docs/rules/no-redundant-notify.md)<br>Forbids redundant notifications from completed or errored observables. |  |  |  |

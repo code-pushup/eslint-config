@@ -47,9 +47,9 @@ Config for **Angular** projects using **NgRx** library.
    ```
 
 
-## 📏 Rules (372)
+## 📏 Rules (371)
 
-**342** rules are included from [`@code-pushup/eslint-config/angular`](./angular.md#📏-rules-342). For brevity, only the **30** additional rules are listed in this document.
+**341** rules are included from [`@code-pushup/eslint-config/angular`](./angular.md#📏-rules-341). For brevity, only the **30** additional rules are listed in this document.
 
 > 🔧 Automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/user-guide/command-line-interface#--fix).<br>💡 Manually fixable by [editor suggestions](https://eslint.org/docs/developer-guide/working-with-rules#providing-suggestions).<br>🧪🚫 Disabled for [test files](../README.md#🧪-test-overrides).<br>🧪⚠️ Severity lessened to warning for [test files](../README.md#🧪-test-overrides).
 

@@ -27,10 +27,6 @@ module.exports = {
         '@angular-eslint/component-class-suffix': 'warn',
         '@angular-eslint/directive-class-suffix': 'warn',
         '@angular-eslint/no-empty-lifecycle-method': 'warn',
-        '@angular-eslint/no-host-metadata-property': [
-          'warn',
-          { allowStatic: true },
-        ],
         '@angular-eslint/no-input-rename': 'warn',
         '@angular-eslint/no-inputs-metadata-property': 'warn',
         '@angular-eslint/no-output-native': 'warn',

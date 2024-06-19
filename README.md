@@ -81,18 +81,18 @@ All peer dependencies used by `@code-pushup/eslint-config` are listed below, alo
 | ![promise](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/icons8/promise.png) | [eslint-plugin-promise](https://www.npmjs.com/package/eslint-plugin-promise) | `^6.0.0` | ✅ |
 | ![sonar](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/other/sonar.png) | [eslint-plugin-sonarjs](https://www.npmjs.com/package/eslint-plugin-sonarjs) | `>=0.22.0` | ✅ |
 | ![unicorn](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/icons8/unicorn.png) | [eslint-plugin-unicorn](https://www.npmjs.com/package/eslint-plugin-unicorn) | `>=48.0.0` | ✅ |
-| ![angular](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/material/angular.png) | [@angular-eslint/eslint-plugin](https://www.npmjs.com/package/@angular-eslint/eslint-plugin) | `^17.0.0` |  |
-| ![angular_component](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/material/angular_component.png) | [@angular-eslint/eslint-plugin-template](https://www.npmjs.com/package/@angular-eslint/eslint-plugin-template) | `^17.0.0` |  |
-| ![angular_component](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/material/angular_component.png) | [@angular-eslint/template-parser](https://www.npmjs.com/package/@angular-eslint/template-parser) | `^17.0.0` |  |
+| ![angular](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/material/angular.png) | [@angular-eslint/eslint-plugin](https://www.npmjs.com/package/@angular-eslint/eslint-plugin) | `^17.0.0 \|\| ^18.0.0` |  |
+| ![angular_component](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/material/angular_component.png) | [@angular-eslint/eslint-plugin-template](https://www.npmjs.com/package/@angular-eslint/eslint-plugin-template) | `^17.0.0 \|\| ^18.0.0` |  |
+| ![angular_component](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/material/angular_component.png) | [@angular-eslint/template-parser](https://www.npmjs.com/package/@angular-eslint/template-parser) | `^17.0.0 \|\| ^18.0.0` |  |
 | ![graphql](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/material/graphql.png) | [@graphql-eslint/eslint-plugin](https://www.npmjs.com/package/@graphql-eslint/eslint-plugin) | `^3.0.0` |  |
 | ![ngrx](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/other/ngrx.png) | [@ngrx/eslint-plugin](https://www.npmjs.com/package/@ngrx/eslint-plugin) | `^17.0.0` |  |
 | ![cypress](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/material/cypress.png) | [eslint-plugin-cypress](https://www.npmjs.com/package/eslint-plugin-cypress) | `^2.0.0` |  |
-| ![expired](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/icons8/expired.png) | [eslint-plugin-deprecation](https://www.npmjs.com/package/eslint-plugin-deprecation) | `^2.0.0` |  |
+| ![expired](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/icons8/expired.png) | [eslint-plugin-deprecation](https://www.npmjs.com/package/eslint-plugin-deprecation) | `^2.0.0 \|\| ^3.0.0` |  |
 | ![jest](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/material/jest.png) | [eslint-plugin-jest](https://www.npmjs.com/package/eslint-plugin-jest) | `^27.0.0 \|\| ^28.0.0` |  |
 | ![nodejs](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/material/nodejs.png) | [eslint-plugin-n](https://www.npmjs.com/package/eslint-plugin-n) | `^16.0.0` |  |
 | ![rxjs](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/other/rxjs.png) | [eslint-plugin-rxjs](https://www.npmjs.com/package/eslint-plugin-rxjs) | `^5.0.0` |  |
-| ![storybook](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/material/storybook.png) | [eslint-plugin-storybook](https://www.npmjs.com/package/eslint-plugin-storybook) | `^0.6.0` |  |
-| ![vitest](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/material/vitest.png) | [eslint-plugin-vitest](https://www.npmjs.com/package/eslint-plugin-vitest) | `^0.3.0` |  |
+| ![storybook](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/material/storybook.png) | [eslint-plugin-storybook](https://www.npmjs.com/package/eslint-plugin-storybook) | `>=0.6.0` |  |
+| ![vitest](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/material/vitest.png) | [eslint-plugin-vitest](https://www.npmjs.com/package/eslint-plugin-vitest) | `>=0.3.0` |  |
 
 ### 🧪 Test overrides
 

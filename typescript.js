@@ -29,10 +29,10 @@ module.exports = {
         '@typescript-eslint/no-unnecessary-condition': 'warn',
         '@typescript-eslint/no-unnecessary-type-arguments': 'warn',
         // TODO - remove condition after updating to "@typescript-eslint/eslint-plugin": "^7.0.0" in peerDependencies
-        // convert new "no-useless-template-literals" rule to warning (added in @typescript-eslint/eslint-plugin@6.15.0)
-        ...(typescriptEslint.rules['no-useless-template-literals']
+        // convert new "no-unnecessary-template-expression" rule to warning (used to be "no-useless-template-literals")
+        ...(typescriptEslint.rules['no-unnecessary-template-expression']
           ? {
-              '@typescript-eslint/no-useless-template-literals': 'warn',
+              '@typescript-eslint/no-unnecessary-template-expression': 'warn',
             }
           : {}),
         // TODO - remove condition after updating to "@typescript-eslint/eslint-plugin": "^7.0.0" in peerDependencies

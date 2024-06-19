@@ -62,13 +62,13 @@ Config for strict **TypeScript** projects.
    ```
 
 
-## 📏 Rules (296)
+## 📏 Rules (295)
 
-**248** rules are included from [the default config](./index.md#📏-rules-248). For brevity, only the **48** additional rules are listed in this document.
+**248** rules are included from [the default config](./index.md#📏-rules-248). For brevity, only the **47** additional rules are listed in this document.
 
 > 🔧 Automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/user-guide/command-line-interface#--fix).<br>💡 Manually fixable by [editor suggestions](https://eslint.org/docs/developer-guide/working-with-rules#providing-suggestions).<br>🧪🚫 Disabled for [test files](../README.md#🧪-test-overrides).<br>🧪⚠️ Severity lessened to warning for [test files](../README.md#🧪-test-overrides).
 
-### 🚨 Errors (34)
+### 🚨 Errors (33)
 
 | Plugin | Rule | Options | Autofix | Overrides |
 | :-: | :-- | :-- | :-: | :-: |
@@ -98,8 +98,7 @@ Config for strict **TypeScript** projects.
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [no-useless-constructor](https://typescript-eslint.io/rules/no-useless-constructor)<br>Disallow unnecessary constructors |  |  |  |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [only-throw-error](https://typescript-eslint.io/rules/only-throw-error)<br>Disallow throwing non-`Error` values as exceptions |  |  |  |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [prefer-literal-enum-member](https://typescript-eslint.io/rules/prefer-literal-enum-member)<br>Require all enum members to be literal values |  |  |  |
-| [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [prefer-ts-expect-error](https://typescript-eslint.io/rules/prefer-ts-expect-error)<br>Enforce using `@ts-expect-error` over `@ts-ignore` |  | 🔧 |  |
-| [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [require-await](https://typescript-eslint.io/rules/require-await)<br>Disallow async functions which have no `await` expression |  |  | 🧪⚠️ |
+| [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [require-await](https://typescript-eslint.io/rules/require-await)<br>Disallow async functions which do not return promises and have no `await` expression |  |  | 🧪⚠️ |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [restrict-plus-operands](https://typescript-eslint.io/rules/restrict-plus-operands)<br>Require both operands of addition to be the same type and be `bigint`, `number`, or `string` | <details><summary>allowAny: false, allowBoole...</summary><pre>{<br>  "allowAny": false,<br>  "allowBoolean": false,<br>  "allowNullish": false,<br>  "allowNumberAndString": false,<br>  "allowRegExp": false<br>}</pre></details> |  |  |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [restrict-template-expressions](https://typescript-eslint.io/rules/restrict-template-expressions)<br>Enforce template literal expressions to be of `string` type | <details><summary>allowBoolean: true, allowNu...</summary><pre>{<br>  "allowBoolean": true,<br>  "allowNumber": true<br>}</pre></details> |  | 🧪🚫 |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [unified-signatures](https://typescript-eslint.io/rules/unified-signatures)<br>Disallow two overloads that could be unified into one with a union or an optional/rest parameter |  |  |  |
@@ -116,8 +115,8 @@ Config for strict **TypeScript** projects.
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [no-meaningless-void-operator](https://typescript-eslint.io/rules/no-meaningless-void-operator)<br>Disallow the `void` operator except when used to discard a value |  | 🔧, 💡 |  |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [no-unnecessary-boolean-literal-compare](https://typescript-eslint.io/rules/no-unnecessary-boolean-literal-compare)<br>Disallow unnecessary equality comparisons against boolean literals |  | 🔧 |  |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [no-unnecessary-condition](https://typescript-eslint.io/rules/no-unnecessary-condition)<br>Disallow conditionals where the type is always truthy or always falsy |  | 🔧 |  |
+| [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [no-unnecessary-template-expression](https://typescript-eslint.io/rules/no-unnecessary-template-expression)<br>Disallow unnecessary template expressions |  | 🔧 |  |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [no-unnecessary-type-arguments](https://typescript-eslint.io/rules/no-unnecessary-type-arguments)<br>Disallow type arguments that are equal to the default |  | 🔧 |  |
-| [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [no-useless-template-literals](https://typescript-eslint.io/rules/no-useless-template-literals)<br>Disallow unnecessary template literals |  | 🔧 |  |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [prefer-includes](https://typescript-eslint.io/rules/prefer-includes)<br>Enforce `includes` method over `indexOf` method |  | 🔧 |  |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [prefer-nullish-coalescing](https://typescript-eslint.io/rules/prefer-nullish-coalescing)<br>Enforce using the nullish coalescing operator instead of logical assignments or chaining | <details><summary>ignorePrimitives: {"string"...</summary><pre>{<br>  "ignorePrimitives": {<br>    "string": true<br>  }<br>}</pre></details> | 💡 |  |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [prefer-promise-reject-errors](https://typescript-eslint.io/rules/prefer-promise-reject-errors)<br>Require using Error objects as Promise rejection reasons |  |  |  |

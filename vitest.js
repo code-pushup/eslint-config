@@ -1,11 +1,17 @@
 const { UNIT_TEST_FILE_PATTERNS } = require('./lib/patterns');
+const vitest = require('eslint-plugin-vitest');
 
 /** @type {import('eslint').ESLint.ConfigData} */
 module.exports = {
   overrides: [
     {
       files: UNIT_TEST_FILE_PATTERNS,
-      extends: ['plugin:vitest/recommended'],
+      extends: [
+        // vitest recommended uses flat config format since v5.0.0: https://github.com/veritem/eslint-plugin-vitest/releases/tag/v0.5.0
+        'legacy-recommended' in vitest.configs
+          ? 'plugin:vitest/legacy-recommended'
+          : 'plugin:vitest/recommended',
+      ],
       rules: {
         // CUSTOMIZED RULES FROM EXTENDED CONFIGS
 

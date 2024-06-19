@@ -64,11 +64,11 @@ Config for strict **TypeScript** projects.
 
 ## 📏 Rules (296)
 
-**251** rules are included from [the default config](./index.md#📏-rules-251). For brevity, only the **45** additional rules are listed in this document.
+**248** rules are included from [the default config](./index.md#📏-rules-248). For brevity, only the **48** additional rules are listed in this document.
 
 > 🔧 Automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/user-guide/command-line-interface#--fix).<br>💡 Manually fixable by [editor suggestions](https://eslint.org/docs/developer-guide/working-with-rules#providing-suggestions).<br>🧪🚫 Disabled for [test files](../README.md#🧪-test-overrides).<br>🧪⚠️ Severity lessened to warning for [test files](../README.md#🧪-test-overrides).
 
-### 🚨 Errors (33)
+### 🚨 Errors (34)
 
 | Plugin | Rule | Options | Autofix | Overrides |
 | :-: | :-- | :-- | :-: | :-: |
@@ -105,8 +105,9 @@ Config for strict **TypeScript** projects.
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [unified-signatures](https://typescript-eslint.io/rules/unified-signatures)<br>Disallow two overloads that could be unified into one with a union or an optional/rest parameter |  |  |  |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [use-unknown-in-catch-callback-variable](https://typescript-eslint.io/rules/use-unknown-in-catch-callback-variable)<br>Enforce typing arguments in `.catch()` callbacks as `unknown` |  | 🔧, 💡 |  |
 | [![deprecation](./icons/icons8/expired.png)](https://github.com/gund/eslint-plugin-deprecation#readme) | [deprecation](https://github.com/gund/eslint-plugin-deprecation)<br>Do not use deprecated APIs. |  |  |  |
+| [![functional](./icons/icons8/lambda.png)](https://github.com/eslint-functional/eslint-plugin-functional#readme) | [immutable-data](https://github.com/eslint-functional/eslint-plugin-functional/blob/v6.6.0/docs/rules/immutable-data.md)<br>Enforce treating data as immutable. | <details><summary>ignoreImmediateMutation: tr...</summary><pre>{<br>  "ignoreImmediateMutation": true,<br>  "ignoreClasses": true<br>}</pre></details> |  |  |
 
-### ⚠️ Warnings (12)
+### ⚠️ Warnings (14)
 
 | Plugin | Rule | Options | Autofix | Overrides |
 | :-: | :-- | :-- | :-: | :-: |
@@ -122,3 +123,5 @@ Config for strict **TypeScript** projects.
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [prefer-promise-reject-errors](https://typescript-eslint.io/rules/prefer-promise-reject-errors)<br>Require using Error objects as Promise rejection reasons |  |  |  |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [prefer-reduce-type-parameter](https://typescript-eslint.io/rules/prefer-reduce-type-parameter)<br>Enforce using type parameter when calling `Array#reduce` instead of casting |  | 🔧 | 🧪🚫 |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [prefer-return-this-type](https://typescript-eslint.io/rules/prefer-return-this-type)<br>Enforce that `this` is used when only `this` type is returned |  | 🔧 |  |
+| [![functional](./icons/icons8/lambda.png)](https://github.com/eslint-functional/eslint-plugin-functional#readme) | [prefer-property-signatures](https://github.com/eslint-functional/eslint-plugin-functional/blob/v6.6.0/docs/rules/prefer-property-signatures.md)<br>Prefer property signatures over method signatures. |  |  |  |
+| [![functional](./icons/icons8/lambda.png)](https://github.com/eslint-functional/eslint-plugin-functional#readme) | [prefer-tacit](https://github.com/eslint-functional/eslint-plugin-functional/blob/v6.6.0/docs/rules/prefer-tacit.md)<br>Replaces `x => f(x)` with just `f`. |  | 💡 |  |

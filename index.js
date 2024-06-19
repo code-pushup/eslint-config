@@ -147,14 +147,8 @@ module.exports = {
     'import/no-useless-path-segments': 'warn',
 
     // https://github.com/eslint-functional/eslint-plugin-functional#rules
-    'functional/immutable-data': [
-      'error',
-      { ignoreImmediateMutation: true, ignoreClasses: true },
-    ],
     'functional/no-let': 'warn',
     'functional/no-loop-statements': 'warn',
-    'functional/prefer-property-signatures': 'warn',
-    'functional/prefer-tacit': 'warn',
   },
 
   overrides: [

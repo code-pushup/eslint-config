@@ -105,7 +105,7 @@
     "eslint-import-resolver-typescript": "^3.6.1",
     "eslint-plugin-cypress": "^2.15.1",
     "eslint-plugin-deprecation": "^2.0.0",
-    "eslint-plugin-functional": "^6.0.0",
+    "eslint-plugin-functional": "^6.6.0",
     "eslint-plugin-import": "^2.29.0",
     "eslint-plugin-jest": "^28.5.0",
     "eslint-plugin-n": "^16.3.1",

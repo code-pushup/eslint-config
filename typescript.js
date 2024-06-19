@@ -83,6 +83,14 @@ module.exports = {
               '@typescript-eslint/no-unsafe-unary-minus': 'error',
             }
           : {}),
+
+        // https://github.com/eslint-functional/eslint-plugin-functional#rules
+        'functional/immutable-data': [
+          'error',
+          { ignoreImmediateMutation: true, ignoreClasses: true },
+        ],
+        'functional/prefer-property-signatures': 'warn',
+        'functional/prefer-tacit': 'warn',
       },
 
       overrides: [

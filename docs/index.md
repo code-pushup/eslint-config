@@ -6,11 +6,11 @@ Default config, suitable for any **JavaScript/TypeScript** project.
 
 Refer to [setup instructions in README](../README.md#🏗️-setup).
 
-## 📏 Rules (251)
+## 📏 Rules (249)
 
 > 🔧 Automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/user-guide/command-line-interface#--fix).<br>💡 Manually fixable by [editor suggestions](https://eslint.org/docs/developer-guide/working-with-rules#providing-suggestions).<br>🧪🚫 Disabled for [test files](../README.md#🧪-test-overrides).<br>🧪⚠️ Severity lessened to warning for [test files](../README.md#🧪-test-overrides).
 
-### 🚨 Errors (115)
+### 🚨 Errors (114)
 
 | Plugin | Rule | Options | Autofix | Overrides |
 | :-: | :-- | :-- | :-: | :-: |
@@ -85,7 +85,6 @@ Refer to [setup instructions in README](../README.md#🏗️-setup).
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [no-var-requires](https://typescript-eslint.io/rules/no-var-requires)<br>Disallow `require` statements except in import statements |  |  |  |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [prefer-as-const](https://typescript-eslint.io/rules/prefer-as-const)<br>Enforce the use of `as const` over literal type |  | 🔧, 💡 |  |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [triple-slash-reference](https://typescript-eslint.io/rules/triple-slash-reference)<br>Disallow certain triple slash directives in favor of ES6-style import declarations |  |  |  |
-| [![functional](./icons/icons8/lambda.png)](https://github.com/eslint-functional/eslint-plugin-functional#readme) | [immutable-data](https://github.com/eslint-functional/eslint-plugin-functional/blob/v6.0.0/docs/rules/immutable-data.md)<br>Enforce treating data as immutable. | <details><summary>ignoreImmediateMutation: tr...</summary><pre>{<br>  "ignoreImmediateMutation": true,<br>  "ignoreClasses": true<br>}</pre></details> |  | 🧪⚠️ |
 | [![import](./icons/icons8/import.png)](https://github.com/import-js/eslint-plugin-import#readme) | [default](https://github.com/import-js/eslint-plugin-import/blob/v2.29.0/docs/rules/default.md)<br>Ensure a default export is present, given a default import. |  |  |  |
 | [![import](./icons/icons8/import.png)](https://github.com/import-js/eslint-plugin-import#readme) | [export](https://github.com/import-js/eslint-plugin-import/blob/v2.29.0/docs/rules/export.md)<br>Forbid any invalid exports, i.e. re-export of the same name. |  |  |  |
 | [![import](./icons/icons8/import.png)](https://github.com/import-js/eslint-plugin-import#readme) | [named](https://github.com/import-js/eslint-plugin-import/blob/v2.29.0/docs/rules/named.md)<br>Ensure named imports correspond to a named export in the remote file. |  |  |  |
@@ -130,7 +129,7 @@ Refer to [setup instructions in README](../README.md#🏗️-setup).
 | [![sonarjs](./icons/other/sonar.png)](https://github.com/SonarSource/eslint-plugin-sonarjs#readme) | [prefer-single-boolean-return](https://github.com/SonarSource/eslint-plugin-sonarjs/blob/master/docs/rules/prefer-single-boolean-return.md)<br>Return of boolean expressions should not be wrapped into an "if-then-else" statement |  | 💡 |  |
 | [![sonarjs](./icons/other/sonar.png)](https://github.com/SonarSource/eslint-plugin-sonarjs#readme) | [prefer-while](https://github.com/SonarSource/eslint-plugin-sonarjs/blob/master/docs/rules/prefer-while.md)<br>A "while" loop should be used instead of a "for" loop |  | 🔧 |  |
 
-### ⚠️ Warnings (136)
+### ⚠️ Warnings (134)
 
 | Plugin | Rule | Options | Autofix | Overrides |
 | :-: | :-- | :-- | :-: | :-: |
@@ -156,10 +155,8 @@ Refer to [setup instructions in README](../README.md#🏗️-setup).
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [no-magic-numbers](https://typescript-eslint.io/rules/no-magic-numbers)<br>Disallow magic numbers | <details><summary>ignore: -1, 0, 1, 2, 7, 10,...</summary><pre>{<br>  "ignore": [<br>    -1,<br>    0,<br>    1,<br>    2,<br>    7,<br>    10,<br>    24,<br>    60,<br>    100,<br>    1000,<br>    3600<br>  ],<br>  "ignoreClassFieldInitialValues": true,<br>  "ignoreDefaultValues": true,<br>  "ignoreEnums": true,<br>  "ignoreNumericLiteralTypes": true,<br>  "ignoreReadonlyClassProperties": true,<br>  "ignoreTypeIndexes": true,<br>  "enforceConst": true,<br>  "detectObjects": true,<br>  "ignoreArrayIndexes": false<br>}</pre></details> |  | 🧪🚫 |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [no-shadow](https://typescript-eslint.io/rules/no-shadow)<br>Disallow variable declarations from shadowing variables declared in the outer scope |  |  |  |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [no-unused-expressions](https://typescript-eslint.io/rules/no-unused-expressions)<br>Disallow unused expressions |  |  |  |
-| [![functional](./icons/icons8/lambda.png)](https://github.com/eslint-functional/eslint-plugin-functional#readme) | [no-let](https://github.com/eslint-functional/eslint-plugin-functional/blob/v6.0.0/docs/rules/no-let.md)<br>Disallow mutable variables. |  |  | 🧪🚫 |
-| [![functional](./icons/icons8/lambda.png)](https://github.com/eslint-functional/eslint-plugin-functional#readme) | [no-loop-statements](https://github.com/eslint-functional/eslint-plugin-functional/blob/v6.0.0/docs/rules/no-loop-statements.md)<br>Disallow imperative loops. |  |  |  |
-| [![functional](./icons/icons8/lambda.png)](https://github.com/eslint-functional/eslint-plugin-functional#readme) | [prefer-property-signatures](https://github.com/eslint-functional/eslint-plugin-functional/blob/v6.0.0/docs/rules/prefer-property-signatures.md)<br>Prefer property signatures over method signatures. |  |  |  |
-| [![functional](./icons/icons8/lambda.png)](https://github.com/eslint-functional/eslint-plugin-functional#readme) | [prefer-tacit](https://github.com/eslint-functional/eslint-plugin-functional/blob/v6.0.0/docs/rules/prefer-tacit.md)<br>Replaces `x => f(x)` with just `f`. |  | 💡 |  |
+| [![functional](./icons/icons8/lambda.png)](https://github.com/eslint-functional/eslint-plugin-functional#readme) | [no-let](https://github.com/eslint-functional/eslint-plugin-functional/blob/v6.6.0/docs/rules/no-let.md)<br>Disallow mutable variables. |  |  | 🧪🚫 |
+| [![functional](./icons/icons8/lambda.png)](https://github.com/eslint-functional/eslint-plugin-functional#readme) | [no-loop-statements](https://github.com/eslint-functional/eslint-plugin-functional/blob/v6.6.0/docs/rules/no-loop-statements.md)<br>Disallow imperative loops. |  |  |  |
 | [![import](./icons/icons8/import.png)](https://github.com/import-js/eslint-plugin-import#readme) | [extensions](https://github.com/import-js/eslint-plugin-import/blob/v2.29.0/docs/rules/extensions.md)<br>Ensure consistent use of file extension within the import path. | <details><summary>never, json: always</summary><pre>[<br>  "never",<br>  {<br>    "json": "always"<br>  }<br>]</pre></details> |  |  |
 | [![import](./icons/icons8/import.png)](https://github.com/import-js/eslint-plugin-import#readme) | [max-dependencies](https://github.com/import-js/eslint-plugin-import/blob/v2.29.0/docs/rules/max-dependencies.md)<br>Enforce the maximum number of dependencies a module can have. | <details><summary>ignoreTypeImports: true</summary><pre>{<br>  "ignoreTypeImports": true<br>}</pre></details> |  |  |
 | [![import](./icons/icons8/import.png)](https://github.com/import-js/eslint-plugin-import#readme) | [no-anonymous-default-export](https://github.com/import-js/eslint-plugin-import/blob/v2.29.0/docs/rules/no-anonymous-default-export.md)<br>Forbid anonymous values as default exports. |  |  |  |

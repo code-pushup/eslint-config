@@ -100,6 +100,7 @@
     "@ngrx/eslint-plugin": "^17.2.0",
     "@typescript-eslint/eslint-plugin": "^7.13.1",
     "@typescript-eslint/parser": "^7.13.1",
+    "build-md": "^1.0.0",
     "compare-versions": "^6.1.0",
     "eslint": "^8.56.0",
     "eslint-import-resolver-typescript": "^3.6.1",

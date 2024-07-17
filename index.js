@@ -4,6 +4,7 @@ const {
   CONFIG_FILE_PATTERNS,
   JSON_FILE_PATTERNS,
   COMMONJS_FILE_PATTERNS,
+  SVELTE_FILE_PATTERN,
 } = require('./lib/patterns');
 const { packageExists } = require('./lib/utils');
 const unicorn = require('eslint-plugin-unicorn');
@@ -219,6 +220,16 @@ module.exports = {
         '@typescript-eslint/no-require-imports': 'off',
         '@typescript-eslint/no-var-requires': 'off',
         'import/no-commonjs': 'off',
+      },
+    },
+
+    {
+      files: SVELTE_FILE_PATTERN,
+      rules: {
+        // DISABLED RULES FOR SVELTE FILES
+
+        'import/no-mutable-exports': 'off',
+        'functional/no-let': 'off',
       },
     },
   ],

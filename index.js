@@ -200,8 +200,13 @@ module.exports = {
       rules: {
         // DISABLED RULES FOR JSON FILES
 
+        'max-lines': 'off',
         'no-unused-expressions': 'off',
         '@typescript-eslint/no-unused-expressions': 'off',
+        '@typescript-eslint/no-magic-numbers': 'off',
+        'sonarjs/no-duplicate-string': 'off',
+        'unicorn/filename-case': 'off',
+        'unicorn/numeric-separators-style': 'off',
       },
     },
   ],

@@ -171,10 +171,6 @@ module.exports = {
         // CUSTOMIZED RULES FOR TEST FILES
 
         'max-nested-callbacks': ['warn', { max: 10 }],
-        'functional/immutable-data': [
-          'warn',
-          { ignoreImmediateMutation: true },
-        ],
       },
     },
 

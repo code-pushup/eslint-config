@@ -117,6 +117,10 @@ module.exports = {
               },
             ],
             '@typescript-eslint/require-await': 'warn',
+            'functional/immutable-data': [
+              'warn',
+              { ignoreImmediateMutation: true },
+            ],
           },
         },
       ],

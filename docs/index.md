@@ -6,7 +6,7 @@ Default config, suitable for any **JavaScript/TypeScript** project.
 
 Refer to [setup instructions in README](../README.md#🏗️-setup).
 
-## 📏 Rules (249)
+## 📏 Rules (248)
 
 > 🔧 Automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/user-guide/command-line-interface#--fix).<br>💡 Manually fixable by [editor suggestions](https://eslint.org/docs/developer-guide/working-with-rules#providing-suggestions).<br>🧪🚫 Disabled for [test files](../README.md#🧪-test-overrides).<br>🧪⚠️ Severity lessened to warning for [test files](../README.md#🧪-test-overrides).
 

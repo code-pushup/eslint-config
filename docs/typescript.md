@@ -104,7 +104,7 @@ Config for strict **TypeScript** projects.
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [unified-signatures](https://typescript-eslint.io/rules/unified-signatures)<br>Disallow two overloads that could be unified into one with a union or an optional/rest parameter |  |  |  |
 | [![@typescript-eslint](./icons/material/typescript.png)](https://typescript-eslint.io/) | [use-unknown-in-catch-callback-variable](https://typescript-eslint.io/rules/use-unknown-in-catch-callback-variable)<br>Enforce typing arguments in `.catch()` callbacks as `unknown` |  | 🔧, 💡 |  |
 | [![deprecation](./icons/icons8/expired.png)](https://github.com/gund/eslint-plugin-deprecation#readme) | [deprecation](https://github.com/gund/eslint-plugin-deprecation)<br>Do not use deprecated APIs. |  |  |  |
-| [![functional](./icons/icons8/lambda.png)](https://github.com/eslint-functional/eslint-plugin-functional#readme) | [immutable-data](https://github.com/eslint-functional/eslint-plugin-functional/blob/v6.6.0/docs/rules/immutable-data.md)<br>Enforce treating data as immutable. | <details><summary>ignoreImmediateMutation: tr...</summary><pre>{<br>  "ignoreImmediateMutation": true,<br>  "ignoreClasses": true<br>}</pre></details> |  |  |
+| [![functional](./icons/icons8/lambda.png)](https://github.com/eslint-functional/eslint-plugin-functional#readme) | [immutable-data](https://github.com/eslint-functional/eslint-plugin-functional/blob/v6.6.0/docs/rules/immutable-data.md)<br>Enforce treating data as immutable. | <details><summary>ignoreImmediateMutation: tr...</summary><pre>{<br>  "ignoreImmediateMutation": true,<br>  "ignoreClasses": true<br>}</pre></details> |  | 🧪⚠️ |
 
 ### ⚠️ Warnings (14)
 

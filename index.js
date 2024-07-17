@@ -3,6 +3,7 @@ const {
   GENERATED_FILE_PATTERNS,
   CONFIG_FILE_PATTERNS,
   JSON_FILE_PATTERNS,
+  COMMONJS_FILE_PATTERNS,
 } = require('./lib/patterns');
 const { packageExists } = require('./lib/utils');
 const unicorn = require('eslint-plugin-unicorn');
@@ -207,6 +208,17 @@ module.exports = {
         'sonarjs/no-duplicate-string': 'off',
         'unicorn/filename-case': 'off',
         'unicorn/numeric-separators-style': 'off',
+      },
+    },
+
+    {
+      files: COMMONJS_FILE_PATTERNS,
+      rules: {
+        // DISABLED RULES FOR CJS FILES
+
+        '@typescript-eslint/no-require-imports': 'off',
+        '@typescript-eslint/no-var-requires': 'off',
+        'import/no-commonjs': 'off',
       },
     },
   ],

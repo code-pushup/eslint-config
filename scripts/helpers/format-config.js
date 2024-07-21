@@ -1,3 +1,4 @@
+const { MarkdownDocument, md } = require('build-md');
 const {
   configDescription,
   configAlias,
@@ -7,18 +8,6 @@ const {
 } = require('./configs');
 const { pluginIcon, pluginDocs } = require('./plugins');
 const { parseRuleId } = require('./rules');
-const {
-  mdLink,
-  mdImage,
-  mdTable,
-  mdCodeBlock,
-  htmlDetails,
-  mdList,
-  mdQuote,
-  mdTableCellSanitize,
-  mdListOrdered,
-  mdCodeInline,
-} = require('./markdown');
 const { sortPeerDeps, abbreviatePackageList } = require('./packages');
 
 const testGlobsLink = '../README.md#🧪-test-overrides';
@@ -52,88 +41,69 @@ function configRulesToMarkdown(
 
   const extraSetupDocs = configsExtraSetupDocs[config];
 
-  const blocks = [
-    `# \`${alias}\` config`,
-    configDescription(config),
-    '## 🏗️ Setup',
-    config === 'index'
-      ? `Refer to ${mdLink(setupLink, 'setup instructions in README')}.`
-      : mdListOrdered([
-          [
-            `If you haven't already, make sure to ${mdLink(
-              setupLink,
-              'install `@code-pushup/eslint-config` and its required peer dependencies',
-            )}.`,
-          ].join('\n\n'),
-          [
-            'Since this plugin requires additional peer dependencies, you have to install them as well:',
-            mdCodeBlock(
-              `npm install -D ${abbreviatePackageList(
-                sortPeerDeps(peerDeps)
-                  .filter(
-                    ({ usedByConfigs, optional }) =>
-                      usedByConfigs.includes(config) && optional,
-                  )
-                  .map(({ pkg }) => pkg),
-              )}`,
-            ),
-          ].join('\n\n'),
+  return new MarkdownDocument()
+    .heading(1, md`${md.code(alias)} config`)
+    .paragraph(configDescription(config))
+    .heading(2, '🏗️ Setup')
+    .$if(
+      config === 'index',
+      doc =>
+        doc.paragraph(
+          md`Refer to ${md.link(setupLink, 'setup instructions in README')}.`,
+        ),
+      doc =>
+        doc.list('ordered', [
+          md`If you haven't already, make sure to ${md.link(
+            setupLink,
+            md`install ${md.code('@code-pushup/eslint-config')} and its required peer dependencies`,
+          )}.`,
+          md`Since this plugin requires additional peer dependencies, you have to install them as well:${md.codeBlock(
+            'sh',
+            `npm install -D ${abbreviatePackageList(
+              sortPeerDeps(peerDeps)
+                .filter(
+                  ({ usedByConfigs, optional }) =>
+                    usedByConfigs.includes(config) && optional,
+                )
+                .map(({ pkg }) => pkg),
+            )}`,
+          )}`,
           ...(extraSetupDocs ? [extraSetupDocs] : []),
-          [
-            'Add to `extends` in your .eslintrc file:',
-            mdCodeBlock(
-              `{\n  "extends": ["${alias}"]${
-                configsExtraEslintrc[config] ?? ''
-              }\n}`,
-              'jsonc',
-            ),
-          ].join('\n\n'),
+          md`Add to ${md.code('extends')} in your .eslintrc file:${md.codeBlock(
+            'jsonc',
+            `{\n  "extends": ["${alias}"]${
+              configsExtraEslintrc[config] ?? ''
+            }\n}`,
+          )}`,
         ]),
-    `## 📏 Rules (${totalRulesCount})`,
-    ...(extended.length
-      ? [
-          `**${extendedRulesCount}** rules are included from ${extended
-            .map(({ alias, rulesCount }, _, { length }) =>
-              mdLink(
-                `./${configFromAlias(alias)}.md#📏-rules-${rulesCount}`,
-                (alias === '@code-pushup'
-                  ? 'the default config'
-                  : mdCodeInline(alias)) +
-                  (length > 1 ? ` (${rulesCount})` : ''),
-              ),
-            )
-            .join(' and ')}. For brevity, only the **${
-            rules.length
-          }** additional rules are listed in this document.`,
-        ]
-      : []),
-    mdQuote(
-      [
-        '🔧 Automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/user-guide/command-line-interface#--fix).',
-        '💡 Manually fixable by [editor suggestions](https://eslint.org/docs/developer-guide/working-with-rules#providing-suggestions).',
-        ...(options.hideOverrides
-          ? []
-          : [
-              `🧪🚫 Disabled for [test files](${testGlobsLink}).`,
-              `🧪⚠️ Severity lessened to warning for [test files](${testGlobsLink}).`,
-            ]),
-      ].join('<br>'),
-    ),
-    ...(errors.length
-      ? [
-          `### 🚨 Errors (${errors.length})`,
-          rulesTable(errors, options.hideOverrides),
-        ]
-      : []),
-    ...(warnings.length
-      ? [
-          `### ⚠️ Warnings (${warnings.length})`,
-          rulesTable(warnings, options.hideOverrides),
-        ]
-      : []),
-  ];
-
-  return blocks.join('\n\n');
+    )
+    .heading(2, `📏 Rules (${totalRulesCount})`)
+    .paragraph(
+      extended.length &&
+        md`${md.bold(extendedRulesCount.toString())} rules are included from ${extended.map(
+          ({ alias, rulesCount }, index, { length }) =>
+            md`${md.link(
+              `./${configFromAlias(alias)}.md#📏-rules-${rulesCount}`,
+              md`${
+                alias === '@code-pushup' ? 'the default config' : md.code(alias)
+              }${length > 1 ? ` (${rulesCount})` : ''}`,
+            )}${index < length - 1 ? ' and ' : ''}`,
+        )}. For brevity, only the ${md.bold(rules.length.toString())} additional rules are listed in this document.`,
+    )
+    .quote(
+      md`🔧 Automatically fixable by the ${md.link('https://eslint.org/docs/user-guide/command-line-interface#--fix', md`${md.code('--fix')} CLI option`)}.<br>💡 Manually fixable by ${md.link('https://eslint.org/docs/developer-guide/working-with-rules#providing-suggestions', 'editor suggestions')}.${options.hideOverrides ? '' : md`<br>🧪🚫 Disabled for ${md.link(testGlobsLink, 'test files')}.<br>🧪⚠️ Severity lessened to warning for ${md.link(testGlobsLink, 'test files')}.`}`,
+    )
+    .$if(errors.length > 0, doc =>
+      doc
+        .heading(3, `🚨 Errors (${errors.length})`)
+        .table(...rulesTable(errors)),
+    )
+    .$if(warnings.length > 0, doc =>
+      doc
+        .heading(3, `⚠️ Warnings (${warnings.length})`)
+        .table(...rulesTable(warnings)),
+    )
+    .toString();
 }
 
 /**
@@ -141,13 +111,13 @@ function configRulesToMarkdown(
  * @param {boolean | undefined} hideOverrides
  */
 function rulesTable(rules, hideOverrides) {
-  return mdTable(
+  return [
     [
-      'Plugin',
-      'Rule',
-      'Options',
-      'Autofix',
-      ...(hideOverrides ? [] : ['Overrides']),
+      { heading: 'Plugin', alignment: 'center' },
+      { heading: 'Rule', alignment: 'left' },
+      { heading: 'Options', alignment: 'left' },
+      { heading: 'Autofix', alignment: 'center' },
+      ...(hideOverrides ? [] : [{ heading: 'Overrides', alignment: 'center' }]),
     ],
     rules
       .sort((a, b) => {
@@ -167,28 +137,24 @@ function rulesTable(rules, hideOverrides) {
 
         return [
           plugin
-            ? mdLink(
+            ? md.link(
                 pluginDocs(plugin),
-                mdImage(
+                md.image(
                   `./icons/${pluginIcon(plugin)}.png`,
                   plugin || 'ESLint core',
                 ),
               )
             : '',
 
-          mdLink(rule.meta?.docs?.url, name) +
-            '<br>' +
-            (rule.meta?.docs.description ?? '').replace(/\n/g, ''),
+          md`${rule.meta?.docs?.url ? md.link(rule.meta.docs.url, name) : name}\n${rule.meta?.docs.description ?? ''}`,
 
           options
-            ? htmlDetails(
-                '<pre>' +
-                  mdTableCellSanitize(JSON.stringify(options, null, 2)).replace(
-                    /\n/g,
-                    '<br>',
-                  ) +
-                  '</pre>',
-                truncate(mdTableCellSanitize(optionsPreview(options)), 30),
+            ? md.details(
+                truncate(sanitizeRuleOptions(optionsPreview(options)), 30),
+                md.codeBlock(
+                  'json',
+                  sanitizeRuleOptions(JSON.stringify(options, null, 2)),
+                ),
               )
             : '',
 
@@ -210,8 +176,7 @@ function rulesTable(rules, hideOverrides) {
               ]),
         ];
       }),
-    ['c', 'l', 'l', 'c', 'c'],
-  );
+  ];
 }
 
 function optionsPreview(options) {
@@ -257,6 +222,13 @@ function truncate(text, max) {
     return text.slice(0, max - 3) + '...';
   }
   return text;
+}
+
+/**
+ * @param {string} content
+ */
+function sanitizeRuleOptions(content) {
+  return content.replace(/\\/g, '\\\\').replace(/\*/g, '\\*');
 }
 
 module.exports = {

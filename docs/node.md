@@ -6,18 +6,18 @@ Config for **Node.js** projects.
 
 1. If you haven't already, make sure to [install `@code-pushup/eslint-config` and its required peer dependencies](../README.md#🏗️-setup).
 2. Since this plugin requires additional peer dependencies, you have to install them as well:
-   
+
    ```sh
    npm install -D eslint-plugin-n
    ```
+
 3. Add to `extends` in your .eslintrc file:
-   
+
    ```jsonc
    {
      "extends": ["@code-pushup/eslint-config/node"]
    }
    ```
-
 
 ## 📏 Rules (252)
 
@@ -27,14 +27,14 @@ Config for **Node.js** projects.
 
 ### 🚨 Errors (1)
 
-| Plugin | Rule | Options | Autofix | Overrides |
-| :-: | :-- | :-- | :-: | :-: |
-| [![n](./icons/material/nodejs.png)](https://github.com/eslint-community/eslint-plugin-n#readme) | [no-unsupported-features/node-builtins](https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/no-unsupported-features/node-builtins.md)<br>disallow unsupported Node.js built-in APIs on the specified version |  |  |  |
+|                                             Plugin                                              | Rule                                                                                                                                                                                                                                | Options | Autofix | Overrides |
+| :---------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------ | :-----: | :-------: |
+| [![n](./icons/material/nodejs.png)](https://github.com/eslint-community/eslint-plugin-n#readme) | [no-unsupported-features/node-builtins](https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/no-unsupported-features/node-builtins.md)<br />disallow unsupported Node.js built-in APIs on the specified version |         |         |           |
 
 ### ⚠️ Warnings (3)
 
-| Plugin | Rule | Options | Autofix | Overrides |
-| :-: | :-- | :-- | :-: | :-: |
-| [![n](./icons/material/nodejs.png)](https://github.com/eslint-community/eslint-plugin-n#readme) | [no-process-exit](https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/no-process-exit.md)<br>disallow the use of `process.exit()` |  |  |  |
-| [![n](./icons/material/nodejs.png)](https://github.com/eslint-community/eslint-plugin-n#readme) | [no-sync](https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/no-sync.md)<br>disallow synchronous methods |  |  |  |
-| [![n](./icons/material/nodejs.png)](https://github.com/eslint-community/eslint-plugin-n#readme) | [prefer-promises/fs](https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/prefer-promises/fs.md)<br>enforce `require("fs").promises` |  |  |  |
+|                                             Plugin                                              | Rule                                                                                                                                                       | Options | Autofix | Overrides |
+| :---------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------- | :------ | :-----: | :-------: |
+| [![n](./icons/material/nodejs.png)](https://github.com/eslint-community/eslint-plugin-n#readme) | [no-process-exit](https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/no-process-exit.md)<br />disallow the use of `process.exit()`   |         |         |           |
+| [![n](./icons/material/nodejs.png)](https://github.com/eslint-community/eslint-plugin-n#readme) | [no-sync](https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/no-sync.md)<br />disallow synchronous methods                           |         |         |           |
+| [![n](./icons/material/nodejs.png)](https://github.com/eslint-community/eslint-plugin-n#readme) | [prefer-promises/fs](https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/prefer-promises/fs.md)<br />enforce `require("fs").promises` |         |         |           |

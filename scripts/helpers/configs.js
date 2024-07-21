@@ -1,14 +1,16 @@
+const { md } = require('build-md');
+
 const configDescriptions = {
-  index: 'Default config, suitable for any **JavaScript/TypeScript** project.',
-  typescript: 'Config for strict **TypeScript** projects.',
-  node: 'Config for **Node.js** projects.',
-  angular: 'Config for **Angular** projects.',
-  'angular-ngrx': 'Config for **Angular** projects using **NgRx** library.',
-  graphql: 'Config for **GraphQL servers** implemented in Node.js.',
-  jest: 'Config for projects using **Jest** for testing.',
-  vitest: 'Config for projects using **Vitest** for testing.',
-  cypress: 'Config for projects using **Cypress** for testing.',
-  storybook: 'Config for projects using **Storybook** for UI components.',
+  index: md`Default config, suitable for any ${md.bold('JavaScript/TypeScript')} project.`,
+  typescript: md`Config for strict ${md.bold('TypeScript')} projects.`,
+  node: md`Config for ${md.bold('Node.js')} projects.`,
+  angular: md`Config for ${md.bold('Angular')} projects.`,
+  'angular-ngrx': md`Config for ${md.bold('Angular')} projects using ${md.bold('NgRx')} library.`,
+  graphql: md`Config for ${md.bold('GraphQL servers')} implemented in Node.js.`,
+  jest: md`Config for projects using ${md.bold('Jest')} for testing.`,
+  vitest: md`Config for projects using ${md.bold('Vitest')} for testing.`,
+  cypress: md`Config for projects using ${md.bold('Cypress')} for testing.`,
+  storybook: md`Config for projects using ${md.bold('Storybook')} for UI components.`,
 };
 
 const configs = Object.keys(configDescriptions);
@@ -45,73 +47,74 @@ const configExtraPatterns = {
 /** @type {(keyof typeof configDescriptions)[]} */
 const testConfigs = ['jest', 'vitest', 'cypress'];
 
-const tsConfigDocsReference =
-  "Refer to [step 3 in TypeScript config's setup docs](./typescript.md#🏗️-setup) for how to set up tsconfig properly.";
+const tsConfigDocsReference = md`Refer to ${md.link('./typescript.md#🏗️-setup', "step 3 in TypeScript config's setup docs")} for how to set up tsconfig properly.`;
 
 /** @type {Partial<Record<keyof typeof configDescriptions, string>>} */
 const configsExtraSetupDocs = {
-  typescript: `Because this config includes rules which require type information, make sure to configure \`parserOptions.project\` in your .eslintrc points to your project's tsconfig.
-For more information, refer to [_Linting with Type Information_ (typescript-eslint)](https://typescript-eslint.io/linting/typed-linting), or [_Configuring ESLint with Typescript_ (Nx)](https://nx.dev/recipes/tips-n-tricks/eslint) if using Nx monorepo.
-
-- Example for library in Nx monorepo:
-  \`\`\`json
-  {
-    "extends": ["../../.eslintrc.json"],
-    "ignorePatterns": ["!**/*"],
-    "overrides": [
-      {
-        "files": "*.ts",
-        "parserOptions": {
-          "project": ["libs/shared-utils/tsconfig.*?.json"]
-        }
+  typescript: md`${md.paragraph(
+    md`Because this config includes rules which require type information, make sure to configure ${md.code('parserOptions.project')} in your .eslintrc points to your project's tsconfig.
+For more information, refer to ${md.link('https://typescript-eslint.io/linting/typed-linting', md`${md.italic('Linting with Type Information')} (typescript-eslint)`)}, or ${md.link('https://nx.dev/recipes/tips-n-tricks/eslint', md`${md.italic('Configuring ESLint with Typescript')} (Nx)`)} if using Nx monorepo.${md.list(
+      [
+        md`Example for library in Nx monorepo:${md.codeBlock(
+          'json',
+          `{
+  "extends": ["../../.eslintrc.json"],
+  "ignorePatterns": ["!**/*"],
+  "overrides": [
+    {
+      "files": "*.ts",
+      "parserOptions": {
+        "project": ["libs/shared-utils/tsconfig.*?.json"]
       }
-    ]
-  }
-  \`\`\`
-
-Similarly, you may need to [configure a tsconfig file for \`eslint-plugin-import\` rules](https://www.npmjs.com/package/eslint-plugin-import#typescript) (e.g. if using path aliases in \`.ts\` files):
-
-- Install additional import resolver:
-  \`\`\`sh
-  npm i -D eslint-import-resolver-typescript
-  \`\`\`
-  
-- Example \`.eslintrc.json\` for Nx monorepo:
-  \`\`\`jsonc
-  {
-    // ...
-    "settings": {
-      "import/resolver": {
-        "typescript": {
-          "alwaysTryTypes": true,
-          "project": "tsconfig.base.json"
-          // or if using RxJS:
-          // "project": ["tsconfig.base.json", "node_modules/rxjs/tsconfig.json"]
-        }
+    }
+  ]
+}`,
+        )}`,
+      ],
+    )}`,
+  )}${md.paragraph(
+    md`Similarly, you may need to ${md.link('https://www.npmjs.com/package/eslint-plugin-import#typescript', md`configure a tsconfig file for ${md.code('eslint-plugin-import')} rules`)} (e.g. if using path aliases in ${md.code('.ts')} files):${md.list(
+      [
+        md`Install additional import resolver:${md.codeBlock('sh', 'npm i -D eslint-import-resolver-typescript')}`,
+        md`Example ${md.code('.eslintrc.json')} for Nx monorepo:${md.codeBlock(
+          'jsonc',
+          `{
+  // ...
+  "settings": {
+    "import/resolver": {
+      "typescript": {
+        "alwaysTryTypes": true,
+        "project": "tsconfig.base.json"
+        // or if using RxJS:
+        // "project": ["tsconfig.base.json", "node_modules/rxjs/tsconfig.json"]
       }
     }
   }
-  \`\`\`
-`,
+}`,
+        )}`,
+      ],
+    )}`,
+  )}`,
 
   angular: tsConfigDocsReference,
   'angular-ngrx': tsConfigDocsReference,
 
-  graphql: `The GraphQL ESLint plugin needs to know where your GraphQL schema is located. For more information, refer to [_Extended Linting Rules with GraphQL Schema_ in GraphQL ESLint docs](https://the-guild.dev/graphql/eslint/docs/getting-started#extended-linting-rules-with-graphql-schema).
-  
-- If you're using [graphql-config](https://the-guild.dev/graphql/config/docs), then your GraphQL schema will be loaded automatically from your \`.graphqlrc.yml\` (or equivalent) file. So no extra setup is required in this case.
-- Otherwise, you can use [\`parserOptions.schema\`](https://the-guild.dev/graphql/eslint/docs/getting-started/parser-options#schema), e.g.:
-  \`\`\`jsonc
-  {
-    // ...
-    "parserOptions": {
-      "schema": "./schema.graphql"
-      // globs are also supported:
-      // "schema": "./src/schema/**/*.graphql.ts"
-    }
+  graphql: md`The GraphQL ESLint plugin needs to know where your GraphQL schema is located. For more information, refer to ${md.link('https://the-guild.dev/graphql/eslint/docs/getting-started#extended-linting-rules-with-graphql-schema', md`${md.italic('Extended Linting Rules with GraphQL Schema')} in GraphQL ESLint docs`)}.${md.list(
+    [
+      md`If you're using ${md.link('https://the-guild.dev/graphql/config/docs', 'graphql-config')}, then your GraphQL schema will be loaded automatically from your ${md.code('.graphqlrc.yml')} (or equivalent) file. So no extra setup is required in this case.`,
+      md`Otherwise, you can use ${md.link('https://the-guild.dev/graphql/eslint/docs/getting-started/parser-options#schema', md.code('parserOptions.schema'))}, e.g.:${md.codeBlock(
+        'jsonc',
+        `{
+  // ...
+  "parserOptions": {
+    "schema": "./schema.graphql"
+    // globs are also supported:
+    // "schema": "./src/schema/**/*.graphql.ts"
   }
-  \`\`\`
-`,
+}`,
+      )}`,
+    ],
+  )}`,
 };
 
 const angularExtraEslintrc = `,

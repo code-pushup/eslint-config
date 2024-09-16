@@ -3,6 +3,7 @@ const {
   TEST_FILE_PATTERNS_INLINE_TEMPLATES,
   TYPESCRIPT_FILE_PATTERNS,
   HTML_FILE_PATTERNS,
+  ANGULAR_COMPONENT_FILE_PATTERNS,
   ANGULAR_PIPE_FILE_PATTERNS,
 } = require('./lib/patterns');
 const { NAMING_CONVENTION_OPTIONS_ANGULAR } = require('./lib/rule-options');
@@ -113,6 +114,17 @@ module.exports = {
             // CUSTOMIZED RULES FOR TEST FILES
 
             '@angular-eslint/no-lifecycle-call': 'warn',
+          },
+        },
+
+        {
+          files: ANGULAR_COMPONENT_FILE_PATTERNS,
+          rules: {
+            // CUSTOMIZED RULES FOR ANGULAR COMPONENTS
+            'max-lines': [
+              'warn',
+              { max: 400, skipBlankLines: true, skipComments: true },
+            ],
           },
         },
 

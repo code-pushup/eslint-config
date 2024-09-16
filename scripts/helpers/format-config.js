@@ -146,7 +146,7 @@ function rulesTable(rules, hideOverrides) {
               )
             : '',
 
-          md`${rule.meta?.docs?.url ? md.link(rule.meta.docs.url, name) : name}\n${rule.meta?.docs.description ?? ''}`,
+          md`${rule.meta?.docs?.url ? md.link(rule.meta.docs.url, name) : name}\n${rule.meta?.docs?.description ?? ''}`,
 
           options
             ? md.details(

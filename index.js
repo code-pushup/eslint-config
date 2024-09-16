@@ -6,7 +6,7 @@ const {
   COMMONJS_FILE_PATTERNS,
   SVELTE_FILE_PATTERN,
 } = require('./lib/patterns');
-const { packageExists } = require('./lib/utils');
+const { packageExists, convertErrorsToWarnings } = require('./lib/utils');
 const unicorn = require('eslint-plugin-unicorn');
 const typescriptEslint = require('@typescript-eslint/eslint-plugin');
 
@@ -42,14 +42,7 @@ module.exports = {
     // CUSTOMIZED RULES FROM EXTENDED CONFIGS
 
     '@typescript-eslint/consistent-type-definitions': ['warn', 'type'],
-    // convert unicorn errors to warnings
-    ...Object.entries(unicorn.configs.recommended.rules).reduce(
-      (acc, [ruleId, entry]) => ({
-        ...acc,
-        [ruleId]: entry === 'error' ? 'warn' : entry,
-      }),
-      {},
-    ),
+    ...convertErrorsToWarnings(unicorn.configs.recommended.rules),
     'unicorn/switch-case-braces': ['warn', 'avoid'],
     'unicorn/better-regex': ['warn', { sortCharacterClasses: false }],
     'unicorn/no-useless-undefined': ['warn', { checkArguments: false }],

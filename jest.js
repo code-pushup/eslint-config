@@ -1,10 +1,13 @@
 const { UNIT_TEST_FILE_PATTERNS } = require('./lib/patterns');
+const { convertErrorsToWarnings } = require('./lib/utils');
+const jestFormatting = require('eslint-plugin-jest-formatting');
 
 /** @type {import('eslint').ESLint.ConfigData} */
 module.exports = {
   overrides: [
     {
       files: UNIT_TEST_FILE_PATTERNS,
+      plugins: ['jest-formatting'],
       extends: ['plugin:jest/recommended'],
       rules: {
         // CUSTOMIZED RULES FROM EXTENDED CONFIGS
@@ -17,6 +20,10 @@ module.exports = {
         'jest/no-focused-tests': 'warn',
         'jest/no-mocks-import': 'warn',
         'jest/no-standalone-expect': 'warn',
+
+        ...convertErrorsToWarnings(
+          jestFormatting.configs.recommended.overrides[0].rules,
+        ),
 
         // ADDITIONAL RULES
 

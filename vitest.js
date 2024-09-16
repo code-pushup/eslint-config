@@ -1,11 +1,14 @@
 const { UNIT_TEST_FILE_PATTERNS } = require('./lib/patterns');
+const { convertErrorsToWarnings } = require('./lib/utils');
 const vitest = require('eslint-plugin-vitest');
+const jestFormatting = require('eslint-plugin-jest-formatting');
 
 /** @type {import('eslint').ESLint.ConfigData} */
 module.exports = {
   overrides: [
     {
       files: UNIT_TEST_FILE_PATTERNS,
+      plugins: ['jest-formatting'],
       extends: [
         // vitest recommended uses flat config format since v5.0.0: https://github.com/veritem/eslint-plugin-vitest/releases/tag/v0.5.0
         'legacy-recommended' in vitest.configs
@@ -16,6 +19,10 @@ module.exports = {
         // CUSTOMIZED RULES FROM EXTENDED CONFIGS
 
         'vitest/prefer-to-be': 'warn',
+
+        ...convertErrorsToWarnings(
+          jestFormatting.configs.recommended.overrides[0].rules,
+        ),
 
         // ADDITIONAL RULES
 

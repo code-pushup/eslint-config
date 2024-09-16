@@ -11,6 +11,7 @@ const pluginIcons = {
   functional: 'icons8/lambda',
   import: 'icons8/import',
   jest: 'material/jest',
+  'jest-formatting': 'icons8/test',
   n: 'material/nodejs',
   'no-secrets': 'icons8/secure',
   promise: 'icons8/promise',
@@ -39,6 +40,8 @@ const pluginDocsUrls = {
     'https://github.com/eslint-functional/eslint-plugin-functional#readme',
   import: 'https://github.com/import-js/eslint-plugin-import#readme',
   jest: 'https://github.com/jest-community/eslint-plugin-jest#readme',
+  'jest-formatting':
+    'https://github.com/dangreenisrael/eslint-plugin-jest-formatting#readme',
   n: 'https://github.com/eslint-community/eslint-plugin-n#readme',
   'no-secrets': 'https://github.com/nickdeis/eslint-plugin-no-secrets#readme',
   promise: 'https://github.com/eslint-community/eslint-plugin-promise#readme',

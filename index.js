@@ -42,6 +42,14 @@ module.exports = {
     // CUSTOMIZED RULES FROM EXTENDED CONFIGS
 
     '@typescript-eslint/consistent-type-definitions': ['warn', 'type'],
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      {
+        argsIgnorePattern: '^_',
+        destructuredArrayIgnorePattern: '^_',
+        ignoreRestSiblings: true,
+      },
+    ],
     ...convertErrorsToWarnings(unicorn.configs.recommended.rules),
     'unicorn/switch-case-braces': ['warn', 'avoid'],
     'unicorn/better-regex': ['warn', { sortCharacterClasses: false }],

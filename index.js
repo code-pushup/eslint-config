@@ -117,6 +117,7 @@ module.exports = {
       : {}),
     '@typescript-eslint/max-params': ['warn', { max: 4 }],
     '@typescript-eslint/method-signature-style': 'warn',
+    '@typescript-eslint/no-import-type-side-effects': 'warn',
     '@typescript-eslint/no-magic-numbers': [
       'warn',
       {

@@ -38,7 +38,7 @@ function setupLintUtils(config, defaultFilePath = '*.ts') {
    * @returns {string[]}
    */
   const getExplicitRuleIds = config => [
-    ...Object.keys(config.rules ?? {}),
+    ...Object.keys(config.rules ?? {}).filter(id => config.rules[id] !== 'off'),
     ...(config.overrides?.flatMap(getExplicitRuleIds) ?? []),
   ];
 

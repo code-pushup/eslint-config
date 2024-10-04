@@ -61,6 +61,7 @@ module.exports = {
 
         '@typescript-eslint/unbound-method': 'off',
         '@typescript-eslint/no-unsafe-enum-comparison': 'off',
+        'unicorn/prefer-string-starts-ends-with': 'off', // superseded by @typescript-eslint/prefer-string-starts-ends-with
 
         // ADDITIONAL RULES
 
@@ -71,6 +72,10 @@ module.exports = {
             assertionStyle: 'as',
             objectLiteralTypeAssertions: 'never',
           },
+        ],
+        '@typescript-eslint/dot-notation': [
+          'warn',
+          { allowIndexSignaturePropertyAccess: true },
         ],
         '@typescript-eslint/naming-convention': [
           'warn',
@@ -83,6 +88,13 @@ module.exports = {
               '@typescript-eslint/no-unsafe-unary-minus': 'error',
             }
           : {}),
+        '@typescript-eslint/non-nullable-type-assertion-style': 'error',
+        '@typescript-eslint/prefer-nullish-coalescing': [
+          'warn',
+          { ignorePrimitives: { string: true, boolean: true } },
+        ],
+        '@typescript-eslint/prefer-optional-chain': 'warn',
+        '@typescript-eslint/prefer-string-starts-ends-with': 'warn',
 
         // https://github.com/eslint-functional/eslint-plugin-functional#rules
         'functional/immutable-data': [
@@ -114,6 +126,14 @@ module.exports = {
               {
                 assertionStyle: 'as',
                 objectLiteralTypeAssertions: 'allow',
+              },
+            ],
+            '@typescript-eslint/dot-notation': [
+              'warn',
+              {
+                allowPrivateClassPropertyAccess: true,
+                allowProtectedClassPropertyAccess: true,
+                allowIndexSignaturePropertyAccess: true,
               },
             ],
             '@typescript-eslint/require-await': 'warn',

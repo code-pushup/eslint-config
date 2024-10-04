@@ -109,7 +109,9 @@ module.exports = {
     yoda: 'warn',
 
     // https://typescript-eslint.io/rules/
-    '@typescript-eslint/default-param-last': 'warn',
+    '@typescript-eslint/array-type': 'warn',
+    '@typescript-eslint/adjacent-overload-signatures': 'warn',
+    '@typescript-eslint/ban-tslint-comment': 'warn',
     // TODO - remove condition after updating to "@typescript-eslint/eslint-plugin": "^7.0.0" in peerDependencies
     // add new "class-methods-use-this" rule (added in @typescript-eslint/eslint-plugin@6.2.0)
     ...(typescriptEslint.rules['class-methods-use-this']
@@ -117,8 +119,22 @@ module.exports = {
           '@typescript-eslint/class-methods-use-this': 'warn',
         }
       : {}),
+    '@typescript-eslint/consistent-generic-constructors': 'warn',
+    '@typescript-eslint/default-param-last': 'warn',
     '@typescript-eslint/max-params': ['warn', { max: 4 }],
     '@typescript-eslint/method-signature-style': 'warn',
+    '@typescript-eslint/no-confusing-non-null-assertion': 'warn',
+    '@typescript-eslint/no-empty-function': [
+      'warn',
+      {
+        allow: [
+          'private-constructors',
+          'protected-constructors',
+          'decoratedFunctions',
+          'overrideMethods',
+        ],
+      },
+    ],
     '@typescript-eslint/no-import-type-side-effects': 'warn',
     '@typescript-eslint/no-magic-numbers': [
       'warn',
@@ -134,6 +150,7 @@ module.exports = {
         detectObjects: true,
       },
     ],
+    '@typescript-eslint/prefer-function-type': 'warn',
     '@typescript-eslint/no-require-imports': 'error',
     '@typescript-eslint/no-shadow': 'warn',
     '@typescript-eslint/no-unused-expressions': 'warn',
@@ -169,6 +186,7 @@ module.exports = {
         curly: 'off',
         '@typescript-eslint/no-non-null-assertion': 'off',
         '@typescript-eslint/no-explicit-any': 'off',
+        '@typescript-eslint/no-empty-function': 'off',
         'sonarjs/no-duplicate-string': 'off',
         'unicorn/consistent-function-scoping': 'off',
         'functional/no-let': 'off',
@@ -197,6 +215,7 @@ module.exports = {
       rules: {
         // DISABLED RULES FOR GENERATED FILES
 
+        '@typescript-eslint/ban-tslint-comment': 'off',
         'unicorn/no-abusive-eslint-disable': 'off',
       },
     },

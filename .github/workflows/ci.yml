@@ -1,0 +1,61 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: Tests
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Run Jest tests
+        run: npm test
+  docs:
+    runs-on: ubuntu-latest
+    name: Docs check
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Generate docs
+        run: npm run docs
+      - name: Check docs unchanged
+        run: |
+          if [ "$(git diff --ignore-space-at-eol --text docs/*.md README.md | wc -l)" -gt "0" ]; then
+            echo "Detected uncommitted changes after running docs script. See status below:"
+            git diff --ignore-space-at-eol --text docs/*.md README.md
+            exit 1
+          fi
+  format:
+    runs-on: ubuntu-latest
+    name: Format check
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Check Prettier formatting
+        run: npx prettier --check .

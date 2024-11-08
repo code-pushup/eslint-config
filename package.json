@@ -6,6 +6,11 @@
   "publishConfig": {
     "access": "public"
   },
+  "exports": {
+    "./legacy": "./src/configs/legacy/index.js",
+    "./legacy/*": "./src/configs/legacy/*.js",
+    "./legacy/*.js": "./src/configs/legacy/*.js"
+  },
   "scripts": {
     "prepare": "husky install",
     "test": "jest",

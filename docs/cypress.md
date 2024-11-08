@@ -1,4 +1,4 @@
-# `@code-pushup/eslint-config/cypress` config
+# `@code-pushup/eslint-config/legacy/cypress` config
 
 Config for projects using **Cypress** for testing.
 
@@ -15,7 +15,7 @@ Config for projects using **Cypress** for testing.
 
    ```jsonc
    {
-     "extends": ["@code-pushup/eslint-config/cypress"]
+     "extends": ["@code-pushup/eslint-config/legacy/cypress"]
    }
    ```
 

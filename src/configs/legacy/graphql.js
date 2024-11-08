@@ -2,12 +2,12 @@ const {
   NODE_FILE_PATTERNS,
   GRAPHQL_FILE_PATTERN,
   TYPESCRIPT_FILE_PATTERNS,
-} = require('./lib/patterns');
-const { NAMING_CONVENTION_OPTIONS_GRAPHQL } = require('./lib/rule-options');
+} = require('../../lib/patterns');
+const { NAMING_CONVENTION_OPTIONS_GRAPHQL } = require('../../lib/rule-options');
 
 /** @type {import('eslint').ESLint.ConfigData} */
 module.exports = {
-  extends: ['@code-pushup/eslint-config/node'],
+  extends: ['@code-pushup/eslint-config/legacy/node'],
 
   overrides: [
     {

@@ -3,7 +3,7 @@ const { setupLintUtils } = require('../helpers/lint-utils');
 
 describe('cypress config', () => {
   const { loadConfig } = setupLintUtils(
-    { extends: '@code-pushup/eslint-config/cypress' },
+    { extends: '@code-pushup/eslint-config/legacy/cypress' },
     '*.cy.js',
   );
 

@@ -1,4 +1,4 @@
-const { TYPESCRIPT_FILE_PATTERNS } = require('./lib/patterns');
+const { TYPESCRIPT_FILE_PATTERNS } = require('../../lib/patterns');
 
 /** @type {import('eslint').ESLint.ConfigData} */
 module.exports = {
@@ -7,7 +7,7 @@ module.exports = {
       files: TYPESCRIPT_FILE_PATTERNS,
 
       plugins: ['@ngrx'],
-      extends: ['@code-pushup/eslint-config/angular'],
+      extends: ['@code-pushup/eslint-config/legacy/angular'],
 
       rules: {
         // CUSTOMIZED RULES FROM EXTENDED CONFIGS

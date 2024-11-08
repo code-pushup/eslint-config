@@ -3,7 +3,7 @@ const { setupLintUtils } = require('../helpers/lint-utils');
 
 describe('jest config', () => {
   const { loadConfig } = setupLintUtils(
-    { extends: '@code-pushup/eslint-config/jest' },
+    { extends: '@code-pushup/eslint-config/legacy/jest' },
     '*.spec.ts',
   );
 

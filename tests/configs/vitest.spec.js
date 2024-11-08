@@ -3,7 +3,7 @@ const { setupLintUtils } = require('../helpers/lint-utils');
 
 describe('vitest config', () => {
   const { loadConfig } = setupLintUtils(
-    { extends: '@code-pushup/eslint-config/vitest' },
+    { extends: '@code-pushup/eslint-config/legacy/vitest' },
     '*.test.ts',
   );
 

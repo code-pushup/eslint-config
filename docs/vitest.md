@@ -1,4 +1,4 @@
-# `@code-pushup/eslint-config/vitest` config
+# `@code-pushup/eslint-config/legacy/vitest` config
 
 Config for projects using **Vitest** for testing.
 
@@ -15,7 +15,7 @@ Config for projects using **Vitest** for testing.
 
    ```jsonc
    {
-     "extends": ["@code-pushup/eslint-config/vitest"],
+     "extends": ["@code-pushup/eslint-config/legacy/vitest"],
      // customize rules if needed:
      "rules": {
        // e.g. to customize file naming convention (default pattern is ".*\\.spec\\.[tj]sx?$"):

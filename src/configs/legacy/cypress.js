@@ -1,4 +1,4 @@
-const { CYPRESS_FILE_PATTERNS } = require('./lib/patterns');
+const { CYPRESS_FILE_PATTERNS } = require('../../lib/patterns');
 
 /** @type {import('eslint').ESLint.ConfigData} */
 module.exports = {

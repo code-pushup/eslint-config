@@ -3,7 +3,7 @@ const { setupLintUtils } = require('../helpers/lint-utils');
 
 describe('base config', () => {
   const { loadConfig, loadRules, lint } = setupLintUtils(
-    { extends: '@code-pushup' },
+    { extends: '@code-pushup/eslint-config/legacy' },
     '*.js',
   );
 
@@ -53,7 +53,7 @@ describe('base config', () => {
   });
 
   test('should not throw when linting project without tsconfig', async () => {
-    await expect(lint(['*.js', 'lib/*.js'])).resolves.not.toThrow();
+    await expect(lint(['src/**/*.js'])).resolves.not.toThrow();
   });
 
   test('should only warn for all unicorn plugin rules', async () => {

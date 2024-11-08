@@ -175,9 +175,9 @@ const configsExtraEslintrc = {
  */
 function configAlias(name) {
   if (name === 'index') {
-    return '@code-pushup';
+    return '@code-pushup/eslint-config/legacy';
   }
-  return `@code-pushup/eslint-config/${name}`;
+  return `@code-pushup/eslint-config/legacy/${name}`;
 }
 
 /**
@@ -185,7 +185,7 @@ function configAlias(name) {
  * @param {string} alias Config file name without extension
  */
 function configFromAlias(alias) {
-  if (alias === '@code-pushup') {
+  if (alias === '@code-pushup/eslint-config/legacy') {
     return 'index';
   }
   return alias.slice(alias.lastIndexOf('/') + 1);
@@ -256,7 +256,7 @@ function getConfigExtends(name) {
         : [];
 
   /** @type {import('eslint').Linter.Config} */
-  const config = require(`../../${name}.js`);
+  const config = require(`@code-pushup/eslint-config/legacy/${name}.js`);
 
   return [
     ...normalizeExtends(config.extends),

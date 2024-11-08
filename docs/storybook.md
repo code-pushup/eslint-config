@@ -1,4 +1,4 @@
-# `@code-pushup/eslint-config/storybook` config
+# `@code-pushup/eslint-config/legacy/storybook` config
 
 Config for projects using **Storybook** for UI components.
 
@@ -15,7 +15,7 @@ Config for projects using **Storybook** for UI components.
 
    ```jsonc
    {
-     "extends": ["@code-pushup/eslint-config/storybook"]
+     "extends": ["@code-pushup/eslint-config/legacy/storybook"]
    }
    ```
 

@@ -1,4 +1,4 @@
-# `@code-pushup/eslint-config/angular` config
+# `@code-pushup/eslint-config/legacy/angular` config
 
 Config for **Angular** projects.
 
@@ -16,7 +16,7 @@ Config for **Angular** projects.
 
    ```jsonc
    {
-     "extends": ["@code-pushup/eslint-config/angular"],
+     "extends": ["@code-pushup/eslint-config/legacy/angular"],
      // It is recommended that selectors in Angular use a common custom prefix
      // - see https://angular.io/guide/styleguide#style-02-07
      // To enforce this consistently, add the following rules:
@@ -49,7 +49,7 @@ Config for **Angular** projects.
 
 ## 📏 Rules (382)
 
-**307** rules are included from [`@code-pushup/eslint-config/typescript`](./typescript.md#📏-rules-307). For brevity, only the **75** additional rules are listed in this document.
+**307** rules are included from [`@code-pushup/eslint-config/legacy/typescript`](./typescript.md#📏-rules-307). For brevity, only the **75** additional rules are listed in this document.
 
 > 🔧 Automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/user-guide/command-line-interface#--fix).<br>💡 Manually fixable by [editor suggestions](https://eslint.org/docs/developer-guide/working-with-rules#providing-suggestions).<br>🧪🚫 Disabled for [test files](../README.md#🧪-test-overrides).<br>🧪⚠️ Severity lessened to warning for [test files](../README.md#🧪-test-overrides).
 

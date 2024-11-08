@@ -5,8 +5,8 @@ const {
   HTML_FILE_PATTERNS,
   ANGULAR_COMPONENT_FILE_PATTERNS,
   ANGULAR_PIPE_FILE_PATTERNS,
-} = require('./lib/patterns');
-const { NAMING_CONVENTION_OPTIONS_ANGULAR } = require('./lib/rule-options');
+} = require('../../lib/patterns');
+const { NAMING_CONVENTION_OPTIONS_ANGULAR } = require('../../lib/rule-options');
 const typescriptEslint = require('@typescript-eslint/eslint-plugin');
 
 /** @type {import('eslint').ESLint.ConfigData} */
@@ -16,7 +16,7 @@ module.exports = {
       files: TYPESCRIPT_FILE_PATTERNS,
 
       extends: [
-        '@code-pushup/eslint-config/typescript',
+        '@code-pushup/eslint-config/legacy/typescript',
         'plugin:@angular-eslint/recommended',
         'plugin:@angular-eslint/template/process-inline-templates',
         'plugin:rxjs/recommended',

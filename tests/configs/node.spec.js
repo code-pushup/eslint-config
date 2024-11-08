@@ -3,7 +3,7 @@ const { setupLintUtils } = require('../helpers/lint-utils');
 
 describe('node config', () => {
   const { loadConfig, loadRules } = setupLintUtils(
-    { extends: '@code-pushup/eslint-config/node' },
+    { extends: '@code-pushup/eslint-config/legacy/node' },
     '*.ts',
   );
 

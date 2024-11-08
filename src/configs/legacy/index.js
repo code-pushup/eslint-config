@@ -5,8 +5,8 @@ const {
   JSON_FILE_PATTERNS,
   COMMONJS_FILE_PATTERNS,
   SVELTE_FILE_PATTERN,
-} = require('./lib/patterns');
-const { packageExists, convertErrorsToWarnings } = require('./lib/utils');
+} = require('../../lib/patterns');
+const { packageExists, convertErrorsToWarnings } = require('../../lib/utils');
 const unicorn = require('eslint-plugin-unicorn');
 const typescriptEslint = require('@typescript-eslint/eslint-plugin');
 

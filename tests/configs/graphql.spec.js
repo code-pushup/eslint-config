@@ -3,7 +3,7 @@ const { setupLintUtils } = require('../helpers/lint-utils');
 
 describe('graphql config', () => {
   const { loadConfig } = setupLintUtils(
-    { extends: '@code-pushup/eslint-config/graphql' },
+    { extends: '@code-pushup/eslint-config/legacy/graphql' },
     '*.graphql',
   );
 

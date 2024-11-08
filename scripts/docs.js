@@ -43,7 +43,7 @@ async function loadPeerDependencies() {
 
   for (const config of configs) {
     const eslint = new ESLint({
-      baseConfig: { extends: `./${config}.js` },
+      baseConfig: { extends: `@code-pushup/eslint-config/legacy/${config}.js` },
       useEslintrc: false,
     });
     /** @type {import('eslint').Linter.Config} */
@@ -143,7 +143,7 @@ async function generateReadmeDocs(peerDeps) {
  */
 async function generateConfigDocs(name, peerDeps) {
   const eslint = new ESLint({
-    baseConfig: { extends: `./${name}.js` },
+    baseConfig: { extends: `@code-pushup/eslint-config/legacy/${name}.js` },
     useEslintrc: false,
   });
 

@@ -1,5 +1,7 @@
-const { STORYBOOK_FILE_PATTERNS } = require('./lib/patterns');
-const { NAMING_CONVENTION_OPTIONS_STORYBOOK } = require('./lib/rule-options');
+const { STORYBOOK_FILE_PATTERNS } = require('../../lib/patterns');
+const {
+  NAMING_CONVENTION_OPTIONS_STORYBOOK,
+} = require('../../lib/rule-options');
 
 /** @type {import('eslint').ESLint.ConfigData} */
 module.exports = {

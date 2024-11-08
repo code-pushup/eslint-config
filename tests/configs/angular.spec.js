@@ -3,7 +3,7 @@ const { setupLintUtils } = require('../helpers/lint-utils');
 
 describe('angular config', () => {
   const { loadConfig } = setupLintUtils({
-    extends: '@code-pushup/eslint-config/angular',
+    extends: '@code-pushup/eslint-config/legacy/angular',
   });
 
   test('should load config for TypeScript file', async () => {

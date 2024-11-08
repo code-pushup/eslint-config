@@ -64,7 +64,7 @@ describe('package.json checks', () => {
   });
 
   test('should mark peer dependency as optional if not included in default config', () => {
-    const defaultConfig = require('../index');
+    const defaultConfig = require('@code-pushup/eslint-config/legacy');
     const expected = Object.keys(packageJson.peerDependencies)
       .filter(pkg => {
         if (!pkg.includes('eslint-plugin')) {

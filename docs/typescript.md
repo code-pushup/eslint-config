@@ -1,4 +1,4 @@
-# `@code-pushup/eslint-config/typescript` config
+# `@code-pushup/eslint-config/legacy/typescript` config
 
 Config for strict **TypeScript** projects.
 
@@ -60,13 +60,13 @@ Config for strict **TypeScript** projects.
 
    ```jsonc
    {
-     "extends": ["@code-pushup/eslint-config/typescript"]
+     "extends": ["@code-pushup/eslint-config/legacy/typescript"]
    }
    ```
 
 ## 📏 Rules (309)
 
-**258** rules are included from [the default config](./index.md#📏-rules-258). For brevity, only the **51** additional rules are listed in this document.
+**258** rules are included from [`@code-pushup/eslint-config/legacy`](./index.md#📏-rules-258). For brevity, only the **51** additional rules are listed in this document.
 
 > 🔧 Automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/user-guide/command-line-interface#--fix).<br>💡 Manually fixable by [editor suggestions](https://eslint.org/docs/developer-guide/working-with-rules#providing-suggestions).<br>🧪🚫 Disabled for [test files](../README.md#🧪-test-overrides).<br>🧪⚠️ Severity lessened to warning for [test files](../README.md#🧪-test-overrides).
 

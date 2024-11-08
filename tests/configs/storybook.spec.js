@@ -3,7 +3,7 @@ const { setupLintUtils } = require('../helpers/lint-utils');
 
 describe('storybook config', () => {
   const { loadConfig } = setupLintUtils(
-    { extends: '@code-pushup/eslint-config/storybook' },
+    { extends: '@code-pushup/eslint-config/legacy/storybook' },
     '*.stories.ts',
   );
 

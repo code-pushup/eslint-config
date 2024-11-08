@@ -1,13 +1,13 @@
 const {
   TEST_FILE_PATTERNS,
   TYPESCRIPT_FILE_PATTERNS,
-} = require('./lib/patterns');
-const { NAMING_CONVENTION_OPTIONS } = require('./lib/rule-options');
+} = require('../../lib/patterns');
+const { NAMING_CONVENTION_OPTIONS } = require('../../lib/rule-options');
 const typescriptEslint = require('@typescript-eslint/eslint-plugin');
 
 /** @type {import('eslint').ESLint.ConfigData} */
 module.exports = {
-  extends: ['@code-pushup'],
+  extends: ['@code-pushup/eslint-config/legacy'],
 
   overrides: [
     {

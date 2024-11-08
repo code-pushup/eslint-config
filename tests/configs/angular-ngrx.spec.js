@@ -3,7 +3,7 @@ const { setupLintUtils } = require('../helpers/lint-utils');
 
 describe('angular-ngrx config', () => {
   const { loadConfig } = setupLintUtils(
-    { extends: '@code-pushup/eslint-config/angular-ngrx' },
+    { extends: '@code-pushup/eslint-config/legacy/angular-ngrx' },
     '*.ts',
   );
 

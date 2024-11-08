@@ -1,4 +1,4 @@
-# `@code-pushup` config
+# `@code-pushup/eslint-config/legacy` config
 
 Default config, suitable for any **JavaScript/TypeScript** project.
 

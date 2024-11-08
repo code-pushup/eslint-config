@@ -2,7 +2,7 @@
 module.exports = {
   plugins: ['n'],
 
-  extends: ['@code-pushup'],
+  extends: ['@code-pushup/eslint-config/legacy'],
 
   rules: {
     // ADDITIONAL RULES

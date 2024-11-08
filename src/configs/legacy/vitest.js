@@ -1,5 +1,5 @@
-const { UNIT_TEST_FILE_PATTERNS } = require('./lib/patterns');
-const { convertErrorsToWarnings } = require('./lib/utils');
+const { UNIT_TEST_FILE_PATTERNS } = require('../../lib/patterns');
+const { convertErrorsToWarnings } = require('../../lib/utils');
 const vitest = require('eslint-plugin-vitest');
 const jestFormatting = require('eslint-plugin-jest-formatting');
 

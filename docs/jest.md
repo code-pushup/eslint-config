@@ -1,4 +1,4 @@
-# `@code-pushup/eslint-config/jest` config
+# `@code-pushup/eslint-config/legacy/jest` config
 
 Config for projects using **Jest** for testing.
 
@@ -15,7 +15,7 @@ Config for projects using **Jest** for testing.
 
    ```jsonc
    {
-     "extends": ["@code-pushup/eslint-config/jest"],
+     "extends": ["@code-pushup/eslint-config/legacy/jest"],
      // customize rules if needed:
      "rules": {
        // e.g. to customize `test` or `it` usage (default is `it` in `describe` and `test` at top-level):

@@ -1,4 +1,4 @@
-# `@code-pushup/eslint-config/angular-ngrx` config
+# `@code-pushup/eslint-config/legacy/angular-ngrx` config
 
 Config for **Angular** projects using **NgRx** library.
 
@@ -16,7 +16,7 @@ Config for **Angular** projects using **NgRx** library.
 
    ```jsonc
    {
-     "extends": ["@code-pushup/eslint-config/angular-ngrx"],
+     "extends": ["@code-pushup/eslint-config/legacy/angular-ngrx"],
      // It is recommended that selectors in Angular use a common custom prefix
      // - see https://angular.io/guide/styleguide#style-02-07
      // To enforce this consistently, add the following rules:
@@ -49,7 +49,7 @@ Config for **Angular** projects using **NgRx** library.
 
 ## 📏 Rules (382)
 
-**352** rules are included from [`@code-pushup/eslint-config/angular`](./angular.md#📏-rules-352). For brevity, only the **30** additional rules are listed in this document.
+**352** rules are included from [`@code-pushup/eslint-config/legacy/angular`](./angular.md#📏-rules-352). For brevity, only the **30** additional rules are listed in this document.
 
 > 🔧 Automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/user-guide/command-line-interface#--fix).<br>💡 Manually fixable by [editor suggestions](https://eslint.org/docs/developer-guide/working-with-rules#providing-suggestions).<br>🧪🚫 Disabled for [test files](../README.md#🧪-test-overrides).<br>🧪⚠️ Severity lessened to warning for [test files](../README.md#🧪-test-overrides).
 

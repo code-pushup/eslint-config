@@ -1,7 +1,7 @@
 import { afterAll, beforeAll, describe, expect, test } from 'vitest';
 import { createLintUtils } from '../helpers/lint-utils';
 
-describe.skip('cypress config', () => {
+describe('cypress config', () => {
   const { setup, teardown, loadConfig } = createLintUtils('cypress', '*.cy.js');
 
   beforeAll(setup);
@@ -9,7 +9,7 @@ describe.skip('cypress config', () => {
 
   test('should not include Cypress rules for non-Cypress file', async () => {
     const config = await loadConfig('auth.spec.js');
-    expect(Object.keys(config.rules).join(',')).not.toContain('cypress/');
+    expect(Object.keys(config.rules ?? {}).join(',')).not.toContain('cypress/');
   });
 
   test('should include cypress rules for Cypress file', async () => {

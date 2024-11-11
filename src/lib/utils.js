@@ -1,9 +1,11 @@
+// @ts-check
+
 /**
  * Checks if package is available
  * @param {string} name name of the package
  * @returns {boolean}
  */
-function packageExists(name) {
+export function packageExists(name) {
   try {
     require.resolve(name);
     return true;
@@ -14,10 +16,10 @@ function packageExists(name) {
 
 /**
  * Changes all errors to warnings in rule config
- * @param {import('eslint').Linter.RulesRecord} config rules config (e.g. recommended)
+ * @param {import('eslint').Linter.RulesRecord} rules rules config (e.g. recommended)
  * @returns {import('eslint').Linter.RulesRecord}
  */
-function convertErrorsToWarnings(rules) {
+export function convertErrorsToWarnings(rules) {
   return Object.entries(rules).reduce(
     (acc, [ruleId, entry]) => ({
       ...acc,
@@ -26,8 +28,3 @@ function convertErrorsToWarnings(rules) {
     {},
   );
 }
-
-module.exports = {
-  packageExists,
-  convertErrorsToWarnings,
-};

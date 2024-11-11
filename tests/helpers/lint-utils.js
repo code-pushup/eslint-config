@@ -1,4 +1,4 @@
-const { ESLint } = require('eslint');
+import { ESLint } from 'eslint';
 
 /**
  * Sets up utilities for loading configuration and rules using ESLint
@@ -6,7 +6,7 @@ const { ESLint } = require('eslint');
  * @param {string} defaultFilePath File path when parameter not provided
  * @returns Helper functions
  */
-function setupLintUtils(config, defaultFilePath = '*.ts') {
+export function setupLintUtils(config, defaultFilePath = '*.ts') {
   const eslint = new ESLint({
     baseConfig: config,
     useEslintrc: false,
@@ -50,7 +50,3 @@ function setupLintUtils(config, defaultFilePath = '*.ts') {
     getExplicitRuleIds,
   };
 }
-
-module.exports = {
-  setupLintUtils,
-};

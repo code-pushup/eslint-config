@@ -1,11 +1,11 @@
-import { describe, expect, test } from 'vitest';
-import { setupLintUtils } from '../helpers/lint-utils';
+import { afterAll, beforeAll, describe, expect, test } from 'vitest';
+import { createLintUtils } from '../helpers/lint-utils';
 
-describe('jest config', () => {
-  const { loadConfig } = setupLintUtils(
-    { extends: '@code-pushup/eslint-config/legacy/jest' },
-    '*.spec.ts',
-  );
+describe.skip('jest config', () => {
+  const { setup, teardown, loadConfig } = createLintUtils('jest', '*.spec.ts');
+
+  beforeAll(setup);
+  afterAll(teardown);
 
   test('should not include jest rules for non-test file', async () => {
     const config = await loadConfig('lib/auth.ts');

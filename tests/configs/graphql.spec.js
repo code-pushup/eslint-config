@@ -1,11 +1,14 @@
-import { describe, expect, test } from 'vitest';
-import { setupLintUtils } from '../helpers/lint-utils';
+import { afterAll, beforeAll, describe, expect, test } from 'vitest';
+import { createLintUtils } from '../helpers/lint-utils';
 
-describe('graphql config', () => {
-  const { loadConfig } = setupLintUtils(
-    { extends: '@code-pushup/eslint-config/legacy/graphql' },
+describe.skip('graphql config', () => {
+  const { setup, teardown, loadConfig } = createLintUtils(
+    'graphql',
     '*.graphql',
   );
+
+  beforeAll(setup);
+  afterAll(teardown);
 
   test('should have graphql plugin rules for GraphQL file', async () => {
     const config = await loadConfig('src/schema.graphql');

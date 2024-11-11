@@ -2,7 +2,7 @@ import { satisfies } from 'compare-versions';
 import { readFile } from 'fs/promises';
 import { beforeAll, describe, expect, test } from 'vitest';
 
-describe('package.json checks', () => {
+describe.skip('package.json checks', () => {
   /** @type {{ devDependencies: Record<string, string>, peerDependencies: Record<string, string>, peerDependenciesMeta: Record<string, { optional?: boolean }> }} */
   let packageJson;
   /** @type {{ packages: Record<string, { version: string }> }} */

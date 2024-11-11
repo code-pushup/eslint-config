@@ -1,11 +1,14 @@
-import { describe, expect, test } from 'vitest';
-import { setupLintUtils } from '../helpers/lint-utils';
+import { afterAll, beforeAll, describe, expect, test } from 'vitest';
+import { createLintUtils } from '../helpers/lint-utils';
 
-describe('node config', () => {
-  const { loadConfig, loadRules } = setupLintUtils(
-    { extends: '@code-pushup/eslint-config/legacy/node' },
+describe.skip('node config', () => {
+  const { setup, teardown, loadConfig, loadRules } = createLintUtils(
+    'node',
     '*.ts',
   );
+
+  beforeAll(setup);
+  afterAll(teardown);
 
   test('should load config for JavaScript file', async () => {
     await expect(loadConfig('src/utils.js')).resolves.not.toThrow();

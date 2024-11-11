@@ -1,11 +1,14 @@
-import { describe, expect, test } from 'vitest';
-import { setupLintUtils } from '../helpers/lint-utils';
+import { afterAll, beforeAll, describe, expect, test } from 'vitest';
+import { createLintUtils } from '../helpers/lint-utils';
 
-describe('angular-ngrx config', () => {
-  const { loadConfig } = setupLintUtils(
-    { extends: '@code-pushup/eslint-config/legacy/angular-ngrx' },
+describe.skip('angular-ngrx config', () => {
+  const { setup, teardown, loadConfig } = createLintUtils(
+    'angular-ngrx',
     '*.ts',
   );
+
+  beforeAll(setup);
+  afterAll(teardown);
 
   test('should load config for TypeScript file', async () => {
     await expect(

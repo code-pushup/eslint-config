@@ -1,11 +1,16 @@
-import { describe, expect, test } from 'vitest';
-import { setupLintUtils } from '../helpers/lint-utils';
+// @ts-check
 
-describe('base config', () => {
-  const { loadConfig, loadRules, lint } = setupLintUtils(
-    { extends: '@code-pushup/eslint-config/legacy' },
+import { afterAll, beforeAll, describe, expect, test } from 'vitest';
+import { createLintUtils } from '../helpers/lint-utils';
+
+describe('javascript config', () => {
+  const { setup, teardown, loadConfig, loadRules, lint } = createLintUtils(
+    'javascript',
     '*.js',
   );
+
+  beforeAll(setup);
+  afterAll(teardown);
 
   test('should load config for JavaScript file', async () => {
     await expect(loadConfig('index.js')).resolves.not.toThrow();
@@ -28,37 +33,37 @@ describe('base config', () => {
   test('should not include any rule which requires type checking', async () => {
     const rules = await loadRules();
     const rulesWithTypes = Object.entries(rules)
-      .filter(([, meta]) => meta.docs.requiresTypeChecking)
+      .filter(([, meta]) => meta.docs?.['requiresTypeChecking'])
       .map(([ruleId]) => ruleId);
     expect(rulesWithTypes).toHaveLength(0);
   });
 
   test('should have rule disabled if test file pattern matches', async () => {
     const config = await loadConfig('utils.spec.js');
-    expect(config.rules['@typescript-eslint/no-non-null-assertion']).toEqual([
-      'off',
+    expect(config.rules?.['@typescript-eslint/no-non-null-assertion']).toEqual([
+      0,
     ]);
   });
 
   test('should have rule disabled if known config file pattern matches', async () => {
     const config = await loadConfig('jest.config.ts');
-    expect(config.rules['import/no-anonymous-default-export']).toEqual(['off']);
+    expect(config.rules?.['import/no-anonymous-default-export']).toEqual([0]);
   });
 
   test('should have rule disabled if generated file pattern matches', async () => {
     const config = await loadConfig(
       'src/graphql/generated/introspection-result.ts',
     );
-    expect(config.rules['unicorn/no-abusive-eslint-disable']).toEqual(['off']);
+    expect(config.rules?.['unicorn/no-abusive-eslint-disable']).toEqual([0]);
   });
 
   test('should not throw when linting project without tsconfig', async () => {
-    await expect(lint(['src/**/*.js'])).resolves.not.toThrow();
+    await expect(lint(['*.js'])).resolves.not.toThrow();
   });
 
   test('should only warn for all unicorn plugin rules', async () => {
     const config = await loadConfig();
-    const unicornErrorRules = Object.entries(config.rules)
+    const unicornErrorRules = Object.entries(config.rules ?? {})
       .filter(([ruleId]) => ruleId.startsWith('unicorn/'))
       .filter(([, entry]) => {
         const severity = Array.isArray(entry) ? entry[0] : entry;

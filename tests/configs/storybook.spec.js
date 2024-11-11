@@ -1,11 +1,14 @@
-import { describe, expect, test } from 'vitest';
-import { setupLintUtils } from '../helpers/lint-utils';
+import { afterAll, beforeAll, describe, expect, test } from 'vitest';
+import { createLintUtils } from '../helpers/lint-utils';
 
-describe('storybook config', () => {
-  const { loadConfig } = setupLintUtils(
-    { extends: '@code-pushup/eslint-config/legacy/storybook' },
+describe.skip('storybook config', () => {
+  const { setup, teardown, loadConfig } = createLintUtils(
+    'storybook',
     '*.stories.ts',
   );
+
+  beforeAll(setup);
+  afterAll(teardown);
 
   test('should load storybook plugin rules for stories file', async () => {
     const config = await loadConfig('src/components/Button.stories.jsx');

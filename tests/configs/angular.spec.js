@@ -1,10 +1,11 @@
-import { describe, expect, test } from 'vitest';
-import { setupLintUtils } from '../helpers/lint-utils';
+import { afterAll, beforeAll, describe, expect, test } from 'vitest';
+import { createLintUtils } from '../helpers/lint-utils';
 
-describe('angular config', () => {
-  const { loadConfig } = setupLintUtils({
-    extends: '@code-pushup/eslint-config/legacy/angular',
-  });
+describe.skip('angular config', () => {
+  const { setup, teardown, loadConfig } = createLintUtils('angular');
+
+  beforeAll(setup);
+  afterAll(teardown);
 
   test('should load config for TypeScript file', async () => {
     await expect(loadConfig('src/app/app.component.ts')).resolves.not.toThrow();

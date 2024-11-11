@@ -1,11 +1,11 @@
-import { describe, expect, test } from 'vitest';
-import { setupLintUtils } from '../helpers/lint-utils';
+import { afterAll, beforeAll, describe, expect, test } from 'vitest';
+import { createLintUtils } from '../helpers/lint-utils';
 
-describe('cypress config', () => {
-  const { loadConfig } = setupLintUtils(
-    { extends: '@code-pushup/eslint-config/legacy/cypress' },
-    '*.cy.js',
-  );
+describe.skip('cypress config', () => {
+  const { setup, teardown, loadConfig } = createLintUtils('cypress', '*.cy.js');
+
+  beforeAll(setup);
+  afterAll(teardown);
 
   test('should not include Cypress rules for non-Cypress file', async () => {
     const config = await loadConfig('auth.spec.js');

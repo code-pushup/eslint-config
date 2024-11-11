@@ -1,12 +1,18 @@
-import { describe, expect, test } from 'vitest';
-import { setupLintUtils } from '../helpers/lint-utils';
+import { afterAll, beforeAll, describe, expect, test } from 'vitest';
+import { createLintUtils } from '../helpers/lint-utils';
 
 describe('typescript config', () => {
-  const { loadConfig, getRulesByIds, getExplicitRuleIds, loadRules } =
-    setupLintUtils(
-      { extends: '@code-pushup/eslint-config/legacy/typescript' },
-      '*.ts',
-    );
+  const {
+    setup,
+    teardown,
+    loadConfig,
+    loadRulesByIds,
+    getExplicitRuleIds,
+    loadRules,
+  } = createLintUtils('typescript', '*.ts', ['src/utils.js']);
+
+  beforeAll(setup);
+  afterAll(teardown);
 
   test('should load config for TypeScript file', async () => {
     await expect(loadConfig('index.ts')).resolves.not.toThrow();
@@ -37,9 +43,11 @@ describe('typescript config', () => {
   });
 
   test('should only explicitly reference rules which require type checking (with specified exceptions)', async () => {
-    const config = require('@code-pushup/eslint-config/legacy/typescript');
-    const ruleIds = getExplicitRuleIds(config);
-    const rules = getRulesByIds(ruleIds);
+    const {
+      default: { typescript },
+    } = await import('@code-pushup/eslint-config');
+    const ruleIds = getExplicitRuleIds(typescript);
+    const rules = await loadRulesByIds(ruleIds);
     const rulesWithoutTypes = Object.entries(rules)
       .filter(([, meta]) => !meta.docs?.requiresTypeChecking)
       .map(([ruleId]) => ruleId)
@@ -52,7 +60,7 @@ describe('typescript config', () => {
   test('should have rule disabled if test file pattern matches', async () => {
     const config = await loadConfig('index.test.ts');
     expect(config.rules['@typescript-eslint/no-unsafe-assignment']).toEqual([
-      'off',
+      0,
     ]);
   });
 

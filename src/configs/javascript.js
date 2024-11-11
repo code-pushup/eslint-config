@@ -26,6 +26,7 @@ export default tseslint.config(
   ...(isPrettierAvailable ? [require('eslint-config-prettier')] : []),
   importPlugin.flatConfigs?.recommended,
   sonarjs.configs.recommended,
+  // @ts-expect-error incorrectly inferred as possible legacy config from .js
   unicorn.configs['flat/recommended'],
   promise.configs['flat/recommended'],
   {

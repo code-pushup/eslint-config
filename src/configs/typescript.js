@@ -9,12 +9,16 @@ import {
 import { NAMING_CONVENTION_OPTIONS } from '../lib/rule-options.js';
 import javascript from './javascript.js';
 
+/** @type {import('@typescript-eslint/utils').TSESLint.FlatConfig.Config} */
+// @ts-expect-error inferred from .js incorrectly
+const importConfigTypescript = importPlugin.flatConfigs?.typescript;
+
 export default tseslint.config(...javascript, {
   files: TYPESCRIPT_FILE_PATTERNS,
   extends: [
     ...tseslint.configs.recommendedTypeChecked,
     ...tseslint.configs.strictTypeChecked,
-    importPlugin.flatConfigs?.typescript,
+    importConfigTypescript,
     {
       name: 'code-pushup/typescript/recommended/customized',
       files: TYPESCRIPT_FILE_PATTERNS,

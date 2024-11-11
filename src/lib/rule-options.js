@@ -1,4 +1,6 @@
-const NAMING_CONVENTION_OPTIONS = [
+// @ts-check
+
+export const NAMING_CONVENTION_OPTIONS = [
   {
     selector: [
       'variableLike',
@@ -42,7 +44,7 @@ const NAMING_CONVENTION_OPTIONS = [
   },
 ];
 
-const NAMING_CONVENTION_OPTIONS_GRAPHQL = NAMING_CONVENTION_OPTIONS.map(
+export const NAMING_CONVENTION_OPTIONS_GRAPHQL = NAMING_CONVENTION_OPTIONS.map(
   (option, i) =>
     i === 0
       ? {
@@ -55,17 +57,17 @@ const NAMING_CONVENTION_OPTIONS_GRAPHQL = NAMING_CONVENTION_OPTIONS.map(
       : option,
 );
 
-const NAMING_CONVENTION_OPTIONS_STORYBOOK = NAMING_CONVENTION_OPTIONS.map(
-  option =>
+export const NAMING_CONVENTION_OPTIONS_STORYBOOK =
+  NAMING_CONVENTION_OPTIONS.map(option =>
     option.selector === 'variable'
       ? {
           ...option,
-          format: [...option.format, 'PascalCase'],
+          format: [...(option.format ?? []), 'PascalCase'],
         }
       : option,
-);
+  );
 
-const NAMING_CONVENTION_OPTIONS_ANGULAR = [
+export const NAMING_CONVENTION_OPTIONS_ANGULAR = [
   ...NAMING_CONVENTION_OPTIONS.map(option =>
     Array.isArray(option.selector)
       ? {
@@ -79,10 +81,3 @@ const NAMING_CONVENTION_OPTIONS_ANGULAR = [
     format: ['camelCase', 'PascalCase', 'UPPER_CASE'],
   },
 ];
-
-module.exports = {
-  NAMING_CONVENTION_OPTIONS,
-  NAMING_CONVENTION_OPTIONS_GRAPHQL,
-  NAMING_CONVENTION_OPTIONS_STORYBOOK,
-  NAMING_CONVENTION_OPTIONS_ANGULAR,
-};

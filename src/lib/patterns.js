@@ -1,3 +1,5 @@
+// @ts-check
+
 /** @param {string} suffix */
 const fromSuffix = suffix => `*.${suffix}`;
 
@@ -9,23 +11,23 @@ const fromDirectory = dir => `**/${dir}/**/*`;
  * @param {{ skipJSX?: boolean }} options
  * @returns {string[]}
  */
-const withExtensions = (patterns, options = {}) =>
+export const withExtensions = (patterns, options = {}) =>
   patterns.map(
     pattern => `${pattern}.?(c|m)[jt]s${options.skipJSX ? '' : `?(x)`}`,
   );
 
-const CONFIG_FILE_PATTERNS = withExtensions(
+export const CONFIG_FILE_PATTERNS = withExtensions(
   ['*.config', '.prettierrc', 'codegen', 'test-setup'],
   { skipJSX: true },
 );
 
-const UNIT_TEST_FILE_PATTERNS = withExtensions([
+export const UNIT_TEST_FILE_PATTERNS = withExtensions([
   fromSuffix('spec'),
   fromSuffix('test'),
   fromDirectory('__tests__'),
 ]);
 
-const TEST_FILE_PATTERNS = [
+export const TEST_FILE_PATTERNS = [
   ...UNIT_TEST_FILE_PATTERNS,
   ...withExtensions([
     fromDirectory('__mocks__'),
@@ -46,51 +48,32 @@ const TEST_FILE_PATTERNS = [
 
 // @angular-eslint's inline templates processor transforms .ts files to .html
 // https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin-template/src/processors.ts#L164
-const TEST_FILE_PATTERNS_INLINE_TEMPLATES = TEST_FILE_PATTERNS.map(pattern =>
-  pattern.startsWith('*.') ? `${pattern}*` : pattern,
+export const TEST_FILE_PATTERNS_INLINE_TEMPLATES = TEST_FILE_PATTERNS.map(
+  pattern => (pattern.startsWith('*.') ? `${pattern}*` : pattern),
 );
 
-const TYPESCRIPT_FILE_PATTERNS = ['*.ts', '*.tsx'];
+export const TYPESCRIPT_FILE_PATTERNS = ['*.ts', '*.tsx'];
 
-const JSON_FILE_PATTERNS = ['*.json', '*.jsonc'];
+export const JSON_FILE_PATTERNS = ['*.json', '*.jsonc'];
 
-const HTML_FILE_PATTERNS = ['*.html'];
+export const HTML_FILE_PATTERNS = ['*.html'];
 
-const CYPRESS_FILE_PATTERNS = ['*.cy.[jt]s?(x)', 'e2e/**/*.[jt]s?(x)'];
+export const CYPRESS_FILE_PATTERNS = ['*.cy.[jt]s?(x)', 'e2e/**/*.[jt]s?(x)'];
 
-const NODE_FILE_PATTERNS = ['*.ts', '*.js'];
+export const NODE_FILE_PATTERNS = ['*.ts', '*.js'];
 
-const GRAPHQL_FILE_PATTERN = '*.graphql';
+export const GRAPHQL_FILE_PATTERN = '*.graphql';
 
-const STORYBOOK_FILE_PATTERNS = withExtensions([fromSuffix('stories')]);
+export const STORYBOOK_FILE_PATTERNS = withExtensions([fromSuffix('stories')]);
 
-const ANGULAR_COMPONENT_FILE_PATTERNS = '*.component.ts';
-const ANGULAR_PIPE_FILE_PATTERNS = '*.pipe.ts';
+export const ANGULAR_COMPONENT_FILE_PATTERNS = '*.component.ts';
+export const ANGULAR_PIPE_FILE_PATTERNS = '*.pipe.ts';
 
-const GENERATED_FILE_PATTERNS = withExtensions([
+export const GENERATED_FILE_PATTERNS = withExtensions([
   fromDirectory('generated'),
   'generated',
 ]);
 
-const COMMONJS_FILE_PATTERNS = ['*.cjs', '*.cts'];
+export const COMMONJS_FILE_PATTERNS = ['*.cjs', '*.cts'];
 
-const SVELTE_FILE_PATTERN = '*.svelte';
-
-module.exports = {
-  TEST_FILE_PATTERNS,
-  TEST_FILE_PATTERNS_INLINE_TEMPLATES,
-  UNIT_TEST_FILE_PATTERNS,
-  TYPESCRIPT_FILE_PATTERNS,
-  JSON_FILE_PATTERNS,
-  HTML_FILE_PATTERNS,
-  CYPRESS_FILE_PATTERNS,
-  NODE_FILE_PATTERNS,
-  GRAPHQL_FILE_PATTERN,
-  STORYBOOK_FILE_PATTERNS,
-  GENERATED_FILE_PATTERNS,
-  CONFIG_FILE_PATTERNS,
-  ANGULAR_COMPONENT_FILE_PATTERNS,
-  ANGULAR_PIPE_FILE_PATTERNS,
-  COMMONJS_FILE_PATTERNS,
-  SVELTE_FILE_PATTERN,
-};
+export const SVELTE_FILE_PATTERN = '*.svelte';

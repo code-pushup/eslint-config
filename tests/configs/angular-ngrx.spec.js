@@ -1,5 +1,5 @@
-const { describe, expect, test } = require('@jest/globals');
-const { setupLintUtils } = require('../helpers/lint-utils');
+import { describe, expect, test } from 'vitest';
+import { setupLintUtils } from '../helpers/lint-utils';
 
 describe('angular-ngrx config', () => {
   const { loadConfig } = setupLintUtils(

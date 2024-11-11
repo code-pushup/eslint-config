@@ -1,7 +1,6 @@
-const { describe, expect, test } = require('@jest/globals');
-const fs = require('fs/promises');
-const path = require('path');
-const { satisfies } = require('compare-versions');
+import { satisfies } from 'compare-versions';
+import { readFile } from 'fs/promises';
+import { beforeAll, describe, expect, test } from 'vitest';
 
 describe('package.json checks', () => {
   /** @type {{ devDependencies: Record<string, string>, peerDependencies: Record<string, string>, peerDependenciesMeta: Record<string, { optional?: boolean }> }} */
@@ -11,7 +10,7 @@ describe('package.json checks', () => {
 
   /** @param {string} filePath */
   const readJson = async filePath => {
-    const buffer = await fs.readFile(filePath);
+    const buffer = await readFile(filePath);
     return JSON.parse(buffer.toString('utf8'));
   };
 
@@ -32,10 +31,8 @@ describe('package.json checks', () => {
   });
 
   beforeAll(async () => {
-    packageJson = await readJson(path.join(__dirname, '..', 'package.json'));
-    packageLockJson = await readJson(
-      path.join(__dirname, '..', 'package-lock.json'),
-    );
+    packageJson = await readJson('package.json');
+    packageLockJson = await readJson('package-lock.json');
   });
 
   test('should include every eslint-related package as peer dependency', () => {
@@ -55,7 +52,7 @@ describe('package.json checks', () => {
 
   test('should have installed matching version for each peer dependency', () => {
     const peerDeps = Object.entries(packageJson.peerDependencies);
-    expect.assertions(peerDeps);
+    expect.assertions(peerDeps.length);
     peerDeps.forEach(([pkg, version]) => {
       expect(
         packageLockJson.packages[`node_modules/${pkg}`].version,

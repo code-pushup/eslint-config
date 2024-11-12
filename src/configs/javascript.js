@@ -30,7 +30,7 @@ export default tseslint.config(
   unicorn.configs['flat/recommended'],
   promise.configs['flat/recommended'],
   {
-    name: 'code-pushup/javascript/recommended/customized',
+    name: 'code-pushup/javascript/customized',
     rules: {
       '@typescript-eslint/consistent-type-definitions': ['warn', 'type'],
       '@typescript-eslint/no-unused-vars': [
@@ -56,7 +56,7 @@ export default tseslint.config(
     },
   },
   {
-    name: 'code-pushup/javascript/recommended/disabled',
+    name: 'code-pushup/javascript/disabled',
     rules: {
       'no-case-declarations': 'off',
       '@typescript-eslint/consistent-indexed-object-style': 'off',

@@ -36,46 +36,40 @@
   },
   "homepage": "https://github.com/code-pushup/eslint-config#readme",
   "peerDependencies": {
+    "@eslint/js": "^9.0.0",
     "@graphql-eslint/eslint-plugin": "^3.0.0",
-    "@ngrx/eslint-plugin": "^17.0.0 || ^18.0.0",
-    "eslint": "^8.0.0",
+    "@ngrx/eslint-plugin": "^18.0.0",
+    "angular-eslint": "^18.0.0",
+    "eslint": "^9.0.0",
     "eslint-import-resolver-typescript": "^3.0.0",
-    "eslint-plugin-cypress": "^3.2.0",
-    "eslint-plugin-functional": "^6.0.0",
-    "eslint-plugin-import": "^2.25.0",
-    "eslint-plugin-jest": "^27.0.0 || ^28.0.0",
+    "eslint-plugin-cypress": ">=3.3.0",
+    "eslint-plugin-functional": "^7.0.0",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-jest": "^28.8.0",
     "eslint-plugin-jest-formatting": "^3.0.0",
-    "eslint-plugin-n": "^16.0.0",
-    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-n": ">=16.0.0",
+    "eslint-plugin-promise": ">=6.4.0",
     "eslint-plugin-rxjs": "^5.0.0",
-    "eslint-plugin-sonarjs": ">=0.22.0",
-    "eslint-plugin-storybook": ">=0.6.0",
-    "eslint-plugin-unicorn": ">=48.0.0",
-    "eslint-plugin-vitest": ">=0.3.0"
+    "eslint-plugin-sonarjs": ">=1.0.4",
+    "eslint-plugin-storybook": ">=0.10.0",
+    "eslint-plugin-unicorn": ">=50.0.0",
+    "eslint-plugin-vitest": ">=0.5.0",
+    "typescript-eslint": "^8.0.0"
   },
   "peerDependenciesMeta": {
-    "@angular-eslint/eslint-plugin": {
-      "optional": true
-    },
-    "@angular-eslint/eslint-plugin-template": {
-      "optional": true
-    },
-    "@angular-eslint/template-parser": {
-      "optional": true
-    },
     "@graphql-eslint/eslint-plugin": {
       "optional": true
     },
     "@ngrx/eslint-plugin": {
       "optional": true
     },
+    "angular-eslint": {
+      "optional": true
+    },
     "eslint-import-resolver-typescript": {
       "optional": true
     },
     "eslint-plugin-cypress": {
-      "optional": true
-    },
-    "eslint-plugin-deprecation": {
       "optional": true
     },
     "eslint-plugin-jest": {

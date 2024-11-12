@@ -1,7 +1,7 @@
 import { afterAll, beforeAll, describe, expect, test } from 'vitest';
 import { createLintUtils } from '../helpers/lint-utils';
 
-describe.skip('storybook config', () => {
+describe('storybook config', () => {
   const { setup, teardown, loadConfig } = createLintUtils(
     'storybook',
     '*.stories.ts',
@@ -17,7 +17,9 @@ describe.skip('storybook config', () => {
 
   test('should not include storybook plugin rules for non-story file', async () => {
     const config = await loadConfig('src/components/Button.jsx');
-    expect(Object.keys(config.rules).join(',')).not.toContain('storybook/');
+    expect(Object.keys(config?.rules ?? {}).join(',')).not.toContain(
+      'storybook/',
+    );
   });
 
   test('should include storybook rule for .storybook directory', async () => {

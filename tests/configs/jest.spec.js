@@ -1,7 +1,7 @@
 import { afterAll, beforeAll, describe, expect, test } from 'vitest';
 import { createLintUtils } from '../helpers/lint-utils';
 
-describe.skip('jest config', () => {
+describe('jest config', () => {
   const { setup, teardown, loadConfig } = createLintUtils('jest', '*.spec.ts');
 
   beforeAll(setup);
@@ -9,7 +9,7 @@ describe.skip('jest config', () => {
 
   test('should not include jest rules for non-test file', async () => {
     const config = await loadConfig('lib/auth.ts');
-    expect(Object.keys(config.rules).join(',')).not.toContain('jest/');
+    expect(Object.keys(config?.rules ?? {}).join(',')).not.toContain('jest/');
   });
 
   test('should include jest rules for test file', async () => {
@@ -29,6 +29,6 @@ describe.skip('jest config', () => {
 
   test('should have customized severity level for rule from extended config', async () => {
     const config = await loadConfig();
-    expect(config.rules['jest/no-mocks-import']).toEqual(['warn']);
+    expect(config.rules['jest/no-mocks-import']).toEqual([1]);
   });
 });

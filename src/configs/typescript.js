@@ -3,10 +3,14 @@
 import * as importPlugin from 'eslint-plugin-import';
 import tseslint from 'typescript-eslint';
 import {
+  STORYBOOK_FILE_PATTERNS,
   TEST_FILE_PATTERNS,
   TYPESCRIPT_FILE_PATTERNS,
 } from '../lib/patterns.js';
-import { NAMING_CONVENTION_OPTIONS } from '../lib/rule-options.js';
+import {
+  NAMING_CONVENTION_OPTIONS,
+  NAMING_CONVENTION_OPTIONS_STORYBOOK,
+} from '../lib/rule-options.js';
 import javascript from './javascript.js';
 
 /** @type {import('@typescript-eslint/utils').TSESLint.FlatConfig.Config} */
@@ -102,6 +106,7 @@ export default tseslint.config(...javascript, {
     },
     {
       name: 'code-pushup/typescript/tests/customized',
+      files: TEST_FILE_PATTERNS,
       rules: {
         '@typescript-eslint/consistent-type-assertions': [
           'warn',
@@ -122,6 +127,16 @@ export default tseslint.config(...javascript, {
         'functional/immutable-data': [
           'warn',
           { ignoreImmediateMutation: true },
+        ],
+      },
+    },
+    {
+      name: 'code-pushup/typescript/storybook/customized',
+      files: STORYBOOK_FILE_PATTERNS,
+      rules: {
+        '@typescript-eslint/naming-convention': [
+          'warn',
+          ...NAMING_CONVENTION_OPTIONS_STORYBOOK,
         ],
       },
     },

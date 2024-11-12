@@ -1,7 +1,9 @@
+// @ts-check
+
 import { afterAll, beforeAll, describe, expect, test } from 'vitest';
 import { createLintUtils } from '../helpers/lint-utils';
 
-describe.skip('angular config', () => {
+describe('angular config', () => {
   const { setup, teardown, loadConfig } = createLintUtils('angular');
 
   beforeAll(setup);
@@ -19,7 +21,7 @@ describe.skip('angular config', () => {
 
   test('should not include template rules for non-HTML file', async () => {
     const config = await loadConfig('src/app/app.component.ts');
-    expect(Object.keys(config.rules).join(',')).not.toContain(
+    expect(Object.keys(config.rules ?? {}).join(',')).not.toContain(
       '@angular-eslint/template/',
     );
   });
@@ -65,7 +67,7 @@ describe.skip('angular config', () => {
       'src/app/components/accordion/accordion.component.stories.ts',
     );
     expect(
-      config.rules['@angular-eslint/component-max-inline-declarations'],
-    ).toEqual(['off']);
+      config.rules?.['@angular-eslint/component-max-inline-declarations'],
+    ).toEqual([0]);
   });
 });

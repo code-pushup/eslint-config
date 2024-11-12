@@ -1,11 +1,10 @@
+// @ts-check
+
 import { afterAll, beforeAll, describe, expect, test } from 'vitest';
 import { createLintUtils } from '../helpers/lint-utils';
 
-describe.skip('angular-ngrx config', () => {
-  const { setup, teardown, loadConfig } = createLintUtils(
-    'angular-ngrx',
-    '*.ts',
-  );
+describe('ngrx config', () => {
+  const { setup, teardown, loadConfig } = createLintUtils('ngrx', '*.ts');
 
   beforeAll(setup);
   afterAll(teardown);

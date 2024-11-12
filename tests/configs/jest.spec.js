@@ -1,3 +1,5 @@
+// @ts-check
+
 import { afterAll, beforeAll, describe, expect, test } from 'vitest';
 import { createLintUtils } from '../helpers/lint-utils';
 
@@ -14,7 +16,7 @@ describe('jest config', () => {
 
   test('should include jest rules for test file', async () => {
     const config = await loadConfig('__test__/auth.spec.js');
-    expect(Object.keys(config.rules).join(',')).toContain('jest/');
+    expect(Object.keys(config.rules ?? {}).join(',')).toContain('jest/');
   });
 
   test('should have rule from extended recommended jest config', async () => {
@@ -29,6 +31,6 @@ describe('jest config', () => {
 
   test('should have customized severity level for rule from extended config', async () => {
     const config = await loadConfig();
-    expect(config.rules['jest/no-mocks-import']).toEqual([1]);
+    expect(config.rules?.['jest/no-mocks-import']).toEqual([1]);
   });
 });

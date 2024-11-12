@@ -1,7 +1,9 @@
+// @ts-check
+
 import { afterAll, beforeAll, describe, expect, test } from 'vitest';
 import { createLintUtils } from '../helpers/lint-utils';
 
-describe.skip('node config', () => {
+describe('node config', () => {
   const { setup, teardown, loadConfig, loadRules } = createLintUtils(
     'node',
     '*.ts',
@@ -27,7 +29,7 @@ describe.skip('node config', () => {
   test('should not include any rule which requires type checking', async () => {
     const rules = await loadRules();
     const rulesWithTypes = Object.entries(rules)
-      .filter(([, meta]) => meta.docs.requiresTypeChecking)
+      .filter(([, meta]) => meta.docs?.['requiresTypeChecking'])
       .map(([ruleId]) => ruleId);
     expect(rulesWithTypes).toHaveLength(0);
   });

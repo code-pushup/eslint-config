@@ -1,8 +1,10 @@
+// @ts-check
+
 import { satisfies } from 'compare-versions';
 import { readFile } from 'fs/promises';
 import { beforeAll, describe, expect, test } from 'vitest';
 
-describe.skip('package.json checks', () => {
+describe('package.json checks', () => {
   /** @type {{ devDependencies: Record<string, string>, peerDependencies: Record<string, string>, peerDependenciesMeta: Record<string, { optional?: boolean }> }} */
   let packageJson;
   /** @type {{ packages: Record<string, { version: string }> }} */
@@ -15,16 +17,12 @@ describe.skip('package.json checks', () => {
   };
 
   expect.extend({
-    toSatisfyVersion: (version, range, name) => {
-      if (satisfies(version, range)) {
-        return {
-          pass: true,
-        };
-      }
+    toSatisfyVersion(version, range, name) {
+      const { isNot } = this;
       return {
-        pass: false,
+        pass: satisfies(version, range),
         message: () =>
-          `Version ${version} does not satisfy range ${range}` +
+          `Version ${version} ${isNot ? 'does not satisfy' : 'satisfies'} range ${range}` +
           (name ? ` [package: ${name}]` : ''),
       };
     },
@@ -39,11 +37,9 @@ describe.skip('package.json checks', () => {
     const expected = Object.keys(packageJson.devDependencies)
       .filter(
         pkg =>
-          pkg === 'eslint' ||
-          pkg.startsWith('eslint-plugin-') ||
-          (pkg.startsWith('@') && pkg.includes('/eslint-plugin')) ||
-          pkg.includes('parser') ||
-          pkg.startsWith('eslint-import-resolver-'),
+          pkg.includes('eslint') &&
+          !pkg.startsWith('@types/') &&
+          !pkg.startsWith('@typescript-eslint/'), // installed via "typescript-eslint"
       )
       .sort();
     const received = Object.keys(packageJson.peerDependencies).sort();
@@ -60,20 +56,20 @@ describe.skip('package.json checks', () => {
     });
   });
 
-  test('should mark peer dependency as optional if not included in default config', () => {
-    const defaultConfig = require('@code-pushup/eslint-config/legacy');
+  test('should mark peer dependency as optional if not included in default config', async () => {
+    const {
+      default: { javascript },
+    } = await import('@code-pushup/eslint-config');
+    const plugins = javascript.flatMap(config =>
+      Object.keys(config.plugins ?? {}),
+    );
     const expected = Object.keys(packageJson.peerDependencies)
       .filter(pkg => {
         if (!pkg.includes('eslint-plugin')) {
           return false;
         }
         const alias = pkg.replace(/\/?eslint-plugin-?/, '');
-        if (
-          defaultConfig.extends.some(str => str.startsWith(`plugin:${alias}/`))
-        ) {
-          return false;
-        }
-        if (defaultConfig.plugins.includes(alias)) {
+        if (plugins.includes(alias)) {
           return false;
         }
         return true;

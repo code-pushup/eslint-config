@@ -1,3 +1,5 @@
+// @ts-check
+
 import { afterAll, beforeAll, describe, expect, test } from 'vitest';
 import { createLintUtils } from '../helpers/lint-utils';
 
@@ -12,7 +14,7 @@ describe('storybook config', () => {
 
   test('should load storybook plugin rules for stories file', async () => {
     const config = await loadConfig('src/components/Button.stories.jsx');
-    expect(Object.keys(config.rules).join(',')).toContain('storybook/');
+    expect(Object.keys(config.rules ?? {}).join(',')).toContain('storybook/');
   });
 
   test('should not include storybook plugin rules for non-story file', async () => {

@@ -1,14 +1,14 @@
-const { MarkdownDocument, md } = require('build-md');
-const {
-  configDescription,
+import { MarkdownDocument, md } from 'build-md';
+import {
   configAlias,
+  configDescription,
   configFromAlias,
-  configsExtraSetupDocs,
   configsExtraEslintrc,
-} = require('./configs');
-const { pluginIcon, pluginDocs } = require('./plugins');
-const { parseRuleId } = require('./rules');
-const { sortPeerDeps, abbreviatePackageList } = require('./packages');
+  configsExtraSetupDocs,
+} from './configs.js';
+import { abbreviatePackageList, sortPeerDeps } from './packages.js';
+import { pluginDocs, pluginIcon } from './plugins.js';
+import { parseRuleId } from './rules.js';
 
 const testGlobsLink = '../README.md#🧪-test-overrides';
 const setupLink = '../README.md#🏗️-setup';
@@ -21,7 +21,7 @@ const setupLink = '../README.md#🏗️-setup';
  * @param {import('./types').PeerDep[]} peerDeps Peer dependencies
  * @param {{hideOverrides?: boolean}} options Extra options
  */
-function configRulesToMarkdown(
+export function configRulesToMarkdown(
   config,
   rules,
   extended,
@@ -230,7 +230,3 @@ function truncate(text, max) {
 function sanitizeRuleOptions(content) {
   return content.replace(/\\/g, '\\\\').replace(/\*/g, '\\*');
 }
-
-module.exports = {
-  configRulesToMarkdown,
-};

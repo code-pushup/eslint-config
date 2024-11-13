@@ -58,7 +58,7 @@ const pluginDocsUrls = {
 /**
  * @param {string} plugin
  */
-function pluginIcon(plugin) {
+export function pluginIcon(plugin) {
   if (!(plugin in pluginIcons)) {
     throw new Error(`No icon found for plugin ${plugin}`);
   }
@@ -68,14 +68,9 @@ function pluginIcon(plugin) {
 /**
  * @param {string} plugin
  */
-function pluginDocs(plugin) {
+export function pluginDocs(plugin) {
   if (!(plugin in pluginIcons)) {
     throw new Error(`No docs URL found for plugin ${plugin}`);
   }
   return pluginDocsUrls[plugin];
 }
-
-module.exports = {
-  pluginIcon,
-  pluginDocs,
-};

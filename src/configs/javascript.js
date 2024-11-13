@@ -15,15 +15,11 @@ import {
   SVELTE_FILE_PATTERN,
   TEST_FILE_PATTERNS,
 } from '../lib/patterns.js';
-import { convertErrorsToWarnings, packageExists } from '../lib/utils.js';
-
-const isPrettierAvailable =
-  packageExists('prettier') && packageExists('eslint-config-prettier');
+import { convertErrorsToWarnings } from '../lib/utils.js';
 
 export default tseslint.config(
   eslint.configs.recommended,
   ...tseslint.configs.recommended,
-  ...(isPrettierAvailable ? [require('eslint-config-prettier')] : []),
   importPlugin.flatConfigs?.recommended,
   sonarjs.configs.recommended,
   // @ts-expect-error incorrectly inferred as possible legacy config from .js

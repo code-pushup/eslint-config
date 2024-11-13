@@ -1,3 +1,5 @@
+// @ts-check
+
 import { MarkdownDocument, md } from 'build-md';
 import {
   configAlias,
@@ -41,6 +43,13 @@ export function configRulesToMarkdown(
 
   const extraSetupDocs = configsExtraSetupDocs[config];
 
+  const dependencies = sortPeerDeps(peerDeps)
+    .filter(
+      ({ usedByConfigs, optional }) =>
+        usedByConfigs.includes(config) && optional,
+    )
+    .map(({ pkg }) => pkg);
+
   return new MarkdownDocument()
     .heading(1, md`${md.code(alias)} config`)
     .paragraph(configDescription(config))
@@ -57,17 +66,14 @@ export function configRulesToMarkdown(
             setupLink,
             md`install ${md.code('@code-pushup/eslint-config')} and its required peer dependencies`,
           )}.`,
-          md`Since this plugin requires additional peer dependencies, you have to install them as well:${md.codeBlock(
-            'sh',
-            `npm install -D ${abbreviatePackageList(
-              sortPeerDeps(peerDeps)
-                .filter(
-                  ({ usedByConfigs, optional }) =>
-                    usedByConfigs.includes(config) && optional,
-                )
-                .map(({ pkg }) => pkg),
-            )}`,
-          )}`,
+          ...(dependencies.length > 0
+            ? [
+                md`Since this plugin requires additional peer dependencies, you have to install them as well:${md.codeBlock(
+                  'sh',
+                  `npm install -D ${abbreviatePackageList(dependencies)}`,
+                )}`,
+              ]
+            : []),
           ...(extraSetupDocs ? [extraSetupDocs] : []),
           md`Add to ${md.code('extends')} in your .eslintrc file:${md.codeBlock(
             'jsonc',
@@ -80,15 +86,18 @@ export function configRulesToMarkdown(
     .heading(2, `📏 Rules (${totalRulesCount})`)
     .paragraph(
       extended.length &&
-        md`${md.bold(extendedRulesCount.toString())} rules are included from ${extended.map(
-          ({ alias, rulesCount }, index, { length }) =>
-            md`${md.link(
+        md`${md.bold(extendedRulesCount.toString())} rules are included from ${extended
+          .map(({ alias, rulesCount }, _, { length }) =>
+            md.link(
               `./${configFromAlias(alias)}.md#📏-rules-${rulesCount}`,
               md`${
                 alias === '@code-pushup' ? 'the default config' : md.code(alias)
-              }${length > 1 ? ` (${rulesCount})` : ''}`,
-            )}${index < length - 1 ? ' and ' : ''}`,
-        )}. For brevity, only the ${md.bold(rules.length.toString())} additional rules are listed in this document.`,
+              }${length > 1 ? ` (${rulesCount})` : ''}`.toString(),
+            ),
+          )
+          .join(
+            ' and ',
+          )}. For brevity, only the ${md.bold(rules.length.toString())} additional rules are listed in this document.`,
     )
     .quote(
       md`🔧 Automatically fixable by the ${md.link('https://eslint.org/docs/user-guide/command-line-interface#--fix', md`${md.code('--fix')} CLI option`)}.<br>💡 Manually fixable by ${md.link('https://eslint.org/docs/developer-guide/working-with-rules#providing-suggestions', 'editor suggestions')}.${options.hideOverrides ? '' : md`<br>🧪🚫 Disabled for ${md.link(testGlobsLink, 'test files')}.<br>🧪⚠️ Severity lessened to warning for ${md.link(testGlobsLink, 'test files')}.`}`,
@@ -108,17 +117,20 @@ export function configRulesToMarkdown(
 
 /**
  * @param {import('./types').RuleData[]} rules
- * @param {boolean | undefined} hideOverrides
+ * @param {boolean} hideOverrides
+ * @returns {Parameters<import('build-md').MarkdownDocument['table']>}
  */
-function rulesTable(rules, hideOverrides) {
+function rulesTable(rules, hideOverrides = false) {
+  /** @type {import('build-md').TableColumn[]} */
+  const columns = [
+    { heading: 'Plugin', alignment: 'center' },
+    { heading: 'Rule', alignment: 'left' },
+    { heading: 'Options', alignment: 'left' },
+    { heading: 'Autofix', alignment: 'center' },
+    { heading: 'Overrides', alignment: 'center' },
+  ];
   return [
-    [
-      { heading: 'Plugin', alignment: 'center' },
-      { heading: 'Rule', alignment: 'left' },
-      { heading: 'Options', alignment: 'left' },
-      { heading: 'Autofix', alignment: 'center' },
-      ...(hideOverrides ? [] : [{ heading: 'Overrides', alignment: 'center' }]),
-    ],
+    hideOverrides ? columns.slice(0, -1) : columns,
     rules
       .sort((a, b) => {
         const { name: name1, plugin: plugin1 = '' } = parseRuleId(a.id);
@@ -129,7 +141,7 @@ function rulesTable(rules, hideOverrides) {
         const { name, plugin } = parseRuleId(rule.id);
 
         const options =
-          rule.options?.length > 1
+          rule.options && rule.options.length > 1
             ? rule.options
             : rule.options?.length === 1
               ? rule.options[0]
@@ -165,20 +177,19 @@ function rulesTable(rules, hideOverrides) {
             .filter(Boolean)
             .join(', ') || '',
 
-          ...(hideOverrides
-            ? []
-            : [
-                rule.testOverride
-                  ? rule.testOverride.level === 'off'
-                    ? '🧪🚫'
-                    : '🧪⚠️'
-                  : '',
-              ]),
+          rule.testOverride
+            ? rule.testOverride.level === 'off'
+              ? '🧪🚫'
+              : '🧪⚠️'
+            : '',
         ];
       }),
   ];
 }
 
+/**
+ * @param {unknown} options
+ */
 function optionsPreview(options) {
   if (Array.isArray(options)) {
     return options.map(optionsPreview).join(', ');

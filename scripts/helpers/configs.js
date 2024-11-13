@@ -1,11 +1,14 @@
+// @ts-check
+
 import { md } from 'build-md';
+import { getEnabledRuleIds } from './rules.js';
 
 const configDescriptions = {
-  index: md`Default config, suitable for any ${md.bold('JavaScript/TypeScript')} project.`,
+  javascript: md`Default config, suitable for any ${md.bold('JavaScript/TypeScript')} project.`,
   typescript: md`Config for strict ${md.bold('TypeScript')} projects.`,
   node: md`Config for ${md.bold('Node.js')} projects.`,
   angular: md`Config for ${md.bold('Angular')} projects.`,
-  'angular-ngrx': md`Config for ${md.bold('Angular')} projects using ${md.bold('NgRx')} library.`,
+  ngrx: md`Config for ${md.bold('Angular')} projects using ${md.bold('NgRx')} library.`,
   graphql: md`Config for ${md.bold('GraphQL servers')} implemented in Node.js.`,
   jest: md`Config for projects using ${md.bold('Jest')} for testing.`,
   vitest: md`Config for projects using ${md.bold('Vitest')} for testing.`,
@@ -13,15 +16,17 @@ const configDescriptions = {
   storybook: md`Config for projects using ${md.bold('Storybook')} for UI components.`,
 };
 
-export const configs = Object.keys(configDescriptions);
+/** @type {(keyof typeof configDescriptions)[]} */
+// @ts-expect-error keys won't be any string
+export const configNames = Object.keys(configDescriptions);
 
 /** @type {Record<keyof typeof configDescriptions, import('./types').Icon>} */
 const configIcons = {
-  index: 'material/javascript',
+  javascript: 'material/javascript',
   typescript: 'material/typescript',
   node: 'material/nodejs',
   angular: 'material/angular',
-  'angular-ngrx': 'other/ngrx',
+  ngrx: 'other/ngrx',
   graphql: 'material/graphql',
   jest: 'material/jest',
   vitest: 'material/vitest',
@@ -49,7 +54,7 @@ const testConfigs = ['jest', 'vitest', 'cypress'];
 
 const tsConfigDocsReference = md`Refer to ${md.link('./typescript.md#🏗️-setup', "step 3 in TypeScript config's setup docs")} for how to set up tsconfig properly.`;
 
-/** @type {Partial<Record<keyof typeof configDescriptions, string>>} */
+/** @type {Partial<Record<keyof typeof configDescriptions, import('build-md').FormattedText>>} */
 export const configsExtraSetupDocs = {
   typescript: md`${md.paragraph(
     md`Because this config includes rules which require type information, make sure to configure ${md.code('parserOptions.project')} in your .eslintrc points to your project's tsconfig.
@@ -97,7 +102,7 @@ For more information, refer to ${md.link('https://typescript-eslint.io/linting/t
   )}`,
 
   angular: tsConfigDocsReference,
-  'angular-ngrx': tsConfigDocsReference,
+  ngrx: tsConfigDocsReference,
 
   graphql: md`The GraphQL ESLint plugin needs to know where your GraphQL schema is located. For more information, refer to ${md.link('https://the-guild.dev/graphql/eslint/docs/getting-started#extended-linting-rules-with-graphql-schema', md`${md.italic('Extended Linting Rules with GraphQL Schema')} in GraphQL ESLint docs`)}.${md.list(
     [
@@ -149,7 +154,7 @@ const angularExtraEslintrc = `,
 /** @type {Partial<Record<keyof typeof configDescriptions, string>>} */
 export const configsExtraEslintrc = {
   angular: angularExtraEslintrc,
-  'angular-ngrx': angularExtraEslintrc,
+  ngrx: angularExtraEslintrc,
   jest: `,
   // customize rules if needed:
   "rules": {
@@ -239,27 +244,43 @@ export function configExtraPattern(name) {
  * @param {string} name Config file name without extension
  */
 export function isConfigForTests(name) {
+  // @ts-expect-error the point is to check if string is a union
   return testConfigs.includes(name);
 }
 
 /**
- * Get all extended configs from config file.
+ * Imports flat config array by name.
  * @param {string} name Config file name without extension
+ * @returns {Promise<import('@typescript-eslint/utils').TSESLint.FlatConfig.ConfigArray>}
  */
-export function getConfigExtends(name) {
-  /** @param {import('eslint').Linter.Config['extends']} configExtends */
-  const normalizeExtends = configExtends =>
-    Array.isArray(configExtends)
-      ? configExtends
-      : typeof configExtends === 'string'
-        ? [configExtends]
-        : [];
+export async function importConfig(name) {
+  const m = await import(`../../src/configs/${name}.js`);
+  return m.default;
+}
 
-  /** @type {import('eslint').Linter.Config} */
-  const config = require(`@code-pushup/eslint-config/legacy/${name}.js`);
-
+/**
+ * Get all extended code-pushup configs from flat config.
+ * @param {import('@typescript-eslint/utils').TSESLint.FlatConfig.ConfigArray} flatConfig Flat config array
+ */
+export function extractCodePushUpConfigs(flatConfig) {
   return [
-    ...normalizeExtends(config.extends),
-    ...(config.overrides?.flatMap(cfg => normalizeExtends(cfg.extends)) ?? []),
+    ...new Set(
+      flatConfig
+        .map(cfg => cfg.name)
+        .filter(name => name?.startsWith('code-pushup/'))
+        .map(name => name?.split('/')[1])
+        .filter(name => name != null),
+    ),
+  ];
+}
+
+/**
+ * @param {import('@typescript-eslint/utils').TSESLint.FlatConfig.ConfigArray} flatConfig
+ */
+export function getAllEnabledRuleIds(flatConfig) {
+  return [
+    ...new Set(
+      flatConfig.map(({ rules = {} }) => rules).flatMap(getEnabledRuleIds),
+    ),
   ];
 }

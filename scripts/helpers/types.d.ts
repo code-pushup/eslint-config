@@ -1,4 +1,10 @@
+import type { TSESLint } from '@typescript-eslint/utils';
 import type { Linter, Rule } from 'eslint';
+
+export type ExportedConfig = {
+  name: string;
+  flatConfig: TSESLint.FlatConfig.ConfigArray;
+};
 
 export type RuleData = {
   id: string;
@@ -29,6 +35,7 @@ export type Icon =
   | 'icons8/lambda'
   | 'icons8/promise'
   | 'icons8/secure'
+  | 'icons8/test'
   | 'icons8/unicorn'
   | 'material/angular_component'
   | 'material/angular'

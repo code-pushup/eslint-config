@@ -1,4 +1,4 @@
-const { md } = require('build-md');
+import { md } from 'build-md';
 
 const configDescriptions = {
   index: md`Default config, suitable for any ${md.bold('JavaScript/TypeScript')} project.`,
@@ -13,7 +13,7 @@ const configDescriptions = {
   storybook: md`Config for projects using ${md.bold('Storybook')} for UI components.`,
 };
 
-const configs = Object.keys(configDescriptions);
+export const configs = Object.keys(configDescriptions);
 
 /** @type {Record<keyof typeof configDescriptions, import('./types').Icon>} */
 const configIcons = {
@@ -50,7 +50,7 @@ const testConfigs = ['jest', 'vitest', 'cypress'];
 const tsConfigDocsReference = md`Refer to ${md.link('./typescript.md#🏗️-setup', "step 3 in TypeScript config's setup docs")} for how to set up tsconfig properly.`;
 
 /** @type {Partial<Record<keyof typeof configDescriptions, string>>} */
-const configsExtraSetupDocs = {
+export const configsExtraSetupDocs = {
   typescript: md`${md.paragraph(
     md`Because this config includes rules which require type information, make sure to configure ${md.code('parserOptions.project')} in your .eslintrc points to your project's tsconfig.
 For more information, refer to ${md.link('https://typescript-eslint.io/linting/typed-linting', md`${md.italic('Linting with Type Information')} (typescript-eslint)`)}, or ${md.link('https://nx.dev/recipes/tips-n-tricks/eslint', md`${md.italic('Configuring ESLint with Typescript')} (Nx)`)} if using Nx monorepo.${md.list(
@@ -147,7 +147,7 @@ const angularExtraEslintrc = `,
   }`;
 
 /** @type {Partial<Record<keyof typeof configDescriptions, string>>} */
-const configsExtraEslintrc = {
+export const configsExtraEslintrc = {
   angular: angularExtraEslintrc,
   'angular-ngrx': angularExtraEslintrc,
   jest: `,
@@ -173,7 +173,7 @@ const configsExtraEslintrc = {
  * Get config string as used with `extends` in .eslintrc file.
  * @param {string} name Config file name without extension
  */
-function configAlias(name) {
+export function configAlias(name) {
   if (name === 'index') {
     return '@code-pushup/eslint-config/legacy';
   }
@@ -184,7 +184,7 @@ function configAlias(name) {
  * Get config file name (without extension) from `extends` alias.
  * @param {string} alias Config file name without extension
  */
-function configFromAlias(alias) {
+export function configFromAlias(alias) {
   if (alias === '@code-pushup/eslint-config/legacy') {
     return 'index';
   }
@@ -195,7 +195,7 @@ function configFromAlias(alias) {
  * Get description for given config.
  * @param {string} name Config file name without extension
  */
-function configDescription(name) {
+export function configDescription(name) {
   if (!(name in configDescriptions)) {
     throw new Error(`No description found for config ${name}`);
   }
@@ -207,7 +207,7 @@ function configDescription(name) {
  * @param {string} name Config file name without extension
  * @returns {import('./types').Icon}
  */
-function configIcon(name) {
+export function configIcon(name) {
   if (!(name in configIcons)) {
     throw new Error(`No icon found for config ${name}`);
   }
@@ -218,7 +218,7 @@ function configIcon(name) {
  * Get file pattern for given config.
  * @param {string} name Config file name without extension
  */
-function configPattern(name) {
+export function configPattern(name) {
   if (!(name in configPatterns)) {
     return '*.ts';
   }
@@ -230,7 +230,7 @@ function configPattern(name) {
  * @param {string} name Config file name without extension
  * @returns {string | undefined}
  */
-function configExtraPattern(name) {
+export function configExtraPattern(name) {
   return configExtraPatterns[name];
 }
 
@@ -238,7 +238,7 @@ function configExtraPattern(name) {
  * Is config targetting some testing framework?
  * @param {string} name Config file name without extension
  */
-function isConfigForTests(name) {
+export function isConfigForTests(name) {
   return testConfigs.includes(name);
 }
 
@@ -246,7 +246,7 @@ function isConfigForTests(name) {
  * Get all extended configs from config file.
  * @param {string} name Config file name without extension
  */
-function getConfigExtends(name) {
+export function getConfigExtends(name) {
   /** @param {import('eslint').Linter.Config['extends']} configExtends */
   const normalizeExtends = configExtends =>
     Array.isArray(configExtends)
@@ -263,17 +263,3 @@ function getConfigExtends(name) {
     ...(config.overrides?.flatMap(cfg => normalizeExtends(cfg.extends)) ?? []),
   ];
 }
-
-module.exports = {
-  configs,
-  configDescription,
-  configAlias,
-  configFromAlias,
-  configIcon,
-  configPattern,
-  configExtraPattern,
-  isConfigForTests,
-  getConfigExtends,
-  configsExtraSetupDocs,
-  configsExtraEslintrc,
-};

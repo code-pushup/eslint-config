@@ -1,5 +1,5 @@
 /** @param {string} ruleId  */
-function parseRuleId(ruleId) {
+export function parseRuleId(ruleId) {
   const i = ruleId.startsWith('@')
     ? ruleId.lastIndexOf('/')
     : ruleId.indexOf('/');
@@ -18,7 +18,7 @@ function parseRuleId(ruleId) {
  * @param {import('eslint').Linter.RuleLevelAndOptions} entry
  * @returns {import('eslint').Linter.StringSeverity}
  */
-function ruleLevelFromEntry(entry) {
+export function ruleLevelFromEntry(entry) {
   const level = Array.isArray(entry) ? entry[0] : entry;
   switch (level) {
     case 0:
@@ -36,14 +36,8 @@ function ruleLevelFromEntry(entry) {
 /**
  * @param {import('eslint').Linter.RulesRecord} rules
  */
-function getEnabledRuleIds(rules) {
+export function getEnabledRuleIds(rules) {
   return Object.entries(rules)
     .filter(([, entry]) => ruleLevelFromEntry(entry) !== 'off')
     .map(([ruleId]) => ruleId);
 }
-
-module.exports = {
-  parseRuleId,
-  ruleLevelFromEntry,
-  getEnabledRuleIds,
-};

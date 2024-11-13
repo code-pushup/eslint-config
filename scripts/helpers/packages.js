@@ -1,10 +1,10 @@
-const { pluginIcon } = require('./plugins');
+import { pluginIcon } from './plugins.js';
 
 /**
  * @param {string} pkg
  * @returns {import('./types').Icon}
  */
-function packageIcon(pkg) {
+export function packageIcon(pkg) {
   if (pkg === 'eslint') {
     return 'material/eslint';
   }
@@ -25,7 +25,7 @@ function packageIcon(pkg) {
 /**
  * @param {string} pkg
  */
-function packageDocs(pkg) {
+export function packageDocs(pkg) {
   return `https://www.npmjs.com/package/${pkg}`;
 }
 
@@ -33,7 +33,7 @@ function packageDocs(pkg) {
  * @param {import('./types').PeerDep[]} peerDeps
  * @returns {import('./types').PeerDep[]}
  */
-function sortPeerDeps(peerDeps) {
+export function sortPeerDeps(peerDeps) {
   return Object.values(
     [...peerDeps]
       .sort((a, b) => {
@@ -59,7 +59,7 @@ function sortPeerDeps(peerDeps) {
 }
 
 /** @param {string[]} packages */
-function abbreviatePackageList(packages) {
+export function abbreviatePackageList(packages) {
   const groups = packages.reduce((acc, pkg) => {
     if (pkg.startsWith('@')) {
       const prefix = pkg.slice(0, pkg.indexOf('/') + 1);
@@ -99,10 +99,3 @@ function abbreviatePackageList(packages) {
     .filter(val => val != null)
     .join(' ');
 }
-
-module.exports = {
-  packageIcon,
-  packageDocs,
-  sortPeerDeps,
-  abbreviatePackageList,
-};

@@ -1,17 +1,17 @@
-const { MarkdownDocument, md } = require('build-md');
-const {
-  configDescription,
+import { MarkdownDocument, md } from 'build-md';
+import { TEST_FILE_PATTERNS } from '../../src/lib/patterns.js';
+import {
   configAlias,
-  configIcon,
+  configDescription,
   configFromAlias,
-} = require('./configs');
-const { TEST_FILE_PATTERNS } = require('../../src/lib/patterns');
-const {
+  configIcon,
+} from './configs.js';
+import {
+  abbreviatePackageList,
   packageDocs,
   packageIcon,
   sortPeerDeps,
-  abbreviatePackageList,
-} = require('./packages');
+} from './packages.js';
 
 /**
  * Format Markdown documentation for README
@@ -19,7 +19,7 @@ const {
  * @param {import('./types').PeerDep[]} peerDeps Peer dependencies
  * @param {Record<string, string[]>} extended Map of extended configs
  */
-function configsToMarkdown(configs, peerDeps, extended) {
+export function configsToMarkdown(configs, peerDeps, extended) {
   return new MarkdownDocument()
     .heading(2, '⚙️ Configs')
     .table(
@@ -137,7 +137,3 @@ function mermaidDiagram(nodes, edges, orientation = 'TD') {
     ),
   ].join('\n');
 }
-
-module.exports = {
-  configsToMarkdown,
-};

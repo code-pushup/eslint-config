@@ -1,20 +1,24 @@
-const { ESLint } = require('eslint');
-const fs = require('node:fs/promises');
-const path = require('node:path');
-const { execSync } = require('node:child_process');
-const { configRulesToMarkdown } = require('./helpers/format-config');
-const { configsToMarkdown } = require('./helpers/format-readme');
-const {
-  configs,
-  configPattern,
-  isConfigForTests,
-  getConfigExtends,
+import { ESLint } from 'eslint';
+import { execSync } from 'node:child_process';
+import fs from 'node:fs/promises';
+import path, { dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import {
   configExtraPattern,
-} = require('./helpers/configs');
-const { ruleLevelFromEntry, getEnabledRuleIds } = require('./helpers/rules');
+  configPattern,
+  configs,
+  getConfigExtends,
+  isConfigForTests,
+} from './helpers/configs.js';
+import { configRulesToMarkdown } from './helpers/format-config.js';
+import { configsToMarkdown } from './helpers/format-readme.js';
+import { getEnabledRuleIds, ruleLevelFromEntry } from './helpers/rules.js';
 
-const readmePath = path.join(__dirname, '..', 'README.md');
-const docsDir = path.join(__dirname, '..', 'docs');
+const currentDir = fileURLToPath(dirname(import.meta.url));
+const readmePath = path.join(currentDir, '..', 'README.md');
+const docsDir = path.join(currentDir, '..', 'docs');
+
+await generateDocs();
 
 async function generateDocs() {
   execSync('npm link');
@@ -235,8 +239,4 @@ async function generateConfigDocs(name, peerDeps) {
   await fs.writeFile(filePath, markdown);
 
   console.info(`Generated Markdown docs in ${filePath}`);
-}
-
-if (require.main === module) {
-  generateDocs().catch(console.error);
 }

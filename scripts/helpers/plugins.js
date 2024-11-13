@@ -1,3 +1,5 @@
+// @ts-check
+
 /** @type {Record<string, import('./types').Icon>} */
 const pluginIcons = {
   '@angular-eslint': 'material/angular',

@@ -1,3 +1,5 @@
+// @ts-check
+
 import { MarkdownDocument, md } from 'build-md';
 import { TEST_FILE_PATTERNS } from '../../src/lib/patterns.js';
 import {

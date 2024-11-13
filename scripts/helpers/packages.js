@@ -1,3 +1,5 @@
+// @ts-check
+
 import { pluginIcon } from './plugins.js';
 
 /**
@@ -5,15 +7,15 @@ import { pluginIcon } from './plugins.js';
  * @returns {import('./types').Icon}
  */
 export function packageIcon(pkg) {
-  if (pkg === 'eslint') {
+  if (pkg === 'eslint' || pkg === '@eslint/js') {
     return 'material/eslint';
   }
   if (pkg.includes('eslint-plugin')) {
     const alias = pkg.replace(/eslint-plugin-?/, '').replace(/\/$/, '');
     return pluginIcon(alias);
   }
-  if (pkg.includes('parser')) {
-    const pluginAlias = pkg.replace(/-?parser/, '').replace(/\/$/, '');
+  if (pkg.endsWith('eslint')) {
+    const pluginAlias = `@${pkg}`;
     return pluginIcon(pluginAlias);
   }
   if (pkg.startsWith('eslint-import-resolver')) {

@@ -1,18 +1,23 @@
-import { ESLint } from 'eslint';
+// @ts-check
+
 import { execSync } from 'node:child_process';
 import fs from 'node:fs/promises';
 import path, { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { TEST_FILE_PATTERNS } from '../src/lib/patterns.js';
 import {
-  configExtraPattern,
-  configPattern,
-  configs,
-  getConfigExtends,
+  configNames,
+  getAllEnabledRuleIds,
+  importConfig,
   isConfigForTests,
 } from './helpers/configs.js';
 import { configRulesToMarkdown } from './helpers/format-config.js';
 import { configsToMarkdown } from './helpers/format-readme.js';
-import { getEnabledRuleIds, ruleLevelFromEntry } from './helpers/rules.js';
+import {
+  findRuleEntry,
+  getRulesMetadata,
+  ruleLevelFromEntry,
+} from './helpers/rules.js';
 
 const currentDir = fileURLToPath(dirname(import.meta.url));
 const readmePath = path.join(currentDir, '..', 'README.md');
@@ -25,62 +30,63 @@ async function generateDocs() {
   execSync('npm link @code-pushup/eslint-config');
 
   try {
-    const peerDeps = await loadPeerDependencies();
+    const configs = await loadConfigs(configNames);
+    const peerDeps = await loadPeerDependencies(configs);
 
     await fs.mkdir(docsDir, { recursive: true });
 
     for (const config of configs) {
-      await generateConfigDocs(config, peerDeps);
+      await generateConfigDocs(config, configs, peerDeps);
     }
 
-    await generateReadmeDocs(peerDeps);
+    await generateReadmeDocs(configs, peerDeps);
   } finally {
     execSync('npm unlink @code-pushup/eslint-config');
   }
 }
 
-async function loadPeerDependencies() {
-  const packageJson = require('../package.json');
+/**
+ * @param {string[]} names
+ * @returns {Promise<import('./helpers/types').ExportedConfig[]>}
+ */
+function loadConfigs(names) {
+  return Promise.all(
+    names.map(async name => ({
+      name,
+      flatConfig: await importConfig(name),
+    })),
+  );
+}
+
+/**
+ * @param {import('./helpers/types').ExportedConfig[]} configs
+ * @returns {Promise<import('./helpers/types').PeerDep[]>}
+ */
+async function loadPeerDependencies(configs) {
+  const packageJson = await import('../package.json', {
+    with: { type: 'json' },
+  }).then(m => m.default);
 
   /** @type {Record<string, string[]>} */
   const pkgConfigs = {};
 
   for (const config of configs) {
-    const eslint = new ESLint({
-      baseConfig: { extends: `@code-pushup/eslint-config/legacy/${config}.js` },
-      useEslintrc: false,
-    });
-    /** @type {import('eslint').Linter.Config} */
-    const eslintConfig = await eslint.calculateConfigForFile(
-      configPattern(config),
+    const plugins = config.flatConfig.flatMap(({ plugins = {} }) =>
+      Object.keys(plugins),
     );
-
-    /** @type {import('eslint').Linter.Config | null} */
-    const eslintConfigExtra = configExtraPattern(config)
-      ? await eslint.calculateConfigForFile(configExtraPattern(config))
-      : null;
 
     for (const pkg in packageJson.peerDependencies) {
       if (pkg === 'eslint') {
         continue;
       }
-      const plugins = [
-        ...(eslintConfig.plugins ?? []),
-        ...(eslintConfigExtra?.plugins ?? []),
-      ];
-      const parsers = [
-        ...(eslintConfig.parser ? [eslintConfig.parser] : []),
-        ...(eslintConfigExtra?.parser ? [eslintConfigExtra.parser] : []),
-      ];
+      const alias = pkg.replace(/eslint-plugin-?/, '').replace(/\/$/, '');
       if (
         plugins.includes(pkg) ||
-        plugins.includes(
-          pkg.replace(/eslint-plugin-?/, '').replace(/\/$/, ''),
-        ) ||
-        parsers.some(parser => parser.includes(pkg))
+        plugins.includes(alias) ||
+        plugins.map(plugin => plugin.replace(/^@/, '')).includes(alias)
       ) {
         pkgConfigs[pkg] ??= [];
-        pkgConfigs[pkg].push(config);
+        pkgConfigs[pkg].push(config.name);
       }
     }
   }
@@ -95,16 +101,12 @@ async function loadPeerDependencies() {
 
 /**
  * Update auto-generated part of README.md
+ * @param {import('./helpers/types').ExportedConfig[]} configs Exported configs
  * @param {import('./helpers/types').PeerDep[]} peerDeps Peer dependencies
  */
-async function generateReadmeDocs(peerDeps) {
+async function generateReadmeDocs(configs, peerDeps) {
   const extended = Object.fromEntries(
-    configs.map(config => [
-      config,
-      getConfigExtends(config).filter(alias =>
-        alias.startsWith('@code-pushup'),
-      ),
-    ]),
+    configs.map(config => [config.name, getExtendedConfigs(config)]),
   );
 
   const buffer = await fs.readFile(readmePath);
@@ -119,7 +121,7 @@ async function generateReadmeDocs(peerDeps) {
     startIndex + startComment.length,
   );
 
-  const mdGenerated = configsToMarkdown(configs, peerDeps, extended);
+  const mdGenerated = configsToMarkdown(configNames, peerDeps, extended);
   const mdGeneratedBlock = [
     startComment,
     mdGenerated.replace(/\n$/, ''),
@@ -142,73 +144,51 @@ async function generateReadmeDocs(peerDeps) {
 
 /**
  * Generate Markdown file for specified ESLint config.
- * @param {string} name Config file name without extension
+ * @param {import('./helpers/types').ExportedConfig} config Exported config
+ * @param {import('./helpers/types').ExportedConfig[]} allConfigs All exported configs
  * @param {import('./helpers/types').PeerDep[]} peerDeps Peer dependencies
  */
-async function generateConfigDocs(name, peerDeps) {
-  const eslint = new ESLint({
-    baseConfig: { extends: `@code-pushup/eslint-config/legacy/${name}.js` },
-    useEslintrc: false,
-  });
-
-  /** @type {import('eslint').Linter.Config} */
-  const config = await eslint.calculateConfigForFile(configPattern(name));
-
-  /** @type {import('eslint').Linter.Config | null} */
-  const configExtra = configExtraPattern(name)
-    ? await eslint.calculateConfigForFile(configExtraPattern(name))
-    : null;
-
-  /** @type {import('eslint').Linter.Config} */
-  const testConfig = await eslint.calculateConfigForFile('*.test.ts');
-  const testConfigRules = configExtraPattern(name)?.endsWith('.html')
-    ? {
-        ...testConfig.rules,
-        ...(await eslint.calculateConfigForFile('*.test.ts.html')).rules,
-      }
-    : testConfig.rules;
-
-  const extendedConfigs = await getConfigExtends(name)
-    .filter(alias => alias.startsWith('@code-pushup'))
-    .reduce(
-      /** @param {Promise<Record<string, string[]>>} acc  */
-      async (acc, alias) => {
-        const record = await acc;
-        const eslint = new ESLint({
-          baseConfig: { extends: alias },
-          useEslintrc: false,
-        });
-        /** @type {import('eslint').Linter.Config} */
-        const { rules } = await eslint.calculateConfigForFile(
-          configPattern(name),
-        );
-        return {
-          ...record,
-          [alias]: getEnabledRuleIds(rules),
-        };
-      },
-      Promise.resolve({}),
-    );
+async function generateConfigDocs(config, allConfigs, peerDeps) {
+  const extendedConfigs = Object.fromEntries(
+    getExtendedConfigs(config).map(otherName => {
+      const otherConfig = allConfigs.find(({ name }) => name === otherName);
+      const otherRuleIds = getAllEnabledRuleIds(otherConfig?.flatConfig ?? []);
+      return [otherName, otherRuleIds];
+    }),
+  );
   const extendedRuleIds = Object.values(extendedConfigs).flat();
 
-  const ruleIds = getEnabledRuleIds({
-    ...testConfigRules,
-    ...config.rules,
-    ...configExtra?.rules,
-  }).filter(ruleId => !extendedRuleIds.includes(ruleId));
-  const rules = eslint.getRulesMetaForResults([
-    {
-      messages: ruleIds.map(ruleId => ({ ruleId })),
-      suppressedMessages: [],
-    },
-  ]);
+  const ruleIds = getAllEnabledRuleIds(config.flatConfig).filter(
+    ruleId => !extendedRuleIds.includes(ruleId),
+  );
+  const rules = getRulesMetadata(config.flatConfig, ruleIds);
 
   const markdown = configRulesToMarkdown(
-    name,
+    config.name,
     ruleIds.map(id => {
-      const entry = config.rules[id] ?? configExtra?.rules[id];
+      const entry = findRuleEntry(
+        config.flatConfig.filter(({ files }) => files !== TEST_FILE_PATTERNS),
+        id,
+      );
+      if (entry == null) {
+        throw new Error(
+          `Internal logic error - no entry found for rule ${id} in ${config.name} config`,
+        );
+      }
       const level = ruleLevelFromEntry(entry);
-      const testLevel = ruleLevelFromEntry(testConfigRules[id]);
+      if (level === 'off') {
+        throw new Error(
+          `Internal logic error - rule ${id} turned off in ${config.name} config`,
+        );
+      }
+
+      const testEntry = findRuleEntry(
+        config.flatConfig.filter(({ files }) => files === TEST_FILE_PATTERNS),
+        id,
+      );
+      const testLevel =
+        testEntry != null ? ruleLevelFromEntry(testEntry) : null;
+
       return {
         id,
         meta: rules[id],
@@ -231,12 +211,29 @@ async function generateConfigDocs(name, peerDeps) {
     })),
     peerDeps,
     {
-      hideOverrides: isConfigForTests(name),
+      hideOverrides: isConfigForTests(config.name),
     },
   );
 
-  const filePath = path.join(docsDir, `${name}.md`);
+  const filePath = path.join(docsDir, `${config.name}.md`);
   await fs.writeFile(filePath, markdown);
 
   console.info(`Generated Markdown docs in ${filePath}`);
+}
+
+/**
+ * Get all extended code-pushup configs from flat config.
+ * @param {import('./helpers/types').ExportedConfig} config Exported config
+ */
+export function getExtendedConfigs(config) {
+  const allExtended = [
+    ...new Set(
+      config.flatConfig
+        .map(cfg => cfg.name)
+        .filter(name => name?.startsWith('code-pushup/'))
+        .map(name => name?.split('/')[1])
+        .filter(name => name != null),
+    ),
+  ];
+  return allExtended.filter(name => name !== config.name).slice(-1);
 }

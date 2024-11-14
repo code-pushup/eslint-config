@@ -27,14 +27,14 @@ Config for **Node.js** projects.
 
 ### 🚨 Errors (1)
 
-|                                             Plugin                                              | Rule                                        | Options | Autofix | Overrides |
-| :---------------------------------------------------------------------------------------------: | :------------------------------------------ | :------ | :-----: | :-------: |
-| [![n](./icons/material/nodejs.png)](https://github.com/eslint-community/eslint-plugin-n#readme) | no-unsupported-features/node-builtins<br /> |         |         |           |
+|                                             Plugin                                              | Rule                                                                                                                                                                                                                                | Options | Autofix | Overrides |
+| :---------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------ | :-----: | :-------: |
+| [![n](./icons/material/nodejs.png)](https://github.com/eslint-community/eslint-plugin-n#readme) | [no-unsupported-features/node-builtins](https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/no-unsupported-features/node-builtins.md)<br />disallow unsupported Node.js built-in APIs on the specified version |         |         |           |
 
 ### ⚠️ Warnings (3)
 
-|                                             Plugin                                              | Rule                     | Options | Autofix | Overrides |
-| :---------------------------------------------------------------------------------------------: | :----------------------- | :------ | :-----: | :-------: |
-| [![n](./icons/material/nodejs.png)](https://github.com/eslint-community/eslint-plugin-n#readme) | no-process-exit<br />    |         |         |           |
-| [![n](./icons/material/nodejs.png)](https://github.com/eslint-community/eslint-plugin-n#readme) | no-sync<br />            |         |         |           |
-| [![n](./icons/material/nodejs.png)](https://github.com/eslint-community/eslint-plugin-n#readme) | prefer-promises/fs<br /> |         |         |           |
+|                                             Plugin                                              | Rule                                                                                                                                                       | Options | Autofix | Overrides |
+| :---------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------- | :------ | :-----: | :-------: |
+| [![n](./icons/material/nodejs.png)](https://github.com/eslint-community/eslint-plugin-n#readme) | [no-process-exit](https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/no-process-exit.md)<br />disallow the use of `process.exit()`   |         |         |           |
+| [![n](./icons/material/nodejs.png)](https://github.com/eslint-community/eslint-plugin-n#readme) | [no-sync](https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/no-sync.md)<br />disallow synchronous methods                           |         |         |           |
+| [![n](./icons/material/nodejs.png)](https://github.com/eslint-community/eslint-plugin-n#readme) | [prefer-promises/fs](https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/prefer-promises/fs.md)<br />enforce `require("fs").promises` |         |         |           |

@@ -2,6 +2,7 @@
 
 import angular from 'angular-eslint';
 import rxjs from 'eslint-plugin-rxjs';
+import globals from 'globals';
 import tseslint from 'typescript-eslint';
 import {
   ANGULAR_COMPONENT_FILE_PATTERNS,
@@ -18,6 +19,9 @@ export default tseslint.config(
   ...typescript,
   {
     files: TYPESCRIPT_FILE_PATTERNS,
+    languageOptions: {
+      globals: globals.browser,
+    },
     processor: angular.processInlineTemplates,
     extends: [
       ...angular.configs.tsRecommended,

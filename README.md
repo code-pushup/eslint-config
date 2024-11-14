@@ -46,7 +46,7 @@ To use the default config, follow these steps:
 1. You must first install all the required peer dependencies (if you haven't already):
 
    ```sh
-   npm install -D eslint @eslint/js eslint-plugin-{functional,import,promise,sonarjs,unicorn} typescript-eslint
+   npm install -D eslint @eslint/js eslint-plugin-{functional,import,promise,sonarjs,unicorn} globals typescript-eslint
    ```
 
 2. Install `@code-pushup/eslint-config` with:
@@ -79,6 +79,7 @@ All peer dependencies used by `@code-pushup/eslint-config` are listed below, alo
 |     ![promise](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/icons8/promise.png)     | [eslint-plugin-promise](https://www.npmjs.com/package/eslint-plugin-promise)                         | `>=6.4.0`  |    ✅     |
 |       ![sonar](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/other/sonar.png)        | [eslint-plugin-sonarjs](https://www.npmjs.com/package/eslint-plugin-sonarjs)                         | `>=1.0.4`  |    ✅     |
 |     ![unicorn](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/icons8/unicorn.png)     | [eslint-plugin-unicorn](https://www.npmjs.com/package/eslint-plugin-unicorn)                         | `>=50.0.0` |    ✅     |
+|      ![global](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/icons8/global.png)      | [globals](https://www.npmjs.com/package/globals)                                                     | `>=14.0.0` |    ✅     |
 | ![typescript](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/material/typescript.png) | [typescript-eslint](https://www.npmjs.com/package/typescript-eslint)                                 |  `^8.0.0`  |    ✅     |
 |    ![graphql](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/material/graphql.png)    | [@graphql-eslint/eslint-plugin](https://www.npmjs.com/package/@graphql-eslint/eslint-plugin)         |  `^3.0.0`  |          |
 |        ![ngrx](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/other/ngrx.png)         | [@ngrx/eslint-plugin](https://www.npmjs.com/package/@ngrx/eslint-plugin)                             | `^18.0.0`  |          |

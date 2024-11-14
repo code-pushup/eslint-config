@@ -17,7 +17,7 @@ body:
       description: What requirements should the feature meet? Listing a set of criteria helps us determine whether the scope of the request was fully addressed.
       placeholder: |
         For example:
-        - [ ] The `@code-pushup/eslint-config/legacy/typescript` includes the `require-await` rule.
+        - [ ] The `typescript` config includes the `require-await` rule.
     validations:
       required: true
   - type: textarea

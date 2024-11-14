@@ -1,4 +1,4 @@
-# `@code-pushup/eslint-config/legacy/graphql` config
+# `graphql` config
 
 Config for **GraphQL servers** implemented in Node.js.
 
@@ -15,27 +15,33 @@ Config for **GraphQL servers** implemented in Node.js.
    - If you're using [graphql-config](https://the-guild.dev/graphql/config/docs), then your GraphQL schema will be loaded automatically from your `.graphqlrc.yml` (or equivalent) file. So no extra setup is required in this case.
    - Otherwise, you can use [`parserOptions.schema`](https://the-guild.dev/graphql/eslint/docs/getting-started/parser-options#schema), e.g.:
    
-     ```jsonc
-     {
-       // ...
-       "parserOptions": {
-         "schema": "./schema.graphql"
-         // globs are also supported:
-         // "schema": "./src/schema/**/*.graphql.ts"
+     ```js
+     export default tseslint.config(
+       ...cpeslint.graphql,
+       {
+         files: ['**/*.graphql'],
+         languageOptions: {
+           parserOptions: {
+             schema: './schema.graphql'
+             // globs are also supported:
+             // schema: './src/schema/**/*.graphql.ts'
+           }
+         }
        }
-     }
+     );
      ```
-4. Add to `extends` in your .eslintrc file:
+4. Add to your `eslint.config.js` file:
 
-   ```jsonc
-   {
-     "extends": ["@code-pushup/eslint-config/legacy/graphql"]
-   }
+   ```js
+   import cpeslint from '@code-pushup/eslint-config';
+   import tseslint from 'typescript-eslint';
+   
+   export default tseslint.config(...cpeslint.graphql);
    ```
 
 ## 📏 Rules (316)
 
-**293** rules are included from [`node`](./node.md#📏-rules-293). For brevity, only the **23** additional rules are listed in this document.
+**293** rules are included from [`node` config](./graphql.md#📏-rules-293). For brevity, only the **23** additional rules are listed in this document.
 
 > 🔧 Automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/user-guide/command-line-interface#--fix).<br>💡 Manually fixable by [editor suggestions](https://eslint.org/docs/developer-guide/working-with-rules#providing-suggestions).<br>🧪🚫 Disabled for [test files](../README.md#🧪-test-overrides).<br>🧪⚠️ Severity lessened to warning for [test files](../README.md#🧪-test-overrides).
 

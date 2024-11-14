@@ -9,29 +9,29 @@ Recommended ESLint presets by [Code PushUp](https://github.com/code-pushup/cli/t
 
 ## ⚙️ Configs
 
-|                                                       Stack                                                        | Config                                                                                                                    | Description                                                         |
-| :----------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------ | :------------------------------------------------------------------ |
-| ![javascript](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/material/javascript.png) | [@code-pushup/eslint-config/legacy/javascript](https://github.com/code-pushup/eslint-config/blob/main/docs/javascript.md) | Default config, suitable for any **JavaScript/TypeScript** project. |
-| ![typescript](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/material/typescript.png) | [@code-pushup/eslint-config/legacy/typescript](https://github.com/code-pushup/eslint-config/blob/main/docs/typescript.md) | Config for strict **TypeScript** projects.                          |
-|     ![nodejs](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/material/nodejs.png)     | [@code-pushup/eslint-config/legacy/node](https://github.com/code-pushup/eslint-config/blob/main/docs/node.md)             | Config for **Node.js** projects.                                    |
-|    ![angular](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/material/angular.png)    | [@code-pushup/eslint-config/legacy/angular](https://github.com/code-pushup/eslint-config/blob/main/docs/angular.md)       | Config for **Angular** projects.                                    |
-|        ![ngrx](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/other/ngrx.png)         | [@code-pushup/eslint-config/legacy/ngrx](https://github.com/code-pushup/eslint-config/blob/main/docs/ngrx.md)             | Config for **Angular** projects using **NgRx** library.             |
-|    ![graphql](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/material/graphql.png)    | [@code-pushup/eslint-config/legacy/graphql](https://github.com/code-pushup/eslint-config/blob/main/docs/graphql.md)       | Config for **GraphQL servers** implemented in Node.js.              |
-|       ![jest](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/material/jest.png)       | [@code-pushup/eslint-config/legacy/jest](https://github.com/code-pushup/eslint-config/blob/main/docs/jest.md)             | Config for projects using **Jest** for testing.                     |
-|     ![vitest](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/material/vitest.png)     | [@code-pushup/eslint-config/legacy/vitest](https://github.com/code-pushup/eslint-config/blob/main/docs/vitest.md)         | Config for projects using **Vitest** for testing.                   |
-|    ![cypress](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/material/cypress.png)    | [@code-pushup/eslint-config/legacy/cypress](https://github.com/code-pushup/eslint-config/blob/main/docs/cypress.md)       | Config for projects using **Cypress** for testing.                  |
-|  ![storybook](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/material/storybook.png)  | [@code-pushup/eslint-config/legacy/storybook](https://github.com/code-pushup/eslint-config/blob/main/docs/storybook.md)   | Config for projects using **Storybook** for UI components.          |
+|                                                       Stack                                                        | Config                                                                                  | Description                                                         |
+| :----------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------- | :------------------------------------------------------------------ |
+| ![javascript](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/material/javascript.png) | [javascript](https://github.com/code-pushup/eslint-config/blob/main/docs/javascript.md) | Default config, suitable for any **JavaScript/TypeScript** project. |
+| ![typescript](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/material/typescript.png) | [typescript](https://github.com/code-pushup/eslint-config/blob/main/docs/typescript.md) | Config for strict **TypeScript** projects.                          |
+|     ![nodejs](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/material/nodejs.png)     | [node](https://github.com/code-pushup/eslint-config/blob/main/docs/node.md)             | Config for **Node.js** projects.                                    |
+|    ![angular](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/material/angular.png)    | [angular](https://github.com/code-pushup/eslint-config/blob/main/docs/angular.md)       | Config for **Angular** projects.                                    |
+|        ![ngrx](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/other/ngrx.png)         | [ngrx](https://github.com/code-pushup/eslint-config/blob/main/docs/ngrx.md)             | Config for **Angular** projects using **NgRx** library.             |
+|    ![graphql](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/material/graphql.png)    | [graphql](https://github.com/code-pushup/eslint-config/blob/main/docs/graphql.md)       | Config for **GraphQL servers** implemented in Node.js.              |
+|       ![jest](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/material/jest.png)       | [jest](https://github.com/code-pushup/eslint-config/blob/main/docs/jest.md)             | Config for projects using **Jest** for testing.                     |
+|     ![vitest](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/material/vitest.png)     | [vitest](https://github.com/code-pushup/eslint-config/blob/main/docs/vitest.md)         | Config for projects using **Vitest** for testing.                   |
+|    ![cypress](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/material/cypress.png)    | [cypress](https://github.com/code-pushup/eslint-config/blob/main/docs/cypress.md)       | Config for projects using **Cypress** for testing.                  |
+|  ![storybook](https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/material/storybook.png)  | [storybook](https://github.com/code-pushup/eslint-config/blob/main/docs/storybook.md)   | Config for projects using **Storybook** for UI components.          |
 
-Some configs extend other configs, as illustrated below. So, for example, adding `"extends": ["@code-pushup/eslint-config/legacy/angular"]` implicitly includes `@code-pushup/eslint-config/legacy/typescript` and `@code-pushup` as well.
+Some configs extend other configs, as illustrated below. So, for example, extending `angular` config implicitly extends `typescript` and `javascript` configs as well.
 
 ```mermaid
   graph BT;
-    index("@code-pushup/eslint-config/legacy")
-    typescript("@code-pushup/eslint-config/legacy/typescript")
-    node("@code-pushup/eslint-config/legacy/node")
-    angular("@code-pushup/eslint-config/legacy/angular")
-    ngrx("@code-pushup/eslint-config/legacy/ngrx")
-    graphql("@code-pushup/eslint-config/legacy/graphql")
+    javascript("javascript")
+    typescript("typescript")
+    node("node")
+    angular("angular")
+    ngrx("ngrx")
+    graphql("graphql")
     typescript --extends--> javascript
     node --extends--> javascript
     angular --extends--> typescript
@@ -55,12 +55,13 @@ To use the default config, follow these steps:
    npm install -D @code-pushup/eslint-config
    ```
 
-3. Add default config to `extends` section in your [ESLint configuration file](https://eslint.org/docs/latest/use/configure/configuration-files) (usually called `.eslintrc.json` or `.eslintrc.js`):
+3. Include default config in your [ESLint configuration file](https://eslint.org/docs/latest/use/configure/configuration-files) (usually `eslint.config.js`):
 
-   ```json
-   {
-     "extends": ["@code-pushup/eslint-config/legacy"]
-   }
+   ```js
+   import cpeslint from '@code-pushup/eslint-config';
+   import tseslint from 'typescript-eslint';
+   
+   export default tseslint.config(...cpeslint.javascript);
    ```
 
 Depending on your tech stack, you may wish to extend other configs as well ([listed above](#⚙️-configs)). This will require installing additional peer dependencies. For more details, refer to setup docs for the configs you're interested in using.

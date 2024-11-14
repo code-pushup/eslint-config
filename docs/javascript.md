@@ -1,19 +1,22 @@
-# `@code-pushup/eslint-config/legacy/javascript` config
+# `javascript` config
 
 Default config, suitable for any **JavaScript/TypeScript** project.
 
 ## 🏗️ Setup
 
 1. If you haven't already, make sure to [install `@code-pushup/eslint-config` and its required peer dependencies](../README.md#🏗️-setup).
-2. Add to `extends` in your .eslintrc file:
+2. Add to your `eslint.config.js` file:
 
-   ```jsonc
-   {
-     "extends": ["@code-pushup/eslint-config/legacy/javascript"]
-   }
+   ```js
+   import cpeslint from '@code-pushup/eslint-config';
+   import tseslint from 'typescript-eslint';
+   
+   export default tseslint.config(...cpeslint.javascript);
    ```
 
 ## 📏 Rules (289)
+
+**0** rules are included from . For brevity, only the **289** additional rules are listed in this document.
 
 > 🔧 Automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/user-guide/command-line-interface#--fix).<br>💡 Manually fixable by [editor suggestions](https://eslint.org/docs/developer-guide/working-with-rules#providing-suggestions).<br>🧪🚫 Disabled for [test files](../README.md#🧪-test-overrides).<br>🧪⚠️ Severity lessened to warning for [test files](../README.md#🧪-test-overrides).
 

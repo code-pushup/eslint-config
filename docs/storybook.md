@@ -1,4 +1,4 @@
-# `@code-pushup/eslint-config/legacy/storybook` config
+# `storybook` config
 
 Config for projects using **Storybook** for UI components.
 
@@ -11,15 +11,18 @@ Config for projects using **Storybook** for UI components.
    npm install -D eslint-plugin-storybook
    ```
 
-3. Add to `extends` in your .eslintrc file:
+3. Add to your `eslint.config.js` file:
 
-   ```jsonc
-   {
-     "extends": ["@code-pushup/eslint-config/legacy/storybook"]
-   }
+   ```js
+   import cpeslint from '@code-pushup/eslint-config';
+   import tseslint from 'typescript-eslint';
+   
+   export default tseslint.config(...cpeslint.storybook);
    ```
 
 ## 📏 Rules (11)
+
+**0** rules are included from . For brevity, only the **11** additional rules are listed in this document.
 
 > 🔧 Automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/user-guide/command-line-interface#--fix).<br>💡 Manually fixable by [editor suggestions](https://eslint.org/docs/developer-guide/working-with-rules#providing-suggestions).<br>🧪🚫 Disabled for [test files](../README.md#🧪-test-overrides).<br>🧪⚠️ Severity lessened to warning for [test files](../README.md#🧪-test-overrides).
 

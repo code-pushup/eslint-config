@@ -61,19 +61,21 @@ export const configsExtraSetupDocs = {
 For more information, refer to ${md.link('https://typescript-eslint.io/linting/typed-linting', md`${md.italic('Linting with Type Information')} (typescript-eslint)`)}, or ${md.link('https://nx.dev/recipes/tips-n-tricks/eslint', md`${md.italic('Configuring ESLint with Typescript')} (Nx)`)} if using Nx monorepo.${md.list(
       [
         md`Example for library in Nx monorepo:${md.codeBlock(
-          'json',
-          `{
-  "extends": ["../../.eslintrc.json"],
-  "ignorePatterns": ["!**/*"],
-  "overrides": [
-    {
-      "files": "*.ts",
-      "parserOptions": {
-        "project": ["libs/shared-utils/tsconfig.*?.json"]
+          'js',
+          `import tseslint from 'typescript-eslint';
+import baseConfig from '../../eslint.config.js';
+
+export default tseslint.config(
+  ...baseConfig,
+  {
+    files: ['**/*.ts'],
+    languageOptions: {
+      parserOptions: {
+        project: ['libs/shared-utils/tsconfig.*?.json']        
       }
     }
-  ]
-}`,
+  }
+);`,
         )}`,
       ],
     )}`,
@@ -82,20 +84,22 @@ For more information, refer to ${md.link('https://typescript-eslint.io/linting/t
       [
         md`Install additional import resolver:${md.codeBlock('sh', 'npm i -D eslint-import-resolver-typescript')}`,
         md`Example ${md.code('.eslintrc.json')} for Nx monorepo:${md.codeBlock(
-          'jsonc',
-          `{
+          'js',
+          `export default tseslint.config(
   // ...
-  "settings": {
-    "import/resolver": {
-      "typescript": {
-        "alwaysTryTypes": true,
-        "project": "tsconfig.base.json"
-        // or if using RxJS:
-        // "project": ["tsconfig.base.json", "node_modules/rxjs/tsconfig.json"]
+  {
+    settings: {
+      'import/resolver': {
+        typescript: {
+          alwaysTryTypes: true,
+          project: 'tsconfig.base.json'
+          // or if using RxJS:
+          // project: ['tsconfig.base.json', 'node_modules/rxjs/tsconfig.json']
+        }
       }
     }
   }
-}`,
+);`,
         )}`,
       ],
     )}`,
@@ -108,47 +112,54 @@ For more information, refer to ${md.link('https://typescript-eslint.io/linting/t
     [
       md`If you're using ${md.link('https://the-guild.dev/graphql/config/docs', 'graphql-config')}, then your GraphQL schema will be loaded automatically from your ${md.code('.graphqlrc.yml')} (or equivalent) file. So no extra setup is required in this case.`,
       md`Otherwise, you can use ${md.link('https://the-guild.dev/graphql/eslint/docs/getting-started/parser-options#schema', md.code('parserOptions.schema'))}, e.g.:${md.codeBlock(
-        'jsonc',
-        `{
-  // ...
-  "parserOptions": {
-    "schema": "./schema.graphql"
-    // globs are also supported:
-    // "schema": "./src/schema/**/*.graphql.ts"
+        'js',
+        `export default tseslint.config(
+  ...cpeslint.graphql,
+  {
+    files: ['**/*.graphql'],
+    languageOptions: {
+      parserOptions: {
+        schema: './schema.graphql'
+        // globs are also supported:
+        // schema: './src/schema/**/*.graphql.ts'
+      }
+    }
   }
-}`,
+);`,
       )}`,
     ],
   )}`,
 };
 
 const angularExtraEslintrc = `,
-  // It is recommended that selectors in Angular use a common custom prefix
-  // - see https://angular.io/guide/styleguide#style-02-07
-  // To enforce this consistently, add the following rules:
-  "rules": {
-    "@angular-eslint/component-selector": [
-      "warn",
-      {
-        "type": "element",
-        "style": "kebab-case",
-        "prefix": ["cp"] // <-- replace with your own prefix
-      }
-    ],
-    "@angular-eslint/directive-selector": [
-      "warn",
-      {
-        "type": "attribute",
-        "style": "camelCase",
-        "prefix": "cp" // <-- replace with your own prefix
-      }
-    ],
-    "@angular-eslint/pipe-prefix": [
-      "warn",
-      {
-        "prefixes": ["cp"] // <-- replace with your own prefix
-      }
-    ]
+  {
+    // It is recommended that selectors in Angular use a common custom prefix
+    // - see https://angular.io/guide/styleguide#style-02-07
+    // To enforce this consistently, add the following rules:
+    rules: {
+      '@angular-eslint/component-selector': [
+        'warn',
+        {
+          type: 'element',
+          style: 'kebab-case',
+          prefix: ['cp'] // <-- replace with your own prefix
+        }
+      ],
+      '@angular-eslint/directive-selector': [
+        'warn',
+        {
+          type: 'attribute',
+          style: 'camelCase',
+          prefix: 'cp' // <-- replace with your own prefix
+        }
+      ],
+      '@angular-eslint/pipe-prefix': [
+        'warn',
+        {
+          prefixes: ['cp'] // <-- replace with your own prefix
+        }
+      ]
+    }
   }`;
 
 /** @type {Partial<Record<keyof typeof configDescriptions, string>>} */
@@ -156,45 +167,27 @@ export const configsExtraEslintrc = {
   angular: angularExtraEslintrc,
   ngrx: angularExtraEslintrc,
   jest: `,
-  // customize rules if needed:
-  "rules": {
-    // e.g. to customize \`test\` or \`it\` usage (default is \`it\` in \`describe\` and \`test\` at top-level):
-    "jest/consistent-test-it": ["warn", { "fn": "test", "withinDescribe": "test" }]
+  {
+    // customize rules if needed:
+    rules: {
+      // e.g. to customize \`test\` or \`it\` usage (default is \`it\` in \`describe\` and \`test\` at top-level):
+      'jest/consistent-test-it': ['warn', { fn: 'test', withinDescribe: 'test' }]
+    }
   }`,
   vitest: `,
-  // customize rules if needed:
-  "rules": {
-    // e.g. to customize file naming convention (default pattern is ".*\\\\.spec\\\\.[tj]sx?$"):
-    "vitest/consistent-test-filename": [
-      "warn",
-      { "pattern": ".*\\\\.(unit|integration|e2e)\\\\.test\\\\.ts$" }
-    ],
-    // e.g. to customize \`test\` or \`it\` usage (default is \`it\` in \`describe\` and \`test\` at top-level):
-    "vitest/consistent-test-it": ["warn", { "fn": "test", "withinDescribe": "test" }]
+  {
+    // customize rules if needed:
+    rules: {
+      // e.g. to customize file naming convention (default pattern is '.*\\\\.spec\\\\.[tj]sx?$'):
+      'vitest/consistent-test-filename': [
+        'warn',
+        { 'pattern': '.*\\\\.(unit|integration|e2e)\\\\.test\\\\.ts$' }
+      ],
+      // e.g. to customize \`test\` or \`it\` usage (default is \`it\` in \`describe\` and \`test\` at top-level):
+      'vitest/consistent-test-it': ['warn', { fn: 'test', withinDescribe: 'test' }]
+    }
   }`,
 };
-
-/**
- * Get config string as used with `extends` in .eslintrc file.
- * @param {string} name Config file name without extension
- */
-export function configAlias(name) {
-  if (name === 'index') {
-    return '@code-pushup/eslint-config/legacy';
-  }
-  return `@code-pushup/eslint-config/legacy/${name}`;
-}
-
-/**
- * Get config file name (without extension) from `extends` alias.
- * @param {string} alias Config file name without extension
- */
-export function configFromAlias(alias) {
-  if (alias === '@code-pushup/eslint-config/legacy') {
-    return 'index';
-  }
-  return alias.slice(alias.lastIndexOf('/') + 1);
-}
 
 /**
  * Get description for given config.

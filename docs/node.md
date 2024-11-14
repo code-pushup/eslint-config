@@ -1,4 +1,4 @@
-# `@code-pushup/eslint-config/legacy/node` config
+# `node` config
 
 Config for **Node.js** projects.
 
@@ -11,17 +11,18 @@ Config for **Node.js** projects.
    npm install -D eslint-plugin-n
    ```
 
-3. Add to `extends` in your .eslintrc file:
+3. Add to your `eslint.config.js` file:
 
-   ```jsonc
-   {
-     "extends": ["@code-pushup/eslint-config/legacy/node"]
-   }
+   ```js
+   import cpeslint from '@code-pushup/eslint-config';
+   import tseslint from 'typescript-eslint';
+   
+   export default tseslint.config(...cpeslint.node);
    ```
 
 ## 📏 Rules (293)
 
-**289** rules are included from [`javascript`](./javascript.md#📏-rules-289). For brevity, only the **4** additional rules are listed in this document.
+**289** rules are included from [`javascript` config](./node.md#📏-rules-289). For brevity, only the **4** additional rules are listed in this document.
 
 > 🔧 Automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/user-guide/command-line-interface#--fix).<br>💡 Manually fixable by [editor suggestions](https://eslint.org/docs/developer-guide/working-with-rules#providing-suggestions).<br>🧪🚫 Disabled for [test files](../README.md#🧪-test-overrides).<br>🧪⚠️ Severity lessened to warning for [test files](../README.md#🧪-test-overrides).
 

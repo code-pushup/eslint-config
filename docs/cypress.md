@@ -25,16 +25,16 @@ Config for projects using **Cypress** for testing.
 
 ### 🚨 Errors (4)
 
-|                                                 Plugin                                                 | Rule                             | Options | Autofix | Overrides |
-| :----------------------------------------------------------------------------------------------------: | :------------------------------- | :------ | :-----: | :-------: |
-| [![cypress](./icons/material/cypress.png)](https://github.com/cypress-io/eslint-plugin-cypress#readme) | no-assigning-return-values<br /> |         |         |           |
-| [![cypress](./icons/material/cypress.png)](https://github.com/cypress-io/eslint-plugin-cypress#readme) | no-async-tests<br />             |         |         |           |
-| [![cypress](./icons/material/cypress.png)](https://github.com/cypress-io/eslint-plugin-cypress#readme) | no-unnecessary-waiting<br />     |         |         |           |
-| [![cypress](./icons/material/cypress.png)](https://github.com/cypress-io/eslint-plugin-cypress#readme) | unsafe-to-chain-command<br />    |         |         |           |
+|                                                 Plugin                                                 | Rule                                                                                                                                                                                       | Options | Autofix | Overrides |
+| :----------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------ | :-----: | :-------: |
+| [![cypress](./icons/material/cypress.png)](https://github.com/cypress-io/eslint-plugin-cypress#readme) | [no-assigning-return-values](https://github.com/cypress-io/eslint-plugin-cypress/blob/master/docs/rules/no-assigning-return-values.md)<br />disallow assigning return values of `cy` calls |         |         |           |
+| [![cypress](./icons/material/cypress.png)](https://github.com/cypress-io/eslint-plugin-cypress#readme) | [no-async-tests](https://github.com/cypress-io/eslint-plugin-cypress/blob/master/docs/rules/no-async-tests.md)<br />disallow using `async`/`await` in Cypress test cases                   |         |         |           |
+| [![cypress](./icons/material/cypress.png)](https://github.com/cypress-io/eslint-plugin-cypress#readme) | [no-unnecessary-waiting](https://github.com/cypress-io/eslint-plugin-cypress/blob/master/docs/rules/no-unnecessary-waiting.md)<br />disallow waiting for arbitrary time periods            |         |         |           |
+| [![cypress](./icons/material/cypress.png)](https://github.com/cypress-io/eslint-plugin-cypress#readme) | [unsafe-to-chain-command](https://github.com/cypress-io/eslint-plugin-cypress/blob/master/docs/rules/unsafe-to-chain-command.md)<br />disallow actions within chains                       |         |         |           |
 
 ### ⚠️ Warnings (2)
 
-|                                                 Plugin                                                 | Rule           | Options | Autofix | Overrides |
-| :----------------------------------------------------------------------------------------------------: | :------------- | :------ | :-----: | :-------: |
-| [![cypress](./icons/material/cypress.png)](https://github.com/cypress-io/eslint-plugin-cypress#readme) | no-force<br /> |         |         |           |
-| [![cypress](./icons/material/cypress.png)](https://github.com/cypress-io/eslint-plugin-cypress#readme) | no-pause<br /> |         |         |           |
+|                                                 Plugin                                                 | Rule                                                                                                                                                      | Options | Autofix | Overrides |
+| :----------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------------------- | :------ | :-----: | :-------: |
+| [![cypress](./icons/material/cypress.png)](https://github.com/cypress-io/eslint-plugin-cypress#readme) | [no-force](https://github.com/cypress-io/eslint-plugin-cypress/blob/master/docs/rules/no-force.md)<br />disallow using `force: true` with action commands |         |         |           |
+| [![cypress](./icons/material/cypress.png)](https://github.com/cypress-io/eslint-plugin-cypress#readme) | [no-pause](https://github.com/cypress-io/eslint-plugin-cypress/blob/master/docs/rules/no-pause.md)<br />disallow using `cy.pause()` calls                 |         |         |           |

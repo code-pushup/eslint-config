@@ -62,21 +62,24 @@ export function getRulesMetadata(config, ruleIds) {
   const plugins = Object.fromEntries(
     config.flatMap(({ plugins }) => Object.entries(plugins ?? {})),
   );
-  return ruleIds
-    .map(parseRuleId)
-    .map(rule => {
-      if (!rule.plugin) {
-        // TODO: look up metadata for built-in rules
+  return Object.fromEntries(
+    ruleIds
+      .map(id => {
+        const rule = parseRuleId(id);
+        if (!rule.plugin) {
+          // TODO: look up metadata for built-in rules
+          return null;
+        }
+        const plugin = plugins[rule.plugin];
+        const ruleDef = plugin.rules?.[rule.name];
+        if (typeof ruleDef === 'object') {
+          /** @type {import('@typescript-eslint/utils').TSESLint.RuleMetaDataWithDocs} */
+          // @ts-expect-error assuming valid metadata
+          const meta = ruleDef.meta;
+          return [id, meta];
+        }
         return null;
-      }
-      const plugin = plugins[rule.plugin];
-      const ruleDef = plugin.rules?.[rule.name];
-      if (typeof ruleDef === 'object') {
-        /** @type {import('@typescript-eslint/utils').TSESLint.RuleMetaDataWithDocs} */
-        // @ts-expect-error assuming valid metadata
-        const meta = ruleDef.meta;
-        return meta;
-      }
-    })
-    .filter(meta => meta != null);
+      })
+      .filter(rule => rule != null),
+  );
 }

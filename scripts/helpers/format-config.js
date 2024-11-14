@@ -90,7 +90,7 @@ export function configRulesToMarkdown(
     )
     .heading(2, `📏 Rules (${totalRulesCount})`)
     .paragraph(
-      extended &&
+      extended.length > 0 &&
         md`${md.bold(extendedRulesCount.toString())} rules are included from ${extended
           .map(({ alias, rulesCount }, _, { length }) =>
             md.link(

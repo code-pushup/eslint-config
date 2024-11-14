@@ -1,5 +1,6 @@
 // @ts-check
 
+import { ESLint } from 'eslint';
 import { execSync } from 'node:child_process';
 import fs from 'node:fs/promises';
 import path, { dirname } from 'node:path';
@@ -161,7 +162,12 @@ async function generateConfigDocs(config, allConfigs, peerDeps) {
   const ruleIds = getAllEnabledRuleIds(config.flatConfig).filter(
     ruleId => !extendedRuleIds.includes(ruleId),
   );
-  const rules = getRulesMetadata(config.flatConfig, ruleIds);
+
+  const eslint = new ESLint();
+  const dummyFile = 'eslint.config.js';
+  await eslint.lintFiles(dummyFile);
+
+  const rules = getRulesMetadata(config.flatConfig, ruleIds, eslint, dummyFile);
 
   const markdown = configRulesToMarkdown(
     config.name,

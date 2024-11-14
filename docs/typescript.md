@@ -1,4 +1,4 @@
-# `@code-pushup/eslint-config/legacy/typescript` config
+# `typescript` config
 
 Config for strict **TypeScript** projects.
 
@@ -10,19 +10,21 @@ Config for strict **TypeScript** projects.
    
    - Example for library in Nx monorepo:
    
-     ```json
-     {
-       "extends": ["../../.eslintrc.json"],
-       "ignorePatterns": ["!**/*"],
-       "overrides": [
-         {
-           "files": "*.ts",
-           "parserOptions": {
-             "project": ["libs/shared-utils/tsconfig.*?.json"]
+     ```js
+     import tseslint from 'typescript-eslint';
+     import baseConfig from '../../eslint.config.js';
+     
+     export default tseslint.config(
+       ...baseConfig,
+       {
+         files: ['**/*.ts'],
+         languageOptions: {
+           parserOptions: {
+             project: ['libs/shared-utils/tsconfig.*?.json']        
            }
          }
-       ]
-     }
+       }
+     );
      ```
 
    Similarly, you may need to [configure a tsconfig file for `eslint-plugin-import` rules](https://www.npmjs.com/package/eslint-plugin-import#typescript) (e.g. if using path aliases in `.ts` files):
@@ -35,32 +37,35 @@ Config for strict **TypeScript** projects.
    
    - Example `.eslintrc.json` for Nx monorepo:
    
-     ```jsonc
-     {
+     ```js
+     export default tseslint.config(
        // ...
-       "settings": {
-         "import/resolver": {
-           "typescript": {
-             "alwaysTryTypes": true,
-             "project": "tsconfig.base.json"
-             // or if using RxJS:
-             // "project": ["tsconfig.base.json", "node_modules/rxjs/tsconfig.json"]
+       {
+         settings: {
+           'import/resolver': {
+             typescript: {
+               alwaysTryTypes: true,
+               project: 'tsconfig.base.json'
+               // or if using RxJS:
+               // project: ['tsconfig.base.json', 'node_modules/rxjs/tsconfig.json']
+             }
            }
          }
        }
-     }
+     );
      ```
-3. Add to `extends` in your .eslintrc file:
+3. Add to your `eslint.config.js` file:
 
-   ```jsonc
-   {
-     "extends": ["@code-pushup/eslint-config/legacy/typescript"]
-   }
+   ```js
+   import cpeslint from '@code-pushup/eslint-config';
+   import tseslint from 'typescript-eslint';
+   
+   export default tseslint.config(...cpeslint.typescript);
    ```
 
 ## 📏 Rules (344)
 
-**289** rules are included from [`javascript`](./javascript.md#📏-rules-289). For brevity, only the **55** additional rules are listed in this document.
+**289** rules are included from [`javascript` config](./typescript.md#📏-rules-289). For brevity, only the **55** additional rules are listed in this document.
 
 > 🔧 Automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/user-guide/command-line-interface#--fix).<br>💡 Manually fixable by [editor suggestions](https://eslint.org/docs/developer-guide/working-with-rules#providing-suggestions).<br>🧪🚫 Disabled for [test files](../README.md#🧪-test-overrides).<br>🧪⚠️ Severity lessened to warning for [test files](../README.md#🧪-test-overrides).
 

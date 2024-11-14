@@ -2,9 +2,7 @@
 
 import { MarkdownDocument, md } from 'build-md';
 import {
-  configAlias,
   configDescription,
-  configFromAlias,
   configsExtraEslintrc,
   configsExtraSetupDocs,
 } from './configs.js';
@@ -30,8 +28,6 @@ export function configRulesToMarkdown(
   peerDeps,
   options = {},
 ) {
-  const alias = configAlias(config);
-
   const errors = rules.filter(rule => rule.level === 'error');
   const warnings = rules.filter(rule => rule.level === 'warn');
 
@@ -51,7 +47,7 @@ export function configRulesToMarkdown(
     .map(({ pkg }) => pkg);
 
   return new MarkdownDocument()
-    .heading(1, md`${md.code(alias)} config`)
+    .heading(1, md`${md.code(config)} config`)
     .paragraph(configDescription(config))
     .heading(2, '🏗️ Setup')
     .$if(
@@ -75,24 +71,33 @@ export function configRulesToMarkdown(
               ]
             : []),
           ...(extraSetupDocs ? [extraSetupDocs] : []),
-          md`Add to ${md.code('extends')} in your .eslintrc file:${md.codeBlock(
-            'jsonc',
-            `{\n  "extends": ["${alias}"]${
-              configsExtraEslintrc[config] ?? ''
-            }\n}`,
+          md`Add to your ${md.code('eslint.config.js')} file:${md.codeBlock(
+            'js',
+            [
+              "import cpeslint from '@code-pushup/eslint-config';",
+              "import tseslint from 'typescript-eslint';",
+              '',
+              ...(configsExtraEslintrc[config]
+                ? [
+                    'export default tseslint.config(',
+                    `  ...cpeslint.${config}${configsExtraEslintrc[config]}`,
+                    ');',
+                  ]
+                : [`export default tseslint.config(...cpeslint.${config});`]),
+            ].join('\n'),
           )}`,
         ]),
     )
     .heading(2, `📏 Rules (${totalRulesCount})`)
     .paragraph(
-      extended.length &&
+      extended &&
         md`${md.bold(extendedRulesCount.toString())} rules are included from ${extended
           .map(({ alias, rulesCount }, _, { length }) =>
             md.link(
-              `./${configFromAlias(alias)}.md#📏-rules-${rulesCount}`,
-              md`${
-                alias === '@code-pushup' ? 'the default config' : md.code(alias)
-              }${length > 1 ? ` (${rulesCount})` : ''}`.toString(),
+              `./${config}.md#📏-rules-${rulesCount}`,
+              md`${md.code(
+                alias,
+              )} config${length > 1 ? ` (${rulesCount})` : ''}`.toString(),
             ),
           )
           .join(

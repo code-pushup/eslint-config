@@ -17,6 +17,6 @@ body:
       description: What should the new configuration contain? Listing a set of criteria helps us determine whether the scope of the request was fully addressed.
       placeholder: |
         For example:
-        - [ ] A new configuration `@code-pushup/eslint-config/legacy/react` extends `plugin:react/recommended` with additional rules …
+        - [ ] A new configuration `react` extends recommended config from `eslint-plugin-react` with additional rules …
     validations:
       required: true

@@ -2,12 +2,7 @@
 
 import { MarkdownDocument, md } from 'build-md';
 import { TEST_FILE_PATTERNS } from '../../src/lib/patterns.js';
-import {
-  configAlias,
-  configDescription,
-  configFromAlias,
-  configIcon,
-} from './configs.js';
+import { configDescription, configIcon } from './configs.js';
 import {
   abbreviatePackageList,
   packageDocs,
@@ -34,27 +29,27 @@ export function configsToMarkdown(configs, peerDeps, extended) {
         iconToImage(configIcon(config)),
         md.link(
           `https://github.com/code-pushup/eslint-config/blob/main/docs/${config}.md`,
-          configAlias(config),
+          config,
         ),
         configDescription(config),
       ]),
     )
     .paragraph(
-      md`Some configs extend other configs, as illustrated below. So, for example, adding ${md.code('"extends": ["@code-pushup/eslint-config/legacy/angular"]')} implicitly includes ${md.code('@code-pushup/eslint-config/legacy/typescript')} and ${md.code('@code-pushup')} as well.`,
+      md`Some configs extend other configs, as illustrated below. So, for example, extending ${md.code('angular')} config implicitly extends ${md.code('typescript')} and ${md.code('javascript')} configs as well.`,
     )
     .code(
       'mermaid',
       mermaidDiagram(
         [
-          { id: 'index', label: configAlias('index') },
+          { id: 'javascript', label: 'javascript' },
           ...Object.entries(extended)
             .filter(([, aliases]) => aliases.length > 0)
-            .map(([config]) => ({ id: config, label: configAlias(config) })),
+            .map(([config]) => ({ id: config, label: config })),
         ],
         Object.entries(extended).flatMap(([config, aliases]) =>
           aliases.map(tgt => ({
             from: config,
-            to: configFromAlias(tgt),
+            to: tgt,
             label: 'extends',
           })),
         ),
@@ -73,7 +68,15 @@ export function configsToMarkdown(configs, peerDeps, extended) {
         )}`,
       )}`,
       md`Install ${md.code('@code-pushup/eslint-config')} with:${md.codeBlock('sh', 'npm install -D @code-pushup/eslint-config')}`,
-      md`Add default config to ${md.code('extends')} section in your ${md.link('https://eslint.org/docs/latest/use/configure/configuration-files', 'ESLint configuration file')} (usually called ${md.code('.eslintrc.json')} or ${md.code('.eslintrc.js')}):${md.codeBlock('json', '{\n  "extends": ["@code-pushup/eslint-config/legacy"]\n}')}`,
+      md`Include default config in your ${md.link('https://eslint.org/docs/latest/use/configure/configuration-files', 'ESLint configuration file')} (usually ${md.code('eslint.config.js')}):${md.codeBlock(
+        'js',
+        [
+          "import cpeslint from '@code-pushup/eslint-config';",
+          "import tseslint from 'typescript-eslint';",
+          '',
+          'export default tseslint.config(...cpeslint.javascript);',
+        ].join('\n'),
+      )}`,
     ])
     .paragraph(
       md`Depending on your tech stack, you may wish to extend other configs as well (${md.link(

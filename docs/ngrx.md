@@ -1,4 +1,4 @@
-# `@code-pushup/eslint-config/legacy/ngrx` config
+# `ngrx` config
 
 Config for **Angular** projects using **NgRx** library.
 
@@ -12,44 +12,49 @@ Config for **Angular** projects using **NgRx** library.
    ```
 
 3. Refer to [step 3 in TypeScript config's setup docs](./typescript.md#🏗️-setup) for how to set up tsconfig properly.
-4. Add to `extends` in your .eslintrc file:
+4. Add to your `eslint.config.js` file:
 
-   ```jsonc
-   {
-     "extends": ["@code-pushup/eslint-config/legacy/ngrx"],
-     // It is recommended that selectors in Angular use a common custom prefix
-     // - see https://angular.io/guide/styleguide#style-02-07
-     // To enforce this consistently, add the following rules:
-     "rules": {
-       "@angular-eslint/component-selector": [
-         "warn",
-         {
-           "type": "element",
-           "style": "kebab-case",
-           "prefix": ["cp"] // <-- replace with your own prefix
-         }
-       ],
-       "@angular-eslint/directive-selector": [
-         "warn",
-         {
-           "type": "attribute",
-           "style": "camelCase",
-           "prefix": "cp" // <-- replace with your own prefix
-         }
-       ],
-       "@angular-eslint/pipe-prefix": [
-         "warn",
-         {
-           "prefixes": ["cp"] // <-- replace with your own prefix
-         }
-       ]
+   ```js
+   import cpeslint from '@code-pushup/eslint-config';
+   import tseslint from 'typescript-eslint';
+   
+   export default tseslint.config(
+     ...cpeslint.ngrx,
+     {
+       // It is recommended that selectors in Angular use a common custom prefix
+       // - see https://angular.io/guide/styleguide#style-02-07
+       // To enforce this consistently, add the following rules:
+       rules: {
+         '@angular-eslint/component-selector': [
+           'warn',
+           {
+             type: 'element',
+             style: 'kebab-case',
+             prefix: ['cp'] // <-- replace with your own prefix
+           }
+         ],
+         '@angular-eslint/directive-selector': [
+           'warn',
+           {
+             type: 'attribute',
+             style: 'camelCase',
+             prefix: 'cp' // <-- replace with your own prefix
+           }
+         ],
+         '@angular-eslint/pipe-prefix': [
+           'warn',
+           {
+             prefixes: ['cp'] // <-- replace with your own prefix
+           }
+         ]
+       }
      }
-   }
+   );
    ```
 
 ## 📏 Rules (450)
 
-**420** rules are included from [`angular`](./angular.md#📏-rules-420). For brevity, only the **30** additional rules are listed in this document.
+**420** rules are included from [`angular` config](./ngrx.md#📏-rules-420). For brevity, only the **30** additional rules are listed in this document.
 
 > 🔧 Automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/user-guide/command-line-interface#--fix).<br>💡 Manually fixable by [editor suggestions](https://eslint.org/docs/developer-guide/working-with-rules#providing-suggestions).<br>🧪🚫 Disabled for [test files](../README.md#🧪-test-overrides).<br>🧪⚠️ Severity lessened to warning for [test files](../README.md#🧪-test-overrides).
 

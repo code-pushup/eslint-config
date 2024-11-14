@@ -1,4 +1,4 @@
-# `@code-pushup/eslint-config/legacy/cypress` config
+# `cypress` config
 
 Config for projects using **Cypress** for testing.
 
@@ -11,15 +11,18 @@ Config for projects using **Cypress** for testing.
    npm install -D eslint-plugin-cypress
    ```
 
-3. Add to `extends` in your .eslintrc file:
+3. Add to your `eslint.config.js` file:
 
-   ```jsonc
-   {
-     "extends": ["@code-pushup/eslint-config/legacy/cypress"]
-   }
+   ```js
+   import cpeslint from '@code-pushup/eslint-config';
+   import tseslint from 'typescript-eslint';
+   
+   export default tseslint.config(...cpeslint.cypress);
    ```
 
 ## 📏 Rules (6)
+
+**0** rules are included from . For brevity, only the **6** additional rules are listed in this document.
 
 > 🔧 Automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/user-guide/command-line-interface#--fix).<br>💡 Manually fixable by [editor suggestions](https://eslint.org/docs/developer-guide/working-with-rules#providing-suggestions).
 

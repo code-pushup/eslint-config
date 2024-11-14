@@ -17,7 +17,7 @@ body:
       description: What is the expected state? Listing a set of criteria helps us determine whether the scope of the request was fully addressed.
       placeholder: |
         For example:
-        - [ ] The `consistent-test-it` rule in `@code-pushup/eslint-config/legacy/jest` has a preset pattern set to `*.test.ts` files as that is the most common scenario.
+        - [ ] The `consistent-test-it` rule in `jest` config has a preset pattern set to `*.test.ts` files as that is the most common scenario.
     validations:
       required: true
   - type: textarea

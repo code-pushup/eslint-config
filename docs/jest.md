@@ -1,4 +1,4 @@
-# `@code-pushup/eslint-config/legacy/jest` config
+# `jest` config
 
 Config for projects using **Jest** for testing.
 
@@ -11,20 +11,27 @@ Config for projects using **Jest** for testing.
    npm install -D eslint-plugin-jest
    ```
 
-3. Add to `extends` in your .eslintrc file:
+3. Add to your `eslint.config.js` file:
 
-   ```jsonc
-   {
-     "extends": ["@code-pushup/eslint-config/legacy/jest"],
-     // customize rules if needed:
-     "rules": {
-       // e.g. to customize `test` or `it` usage (default is `it` in `describe` and `test` at top-level):
-       "jest/consistent-test-it": ["warn", { "fn": "test", "withinDescribe": "test" }]
+   ```js
+   import cpeslint from '@code-pushup/eslint-config';
+   import tseslint from 'typescript-eslint';
+   
+   export default tseslint.config(
+     ...cpeslint.jest,
+     {
+       // customize rules if needed:
+       rules: {
+         // e.g. to customize `test` or `it` usage (default is `it` in `describe` and `test` at top-level):
+         'jest/consistent-test-it': ['warn', { fn: 'test', withinDescribe: 'test' }]
+       }
      }
-   }
+   );
    ```
 
 ## 📏 Rules (43)
+
+**0** rules are included from . For brevity, only the **43** additional rules are listed in this document.
 
 > 🔧 Automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/user-guide/command-line-interface#--fix).<br>💡 Manually fixable by [editor suggestions](https://eslint.org/docs/developer-guide/working-with-rules#providing-suggestions).
 

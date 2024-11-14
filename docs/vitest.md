@@ -1,4 +1,4 @@
-# `@code-pushup/eslint-config/legacy/vitest` config
+# `vitest` config
 
 Config for projects using **Vitest** for testing.
 
@@ -11,25 +11,32 @@ Config for projects using **Vitest** for testing.
    npm install -D eslint-plugin-{jest-formatting,vitest}
    ```
 
-3. Add to `extends` in your .eslintrc file:
+3. Add to your `eslint.config.js` file:
 
-   ```jsonc
-   {
-     "extends": ["@code-pushup/eslint-config/legacy/vitest"],
-     // customize rules if needed:
-     "rules": {
-       // e.g. to customize file naming convention (default pattern is ".*\\.spec\\.[tj]sx?$"):
-       "vitest/consistent-test-filename": [
-         "warn",
-         { "pattern": ".*\\.(unit|integration|e2e)\\.test\\.ts$" }
-       ],
-       // e.g. to customize `test` or `it` usage (default is `it` in `describe` and `test` at top-level):
-       "vitest/consistent-test-it": ["warn", { "fn": "test", "withinDescribe": "test" }]
+   ```js
+   import cpeslint from '@code-pushup/eslint-config';
+   import tseslint from 'typescript-eslint';
+   
+   export default tseslint.config(
+     ...cpeslint.vitest,
+     {
+       // customize rules if needed:
+       rules: {
+         // e.g. to customize file naming convention (default pattern is '.*\\.spec\\.[tj]sx?$'):
+         'vitest/consistent-test-filename': [
+           'warn',
+           { 'pattern': '.*\\.(unit|integration|e2e)\\.test\\.ts$' }
+         ],
+         // e.g. to customize `test` or `it` usage (default is `it` in `describe` and `test` at top-level):
+         'vitest/consistent-test-it': ['warn', { fn: 'test', withinDescribe: 'test' }]
+       }
      }
-   }
+   );
    ```
 
 ## 📏 Rules (41)
+
+**0** rules are included from . For brevity, only the **41** additional rules are listed in this document.
 
 > 🔧 Automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/user-guide/command-line-interface#--fix).<br>💡 Manually fixable by [editor suggestions](https://eslint.org/docs/developer-guide/working-with-rules#providing-suggestions).
 

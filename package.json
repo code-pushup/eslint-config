@@ -8,10 +8,7 @@
   "type": "module",
   "main": "./src/index.js",
   "exports": {
-    ".": "./src/index.js",
-    "./legacy": "./src/configs/legacy/index.js",
-    "./legacy/*": "./src/configs/legacy/*.js",
-    "./legacy/*.js": "./src/configs/legacy/*.js"
+    ".": "./src/index.js"
   },
   "scripts": {
     "prepare": "husky install",

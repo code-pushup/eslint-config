@@ -16,8 +16,6 @@ Default config, suitable for any **JavaScript/TypeScript** project.
 
 ## 📏 Rules (289)
 
-**0** rules are included from . For brevity, only the **289** additional rules are listed in this document.
-
 > 🔧 Automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/user-guide/command-line-interface#--fix).<br>💡 Manually fixable by [editor suggestions](https://eslint.org/docs/developer-guide/working-with-rules#providing-suggestions).<br>🧪🚫 Disabled for [test files](../README.md#🧪-test-overrides).<br>🧪⚠️ Severity lessened to warning for [test files](../README.md#🧪-test-overrides).
 
 ### 🚨 Errors (242)

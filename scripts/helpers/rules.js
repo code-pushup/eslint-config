@@ -57,8 +57,10 @@ export function findRuleEntry(config, ruleId) {
 /**
  * @param {import('@typescript-eslint/utils').TSESLint.FlatConfig.ConfigArray} config
  * @param {string[]} ruleIds
+ * @param {import('eslint').ESLint} eslint
+ * @param {string} dummyFile
  */
-export function getRulesMetadata(config, ruleIds) {
+export function getRulesMetadata(config, ruleIds, eslint, dummyFile) {
   const plugins = Object.fromEntries(
     config.flatMap(({ plugins }) => Object.entries(plugins ?? {})),
   );
@@ -67,8 +69,15 @@ export function getRulesMetadata(config, ruleIds) {
       .map(id => {
         const rule = parseRuleId(id);
         if (!rule.plugin) {
-          // TODO: look up metadata for built-in rules
-          return null;
+          const rules = eslint.getRulesMetaForResults([
+            {
+              filePath: dummyFile,
+              // @ts-expect-error hack
+              messages: [{ ruleId: id }],
+              suppressedMessages: [],
+            },
+          ]);
+          return [id, rules[id]];
         }
         const plugin = plugins[rule.plugin];
         const ruleDef = plugin.rules?.[rule.name];

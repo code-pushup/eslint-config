@@ -37,7 +37,7 @@ describe('package.json checks', () => {
     const expected = Object.keys(packageJson.devDependencies)
       .filter(
         pkg =>
-          pkg.includes('eslint') &&
+          (pkg.includes('eslint') || pkg === 'globals') &&
           !pkg.startsWith('@types/') &&
           !pkg.startsWith('@typescript-eslint/'), // installed via "typescript-eslint"
       )

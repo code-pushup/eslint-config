@@ -10,6 +10,9 @@ export function packageIcon(pkg) {
   if (pkg === 'eslint' || pkg === '@eslint/js') {
     return 'material/eslint';
   }
+  if (pkg === 'globals') {
+    return 'icons8/global';
+  }
   if (pkg.includes('eslint-plugin')) {
     const alias = pkg.replace(/eslint-plugin-?/, '').replace(/\/$/, '');
     return pluginIcon(alias);

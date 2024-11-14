@@ -31,6 +31,7 @@ export type PeerDep = {
 // corresponds to PNG file names in docs/icons
 export type Icon =
   | 'icons8/expired'
+  | 'icons8/global'
   | 'icons8/import'
   | 'icons8/lambda'
   | 'icons8/promise'

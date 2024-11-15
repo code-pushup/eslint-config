@@ -3,6 +3,7 @@
 import * as importPlugin from 'eslint-plugin-import';
 import tseslint from 'typescript-eslint';
 import {
+  negatePatterns,
   STORYBOOK_FILE_PATTERNS,
   TEST_FILE_PATTERNS,
   TYPESCRIPT_FILE_PATTERNS,
@@ -95,49 +96,61 @@ export default tseslint.config(
     ],
   },
   {
-    name: 'code-pushup/typescript/tests/disabled',
     files: TEST_FILE_PATTERNS,
-    rules: {
-      '@typescript-eslint/no-explicit-any': 'off',
-      '@typescript-eslint/no-unsafe-argument': 'off',
-      '@typescript-eslint/no-unsafe-assignment': 'off',
-      '@typescript-eslint/no-unsafe-return': 'off',
-      '@typescript-eslint/no-unsafe-member-access': 'off',
-      '@typescript-eslint/prefer-reduce-type-parameter': 'off',
-      '@typescript-eslint/restrict-template-expressions': 'off',
-    },
-  },
-  {
-    name: 'code-pushup/typescript/tests/customized',
-    files: TEST_FILE_PATTERNS,
-    rules: {
-      '@typescript-eslint/consistent-type-assertions': [
-        'warn',
-        {
-          assertionStyle: 'as',
-          objectLiteralTypeAssertions: 'allow',
+    ignores: negatePatterns(TYPESCRIPT_FILE_PATTERNS),
+    extends: [
+      {
+        name: 'code-pushup/typescript/tests/disabled',
+        rules: {
+          '@typescript-eslint/no-explicit-any': 'off',
+          '@typescript-eslint/no-unsafe-argument': 'off',
+          '@typescript-eslint/no-unsafe-assignment': 'off',
+          '@typescript-eslint/no-unsafe-return': 'off',
+          '@typescript-eslint/no-unsafe-member-access': 'off',
+          '@typescript-eslint/prefer-reduce-type-parameter': 'off',
+          '@typescript-eslint/restrict-template-expressions': 'off',
         },
-      ],
-      '@typescript-eslint/dot-notation': [
-        'warn',
-        {
-          allowPrivateClassPropertyAccess: true,
-          allowProtectedClassPropertyAccess: true,
-          allowIndexSignaturePropertyAccess: true,
+      },
+      {
+        name: 'code-pushup/typescript/tests/customized',
+        rules: {
+          '@typescript-eslint/consistent-type-assertions': [
+            'warn',
+            {
+              assertionStyle: 'as',
+              objectLiteralTypeAssertions: 'allow',
+            },
+          ],
+          '@typescript-eslint/dot-notation': [
+            'warn',
+            {
+              allowPrivateClassPropertyAccess: true,
+              allowProtectedClassPropertyAccess: true,
+              allowIndexSignaturePropertyAccess: true,
+            },
+          ],
+          '@typescript-eslint/require-await': 'warn',
+          'functional/immutable-data': [
+            'warn',
+            { ignoreImmediateMutation: true },
+          ],
         },
-      ],
-      '@typescript-eslint/require-await': 'warn',
-      'functional/immutable-data': ['warn', { ignoreImmediateMutation: true }],
-    },
+      },
+    ],
   },
   {
     name: 'code-pushup/typescript/storybook/customized',
     files: STORYBOOK_FILE_PATTERNS,
+    ignores: negatePatterns(TYPESCRIPT_FILE_PATTERNS),
     rules: {
       '@typescript-eslint/naming-convention': [
         'warn',
         ...NAMING_CONVENTION_OPTIONS_STORYBOOK,
       ],
     },
+  },
+  {
+    files: negatePatterns(TYPESCRIPT_FILE_PATTERNS),
+    ...tseslint.configs.disableTypeChecked,
   },
 );

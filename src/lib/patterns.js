@@ -80,3 +80,8 @@ export const GENERATED_FILE_PATTERNS = withExtensions([
 export const COMMONJS_FILE_PATTERNS = ['**/*.cjs', '**/*.cts'];
 
 export const SVELTE_FILE_PATTERN = '**/*.svelte';
+
+/** @param {string[]} patterns  */
+export function negatePatterns(patterns) {
+  return patterns.map(pattern => `!${pattern}`);
+}

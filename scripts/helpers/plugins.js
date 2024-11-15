@@ -20,6 +20,7 @@ const pluginIcons = {
   react: 'material/react',
   'react-hooks': 'material/react_ts',
   rxjs: 'other/rxjs',
+  'rxjs-x': 'other/rxjs',
   sonarjs: 'other/sonar',
   storybook: 'material/storybook',
   unicorn: 'icons8/unicorn',
@@ -51,6 +52,7 @@ const pluginDocsUrls = {
   'react-hooks':
     'https://github.com/facebook/react/tree/main/packages/eslint-plugin-react-hooks#readme',
   rxjs: 'https://github.com/cartant/eslint-plugin-rxjs#readme',
+  'rxjs-x': 'https://github.com/JasonWeinzierl/eslint-plugin-rxjs-x#readme',
   sonarjs: 'https://github.com/SonarSource/eslint-plugin-sonarjs#readme',
   storybook: 'https://github.com/storybookjs/eslint-plugin-storybook#readme',
   unicorn: 'https://github.com/sindresorhus/eslint-plugin-unicorn#readme',

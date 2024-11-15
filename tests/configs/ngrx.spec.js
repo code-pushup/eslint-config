@@ -15,9 +15,9 @@ describe('ngrx config', () => {
     ).resolves.not.toThrow();
   });
 
-  test.skip('should have explicitly added rule', async () => {
+  test('should have explicitly added rule', async () => {
     const config = await loadConfig();
-    expect(config.rules).toHaveProperty('rxjs/no-unsafe-catch');
+    expect(config.rules).toHaveProperty('rxjs-x/no-unsafe-catch');
   });
 
   test('should have rule from extended angular config', async () => {

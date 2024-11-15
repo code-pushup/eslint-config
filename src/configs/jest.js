@@ -9,6 +9,13 @@ export default tseslint.config({
   extends: [
     jest.configs['flat/recommended'],
     {
+      settings: {
+        jest: {
+          version: 'latest',
+        },
+      },
+    },
+    {
       name: 'code-pushup/jest/customized',
       rules: {
         'jest/no-alias-methods': 'warn',

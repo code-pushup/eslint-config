@@ -26,10 +26,12 @@ export default tseslint.config(
       ...tseslint.configs.recommended,
       importPlugin.flatConfigs?.recommended,
       sonarjs.configs.recommended,
-      unicorn.configs['flat/recommended'],
       promise.configs['flat/recommended'],
       {
         name: 'code-pushup/javascript/customized',
+        plugins: {
+          unicorn,
+        },
         rules: {
           '@typescript-eslint/consistent-type-definitions': ['warn', 'type'],
           '@typescript-eslint/no-unused-vars': [

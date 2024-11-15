@@ -5,6 +5,8 @@ import tseslint from 'typescript-eslint';
 import { TYPESCRIPT_FILE_PATTERNS } from '../lib/patterns.js';
 import angular from './angular.js';
 
+// FIXME: RxJS plugin
+
 export default tseslint.config(...angular, {
   files: TYPESCRIPT_FILE_PATTERNS,
   extends: [
@@ -44,18 +46,18 @@ export default tseslint.config(...angular, {
         '@ngrx/use-consistent-global-store-name': ['warn', 'store$'],
 
         // https://github.com/cartant/eslint-plugin-rxjs#rules
-        'rxjs/no-unsafe-catch': 'error',
-        'rxjs/no-unsafe-first': 'error',
-        'rxjs/no-unsafe-switchmap': 'error',
+        // 'rxjs/no-unsafe-catch': 'error',
+        // 'rxjs/no-unsafe-first': 'error',
+        // 'rxjs/no-unsafe-switchmap': 'error',
       },
     },
     {
       name: 'code-pushup/ngrx/rjxs',
       rules: {
         // https://github.com/cartant/eslint-plugin-rxjs#rules
-        'rxjs/no-unsafe-catch': 'error',
-        'rxjs/no-unsafe-first': 'error',
-        'rxjs/no-unsafe-switchmap': 'error',
+        // 'rxjs/no-unsafe-catch': 'error',
+        // 'rxjs/no-unsafe-first': 'error',
+        // 'rxjs/no-unsafe-switchmap': 'error',
       },
     },
   ],

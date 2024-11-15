@@ -80,7 +80,7 @@ export function getRulesMetadata(config, ruleIds, eslint, dummyFile) {
           return [id, rules[id]];
         }
         const plugin = plugins[rule.plugin];
-        const ruleDef = plugin.rules?.[rule.name];
+        const ruleDef = plugin?.rules?.[rule.name];
         if (typeof ruleDef === 'object') {
           /** @type {import('@typescript-eslint/utils').TSESLint.RuleMetaDataWithDocs} */
           // @ts-expect-error assuming valid metadata

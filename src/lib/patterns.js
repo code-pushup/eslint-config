@@ -56,6 +56,11 @@ export const TYPESCRIPT_FILE_PATTERNS = ['**/*.ts', '**/*.tsx'];
 
 export const JSON_FILE_PATTERNS = ['**/*.json', '**/*.jsonc'];
 
+export const JS_TS_JSON_FILE_PATTERNS = [
+  ...withExtensions(['**/*']),
+  ...JSON_FILE_PATTERNS,
+];
+
 export const HTML_FILE_PATTERNS = ['**/*.html'];
 
 export const CYPRESS_FILE_PATTERNS = [

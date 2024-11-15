@@ -33,7 +33,10 @@ export default tseslint.config(
           unicorn,
         },
         rules: {
+          'no-empty-static-block': 'warn',
+          'no-unused-private-class-members': 'warn',
           '@typescript-eslint/consistent-type-definitions': ['warn', 'type'],
+          '@typescript-eslint/no-unused-expressions': 'warn',
           '@typescript-eslint/no-unused-vars': [
             'error',
             {
@@ -42,6 +45,7 @@ export default tseslint.config(
               ignoreRestSiblings: true,
             },
           ],
+          '@typescript-eslint/prefer-namespace-keyword': 'warn',
           ...convertErrorsToWarnings(unicorn.configs['flat/recommended'].rules),
           'unicorn/switch-case-braces': ['warn', 'avoid'],
           'unicorn/better-regex': ['warn', { sortCharacterClasses: false }],
@@ -92,6 +96,7 @@ export default tseslint.config(
             { skipBlankLines: true, skipComments: true },
           ],
           'max-nested-callbacks': ['warn', { max: 3 }],
+          'no-inner-declarations': 'error',
           'object-shorthand': 'warn',
           'no-bitwise': 'warn',
           'no-console': ['warn', { allow: ['error', 'warn', 'info'] }],
@@ -144,9 +149,7 @@ export default tseslint.config(
             },
           ],
           '@typescript-eslint/prefer-function-type': 'warn',
-          '@typescript-eslint/no-require-imports': 'error',
           '@typescript-eslint/no-shadow': 'warn',
-          '@typescript-eslint/no-unused-expressions': 'warn',
 
           // https://github.com/import-js/eslint-plugin-import#rules
           'import/extensions': ['warn', 'never', { json: 'always' }],

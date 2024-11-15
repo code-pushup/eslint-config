@@ -8,6 +8,7 @@ import {
   ANGULAR_COMPONENT_FILE_PATTERNS,
   ANGULAR_PIPE_FILE_PATTERNS,
   HTML_FILE_PATTERNS,
+  negatePatterns,
   TEST_FILE_PATTERNS,
   TEST_FILE_PATTERNS_INLINE_TEMPLATES,
   TYPESCRIPT_FILE_PATTERNS,
@@ -151,23 +152,27 @@ export default tseslint.config(
     ],
   },
   {
-    name: 'code-pushup/angular/tests/customized',
     files: TEST_FILE_PATTERNS,
-    rules: {
-      '@angular-eslint/no-lifecycle-call': 'warn',
-    },
-  },
-  {
-    name: 'code-pushup/angular/tests/disabled',
-    files: TEST_FILE_PATTERNS,
-    rules: {
-      '@angular-eslint/component-max-inline-declarations': 'off',
-      '@angular-eslint/prefer-on-push-component-change-detection': 'off',
-      '@angular-eslint/prefer-standalone-component': 'off',
-      '@angular-eslint/use-component-selector': 'off',
-      '@angular-eslint/use-injectable-provided-in': 'off',
-      'rxjs/finnish': 'off',
-    },
+    ignores: negatePatterns(TYPESCRIPT_FILE_PATTERNS),
+    extends: [
+      {
+        name: 'code-pushup/angular/tests/customized',
+        rules: {
+          '@angular-eslint/no-lifecycle-call': 'warn',
+        },
+      },
+      {
+        name: 'code-pushup/angular/tests/disabled',
+        rules: {
+          '@angular-eslint/component-max-inline-declarations': 'off',
+          '@angular-eslint/prefer-on-push-component-change-detection': 'off',
+          '@angular-eslint/prefer-standalone-component': 'off',
+          '@angular-eslint/use-component-selector': 'off',
+          '@angular-eslint/use-injectable-provided-in': 'off',
+          'rxjs/finnish': 'off',
+        },
+      },
+    ],
   },
   {
     name: 'code-pushup/angular/components/customized',

@@ -1,7 +1,7 @@
 // @ts-check
 
 import { afterAll, beforeAll, describe, expect, test } from 'vitest';
-import { createLintUtils } from '../helpers/lint-utils';
+import { createLintUtils } from '../helpers/lint-utils.js';
 
 describe('typescript config', () => {
   const {
@@ -10,6 +10,7 @@ describe('typescript config', () => {
     loadConfig,
     loadRulesByIds,
     getExplicitRuleIds,
+    getEnabledRuleIds,
     loadRules,
   } = createLintUtils('typescript', '*.ts', ['src/utils.js']);
 
@@ -68,15 +69,10 @@ describe('typescript config', () => {
 
   test('should not include extra rules for non-TS file', async () => {
     const config = await loadConfig('src/utils.js');
-    expect(config.rules).not.toHaveProperty(
-      '@typescript-eslint/naming-convention',
-    );
-    expect(config.rules).not.toHaveProperty(
-      '@typescript-eslint/no-non-null-assertion',
-    );
-    expect(config.rules).not.toHaveProperty(
-      '@typescript-eslint/no-unsafe-assignment',
-    );
+    const ruleIds = getEnabledRuleIds(config);
+    expect(ruleIds).not.toContain('@typescript-eslint/naming-convention');
+    expect(ruleIds).not.toContain('@typescript-eslint/no-non-null-assertion');
+    expect(ruleIds).not.toContain('@typescript-eslint/no-unsafe-assignment');
   });
 
   test('should not include any rule which requires type checking for non-TS files', async () => {

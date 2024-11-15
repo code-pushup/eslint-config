@@ -58,7 +58,7 @@ const tsConfigDocsReference = md`Refer to ${md.link('./typescript.md#🏗️-set
 export const configsExtraSetupDocs = {
   typescript: md`${md.paragraph(
     md`Because this config includes rules which require type information, make sure to configure ${md.code('parserOptions.project')} in your .eslintrc points to your project's tsconfig.
-For more information, refer to ${md.link('https://typescript-eslint.io/linting/typed-linting', md`${md.italic('Linting with Type Information')} (typescript-eslint)`)}, or ${md.link('https://nx.dev/recipes/tips-n-tricks/eslint', md`${md.italic('Configuring ESLint with Typescript')} (Nx)`)} if using Nx monorepo.${md.list(
+For more information, refer to ${md.link('https://typescript-eslint.io/linting/typed-linting', md`${md.italic('Linting with Type Information')} (typescript-eslint)`)}.${md.list(
       [
         md`Example for library in Nx monorepo:${md.codeBlock(
           'js',
@@ -69,9 +69,11 @@ export default tseslint.config(
   ...baseConfig,
   {
     files: ['**/*.ts'],
+    ignores: ['**/code-pushup.config.ts'],
     languageOptions: {
       parserOptions: {
-        project: ['libs/shared-utils/tsconfig.*?.json']        
+        projectService: true,
+        tsconfigRootDir: import.meta.dirname
       }
     }
   }
@@ -83,7 +85,7 @@ export default tseslint.config(
     md`Similarly, you may need to ${md.link('https://www.npmjs.com/package/eslint-plugin-import#typescript', md`configure a tsconfig file for ${md.code('eslint-plugin-import')} rules`)} (e.g. if using path aliases in ${md.code('.ts')} files):${md.list(
       [
         md`Install additional import resolver:${md.codeBlock('sh', 'npm i -D eslint-import-resolver-typescript')}`,
-        md`Example ${md.code('.eslintrc.json')} for Nx monorepo:${md.codeBlock(
+        md`Example ${md.code('eslint.config.js')} for Nx monorepo:${md.codeBlock(
           'js',
           `export default tseslint.config(
   // ...

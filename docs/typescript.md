@@ -6,7 +6,7 @@ Config for strict **TypeScript** projects.
 
 1. If you haven't already, make sure to [install `@code-pushup/eslint-config` and its required peer dependencies](../README.md#🏗️-setup).
 2. Because this config includes rules which require type information, make sure to configure `parserOptions.project` in your .eslintrc points to your project's tsconfig.
-   For more information, refer to [_Linting with Type Information_ (typescript-eslint)](https://typescript-eslint.io/linting/typed-linting), or [_Configuring ESLint with Typescript_ (Nx)](https://nx.dev/recipes/tips-n-tricks/eslint) if using Nx monorepo.
+   For more information, refer to [_Linting with Type Information_ (typescript-eslint)](https://typescript-eslint.io/linting/typed-linting).
    
    - Example for library in Nx monorepo:
    
@@ -18,9 +18,11 @@ Config for strict **TypeScript** projects.
        ...baseConfig,
        {
          files: ['**/*.ts'],
+         ignores: ['**/code-pushup.config.ts'],
          languageOptions: {
            parserOptions: {
-             project: ['libs/shared-utils/tsconfig.*?.json']        
+             projectService: true,
+             tsconfigRootDir: import.meta.dirname
            }
          }
        }
@@ -35,7 +37,7 @@ Config for strict **TypeScript** projects.
      npm i -D eslint-import-resolver-typescript
      ```
    
-   - Example `.eslintrc.json` for Nx monorepo:
+   - Example `eslint.config.js` for Nx monorepo:
    
      ```js
      export default tseslint.config(

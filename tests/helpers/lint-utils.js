@@ -65,7 +65,7 @@ export default [
 
   const loadRules = async (filePath = defaultFilePath) => {
     const config = await loadConfig(filePath);
-    const ruleIds = Object.keys(config.rules ?? {});
+    const ruleIds = getEnabledRuleIds(config);
     return loadRulesByIds(ruleIds, filePath);
   };
 
@@ -92,11 +92,18 @@ export default [
   const getExplicitRuleIds = configs =>
     configs
       .filter(config => config.name?.startsWith(`code-pushup/${configName}`))
-      .flatMap(config =>
-        Object.keys(config.rules ?? {}).filter(
-          id => config.rules?.[id] !== 'off',
-        ),
-      );
+      .flatMap(getEnabledRuleIds);
+
+  /**
+   * @param {import('@typescript-eslint/utils').TSESLint.FlatConfig.Config} config
+   * @returns {string[]}
+   */
+  const getEnabledRuleIds = config =>
+    Object.keys(config.rules ?? {}).filter(id => {
+      const entry = config.rules?.[id];
+      const level = Array.isArray(entry) ? entry[0] : entry;
+      return level !== 0 && level !== 'off';
+    });
 
   return {
     setup,
@@ -106,5 +113,6 @@ export default [
     loadRulesByIds,
     lint,
     getExplicitRuleIds,
+    getEnabledRuleIds,
   };
 }

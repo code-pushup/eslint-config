@@ -1,8 +1,7 @@
 // @ts-check
 
 import angular from 'angular-eslint';
-// FIXME: errors because of missing parserServices
-// import rxjs from 'eslint-plugin-rxjs';
+import rxjs from 'eslint-plugin-rxjs-x';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
 import {
@@ -31,17 +30,10 @@ export default tseslint.config(
     processor: angular.processInlineTemplates,
     languageOptions: {
       globals: globals.browser,
-      // parser: tseslint.parser,
     },
     extends: [
       ...angular.configs.tsRecommended,
-      // {
-      //   name: 'code-pushup/angular/rxjs-recommended',
-      //   plugins: {
-      //     rxjs,
-      //   },
-      //   rules: rxjs.configs.recommended.rules,
-      // },
+      rxjs.configs.recommended,
       {
         name: 'code-pushup/angular/customized',
         rules: {
@@ -54,9 +46,9 @@ export default tseslint.config(
           '@angular-eslint/no-output-on-prefix': 'warn',
           '@angular-eslint/no-output-rename': 'warn',
           '@angular-eslint/no-outputs-metadata-property': 'warn',
-          // 'rxjs/no-async-subscribe': 'warn',
-          // 'rxjs/no-create': 'warn',
-          // 'rxjs/no-nested-subscribe': 'warn',
+          'rxjs-x/no-async-subscribe': 'warn',
+          'rxjs-x/no-create': 'warn',
+          'rxjs-x/no-nested-subscribe': 'warn',
           '@typescript-eslint/naming-convention': [
             'warn',
             ...NAMING_CONVENTION_OPTIONS_ANGULAR,
@@ -69,8 +61,6 @@ export default tseslint.config(
           '@typescript-eslint/class-methods-use-this': 'off',
           '@typescript-eslint/no-extraneous-class': 'off',
           '@typescript-eslint/no-floating-promises': 'off', // because of router.navigate
-          // FIXME: this rule has been turned off as it produced errors
-          'rxjs/no-implicit-any-catch': 'off',
           'promise/catch-or-return': 'off',
           'unicorn/prefer-top-level-await': 'off',
           'unicorn/prefer-event-target': 'off',
@@ -104,13 +94,13 @@ export default tseslint.config(
           '@angular-eslint/use-component-view-encapsulation': 'error',
           '@angular-eslint/use-injectable-provided-in': 'warn',
           '@angular-eslint/use-lifecycle-interface': 'warn',
-          // https://github.com/cartant/eslint-plugin-rxjs/tree/main#rules
-          // 'rxjs/finnish': 'warn',
-          // 'rxjs/no-compat': 'warn',
-          // 'rxjs/no-exposed-subjects': 'warn',
-          // 'rxjs/no-ignored-observable': 'warn',
-          // 'rxjs/prefer-observer': 'warn',
-          // 'rxjs/throw-error': 'warn',
+          // https://github.com/cartant/eslint-plugin-rxjs-x/tree/main#rules
+          'rxjs-x/finnish': 'warn',
+          'rxjs-x/no-compat': 'warn',
+          'rxjs-x/no-exposed-subjects': 'warn',
+          'rxjs-x/no-ignored-observable': 'warn',
+          'rxjs-x/prefer-observer': 'warn',
+          'rxjs-x/throw-error': 'warn',
           // https://github.com/import-js/eslint-plugin-import#rules
           'import/no-namespace': 'error',
           'import/no-nodejs-modules': 'error',
@@ -178,7 +168,7 @@ export default tseslint.config(
           '@angular-eslint/prefer-standalone-component': 'off',
           '@angular-eslint/use-component-selector': 'off',
           '@angular-eslint/use-injectable-provided-in': 'off',
-          'rxjs/finnish': 'off',
+          'rxjs-x/finnish': 'off',
         },
       },
     ],

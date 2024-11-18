@@ -63,6 +63,7 @@ export default tseslint.config(
           'sonarjs/no-small-switch': 'warn',
           'sonarjs/prefer-immediate-return': 'warn',
           'sonarjs/no-duplicate-string': 'warn',
+          ...('todo-tag' in sonarjs.rules && { 'sonarjs/todo-tag': 'warn' }),
           'promise/always-return': ['error', { ignoreLastCallback: true }],
         },
       },

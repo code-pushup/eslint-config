@@ -160,7 +160,11 @@ export default tseslint.config(
           '@typescript-eslint/no-shadow': 'warn',
 
           // https://github.com/import-js/eslint-plugin-import#rules
-          'import/extensions': ['warn', 'never', { json: 'always' }],
+          'import/extensions': [
+            'warn',
+            'always',
+            { ignorePackages: true, checkTypeImports: true },
+          ],
           'import/max-dependencies': ['warn', { ignoreTypeImports: true }],
           'import/no-absolute-path': 'error',
           'import/no-amd': 'error',

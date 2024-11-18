@@ -59,10 +59,10 @@ Config for strict **TypeScript** projects.
 3. Add to your `eslint.config.js` file:
 
    ```js
-   import cpeslint from '@code-pushup/eslint-config';
+   import typescript from '@code-pushup/eslint-config/typescript.js';
    import tseslint from 'typescript-eslint';
    
-   export default tseslint.config(...cpeslint.typescript);
+   export default tseslint.config(...typescript);
    ```
 
 ## 📏 Rules (345)

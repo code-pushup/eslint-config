@@ -71,10 +71,10 @@ export function configsToMarkdown(configs, peerDeps, extended) {
       md`Include default config in your ${md.link('https://eslint.org/docs/latest/use/configure/configuration-files', 'ESLint configuration file')} (usually ${md.code('eslint.config.js')}):${md.codeBlock(
         'js',
         [
-          "import cpeslint from '@code-pushup/eslint-config';",
+          "import javascript from '@code-pushup/eslint-config/javascript.js';",
           "import tseslint from 'typescript-eslint';",
           '',
-          'export default tseslint.config(...cpeslint.javascript);',
+          'export default tseslint.config(...javascript);',
         ].join('\n'),
       )}`,
     ])

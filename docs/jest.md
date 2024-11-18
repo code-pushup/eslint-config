@@ -14,11 +14,11 @@ Config for projects using **Jest** for testing.
 3. Add to your `eslint.config.js` file:
 
    ```js
-   import cpeslint from '@code-pushup/eslint-config';
+   import jest from '@code-pushup/eslint-config/jest.js';
    import tseslint from 'typescript-eslint';
    
    export default tseslint.config(
-     ...cpeslint.jest,
+     ...jest,
      {
        // customize rules if needed:
        rules: {

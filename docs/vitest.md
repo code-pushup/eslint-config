@@ -14,11 +14,11 @@ Config for projects using **Vitest** for testing.
 3. Add to your `eslint.config.js` file:
 
    ```js
-   import cpeslint from '@code-pushup/eslint-config';
+   import vitest from '@code-pushup/eslint-config/vitest.js';
    import tseslint from 'typescript-eslint';
    
    export default tseslint.config(
-     ...cpeslint.vitest,
+     ...vitest,
      {
        // customize rules if needed:
        rules: {

@@ -15,11 +15,11 @@ Config for **Angular** projects.
 4. Add to your `eslint.config.js` file:
 
    ```js
-   import cpeslint from '@code-pushup/eslint-config';
+   import angular from '@code-pushup/eslint-config/angular.js';
    import tseslint from 'typescript-eslint';
    
    export default tseslint.config(
-     ...cpeslint.angular,
+     ...angular,
      {
        // It is recommended that selectors in Angular use a common custom prefix
        // - see https://angular.io/guide/styleguide#style-02-07

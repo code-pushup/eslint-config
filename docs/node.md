@@ -14,10 +14,10 @@ Config for **Node.js** projects.
 3. Add to your `eslint.config.js` file:
 
    ```js
-   import cpeslint from '@code-pushup/eslint-config';
+   import node from '@code-pushup/eslint-config/node.js';
    import tseslint from 'typescript-eslint';
    
-   export default tseslint.config(...cpeslint.node);
+   export default tseslint.config(...node);
    ```
 
 ## 📏 Rules (294)

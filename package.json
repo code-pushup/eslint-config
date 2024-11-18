@@ -8,7 +8,9 @@
   "type": "module",
   "main": "./src/index.js",
   "exports": {
-    ".": "./src/index.js"
+    ".": "./src/configs/javascript.js",
+    "./*": "./src/configs/*.js",
+    "./*.js": "./src/configs/*.js"
   },
   "files": [
     "./src"

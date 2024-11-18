@@ -15,11 +15,11 @@ Config for **Angular** projects using **NgRx** library.
 4. Add to your `eslint.config.js` file:
 
    ```js
-   import cpeslint from '@code-pushup/eslint-config';
+   import ngrx from '@code-pushup/eslint-config/ngrx.js';
    import tseslint from 'typescript-eslint';
    
    export default tseslint.config(
-     ...cpeslint.ngrx,
+     ...ngrx,
      {
        // It is recommended that selectors in Angular use a common custom prefix
        // - see https://angular.io/guide/styleguide#style-02-07

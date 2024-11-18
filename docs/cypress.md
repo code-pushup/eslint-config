@@ -14,10 +14,10 @@ Config for projects using **Cypress** for testing.
 3. Add to your `eslint.config.js` file:
 
    ```js
-   import cpeslint from '@code-pushup/eslint-config';
+   import cypress from '@code-pushup/eslint-config/cypress.js';
    import tseslint from 'typescript-eslint';
    
-   export default tseslint.config(...cpeslint.cypress);
+   export default tseslint.config(...cypress);
    ```
 
 ## 📏 Rules (6)

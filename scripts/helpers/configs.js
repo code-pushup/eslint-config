@@ -116,7 +116,7 @@ export default tseslint.config(
       md`Otherwise, you can use ${md.link('https://the-guild.dev/graphql/eslint/docs/getting-started/parser-options#schema', md.code('parserOptions.schema'))}, e.g.:${md.codeBlock(
         'js',
         `export default tseslint.config(
-  ...cpeslint.graphql,
+  // ...
   {
     files: ['**/*.graphql'],
     languageOptions: {

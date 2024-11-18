@@ -4,15 +4,7 @@ Default config, suitable for any **JavaScript/TypeScript** project.
 
 ## 🏗️ Setup
 
-1. If you haven't already, make sure to [install `@code-pushup/eslint-config` and its required peer dependencies](../README.md#🏗️-setup).
-2. Add to your `eslint.config.js` file:
-
-   ```js
-   import cpeslint from '@code-pushup/eslint-config';
-   import tseslint from 'typescript-eslint';
-   
-   export default tseslint.config(...cpeslint.javascript);
-   ```
+Refer to [setup instructions in README](../README.md#🏗️-setup).
 
 ## 📏 Rules (290)
 

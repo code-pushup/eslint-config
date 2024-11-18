@@ -46,9 +46,9 @@ describe('typescript config', () => {
   });
 
   test('should only explicitly reference rules which require type checking (with specified exceptions)', async () => {
-    const {
-      default: { typescript },
-    } = await import('@code-pushup/eslint-config');
+    const { default: typescript } = await import(
+      '@code-pushup/eslint-config/typescript'
+    );
     const ruleIds = getExplicitRuleIds(typescript);
     const rules = await loadRulesByIds(ruleIds);
     const rulesWithoutTypes = Object.entries(rules)

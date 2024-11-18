@@ -51,7 +51,7 @@ export function configRulesToMarkdown(
     .paragraph(configDescription(config))
     .heading(2, '🏗️ Setup')
     .$if(
-      config === 'index',
+      config === 'javascript',
       doc =>
         doc.paragraph(
           md`Refer to ${md.link(setupLink, 'setup instructions in README')}.`,
@@ -74,16 +74,16 @@ export function configRulesToMarkdown(
           md`Add to your ${md.code('eslint.config.js')} file:${md.codeBlock(
             'js',
             [
-              "import cpeslint from '@code-pushup/eslint-config';",
+              `import ${config} from '@code-pushup/eslint-config/${config}.js';`,
               "import tseslint from 'typescript-eslint';",
               '',
               ...(configsExtraEslintrc[config]
                 ? [
                     'export default tseslint.config(',
-                    `  ...cpeslint.${config}${configsExtraEslintrc[config]}`,
+                    `  ...${config}${configsExtraEslintrc[config]}`,
                     ');',
                   ]
-                : [`export default tseslint.config(...cpeslint.${config});`]),
+                : [`export default tseslint.config(...${config});`]),
             ].join('\n'),
           )}`,
         ]),

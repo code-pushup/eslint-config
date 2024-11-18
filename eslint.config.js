@@ -1,9 +1,10 @@
 // @ts-check
 
 import tseslint from 'typescript-eslint';
-import cpeslint from './src/index.js';
+import node from './src/configs/node.js';
+import vitest from './src/configs/vitest.js';
 
-export default tseslint.config(...cpeslint.node, ...cpeslint.vitest, {
+export default tseslint.config(...node, ...vitest, {
   rules: {
     '@typescript-eslint/no-magic-numbers': 'off',
     'import/extensions': ['error', { js: 'always', json: 'never' }],

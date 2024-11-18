@@ -57,9 +57,7 @@ describe('package.json checks', () => {
   });
 
   test('should mark peer dependency as optional if not included in default config', async () => {
-    const {
-      default: { javascript },
-    } = await import('@code-pushup/eslint-config');
+    const { default: javascript } = await import('@code-pushup/eslint-config');
     const plugins = javascript.flatMap(config =>
       Object.keys(config.plugins ?? {}),
     );

@@ -25,10 +25,10 @@ export function createLintUtils(
     await fs.mkdir(cwd, { recursive: true });
     await fs.writeFile(
       path.join(cwd, 'eslint.config.js'),
-      `import cpeslint from '@code-pushup/eslint-config'
+      `import ${configName} from '@code-pushup/eslint-config/${configName}.js'
 
 export default [
-  ...cpeslint['${configName}'],
+  ...${configName},
   {
     languageOptions: {
       parserOptions: {

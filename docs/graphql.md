@@ -17,7 +17,7 @@ Config for **GraphQL servers** implemented in Node.js.
    
      ```js
      export default tseslint.config(
-       ...cpeslint.graphql,
+       // ...
        {
          files: ['**/*.graphql'],
          languageOptions: {
@@ -33,10 +33,10 @@ Config for **GraphQL servers** implemented in Node.js.
 4. Add to your `eslint.config.js` file:
 
    ```js
-   import cpeslint from '@code-pushup/eslint-config';
+   import graphql from '@code-pushup/eslint-config/graphql.js';
    import tseslint from 'typescript-eslint';
    
-   export default tseslint.config(...cpeslint.graphql);
+   export default tseslint.config(...graphql);
    ```
 
 ## 📏 Rules (317)

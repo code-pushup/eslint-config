@@ -14,10 +14,10 @@ Config for projects using **Storybook** for UI components.
 3. Add to your `eslint.config.js` file:
 
    ```js
-   import cpeslint from '@code-pushup/eslint-config';
+   import storybook from '@code-pushup/eslint-config/storybook.js';
    import tseslint from 'typescript-eslint';
    
-   export default tseslint.config(...cpeslint.storybook);
+   export default tseslint.config(...storybook);
    ```
 
 ## 📏 Rules (11)

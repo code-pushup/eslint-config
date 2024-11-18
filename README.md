@@ -58,10 +58,10 @@ To use the default config, follow these steps:
 3. Include default config in your [ESLint configuration file](https://eslint.org/docs/latest/use/configure/configuration-files) (usually `eslint.config.js`):
 
    ```js
-   import cpeslint from '@code-pushup/eslint-config';
+   import javascript from '@code-pushup/eslint-config/javascript.js';
    import tseslint from 'typescript-eslint';
    
-   export default tseslint.config(...cpeslint.javascript);
+   export default tseslint.config(...javascript);
    ```
 
 Depending on your tech stack, you may wish to extend other configs as well ([listed above](#⚙️-configs)). This will require installing additional peer dependencies. For more details, refer to setup docs for the configs you're interested in using.

@@ -10,6 +10,9 @@
   "exports": {
     ".": "./src/index.js"
   },
+  "files": [
+    "./src"
+  ],
   "scripts": {
     "prepare": "husky install",
     "test": "vitest run",

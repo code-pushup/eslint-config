@@ -28,6 +28,12 @@ export default tseslint.config(
       sonarjs.configs.recommended,
       promise.configs['flat/recommended'],
       {
+        name: 'code-pushup/javascript/unused-disable',
+        linterOptions: {
+          reportUnusedDisableDirectives: 'warn',
+        },
+      },
+      {
         name: 'code-pushup/javascript/customized',
         plugins: {
           unicorn,

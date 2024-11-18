@@ -223,6 +223,7 @@ export default tseslint.config(
       '@typescript-eslint/no-unused-expressions': 'off',
       '@typescript-eslint/no-magic-numbers': 'off',
       'sonarjs/no-duplicate-string': 'off',
+      'sonarjs/no-empty-test-file': 'off',
       'unicorn/filename-case': 'off',
       'unicorn/numeric-separators-style': 'off',
     },

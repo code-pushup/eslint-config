@@ -94,7 +94,7 @@ export function configRulesToMarkdown(
         md`${md.bold(extendedRulesCount.toString())} rules are included from ${extended
           .map(({ alias, rulesCount }, _, { length }) =>
             md.link(
-              `./${config}.md#📏-rules-${rulesCount}`,
+              `./${alias}.md#📏-rules-${rulesCount}`,
               md`${md.code(
                 alias,
               )} config${length > 1 ? ` (${rulesCount})` : ''}`.toString(),

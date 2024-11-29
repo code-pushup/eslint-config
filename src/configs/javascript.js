@@ -65,6 +65,7 @@ export default tseslint.config(
           'sonarjs/no-duplicate-string': 'warn',
           ...('todo-tag' in sonarjs.rules && { 'sonarjs/todo-tag': 'warn' }),
           'promise/always-return': ['error', { ignoreLastCallback: true }],
+          'promise/no-callback-in-promise': ['warn', { exceptions: ['next'] }],
         },
       },
       {

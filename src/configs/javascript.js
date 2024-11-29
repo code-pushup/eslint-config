@@ -13,6 +13,7 @@ import {
   GENERATED_FILE_PATTERNS,
   JS_TS_JSON_FILE_PATTERNS,
   JSON_FILE_PATTERNS,
+  MOCKS_FILE_PATTERNS,
   SVELTE_FILE_PATTERN,
   TEST_FILE_PATTERNS,
 } from '../lib/patterns.js';
@@ -211,13 +212,24 @@ export default tseslint.config(
     },
   },
   {
+    name: 'code-pushup/javascript/mocks/disabled',
+    files: MOCKS_FILE_PATTERNS,
+    rules: {
+      'import/no-commonjs': 'off',
+      'unicorn/prefer-module': 'off',
+      '@typescript-eslint/no-require-imports': 'off',
+    },
+  },
+  {
     name: 'code-pushup/javascript/configs/disabled',
     files: CONFIG_FILE_PATTERNS,
     rules: {
       'import/no-anonymous-default-export': 'off',
       'import/no-unassigned-import': 'off',
+      'import/no-commonjs': 'off',
       'unicorn/no-abusive-eslint-disable': 'off',
       'unicorn/prefer-module': 'off',
+      '@typescript-eslint/no-require-imports': 'off',
     },
   },
   {
@@ -246,9 +258,9 @@ export default tseslint.config(
     name: 'code-pushup/javascript/cjs/disabled',
     files: COMMONJS_FILE_PATTERNS,
     rules: {
-      '@typescript-eslint/no-require-imports': 'off',
-      '@typescript-eslint/no-var-requires': 'off',
       'import/no-commonjs': 'off',
+      'unicorn/prefer-module': 'off',
+      '@typescript-eslint/no-require-imports': 'off',
     },
   },
   {

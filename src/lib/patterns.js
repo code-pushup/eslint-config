@@ -46,6 +46,8 @@ export const TEST_FILE_PATTERNS = [
   ...CONFIG_FILE_PATTERNS,
 ];
 
+export const MOCKS_FILE_PATTERNS = [fromDirectory('__mocks__')];
+
 // @angular-eslint's inline templates processor transforms .ts files to .html
 // https://github.com/angular-eslint/angular-eslint/blob/main/packages/eslint-plugin-template/src/processors.ts#L164
 export const TEST_FILE_PATTERNS_INLINE_TEMPLATES = TEST_FILE_PATTERNS.map(

@@ -68,6 +68,7 @@ export default tseslint.config(
           'promise/catch-or-return': 'off',
           'unicorn/prefer-top-level-await': 'off',
           'unicorn/prefer-event-target': 'off',
+          'unicorn/prefer-global-this': 'off',
         },
       },
       {

@@ -10,11 +10,15 @@ import {
   CONFIG_FILE_PATTERNS,
   HTML_FILE_PATTERNS,
   negatePatterns,
+  STORYBOOK_FILE_PATTERNS,
   TEST_FILE_PATTERNS,
   TEST_FILE_PATTERNS_INLINE_TEMPLATES,
   TYPESCRIPT_FILE_PATTERNS,
 } from '../lib/patterns.js';
-import { NAMING_CONVENTION_OPTIONS_ANGULAR } from '../lib/rule-options.js';
+import {
+  NAMING_CONVENTION_OPTIONS_ANGULAR,
+  NAMING_CONVENTION_OPTIONS_STORYBOOK,
+} from '../lib/rule-options.js';
 import typescript from './typescript.js';
 
 export default tseslint.config(
@@ -172,6 +176,18 @@ export default tseslint.config(
         },
       },
     ],
+  },
+  {
+    // duplicated from typescript config to re-apply over angular's naming convention
+    name: 'code-pushup/angular/storybook/customized',
+    files: STORYBOOK_FILE_PATTERNS,
+    ignores: negatePatterns(TYPESCRIPT_FILE_PATTERNS),
+    rules: {
+      '@typescript-eslint/naming-convention': [
+        'warn',
+        ...NAMING_CONVENTION_OPTIONS_STORYBOOK,
+      ],
+    },
   },
   {
     name: 'code-pushup/angular/components/customized',

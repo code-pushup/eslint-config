@@ -3,6 +3,7 @@
 import * as importPlugin from 'eslint-plugin-import';
 import tseslint from 'typescript-eslint';
 import {
+  CONFIG_FILE_PATTERNS,
   negatePatterns,
   STORYBOOK_FILE_PATTERNS,
   TEST_FILE_PATTERNS,
@@ -137,6 +138,13 @@ export default tseslint.config(
         },
       },
     ],
+  },
+  {
+    name: 'code-pushup/javascript/configs/disabled',
+    files: CONFIG_FILE_PATTERNS,
+    rules: {
+      'functional/immutable-data': 'off',
+    },
   },
   {
     name: 'code-pushup/typescript/storybook/customized',

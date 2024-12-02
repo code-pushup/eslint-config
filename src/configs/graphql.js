@@ -27,6 +27,11 @@ export default tseslint.config(...node, {
           'error',
           { listTypeCanWrapOnlyEdgeType: false },
         ],
+      },
+    },
+    {
+      name: 'code-pushup/graphql/disabled',
+      rules: {
         '@graphql-eslint/strict-id-in-types': 'off',
       },
     },

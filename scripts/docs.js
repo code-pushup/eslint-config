@@ -164,10 +164,18 @@ async function generateConfigDocs(config, allConfigs, peerDeps) {
   const markdown = configRulesToMarkdown(
     config.name,
     ruleIds.map(id => {
-      const entry = findRuleEntry(
-        config.flatConfig.filter(({ files }) => files !== TEST_FILE_PATTERNS),
-        id,
-      );
+      const entry =
+        findRuleEntry(
+          config.flatConfig.filter(
+            ({ name }) =>
+              name?.startsWith('code-pushup/') && name.endsWith('/customized'),
+          ),
+          id,
+        ) ??
+        findRuleEntry(
+          config.flatConfig.filter(({ files }) => files !== TEST_FILE_PATTERNS),
+          id,
+        );
       if (entry == null) {
         throw new Error(
           `Internal logic error - no entry found for rule ${id} in ${config.name} config`,

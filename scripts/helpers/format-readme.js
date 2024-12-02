@@ -27,10 +27,7 @@ export function configsToMarkdown(configs, peerDeps, extended) {
       ],
       configs.map(config => [
         iconToImage(configIcon(config)),
-        md.link(
-          `https://github.com/code-pushup/eslint-config/blob/main/docs/${config}.md`,
-          config,
-        ),
+        md.link(`./docs/${config}.md`, config),
         configDescription(config),
       ]),
     )
@@ -117,10 +114,7 @@ export function configsToMarkdown(configs, peerDeps, extended) {
 
 /** @param {import('./types').Icon} icon  */
 function iconToImage(icon) {
-  return md.image(
-    `https://raw.githubusercontent.com/code-pushup/eslint-config/main/docs/icons/${icon}.png`,
-    icon.replace(/^\w+\//, ''),
-  );
+  return md.image(`./docs/icons/${icon}.png`, icon.replace(/^\w+\//, ''));
 }
 
 /**

@@ -1,7 +1,6 @@
 // @ts-check
 
 import { ESLint } from 'eslint';
-import { execSync } from 'node:child_process';
 import fs from 'node:fs/promises';
 import path, { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -27,23 +26,16 @@ const docsDir = path.join(currentDir, '..', 'docs');
 await generateDocs();
 
 async function generateDocs() {
-  execSync('npm link');
-  execSync('npm link @code-pushup/eslint-config');
+  const configs = await loadConfigs(configNames);
+  const peerDeps = await loadPeerDependencies(configs);
 
-  try {
-    const configs = await loadConfigs(configNames);
-    const peerDeps = await loadPeerDependencies(configs);
+  await fs.mkdir(docsDir, { recursive: true });
 
-    await fs.mkdir(docsDir, { recursive: true });
-
-    for (const config of configs) {
-      await generateConfigDocs(config, configs, peerDeps);
-    }
-
-    await generateReadmeDocs(configs, peerDeps);
-  } finally {
-    execSync('npm unlink @code-pushup/eslint-config');
+  for (const config of configs) {
+    await generateConfigDocs(config, configs, peerDeps);
   }
+
+  await generateReadmeDocs(configs, peerDeps);
 }
 
 /**

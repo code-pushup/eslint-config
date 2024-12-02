@@ -1,8 +1,8 @@
 // @ts-check
 
 import { ESLint } from 'eslint';
-const fs = require('node:fs/promises');
-const path = require('node:path');
+import fs from 'node:fs/promises';
+import path from 'node:path';
 
 /**
  * Sets up utilities for loading configuration and rules using ESLint

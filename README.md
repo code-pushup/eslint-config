@@ -78,7 +78,7 @@ All peer dependencies used by `@code-pushup/eslint-config` are listed below, alo
 |      ![import](./docs/icons/icons8/import.png)      | [eslint-plugin-import](https://www.npmjs.com/package/eslint-plugin-import)                           | `^2.31.0`  |    ✅     |
 |      ![import](./docs/icons/icons8/import.png)      | [eslint-import-resolver-typescript](https://www.npmjs.com/package/eslint-import-resolver-typescript) |  `^3.0.0`  |          |
 |     ![promise](./docs/icons/icons8/promise.png)     | [eslint-plugin-promise](https://www.npmjs.com/package/eslint-plugin-promise)                         | `>=6.4.0`  |    ✅     |
-|       ![sonar](./docs/icons/other/sonar.png)        | [eslint-plugin-sonarjs](https://www.npmjs.com/package/eslint-plugin-sonarjs)                         | `>=1.0.4`  |    ✅     |
+|       ![sonar](./docs/icons/other/sonar.png)        | [eslint-plugin-sonarjs](https://www.npmjs.com/package/eslint-plugin-sonarjs)                         |  `^1.0.4`  |    ✅     |
 |     ![unicorn](./docs/icons/icons8/unicorn.png)     | [eslint-plugin-unicorn](https://www.npmjs.com/package/eslint-plugin-unicorn)                         | `>=50.0.0` |    ✅     |
 |      ![global](./docs/icons/icons8/global.png)      | [globals](https://www.npmjs.com/package/globals)                                                     | `>=14.0.0` |    ✅     |
 | ![typescript](./docs/icons/material/typescript.png) | [typescript-eslint](https://www.npmjs.com/package/typescript-eslint)                                 |  `^8.0.0`  |    ✅     |

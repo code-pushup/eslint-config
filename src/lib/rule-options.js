@@ -81,3 +81,9 @@ export const NAMING_CONVENTION_OPTIONS_ANGULAR = [
     format: ['camelCase', 'PascalCase', 'UPPER_CASE'],
   },
 ];
+
+export const IMMUTABLE_DATA_OPTIONS = {
+  ignoreImmediateMutation: true,
+  ignoreClasses: true,
+  ignoreAccessorPattern: 'module.exports',
+};

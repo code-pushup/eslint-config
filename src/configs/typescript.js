@@ -10,6 +10,7 @@ import {
   TYPESCRIPT_FILE_PATTERNS,
 } from '../lib/patterns.js';
 import {
+  IMMUTABLE_DATA_OPTIONS,
   NAMING_CONVENTION_OPTIONS,
   NAMING_CONVENTION_OPTIONS_STORYBOOK,
 } from '../lib/rule-options.js';
@@ -86,10 +87,7 @@ export default tseslint.config(
           '@typescript-eslint/prefer-string-starts-ends-with': 'warn',
 
           // https://github.com/eslint-functional/eslint-plugin-functional#rules
-          'functional/immutable-data': [
-            'error',
-            { ignoreImmediateMutation: true, ignoreClasses: true },
-          ],
+          'functional/immutable-data': ['error', IMMUTABLE_DATA_OPTIONS],
           'functional/prefer-property-signatures': 'warn',
           'functional/prefer-tacit': 'warn',
         },
@@ -131,10 +129,7 @@ export default tseslint.config(
             },
           ],
           '@typescript-eslint/require-await': 'warn',
-          'functional/immutable-data': [
-            'warn',
-            { ignoreImmediateMutation: true },
-          ],
+          'functional/immutable-data': ['warn', IMMUTABLE_DATA_OPTIONS],
         },
       },
     ],

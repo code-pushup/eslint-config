@@ -14,7 +14,7 @@ import {
   JS_TS_JSON_FILE_PATTERNS,
   JSON_FILE_PATTERNS,
   MOCKS_FILE_PATTERNS,
-  SVELTE_FILE_PATTERN,
+  SVELTE_FILE_PATTERNS,
   TEST_FILE_PATTERNS,
   TYPESCRIPT_DECLARATION_FILE_PATTERNS,
 } from '../lib/patterns.js';
@@ -287,7 +287,7 @@ export default tseslint.config(
   },
   {
     name: 'code-pushup/javascript/svelte/disabled',
-    files: [SVELTE_FILE_PATTERN],
+    files: SVELTE_FILE_PATTERNS,
     rules: {
       'import/no-mutable-exports': 'off',
       'functional/no-let': 'off',

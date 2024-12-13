@@ -2,13 +2,13 @@
 
 import * as graphqlEslint from '@graphql-eslint/eslint-plugin';
 import tseslint from 'typescript-eslint';
-import { GRAPHQL_FILE_PATTERN, NODE_FILE_PATTERNS } from '../lib/patterns.js';
+import { GRAPHQL_FILE_PATTERNS, NODE_FILE_PATTERNS } from '../lib/patterns.js';
 import node from './node.js';
 
 export { NAMING_CONVENTION_OPTIONS_GRAPHQL } from '../lib/rule-options.js';
 
 export default tseslint.config(...node, {
-  files: [GRAPHQL_FILE_PATTERN],
+  files: GRAPHQL_FILE_PATTERNS,
   plugins: {
     '@graphql-eslint': graphqlEslint,
   },

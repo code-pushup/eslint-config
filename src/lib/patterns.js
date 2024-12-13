@@ -74,7 +74,7 @@ export const CYPRESS_FILE_PATTERNS = [
 
 export const NODE_FILE_PATTERNS = ['**/*.ts', '**/*.js'];
 
-export const GRAPHQL_FILE_PATTERN = '**/*.graphql';
+export const GRAPHQL_FILE_PATTERNS = ['**/*.graphql'];
 
 export const STORYBOOK_FILE_PATTERNS = withExtensions([fromSuffix('stories')]);
 
@@ -88,7 +88,7 @@ export const GENERATED_FILE_PATTERNS = withExtensions([
 
 export const COMMONJS_FILE_PATTERNS = ['**/*.cjs', '**/*.cts'];
 
-export const SVELTE_FILE_PATTERN = '**/*.svelte';
+export const SVELTE_FILE_PATTERNS = ['**/*.svelte'];
 
 /** @param {string[]} patterns  */
 export function negatePatterns(patterns) {

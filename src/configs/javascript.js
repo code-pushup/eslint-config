@@ -16,6 +16,7 @@ import {
   MOCKS_FILE_PATTERNS,
   SVELTE_FILE_PATTERN,
   TEST_FILE_PATTERNS,
+  TYPESCRIPT_DECLARATION_FILE_PATTERNS,
 } from '../lib/patterns.js';
 import { convertErrorsToWarnings } from '../lib/utils.js';
 
@@ -274,6 +275,14 @@ export default tseslint.config(
       'import/no-commonjs': 'off',
       'unicorn/prefer-module': 'off',
       '@typescript-eslint/no-require-imports': 'off',
+    },
+  },
+  {
+    name: 'code-pushup/javascript/dts/disabled',
+    files: TYPESCRIPT_DECLARATION_FILE_PATTERNS,
+    rules: {
+      '@typescript-eslint/consistent-type-definitions': 'off',
+      '@typescript-eslint/no-empty-object-type': 'off',
     },
   },
   {

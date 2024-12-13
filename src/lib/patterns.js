@@ -56,6 +56,8 @@ export const TEST_FILE_PATTERNS_INLINE_TEMPLATES = TEST_FILE_PATTERNS.map(
 
 export const TYPESCRIPT_FILE_PATTERNS = ['**/*.ts', '**/*.tsx'];
 
+export const TYPESCRIPT_DECLARATION_FILE_PATTERNS = ['**/*.d.ts'];
+
 export const JSON_FILE_PATTERNS = ['**/*.json', '**/*.jsonc'];
 
 export const JS_TS_JSON_FILE_PATTERNS = [

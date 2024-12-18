@@ -53,6 +53,11 @@ export default tseslint.config(
           'rxjs-x/no-async-subscribe': 'warn',
           'rxjs-x/no-create': 'warn',
           'rxjs-x/no-nested-subscribe': 'warn',
+          'rxjs-x/no-subscribe-in-pipe': 'warn',
+          'rxjs-x/no-topromise': 'warn',
+          'rxjs-x/prefer-observer': 'warn',
+          'rxjs-x/prefer-root-operators': 'warn',
+          'rxjs-x/throw-error': 'warn',
           '@typescript-eslint/naming-convention': [
             'warn',
             ...NAMING_CONVENTION_OPTIONS_ANGULAR,
@@ -103,9 +108,7 @@ export default tseslint.config(
           'rxjs-x/finnish': 'warn',
           'rxjs-x/no-compat': 'warn',
           'rxjs-x/no-exposed-subjects': 'warn',
-          'rxjs-x/no-ignored-observable': 'warn',
-          'rxjs-x/prefer-observer': 'warn',
-          'rxjs-x/throw-error': 'warn',
+          'rxjs-x/no-floating-observables': 'error',
           // https://github.com/import-js/eslint-plugin-import#rules
           'import/no-namespace': 'error',
           'import/no-nodejs-modules': 'error',

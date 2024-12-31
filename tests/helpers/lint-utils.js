@@ -16,8 +16,9 @@ export function createLintUtils(
   defaultFilePath = '*.ts',
   filesToCreate = [],
 ) {
-  const cwd = path.join(process.cwd(), 'tmp', configName);
+  const camelCaseConfig = kebabToCamelCase(configName);
 
+  const cwd = path.join(process.cwd(), 'tmp', configName);
   const eslint = new ESLint({ cwd });
 
   const setup = async () => {
@@ -25,10 +26,10 @@ export function createLintUtils(
     await fs.mkdir(cwd, { recursive: true });
     await fs.writeFile(
       path.join(cwd, 'eslint.config.js'),
-      `import ${configName} from '@code-pushup/eslint-config/${configName}.js'
+      `import ${camelCaseConfig} from '@code-pushup/eslint-config/${configName}.js'
 
 export default [
-  ...${configName},
+  ...${camelCaseConfig},
   {
     languageOptions: {
       parserOptions: {
@@ -115,4 +116,20 @@ export default [
     getExplicitRuleIds,
     getEnabledRuleIds,
   };
+}
+
+/**
+ * Transforms kebab-case into camelCase
+ * @param {string} text
+ * @returns {string}
+ */
+export function kebabToCamelCase(text) {
+  return text
+    .split('-')
+    .map((word, index) =>
+      index > 0
+        ? word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+        : word.toLowerCase(),
+    )
+    .join('');
 }

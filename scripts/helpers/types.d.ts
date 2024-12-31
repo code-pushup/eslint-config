@@ -55,4 +55,5 @@ export type Icon =
   | 'other/ngrx'
   | 'other/rx-angular'
   | 'other/rxjs'
-  | 'other/sonar';
+  | 'other/sonar'
+  | 'other/testing-library';

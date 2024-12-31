@@ -49,6 +49,7 @@ body:
         - Jest
         - Vitest
         - Cypress
+        - Playwright
         - Storybook
     validations:
       required: true

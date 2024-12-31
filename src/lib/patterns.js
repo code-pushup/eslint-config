@@ -69,13 +69,13 @@ export const HTML_FILE_PATTERNS = ['**/*.html'];
 
 export const CYPRESS_FILE_PATTERNS = [
   '**/*.cy.[jt]s?(x)',
-  '**/e2e/**/*.[jt]s?(x)',
+  '**/?(*-)e2e/**/*.[jt]s?(x)',
 ];
 
 export const PLAYWRIGHT_FILE_PATTERNS = [
   '**/*.+(test|spec).[jt]s?(x)',
   '**/*.po.[jt]s?(x)',
-  '**/e2e/**/*.[jt]s?(x)',
+  '**/?(*-)e2e/**/*.[jt]s?(x)',
 ];
 
 export const NODE_FILE_PATTERNS = ['**/*.ts', '**/*.js'];

@@ -25,8 +25,13 @@ describe('playwright config', () => {
     expect(Object.keys(config.rules ?? {}).join(',')).toContain('playwright/');
   });
 
+  it('should include playwright rules for page object file', async () => {
+    const config = await loadConfig('components/login.po.ts');
+    expect(Object.keys(config.rules ?? {}).join(',')).toContain('playwright/');
+  });
+
   it('should include playwright rules for test folder', async () => {
-    const config = await loadConfig('e2e/dashboard/subscription.ts');
+    const config = await loadConfig('website-e2e/dashboard/subscription.ts');
     expect(Object.keys(config.rules ?? {}).join(',')).toContain('playwright/');
   });
 
@@ -38,6 +43,13 @@ describe('playwright config', () => {
   it('should have explicitly added rule', async () => {
     const config = await loadConfig();
     expect(config.rules).toHaveProperty('playwright/prefer-native-locators');
+  });
+
+  it('should include jest formatting rule', async () => {
+    const config = await loadConfig();
+    expect(Object.keys(config.rules ?? {}).join(',')).toContain(
+      'jest-formatting/',
+    );
   });
 
   it('should have customized severity level for rule from extended config', async () => {

@@ -46,6 +46,7 @@ export type Icon =
   | 'material/javascript'
   | 'material/jest'
   | 'material/nodejs'
+  | 'material/playwright'
   | 'material/react_ts'
   | 'material/react'
   | 'material/storybook'

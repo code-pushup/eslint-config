@@ -16,6 +16,7 @@ const pluginIcons = {
   'jest-formatting': 'icons8/test',
   n: 'material/nodejs',
   'no-secrets': 'icons8/secure',
+  playwright: 'material/playwright',
   promise: 'icons8/promise',
   react: 'material/react',
   'react-hooks': 'material/react_ts',
@@ -47,6 +48,8 @@ const pluginDocsUrls = {
     'https://github.com/dangreenisrael/eslint-plugin-jest-formatting#readme',
   n: 'https://github.com/eslint-community/eslint-plugin-n#readme',
   'no-secrets': 'https://github.com/nickdeis/eslint-plugin-no-secrets#readme',
+  playwright:
+    'https://github.com/playwright-community/eslint-plugin-playwright#readme',
   promise: 'https://github.com/eslint-community/eslint-plugin-promise#readme',
   react: 'https://github.com/jsx-eslint/eslint-plugin-react#readme',
   'react-hooks':

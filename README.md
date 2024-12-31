@@ -20,6 +20,7 @@ Recommended ESLint presets by [Code PushUp](https://github.com/code-pushup/cli/t
 |       ![jest](./docs/icons/material/jest.png)       | [jest](./docs/jest.md)             | Config for projects using **Jest** for testing.                     |
 |     ![vitest](./docs/icons/material/vitest.png)     | [vitest](./docs/vitest.md)         | Config for projects using **Vitest** for testing.                   |
 |    ![cypress](./docs/icons/material/cypress.png)    | [cypress](./docs/cypress.md)       | Config for projects using **Cypress** for testing.                  |
+| ![playwright](./docs/icons/material/playwright.png) | [playwright](./docs/playwright.md) | Config for projects using **Playwright** for testing.               |
 |  ![storybook](./docs/icons/material/storybook.png)  | [storybook](./docs/storybook.md)   | Config for projects using **Storybook** for UI components.          |
 
 Some configs extend other configs, as illustrated below. So, for example, extending `angular` config implicitly extends `typescript` and `javascript` configs as well.
@@ -89,6 +90,7 @@ All peer dependencies used by `@code-pushup/eslint-config` are listed below, alo
 |       ![jest](./docs/icons/material/jest.png)       | [eslint-plugin-jest](https://www.npmjs.com/package/eslint-plugin-jest)                               | `^28.8.0`  |          |
 |        ![test](./docs/icons/icons8/test.png)        | [eslint-plugin-jest-formatting](https://www.npmjs.com/package/eslint-plugin-jest-formatting)         |  `^3.0.0`  |          |
 |     ![nodejs](./docs/icons/material/nodejs.png)     | [eslint-plugin-n](https://www.npmjs.com/package/eslint-plugin-n)                                     | `>=17.0.0` |          |
+| ![playwright](./docs/icons/material/playwright.png) | [eslint-plugin-playwright](https://www.npmjs.com/package/eslint-plugin-playwright)                   | `>=2.1.0`  |          |
 |        ![rxjs](./docs/icons/other/rxjs.png)         | [eslint-plugin-rxjs-x](https://www.npmjs.com/package/eslint-plugin-rxjs-x)                           | `>=0.6.0`  |          |
 |  ![storybook](./docs/icons/material/storybook.png)  | [eslint-plugin-storybook](https://www.npmjs.com/package/eslint-plugin-storybook)                     | `>=0.10.0` |          |
 |     ![vitest](./docs/icons/material/vitest.png)     | [eslint-plugin-vitest](https://www.npmjs.com/package/eslint-plugin-vitest)                           | `>=0.5.0`  |          |

@@ -13,6 +13,7 @@ const configDescriptions = {
   jest: md`Config for projects using ${md.bold('Jest')} for testing.`,
   vitest: md`Config for projects using ${md.bold('Vitest')} for testing.`,
   cypress: md`Config for projects using ${md.bold('Cypress')} for testing.`,
+  playwright: md`Config for projects using ${md.bold('Playwright')} for testing.`,
   storybook: md`Config for projects using ${md.bold('Storybook')} for UI components.`,
 };
 
@@ -31,6 +32,7 @@ const configIcons = {
   jest: 'material/jest',
   vitest: 'material/vitest',
   cypress: 'material/cypress',
+  playwright: 'material/playwright',
   storybook: 'material/storybook',
 };
 
@@ -40,6 +42,7 @@ const configPatterns = {
   jest: '*.test.ts',
   vitest: '*.test.ts',
   cypress: '*.cy.ts',
+  playwright: '*.spec.ts',
   storybook: '*.stories.ts',
 };
 
@@ -50,7 +53,7 @@ const configExtraPatterns = {
 };
 
 /** @type {(keyof typeof configDescriptions)[]} */
-const testConfigs = ['jest', 'vitest', 'cypress'];
+const testConfigs = ['jest', 'vitest', 'cypress', 'playwright'];
 
 const tsConfigDocsReference = md`Refer to ${md.link('./typescript.md#🏗️-setup', "step 3 in TypeScript config's setup docs")} for how to set up tsconfig properly.`;
 

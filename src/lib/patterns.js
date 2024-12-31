@@ -72,6 +72,12 @@ export const CYPRESS_FILE_PATTERNS = [
   '**/e2e/**/*.[jt]s?(x)',
 ];
 
+export const PLAYWRIGHT_FILE_PATTERNS = [
+  '**/*.+(test|spec).[jt]s?(x)',
+  '**/*.po.[jt]s?(x)',
+  '**/e2e/**/*.[jt]s?(x)',
+];
+
 export const NODE_FILE_PATTERNS = ['**/*.ts', '**/*.js'];
 
 export const GRAPHQL_FILE_PATTERNS = ['**/*.graphql'];

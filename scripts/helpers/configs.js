@@ -201,17 +201,6 @@ export const configsExtraEslintrc = {
       'vitest/consistent-test-it': ['warn', { fn: 'test', withinDescribe: 'test' }]
     }
   }`,
-  'react-testing-library': `,
-  {
-    // customize rules if needed:
-    rules: {
-      // e.g. to enforce using \`queryBy*\` or \`getBy*\` for matchers:
-      'testing-library/prefer-query-matchers': [
-        'warn',
-        { validEntries: [{ matcher: 'toBeVisible', query: 'get' }] },
-      ]
-    }
-  }`,
 };
 
 /**

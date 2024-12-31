@@ -50,7 +50,7 @@
     "eslint-plugin-jest": "^28.8.0",
     "eslint-plugin-jest-formatting": "^3.0.0",
     "eslint-plugin-n": ">=17.0.0",
-    "eslint-plugin-playwright": ">=2.1.0",
+    "eslint-plugin-playwright": "^2.1.0",
     "eslint-plugin-promise": ">=6.4.0",
     "eslint-plugin-rxjs-x": ">=0.6.0",
     "eslint-plugin-sonarjs": "^1.0.4",

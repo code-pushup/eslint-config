@@ -24,6 +24,7 @@ const pluginIcons = {
   'rxjs-x': 'other/rxjs',
   sonarjs: 'other/sonar',
   storybook: 'material/storybook',
+  'testing-library': 'other/testing-library',
   unicorn: 'icons8/unicorn',
   vitest: 'material/vitest',
 };
@@ -51,6 +52,8 @@ const pluginDocsUrls = {
   playwright:
     'https://github.com/playwright-community/eslint-plugin-playwright#readme',
   promise: 'https://github.com/eslint-community/eslint-plugin-promise#readme',
+  'react-testing-library':
+    'https://github.com/testing-library/eslint-plugin-testing-library#readme',
   react: 'https://github.com/jsx-eslint/eslint-plugin-react#readme',
   'react-hooks':
     'https://github.com/facebook/react/tree/main/packages/eslint-plugin-react-hooks#readme',

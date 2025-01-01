@@ -55,6 +55,7 @@
     "eslint-plugin-rxjs-x": ">=0.6.0",
     "eslint-plugin-sonarjs": "^1.0.4",
     "eslint-plugin-storybook": ">=0.10.0",
+    "eslint-plugin-testing-library": "^7.1.1",
     "eslint-plugin-unicorn": ">=50.0.0",
     "eslint-plugin-vitest": ">=0.5.0",
     "globals": ">=14.0.0",
@@ -94,6 +95,9 @@
     "eslint-plugin-storybook": {
       "optional": true
     },
+    "eslint-plugin-testing-library": {
+      "optional": true
+    },
     "eslint-plugin-vitest": {
       "optional": true
     }
@@ -120,6 +124,7 @@
     "eslint-plugin-rxjs-x": "^0.6.1",
     "eslint-plugin-sonarjs": "^1.0.4",
     "eslint-plugin-storybook": "^0.10.0",
+    "eslint-plugin-testing-library": "^7.1.1",
     "eslint-plugin-unicorn": "^50.0.0",
     "eslint-plugin-vitest": "^0.5.4",
     "globals": "^15.12.0",

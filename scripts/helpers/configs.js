@@ -15,6 +15,7 @@ const configDescriptions = {
   cypress: md`Config for projects using ${md.bold('Cypress')} for testing.`,
   playwright: md`Config for projects using ${md.bold('Playwright')} for testing.`,
   storybook: md`Config for projects using ${md.bold('Storybook')} for UI components.`,
+  'react-testing-library': md`Config for projects using ${md.bold('React Testing Library')} for testing.`,
 };
 
 /** @type {(keyof typeof configDescriptions)[]} */
@@ -34,6 +35,7 @@ const configIcons = {
   cypress: 'material/cypress',
   playwright: 'material/playwright',
   storybook: 'material/storybook',
+  'react-testing-library': 'other/testing-library',
 };
 
 /** @type {Partial<Record<keyof typeof configDescriptions, string>>} */
@@ -44,6 +46,7 @@ const configPatterns = {
   cypress: '*.cy.ts',
   playwright: '*.spec.ts',
   storybook: '*.stories.ts',
+  'react-testing-library': '*.spec.tsx',
 };
 
 /** @type {Partial<Record<keyof typeof configDescriptions, string>>} */
@@ -53,7 +56,13 @@ const configExtraPatterns = {
 };
 
 /** @type {(keyof typeof configDescriptions)[]} */
-const testConfigs = ['jest', 'vitest', 'cypress', 'playwright'];
+const testConfigs = [
+  'jest',
+  'vitest',
+  'cypress',
+  'playwright',
+  'react-testing-library',
+];
 
 const tsConfigDocsReference = md`Refer to ${md.link('./typescript.md#🏗️-setup', "step 3 in TypeScript config's setup docs")} for how to set up tsconfig properly.`;
 

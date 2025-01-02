@@ -52,6 +52,8 @@
     "eslint-plugin-n": ">=17.0.0",
     "eslint-plugin-playwright": "^2.1.0",
     "eslint-plugin-promise": ">=6.4.0",
+    "eslint-plugin-react": "^7.36.0",
+    "eslint-plugin-react-hooks": ">=5.0.0",
     "eslint-plugin-rxjs-x": ">=0.6.0",
     "eslint-plugin-sonarjs": "^1.0.4",
     "eslint-plugin-storybook": ">=0.10.0",
@@ -89,6 +91,12 @@
     "eslint-plugin-playwright": {
       "optional": true
     },
+    "eslint-plugin-react": {
+      "optional": true
+    },
+    "eslint-plugin-react-hooks": {
+      "optional": true
+    },
     "eslint-plugin-rxjs-x": {
       "optional": true
     },
@@ -121,6 +129,8 @@
     "eslint-plugin-n": "^17.0.0",
     "eslint-plugin-playwright": "^2.1.0",
     "eslint-plugin-promise": "^6.4.0",
+    "eslint-plugin-react": "^7.37.3",
+    "eslint-plugin-react-hooks": "^5.1.0",
     "eslint-plugin-rxjs-x": "^0.6.1",
     "eslint-plugin-sonarjs": "^1.0.4",
     "eslint-plugin-storybook": "^0.10.0",

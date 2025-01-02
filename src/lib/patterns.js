@@ -65,6 +65,8 @@ export const JS_TS_JSON_FILE_PATTERNS = [
   ...JSON_FILE_PATTERNS,
 ];
 
+export const REACT_FILE_PATTERNS = withExtensions(['**/*']);
+
 export const HTML_FILE_PATTERNS = ['**/*.html'];
 
 export const CYPRESS_FILE_PATTERNS = [

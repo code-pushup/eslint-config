@@ -16,6 +16,7 @@ Recommended ESLint presets by [Code PushUp](https://github.com/code-pushup/cli/t
 |        ![nodejs](./docs/icons/material/nodejs.png)         | [node](./docs/node.md)                                   | Config for **Node.js** projects.                                    |
 |       ![angular](./docs/icons/material/angular.png)        | [angular](./docs/angular.md)                             | Config for **Angular** projects.                                    |
 |            ![ngrx](./docs/icons/other/ngrx.png)            | [ngrx](./docs/ngrx.md)                                   | Config for **Angular** projects using **NgRx** library.             |
+|         ![react](./docs/icons/material/react.png)          | [react](./docs/react.md)                                 | Config for **React** projects.                                      |
 |       ![graphql](./docs/icons/material/graphql.png)        | [graphql](./docs/graphql.md)                             | Config for **GraphQL servers** implemented in Node.js.              |
 |          ![jest](./docs/icons/material/jest.png)           | [jest](./docs/jest.md)                                   | Config for projects using **Jest** for testing.                     |
 |        ![vitest](./docs/icons/material/vitest.png)         | [vitest](./docs/vitest.md)                               | Config for projects using **Vitest** for testing.                   |
@@ -86,6 +87,8 @@ All peer dependencies used by `@code-pushup/eslint-config` are listed below, alo
 |           ![test](./docs/icons/icons8/test.png)            | [eslint-plugin-jest-formatting](https://www.npmjs.com/package/eslint-plugin-jest-formatting)         |  `^3.0.0`  |          |
 |        ![nodejs](./docs/icons/material/nodejs.png)         | [eslint-plugin-n](https://www.npmjs.com/package/eslint-plugin-n)                                     | `>=17.0.0` |          |
 |    ![playwright](./docs/icons/material/playwright.png)     | [eslint-plugin-playwright](https://www.npmjs.com/package/eslint-plugin-playwright)                   |  `^2.1.0`  |          |
+|         ![react](./docs/icons/material/react.png)          | [eslint-plugin-react](https://www.npmjs.com/package/eslint-plugin-react)                             | `^7.36.0`  |          |
+|      ![react_ts](./docs/icons/material/react_ts.png)       | [eslint-plugin-react-hooks](https://www.npmjs.com/package/eslint-plugin-react-hooks)                 | `>=5.0.0`  |          |
 |            ![rxjs](./docs/icons/other/rxjs.png)            | [eslint-plugin-rxjs-x](https://www.npmjs.com/package/eslint-plugin-rxjs-x)                           | `>=0.6.0`  |          |
 |     ![storybook](./docs/icons/material/storybook.png)      | [eslint-plugin-storybook](https://www.npmjs.com/package/eslint-plugin-storybook)                     | `>=0.10.0` |          |
 | ![testing-library](./docs/icons/other/testing-library.png) | [eslint-plugin-testing-library](https://www.npmjs.com/package/eslint-plugin-testing-library)         |  `^7.1.1`  |          |

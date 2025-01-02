@@ -30,6 +30,7 @@ export type PeerDep = {
 
 // corresponds to PNG file names in docs/icons
 export type Icon =
+  | 'icons8/accessibility'
   | 'icons8/expired'
   | 'icons8/global'
   | 'icons8/import'

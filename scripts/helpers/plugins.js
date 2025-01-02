@@ -14,6 +14,7 @@ const pluginIcons = {
   import: 'icons8/import',
   jest: 'material/jest',
   'jest-formatting': 'icons8/test',
+  'jsx-a11y': 'icons8/accessibility',
   n: 'material/nodejs',
   'no-secrets': 'icons8/secure',
   playwright: 'material/playwright',
@@ -47,6 +48,7 @@ const pluginDocsUrls = {
   jest: 'https://github.com/jest-community/eslint-plugin-jest#readme',
   'jest-formatting':
     'https://github.com/dangreenisrael/eslint-plugin-jest-formatting#readme',
+  'jsx-a11y': 'https://github.com/jsx-eslint/eslint-plugin-jsx-a11y#readme',
   n: 'https://github.com/eslint-community/eslint-plugin-n#readme',
   'no-secrets': 'https://github.com/nickdeis/eslint-plugin-no-secrets#readme',
   playwright:

@@ -42,10 +42,11 @@ body:
       label: Which configuration is this related to?
       options:
         - javascript
-        - typeScript
+        - typescript
         - node
         - angular
         - ngrx
+        - react
         - graphql
         - jest
         - vitest

@@ -28,12 +28,6 @@ Some configs extend other configs, as illustrated below. So, for example, extend
 
 ```mermaid
   graph BT;
-    javascript("javascript")
-    typescript("typescript")
-    node("node")
-    angular("angular")
-    ngrx("ngrx")
-    graphql("graphql")
     typescript --extends--> javascript
     node --extends--> javascript
     angular --extends--> typescript

@@ -126,7 +126,9 @@ function iconToImage(icon) {
 function mermaidDiagram(nodes, edges, orientation = 'TD') {
   return [
     `  graph ${orientation};`,
-    ...nodes.map(node => `    ${node.id}("${node.label}")`),
+    ...nodes
+      .filter(node => node.id !== node.label)
+      .map(node => `    ${node.id}("${node.label}")`),
     ...edges.map(
       edge =>
         '    ' +

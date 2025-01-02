@@ -1,5 +1,6 @@
 // @ts-check
 
+import jsxA11y from 'eslint-plugin-jsx-a11y';
 import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
 import globals from 'globals';
@@ -14,6 +15,7 @@ export default tseslint.config({
   extends: [
     // @ts-expect-error types inferred as possibly undefined
     react.configs.flat.recommended,
+    jsxA11y.flatConfigs.recommended,
     {
       name: 'code-pushup/react/react-hooks',
       plugins: {
@@ -29,6 +31,8 @@ export default tseslint.config({
       name: 'code-pushup/react/customized',
       rules: {
         'react/display-name': 'warn',
+        'jsx-a11y/no-autofocus': 'warn',
+        'jsx-a11y/no-redundant-roles': 'warn',
       },
     },
     {
@@ -88,6 +92,7 @@ export default tseslint.config({
         'react/static-property-placement': 'warn',
         'react/style-prop-object': 'warn',
         'react/void-dom-elements-no-children': 'error',
+        'jsx-a11y/prefer-tag-over-role': 'warn',
       },
     },
   ],

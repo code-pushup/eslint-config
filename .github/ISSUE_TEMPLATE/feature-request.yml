@@ -39,17 +39,18 @@ body:
     attributes:
       label: Which configuration is this related to?
       options:
-        - default
-        - TypeScript
-        - Node.js
-        - Angular
-        - NgRx
-        - Jest
-        - Vitest
-        - 'React Testing Library'
-        - Cypress
-        - Playwright
-        - Storybook
+        - javascript
+        - typeScript
+        - node
+        - angular
+        - ngrx
+        - graphql
+        - jest
+        - vitest
+        - cypress
+        - playwright
+        - storybook
+        - react-testing-library
     validations:
       required: true
   - type: input
@@ -57,6 +58,6 @@ body:
     attributes:
       label: ESLint version
       description: What ESLint version are you running? (check in your `package.json`)
-      placeholder: e.g. 8.57.0
+      placeholder: e.g. 9.14.0
     validations:
       required: false

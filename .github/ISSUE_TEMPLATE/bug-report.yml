@@ -7,7 +7,7 @@ body:
     attributes:
       label: Current behaviour
       description: Here you can summarise what is going on.
-      placeholder: e.g. ESLint marked an unused variable starting with `_` as unused, even though I added this pattern to my `.eslintrc`.
+      placeholder: e.g. ESLint marked an unused variable starting with `_` as unused, even though I added this pattern to my `eslint.config.js`.
     validations:
       required: true
   - type: textarea
@@ -25,7 +25,7 @@ body:
       description: Providing a set of concise steps that deterministically reproduce the behaviour helps us investigate what is going on.
       placeholder: |
         For example:
-        1. I extended the `@code-pushup/eslint` in my `.eslintrc`.
+        1. I imported `@code-pushup/eslint/javascript` in my `eslint.config.js`.
         2. I added explicit options to the `no-unused-vars` rule.
         3. When I opened the `index.ts` file, ESLint highlighted the `no-unused-vars` rule despite the variable `_unused` matching the pattern I explicitly set.
     validations:
@@ -35,23 +35,24 @@ body:
     attributes:
       label: Has this worked for you before?
       description: Provide the last working version.
-      placeholder: e.g. 0.5.0
+      placeholder: e.g. 0.12.0
   - type: dropdown
     id: config
     attributes:
       label: Which configuration is this related to?
       options:
-        - default
-        - TypeScript
-        - Node.js
-        - Angular
-        - NgRx
-        - Jest
-        - Vitest
-        - 'React Testing Library'
-        - Cypress
-        - Playwright
-        - Storybook
+        - javascript
+        - typeScript
+        - node
+        - angular
+        - ngrx
+        - graphql
+        - jest
+        - vitest
+        - cypress
+        - playwright
+        - storybook
+        - react-testing-library
     validations:
       required: true
   - type: textarea
@@ -61,11 +62,11 @@ body:
       description: What config version are you running? Include peer dependencies if applicable.
       placeholder: |
         For example:
-        `@code-pushup/eslint-config` version 0.5.0
+        `@code-pushup/eslint-config` version 0.12.0
 
         Peer dependencies:
-        - `@typescript-eslint/eslint-plugin` version 7.3.1
-        - `@typescript-eslint/parser` version 7.3.1
+        - `typescript-eslint` version 8.13.0
+        - `eslint-plugin-sonarjs` version 1.0.4
     validations:
       required: true
   - type: input
@@ -73,7 +74,7 @@ body:
     attributes:
       label: ESLint version
       description: What ESLint version are you running? (check with `npm list eslint`)
-      placeholder: e.g. 8.57.0
+      placeholder: e.g. 9.14.0
     validations:
       required: false
   - type: input
@@ -81,7 +82,7 @@ body:
     attributes:
       label: TypeScript version
       description: What TypeScript version are you running? (check with `npx tsc -v`)
-      placeholder: e.g. 5.4.0
+      placeholder: e.g. 5.6.3
     validations:
       required: false
   - type: input
@@ -89,6 +90,6 @@ body:
     attributes:
       label: Node version
       description: What Node version are you running? (check with `node -v`)
-      placeholder: e.g. 20.0.0
+      placeholder: e.g. 22.12.0
     validations:
       required: false

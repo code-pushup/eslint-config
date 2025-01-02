@@ -140,7 +140,6 @@ export default tseslint.config(
             'warn',
             { maxComplexity: 20 },
           ],
-          '@angular-eslint/template/interactive-supports-focus': 'warn',
           '@angular-eslint/template/no-any': 'error',
           '@angular-eslint/template/no-duplicate-attributes': 'error',
           '@angular-eslint/template/no-inline-styles': [
@@ -152,7 +151,6 @@ export default tseslint.config(
           '@angular-eslint/template/prefer-control-flow': 'warn',
           '@angular-eslint/template/prefer-ngsrc': 'warn',
           '@angular-eslint/template/prefer-self-closing-tags': 'warn',
-          '@angular-eslint/template/role-has-required-aria': 'error',
           '@angular-eslint/template/use-track-by-function': 'warn',
         },
       },

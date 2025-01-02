@@ -168,7 +168,8 @@ async function generateConfigDocs(config, allConfigs, peerDeps) {
         findRuleEntry(
           config.flatConfig.filter(
             ({ name }) =>
-              name?.startsWith('code-pushup/') && name.endsWith('/customized'),
+              name?.startsWith('code-pushup/') &&
+              (name.endsWith('/customized') || name.endsWith('/additional')),
           ),
           id,
         ) ??

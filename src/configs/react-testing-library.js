@@ -21,7 +21,6 @@ export default tseslint.config({
         'testing-library/prefer-find-by': 'warn',
         'testing-library/prefer-presence-queries': 'warn',
         'testing-library/prefer-query-by-disappearance': 'warn',
-        'testing-library/prefer-query-matchers': 'warn',
         'testing-library/prefer-screen-queries': 'warn',
         'testing-library/render-result-naming-convention': 'warn',
       },

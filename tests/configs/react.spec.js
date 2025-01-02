@@ -34,4 +34,9 @@ describe('react config', () => {
     const config = await loadConfig();
     expect(Object.keys(config.rules ?? {}).join(',')).toContain('react-hooks/');
   });
+
+  it('should have rule from extended recommended jsx-a11y config', async () => {
+    const config = await loadConfig();
+    expect(config.rules).toHaveProperty('jsx-a11y/alt-text');
+  });
 });

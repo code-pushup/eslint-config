@@ -85,6 +85,7 @@ All peer dependencies used by `@code-pushup/eslint-config` are listed below, alo
 |       ![cypress](./docs/icons/material/cypress.png)        | [eslint-plugin-cypress](https://www.npmjs.com/package/eslint-plugin-cypress)                         | `>=3.3.0`  |          |
 |          ![jest](./docs/icons/material/jest.png)           | [eslint-plugin-jest](https://www.npmjs.com/package/eslint-plugin-jest)                               | `^28.8.0`  |          |
 |           ![test](./docs/icons/icons8/test.png)            | [eslint-plugin-jest-formatting](https://www.npmjs.com/package/eslint-plugin-jest-formatting)         |  `^3.0.0`  |          |
+|  ![accessibility](./docs/icons/icons8/accessibility.png)   | [eslint-plugin-jsx-a11y](https://www.npmjs.com/package/eslint-plugin-jsx-a11y)                       | `^6.10.0`  |          |
 |        ![nodejs](./docs/icons/material/nodejs.png)         | [eslint-plugin-n](https://www.npmjs.com/package/eslint-plugin-n)                                     | `>=17.0.0` |          |
 |    ![playwright](./docs/icons/material/playwright.png)     | [eslint-plugin-playwright](https://www.npmjs.com/package/eslint-plugin-playwright)                   |  `^2.1.0`  |          |
 |         ![react](./docs/icons/material/react.png)          | [eslint-plugin-react](https://www.npmjs.com/package/eslint-plugin-react)                             | `^7.36.0`  |          |

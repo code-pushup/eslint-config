@@ -56,7 +56,9 @@ export default tseslint.config({
         'react/jsx-max-depth': ['warn', { max: 10 }],
         'react/jsx-no-bind': 'error',
         'react/jsx-no-constructed-context-values': 'error',
-        'react/jsx-no-leaked-render': 'error',
+        // jsx-no-leaked-render produces false positives because it doesn't check for safe types: https://github.com/jsx-eslint/eslint-plugin-react/issues/3292
+        // eslint-plugin-jsx-expressions is more accurate, but blocked by v9 support: https://github.com/hluisson/eslint-plugin-jsx-expressions/pull/19
+        'react/jsx-no-leaked-render': 'warn',
         'react/jsx-no-script-url': 'error',
         'react/jsx-no-useless-fragment': 'warn',
         'react/jsx-pascal-case': 'warn',

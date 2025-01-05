@@ -20,6 +20,11 @@ describe('react config', () => {
     expect(Object.keys(config.rules ?? {}).join(',')).toContain('react/');
   });
 
+  it('should have rule from extended javascript config', async () => {
+    const config = await loadConfig('components/Button.tsx');
+    expect(config.rules).toHaveProperty('@typescript-eslint/no-unused-vars');
+  });
+
   it('should have rule from extended recommended react config', async () => {
     const config = await loadConfig();
     expect(config.rules).toHaveProperty('react/jsx-key');

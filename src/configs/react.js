@@ -6,8 +6,9 @@ import reactHooks from 'eslint-plugin-react-hooks';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
 import { REACT_FILE_PATTERNS } from '../lib/patterns.js';
+import javascript from './javascript.js';
 
-export default tseslint.config({
+export default tseslint.config(...javascript, {
   files: REACT_FILE_PATTERNS,
   languageOptions: {
     globals: globals.browser,

@@ -33,6 +33,7 @@ Some configs extend other configs, as illustrated below. So, for example, extend
     node --extends--> javascript
     angular --extends--> typescript
     ngrx --extends--> angular
+    react --extends--> javascript
     graphql --extends--> node
 ```
 

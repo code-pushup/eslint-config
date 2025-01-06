@@ -48,8 +48,6 @@ Config for strict **TypeScript** projects.
              typescript: {
                alwaysTryTypes: true,
                project: 'tsconfig.base.json'
-               // or if using RxJS:
-               // project: ['tsconfig.base.json', 'node_modules/rxjs/tsconfig.json']
              }
            }
          }

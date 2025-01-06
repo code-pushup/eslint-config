@@ -20,6 +20,36 @@ Config for **Node.js** projects.
    export default tseslint.config(...node);
    ```
 
+4. Some rules (e.g. `n/no-unsupported-features/node-builtins`) need to know which Node version is being used. Configuration options include:
+   - `engines` field in `package.json`: 
+   
+     ```jsonc
+     {
+       // ...
+       "engines": {
+         "node": ">=22.12.0"
+       }
+     
+     ```
+   
+   - `settings.node.version` in `eslint.config.js`: 
+   
+     ```js
+     export default tseslint.config({
+       // ...
+       {
+         settings: {
+            node: {
+              version: '>=22.12.0'
+            }
+         }
+       }
+     });
+     
+     ```
+
+   For more information, refer to [`eslint-plugin-n` docs](https://github.com/eslint-community/eslint-plugin-n?tab=readme-ov-file#configured-nodejs-version-range).
+
 ## 📏 Rules (294)
 
 **290** rules are included from [`javascript` config](./javascript.md#📏-rules-290). For brevity, only the **4** additional rules are listed in this document.

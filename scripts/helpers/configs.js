@@ -71,7 +71,7 @@ const tsConfigDocsReference = md`Refer to ${md.link('./typescript.md#🏗️-set
 /** @type {Partial<Record<keyof typeof configDescriptions, import('build-md').FormattedText>>} */
 export const configsExtraSetupDocs = {
   typescript: md`${md.paragraph(
-    md`Because this config includes rules which require type information, make sure to configure ${md.code('parserOptions.project')} in your .eslintrc points to your project's tsconfig.
+    md`Because this config includes rules which require type information, make sure to configure ${md.code('parserOptions.project')} in your ${md.code('eslint.config.js')} points to your project's tsconfig.
 For more information, refer to ${md.link('https://typescript-eslint.io/linting/typed-linting', md`${md.italic('Linting with Type Information')} (typescript-eslint)`)}.${md.list(
       [
         md`Example for library in Nx monorepo:${md.codeBlock(
@@ -121,6 +121,34 @@ export default tseslint.config(
 
   angular: tsConfigDocsReference,
   ngrx: tsConfigDocsReference,
+
+  node: md`Some rules (e.g. ${md.code('n/no-unsupported-features/node-builtins')}) need to know which Node version is being used. Configuration options include:${md.list(
+    [
+      md`${md.code('engines')} field in ${md.code('package.json')}: ${md.codeBlock(
+        'jsonc',
+        `{
+  // ...
+  "engines": {
+    "node": ">=22.12.0"
+  }
+`,
+      )}`,
+      md`${md.code('settings.node.version')} in ${md.code('eslint.config.js')}: ${md.codeBlock(
+        'js',
+        `export default tseslint.config({
+  // ...
+  {
+    settings: {
+       node: {
+         version: '>=22.12.0'
+       }
+    }
+  }
+});
+`,
+      )}`,
+    ],
+  )}${md.paragraph(md`For more information, refer to ${md.link('https://github.com/eslint-community/eslint-plugin-n?tab=readme-ov-file#configured-nodejs-version-range', md`${md.code('eslint-plugin-n')} docs`)}.`)}`,
 
   graphql: md`The GraphQL ESLint plugin needs to know where your GraphQL schema is located. For more information, refer to ${md.link('https://the-guild.dev/graphql/eslint/docs/getting-started#extended-linting-rules-with-graphql-schema', md`${md.italic('Extended Linting Rules with GraphQL Schema')} in GraphQL ESLint docs`)}.${md.list(
     [

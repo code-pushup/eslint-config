@@ -70,7 +70,6 @@ export function configRulesToMarkdown(
                 )}`,
               ]
             : []),
-          ...(extraSetupDocs ? [extraSetupDocs] : []),
           md`Add to your ${md.code('eslint.config.js')} file:${md.codeBlock(
             'js',
             [
@@ -86,6 +85,7 @@ export function configRulesToMarkdown(
                 : [`export default tseslint.config(...${config});`]),
             ].join('\n'),
           )}`,
+          ...(extraSetupDocs ? [extraSetupDocs] : []),
         ]),
     )
     .heading(2, `📏 Rules (${totalRulesCount})`)

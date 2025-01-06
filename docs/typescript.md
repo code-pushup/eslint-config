@@ -5,7 +5,16 @@ Config for strict **TypeScript** projects.
 ## 🏗️ Setup
 
 1. If you haven't already, make sure to [install `@code-pushup/eslint-config` and its required peer dependencies](../README.md#🏗️-setup).
-2. Because this config includes rules which require type information, make sure to configure `parserOptions.project` in your .eslintrc points to your project's tsconfig.
+2. Add to your `eslint.config.js` file:
+
+   ```js
+   import typescript from '@code-pushup/eslint-config/typescript.js';
+   import tseslint from 'typescript-eslint';
+   
+   export default tseslint.config(...typescript);
+   ```
+
+3. Because this config includes rules which require type information, make sure to configure `parserOptions.project` in your `eslint.config.js` points to your project's tsconfig.
    For more information, refer to [_Linting with Type Information_ (typescript-eslint)](https://typescript-eslint.io/linting/typed-linting).
    
    - Example for library in Nx monorepo:
@@ -54,14 +63,6 @@ Config for strict **TypeScript** projects.
        }
      );
      ```
-3. Add to your `eslint.config.js` file:
-
-   ```js
-   import typescript from '@code-pushup/eslint-config/typescript.js';
-   import tseslint from 'typescript-eslint';
-   
-   export default tseslint.config(...typescript);
-   ```
 
 ## 📏 Rules (345)
 

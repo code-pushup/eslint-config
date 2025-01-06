@@ -11,8 +11,7 @@ Config for **Angular** projects using **NgRx** library.
    npm install -D @ngrx/eslint-plugin angular-eslint eslint-plugin-rxjs-x
    ```
 
-3. Refer to [step 3 in TypeScript config's setup docs](./typescript.md#🏗️-setup) for how to set up tsconfig properly.
-4. Add to your `eslint.config.js` file:
+3. Add to your `eslint.config.js` file:
 
    ```js
    import ngrx from '@code-pushup/eslint-config/ngrx.js';
@@ -51,6 +50,8 @@ Config for **Angular** projects using **NgRx** library.
      }
    );
    ```
+
+4. Refer to [step 3 in TypeScript config's setup docs](./typescript.md#🏗️-setup) for how to set up tsconfig properly.
 
 ## 📏 Rules (455)
 

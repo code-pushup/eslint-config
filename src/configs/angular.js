@@ -7,7 +7,6 @@ import tseslint from 'typescript-eslint';
 import {
   ANGULAR_COMPONENT_FILE_PATTERNS,
   ANGULAR_PIPE_FILE_PATTERNS,
-  CONFIG_FILE_PATTERNS,
   HTML_FILE_PATTERNS,
   negatePatterns,
   STORYBOOK_FILE_PATTERNS,
@@ -30,7 +29,6 @@ export default tseslint.config(
   },
   {
     files: TYPESCRIPT_FILE_PATTERNS,
-    ignores: CONFIG_FILE_PATTERNS,
     processor: angular.processInlineTemplates,
     languageOptions: {
       globals: globals.browser,

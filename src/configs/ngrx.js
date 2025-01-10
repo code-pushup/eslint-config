@@ -14,7 +14,7 @@ export default tseslint.config(...angular, {
         '@ngrx': ngrx,
       },
       rules: {
-        // https://github.com/ngrx/platform/tree/main/modules/eslint-plugin
+        // https://ngrx.io/guide/eslint-plugin#rules
         '@ngrx/avoid-combining-component-store-selectors': 'warn',
         '@ngrx/avoid-cyclic-effects': 'error',
         '@ngrx/avoid-duplicate-actions-in-reducer': 'error',
@@ -43,7 +43,7 @@ export default tseslint.config(...angular, {
         '@ngrx/select-style': 'warn',
         '@ngrx/use-consistent-global-store-name': ['warn', 'store$'],
 
-        // https://github.com/cartant/eslint-plugin-rxjs#rules
+        // https://github.com/JasonWeinzierl/eslint-plugin-rxjs-x#rules
         'rxjs-x/no-unsafe-catch': 'error',
         'rxjs-x/no-unsafe-first': 'error',
         'rxjs-x/no-unsafe-switchmap': 'error',
@@ -52,7 +52,7 @@ export default tseslint.config(...angular, {
     {
       name: 'code-pushup/ngrx/rjxs',
       rules: {
-        // https://github.com/cartant/eslint-plugin-rxjs#rules
+        // https://github.com/JasonWeinzierl/eslint-plugin-rxjs-x#rules
         'rxjs-x/no-unsafe-catch': 'error',
         'rxjs-x/no-unsafe-first': 'error',
         'rxjs-x/no-unsafe-switchmap': 'error',

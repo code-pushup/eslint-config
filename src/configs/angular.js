@@ -102,7 +102,7 @@ export default tseslint.config(
           '@angular-eslint/use-component-view-encapsulation': 'error',
           '@angular-eslint/use-injectable-provided-in': 'warn',
           '@angular-eslint/use-lifecycle-interface': 'warn',
-          // https://github.com/cartant/eslint-plugin-rxjs-x/tree/main#rules
+          // https://github.com/JasonWeinzierl/eslint-plugin-rxjs-x#rules
           'rxjs-x/finnish': 'warn',
           'rxjs-x/no-compat': 'warn',
           'rxjs-x/no-exposed-subjects': 'warn',

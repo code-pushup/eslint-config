@@ -48,6 +48,7 @@ export default tseslint.config(
           '@angular-eslint/no-output-on-prefix': 'warn',
           '@angular-eslint/no-output-rename': 'warn',
           '@angular-eslint/no-outputs-metadata-property': 'warn',
+          '@angular-eslint/prefer-standalone': 'warn',
           'rxjs-x/no-async-subscribe': 'warn',
           'rxjs-x/no-create': 'warn',
           'rxjs-x/no-nested-subscribe': 'warn',
@@ -95,7 +96,6 @@ export default tseslint.config(
           '@angular-eslint/no-queries-metadata-property': 'warn',
           '@angular-eslint/prefer-on-push-component-change-detection': 'warn',
           '@angular-eslint/prefer-output-readonly': 'warn',
-          '@angular-eslint/prefer-standalone-component': 'warn',
           '@angular-eslint/relative-url-prefix': 'warn',
           '@angular-eslint/sort-lifecycle-methods': 'warn',
           '@angular-eslint/use-component-selector': 'warn',
@@ -169,7 +169,6 @@ export default tseslint.config(
         rules: {
           '@angular-eslint/component-max-inline-declarations': 'off',
           '@angular-eslint/prefer-on-push-component-change-detection': 'off',
-          '@angular-eslint/prefer-standalone-component': 'off',
           '@angular-eslint/use-component-selector': 'off',
           '@angular-eslint/use-injectable-provided-in': 'off',
           'rxjs-x/finnish': 'off',

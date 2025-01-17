@@ -81,7 +81,7 @@ All peer dependencies used by `@code-pushup/eslint-config` are listed below, alo
 |         ![global](./docs/icons/icons8/global.png)          | [globals](https://www.npmjs.com/package/globals)                                                     |       `>=14.0.0`       |    ✅     |
 |    ![typescript](./docs/icons/material/typescript.png)     | [typescript-eslint](https://www.npmjs.com/package/typescript-eslint)                                 |        `^8.0.0`        |    ✅     |
 |       ![graphql](./docs/icons/material/graphql.png)        | [@graphql-eslint/eslint-plugin](https://www.npmjs.com/package/@graphql-eslint/eslint-plugin)         |        `^3.0.0`        |          |
-|            ![ngrx](./docs/icons/other/ngrx.png)            | [@ngrx/eslint-plugin](https://www.npmjs.com/package/@ngrx/eslint-plugin)                             |       `^18.0.0`        |          |
+|            ![ngrx](./docs/icons/other/ngrx.png)            | [@ngrx/eslint-plugin](https://www.npmjs.com/package/@ngrx/eslint-plugin)                             | `^18.0.0 \|\| ^19.0.0` |          |
 |       ![angular](./docs/icons/material/angular.png)        | [angular-eslint](https://www.npmjs.com/package/angular-eslint)                                       | `^18.0.0 \|\| ^19.0.0` |          |
 |       ![cypress](./docs/icons/material/cypress.png)        | [eslint-plugin-cypress](https://www.npmjs.com/package/eslint-plugin-cypress)                         |       `>=3.3.0`        |          |
 |          ![jest](./docs/icons/material/jest.png)           | [eslint-plugin-jest](https://www.npmjs.com/package/eslint-plugin-jest)                               |       `^28.8.0`        |          |

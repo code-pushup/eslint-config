@@ -10,28 +10,29 @@ describe('graphql config', () => {
   );
 
   beforeAll(setup);
+
   afterAll(teardown);
 
-  test('should have graphql plugin rules for GraphQL file', async () => {
+  it('should have graphql plugin rules for GraphQL file', async () => {
     const config = await loadConfig('src/schema.graphql');
     expect(Object.keys(config.rules ?? {}).join(',')).toContain(
       '@graphql-eslint/',
     );
   });
 
-  test('should have rule from extended schema config', async () => {
+  it('should have rule from extended schema config', async () => {
     const config = await loadConfig();
     expect(config.rules).toHaveProperty('@graphql-eslint/naming-convention');
   });
 
-  test('should have rule from extended relay config', async () => {
+  it('should have rule from extended relay config', async () => {
     const config = await loadConfig();
     expect(config.rules).toHaveProperty(
       '@graphql-eslint/relay-connection-types',
     );
   });
 
-  test('should have customized rule', async () => {
+  it('should have customized rule', async () => {
     const config = await loadConfig();
     expect(config.rules).toHaveProperty('@graphql-eslint/description-style');
     expect(config.rules?.['@graphql-eslint/description-style']).toEqual([

@@ -149,10 +149,10 @@ async function generateConfigDocs(config, allConfigs, peerDeps) {
       return [otherName, otherRuleIds];
     }),
   );
-  const extendedRuleIds = Object.values(extendedConfigs).flat();
+  const extendedRuleIds = new Set(Object.values(extendedConfigs).flat());
 
   const ruleIds = getAllEnabledRuleIds(config.flatConfig).filter(
-    ruleId => !extendedRuleIds.includes(ruleId),
+    ruleId => !extendedRuleIds.has(ruleId),
   );
 
   const eslint = new ESLint();
@@ -194,7 +194,7 @@ async function generateConfigDocs(config, allConfigs, peerDeps) {
         id,
       );
       const testLevel =
-        testEntry != null ? ruleLevelFromEntry(testEntry) : null;
+        testEntry == null ? null : ruleLevelFromEntry(testEntry);
 
       return {
         id,

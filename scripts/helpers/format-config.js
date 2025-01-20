@@ -235,7 +235,7 @@ function optionsPreview(options) {
  */
 function truncate(text, max) {
   if (text.length > max) {
-    return text.slice(0, max - 3) + '...';
+    return `${text.slice(0, max - 3)  }...`;
   }
   return text;
 }
@@ -244,5 +244,5 @@ function truncate(text, max) {
  * @param {string} content
  */
 function sanitizeRuleOptions(content) {
-  return content.replace(/\\/g, '\\\\').replace(/\*/g, '\\*');
+  return content.replace(/\\/g, '\\\\').replace(/\*/g, String.raw`\*`);
 }

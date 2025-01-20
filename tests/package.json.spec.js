@@ -1,7 +1,7 @@
 // @ts-check
 
 import { satisfies } from 'compare-versions';
-import { readFile } from 'fs/promises';
+import { readFile } from 'node:fs/promises';
 import { beforeAll, describe, expect, test } from 'vitest';
 
 describe('package.json checks', () => {
@@ -22,8 +22,8 @@ describe('package.json checks', () => {
       return {
         pass: satisfies(version, range),
         message: () =>
-          `Version ${version} ${isNot ? 'does not satisfy' : 'satisfies'} range ${range}` +
-          (name ? ` [package: ${name}]` : ''),
+          `Version ${version} ${isNot ? 'does not satisfy' : 'satisfies'} range ${range}${ 
+          name ? ` [package: ${name}]` : ''}`,
       };
     },
   });
@@ -33,7 +33,7 @@ describe('package.json checks', () => {
     packageLockJson = await readJson('package-lock.json');
   });
 
-  test('should include every eslint-related package as peer dependency', () => {
+  it('should include every eslint-related package as peer dependency', () => {
     const expected = Object.keys(packageJson.devDependencies)
       .filter(
         pkg =>
@@ -46,7 +46,7 @@ describe('package.json checks', () => {
     expect(received).toEqual(expected);
   });
 
-  test('should have installed matching version for each peer dependency', () => {
+  it('should have installed matching version for each peer dependency', () => {
     const peerDeps = Object.entries(packageJson.peerDependencies);
     expect.assertions(peerDeps.length);
     peerDeps.forEach(([pkg, version]) => {
@@ -56,18 +56,18 @@ describe('package.json checks', () => {
     });
   });
 
-  test('should mark peer dependency as optional if not included in default config', async () => {
+  it('should mark peer dependency as optional if not included in default config', async () => {
     const { default: javascript } = await import('@code-pushup/eslint-config');
-    const plugins = javascript.flatMap(config =>
+    const plugins = new Set(javascript.flatMap(config =>
       Object.keys(config.plugins ?? {}),
-    );
+    ));
     const expected = Object.keys(packageJson.peerDependencies)
       .filter(pkg => {
         if (!pkg.includes('eslint-plugin')) {
           return false;
         }
         const alias = pkg.replace(/\/?eslint-plugin-?/, '');
-        if (plugins.includes(alias)) {
+        if (plugins.has(alias)) {
           return false;
         }
         return true;

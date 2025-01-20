@@ -38,7 +38,7 @@ export default tseslint.config({
         // https://github.com/veritem/eslint-plugin-vitest#rules
         'vitest/consistent-test-filename': [
           'warn',
-          { pattern: '.*\\.spec\\.[tj]sx?$' },
+          { pattern: String.raw`.*\.spec\.[tj]sx?$` },
         ],
         'vitest/consistent-test-it': 'warn',
         'vitest/max-nested-describe': ['warn', { max: 2 }],

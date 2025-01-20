@@ -6,11 +6,7 @@
  * @returns {import('eslint').Linter.RulesRecord}
  */
 export function convertErrorsToWarnings(rules) {
-  return Object.entries(rules).reduce(
-    (acc, [ruleId, entry]) => ({
-      ...acc,
-      [ruleId]: entry === 'error' || entry === 2 ? 'warn' : entry,
-    }),
-    {},
-  );
+  return Object.fromEntries(Object.entries(rules).map(
+    ( [ruleId, entry]) => [ruleId, entry === 'error' || entry === 2 ? 'warn' : entry],
+  ));
 }

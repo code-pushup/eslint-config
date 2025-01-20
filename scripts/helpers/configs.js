@@ -58,13 +58,13 @@ const configExtraPatterns = {
 };
 
 /** @type {(keyof typeof configDescriptions)[]} */
-const testConfigs = [
+const testConfigs = new Set([
   'jest',
   'vitest',
   'cypress',
   'playwright',
   'react-testing-library',
-];
+]);
 
 const tsConfigDocsReference = md`Refer to ${md.link('./typescript.md#🏗️-setup', "step 3 in TypeScript config's setup docs")} for how to set up tsconfig properly.`;
 
@@ -280,7 +280,7 @@ export function configExtraPattern(name) {
  */
 export function isConfigForTests(name) {
   // @ts-expect-error the point is to check if string is a union
-  return testConfigs.includes(name);
+  return testConfigs.has(name);
 }
 
 /**

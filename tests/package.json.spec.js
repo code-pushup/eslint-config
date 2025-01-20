@@ -68,10 +68,7 @@ describe('package.json checks', () => {
           return false;
         }
         const alias = pkg.replace(/\/?eslint-plugin-?/, '');
-        if (plugins.has(alias)) {
-          return false;
-        }
-        return true;
+        return !plugins.has(alias);
       })
       .sort();
     const received = Object.entries(packageJson.peerDependenciesMeta)

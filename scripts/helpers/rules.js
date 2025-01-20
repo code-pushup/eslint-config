@@ -59,36 +59,40 @@ export function findRuleEntry(config, ruleId) {
  * @param {string[]} ruleIds
  * @param {import('eslint').ESLint} eslint
  * @param {string} dummyFile
+ * @returns {Record<string, import('eslint').Rule.RuleMetaData>}
  */
 export function getRulesMetadata(config, ruleIds, eslint, dummyFile) {
   const plugins = Object.fromEntries(
-    config.flatMap(({ plugins }) => Object.entries(plugins ?? {})),
+    config.flatMap(cfg => Object.entries(cfg.plugins ?? {})),
   );
   return Object.fromEntries(
     ruleIds
-      .map(id => {
-        const rule = parseRuleId(id);
-        if (!rule.plugin) {
-          const rules = eslint.getRulesMetaForResults([
-            {
-              filePath: dummyFile,
-              // @ts-expect-error hack
-              messages: [{ ruleId: id }],
-              suppressedMessages: [],
-            },
-          ]);
-          return [id, rules[id]];
-        }
-        const plugin = plugins[rule.plugin];
-        const ruleDef = plugin?.rules?.[rule.name];
-        if (typeof ruleDef === 'object') {
-          /** @type {import('@typescript-eslint/utils').TSESLint.RuleMetaDataWithDocs} */
-          // @ts-expect-error assuming valid metadata
-          const meta = ruleDef.meta;
-          return [id, meta];
-        }
-        return null;
-      })
+      .map(
+        /** @returns {[string, import('eslint').Rule.RuleMetaData] | null} */
+        id => {
+          const rule = parseRuleId(id);
+          if (!rule.plugin) {
+            const rules = eslint.getRulesMetaForResults([
+              {
+                filePath: dummyFile,
+                // @ts-expect-error hack
+                messages: [{ ruleId: id }],
+                suppressedMessages: [],
+              },
+            ]);
+            return [id, rules[id]];
+          }
+          const plugin = plugins[rule.plugin];
+          const ruleDef = plugin?.rules?.[rule.name];
+          if (typeof ruleDef === 'object') {
+            /** @type {import('@typescript-eslint/utils').TSESLint.RuleMetaDataWithDocs} */
+            // @ts-expect-error assuming valid metadata
+            const meta = ruleDef.meta;
+            return [id, meta];
+          }
+          return null;
+        },
+      )
       .filter(rule => rule != null),
   );
 }

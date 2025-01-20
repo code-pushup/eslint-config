@@ -4,7 +4,7 @@ import { pluginIcon } from './plugins.js';
 
 /**
  * @param {string} pkg
- * @returns {import('./types').Icon}
+ * @returns {import('./types.js').Icon}
  */
 export function packageIcon(pkg) {
   if (pkg === 'eslint' || pkg === '@eslint/js') {
@@ -35,8 +35,8 @@ export function packageDocs(pkg) {
 }
 
 /**
- * @param {import('./types').PeerDep[]} peerDeps
- * @returns {import('./types').PeerDep[]}
+ * @param {import('./types.js').PeerDep[]} peerDeps
+ * @returns {import('./types.js').PeerDep[]}
  */
 export function sortPeerDeps(peerDeps) {
   return Object.values(
@@ -65,41 +65,43 @@ export function sortPeerDeps(peerDeps) {
 
 /** @param {string[]} packages */
 export function abbreviatePackageList(packages) {
-  const groups = packages.reduce((acc, pkg) => {
-    if (pkg.startsWith('@')) {
-      const prefix = pkg.slice(0, pkg.indexOf('/') + 1);
-      return {
-        ...acc,
-        [prefix]: [...(acc[prefix] ?? []), pkg],
-      };
-    }
-    const pluginPrefix = 'eslint-plugin-';
-    if (pkg.startsWith(pluginPrefix)) {
-      return {
-        ...acc,
-        [pluginPrefix]: [...(acc[pluginPrefix] ?? []), pkg],
-      };
-    }
-    return acc;
-  }, {});
+  const groups = packages.reduce(
+    /** @param {Record<string, string[]>} acc */
+    (acc, pkg) => {
+      if (pkg.startsWith('@')) {
+        const prefix = pkg.slice(0, pkg.indexOf('/') + 1);
+        return {
+          ...acc,
+          [prefix]: [...(acc[prefix] ?? []), pkg],
+        };
+      }
+      const pluginPrefix = 'eslint-plugin-';
+      if (pkg.startsWith(pluginPrefix)) {
+        return {
+          ...acc,
+          [pluginPrefix]: [...(acc[pluginPrefix] ?? []), pkg],
+        };
+      }
+      return acc;
+    },
+    {},
+  );
   return packages
     .map(pkg => {
-      const group = Object.entries(groups).find(([, packages]) =>
-        packages.includes(pkg),
+      const group = Object.entries(groups).find(([, pkgs]) =>
+        pkgs.includes(pkg),
       );
       if (!group) {
         return pkg;
       }
-      const [prefix, packages] = group;
-      if (packages[0] !== pkg) {
+      const [prefix, pkgs] = group;
+      if (pkgs[0] !== pkg) {
         return null;
       }
-      if (packages.length === 1) {
+      if (pkgs.length === 1) {
         return pkg;
       }
-      return `${prefix}{${packages
-        .map(pkg => pkg.slice(prefix.length))
-        .join(',')}}`;
+      return `${prefix}{${pkgs.map(p => p.slice(prefix.length)).join(',')}}`;
     })
     .filter(val => val != null)
     .join(' ');

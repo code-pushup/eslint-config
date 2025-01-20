@@ -1,4 +1,5 @@
 // @ts-check
+/* eslint-disable sonarjs/no-nested-template-literals */
 
 import { md } from 'build-md';
 import { getEnabledRuleIds } from './rules.js';
@@ -23,7 +24,7 @@ const configDescriptions = {
 // @ts-expect-error keys won't be any string
 export const configNames = Object.keys(configDescriptions);
 
-/** @type {Record<keyof typeof configDescriptions, import('./types').Icon>} */
+/** @type {Record<keyof typeof configDescriptions, import('./types.js').Icon>} */
 const configIcons = {
   javascript: 'material/javascript',
   typescript: 'material/typescript',
@@ -57,7 +58,7 @@ const configExtraPatterns = {
   storybook: '.storybook/main.ts',
 };
 
-/** @type {(keyof typeof configDescriptions)[]} */
+/** @type {Set<(keyof typeof configDescriptions)>} */
 const testConfigs = new Set([
   'jest',
   'vitest',
@@ -65,6 +66,8 @@ const testConfigs = new Set([
   'playwright',
   'react-testing-library',
 ]);
+
+const eslintConfig = 'eslint.config.js';
 
 const tsConfigDocsReference = md`Refer to ${md.link('./typescript.md#🏗️-setup', "step 3 in TypeScript config's setup docs")} for how to set up tsconfig properly.`;
 
@@ -99,7 +102,7 @@ export default tseslint.config(
     md`Similarly, you may need to ${md.link('https://www.npmjs.com/package/eslint-plugin-import#typescript', md`configure a tsconfig file for ${md.code('eslint-plugin-import')} rules`)} (e.g. if using path aliases in ${md.code('.ts')} files):${md.list(
       [
         md`Install additional import resolver:${md.codeBlock('sh', 'npm i -D eslint-import-resolver-typescript')}`,
-        md`Example ${md.code('eslint.config.js')} for Nx monorepo:${md.codeBlock(
+        md`Example ${md.code(eslintConfig)} for Nx monorepo:${md.codeBlock(
           'js',
           `export default tseslint.config(
   // ...
@@ -133,7 +136,7 @@ export default tseslint.config(
   }
 `,
       )}`,
-      md`${md.code('settings.node.version')} in ${md.code('eslint.config.js')}: ${md.codeBlock(
+      md`${md.code('settings.node.version')} in ${md.code(eslintConfig)}: ${md.codeBlock(
         'js',
         `export default tseslint.config({
   // ...
@@ -245,7 +248,7 @@ export function configDescription(name) {
 /**
  * Get icon name for given config.
  * @param {string} name Config file name without extension
- * @returns {import('./types').Icon}
+ * @returns {import('./types.js').Icon}
  */
 export function configIcon(name) {
   if (!(name in configIcons)) {

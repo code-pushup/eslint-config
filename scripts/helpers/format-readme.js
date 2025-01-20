@@ -13,10 +13,26 @@ import {
 /**
  * Format Markdown documentation for README
  * @param {string[]} configs Config names
- * @param {import('./types').PeerDep[]} peerDeps Peer dependencies
+ * @param {import('./types.js').PeerDep[]} peerDeps Peer dependencies
  * @param {Record<string, string[]>} extended Map of extended configs
  */
 export function configsToMarkdown(configs, peerDeps, extended) {
+  return new MarkdownDocument()
+    .$concat(
+      configsOverviewDocs(configs, extended),
+      basicSetupDocs(peerDeps),
+      peerDepsDocs(peerDeps),
+      testOverridesDocs(),
+    )
+    .toString();
+}
+
+/**
+ * Generate docs with overview of all configs and relationships between them
+ * @param {string[]} configs Config names
+ * @param {Record<string, string[]>} extended Map of extended configs
+ */
+function configsOverviewDocs(configs, extended) {
   return new MarkdownDocument()
     .heading(2, '⚙️ Configs')
     .table(
@@ -52,7 +68,15 @@ export function configsToMarkdown(configs, peerDeps, extended) {
         ),
         'BT',
       ),
-    )
+    );
+}
+
+/**
+ * Generate docs with basic setup instructions
+ * @param {import('./types.js').PeerDep[]} peerDeps Peer dependencies
+ */
+function basicSetupDocs(peerDeps) {
+  return new MarkdownDocument()
     .heading(3, '🏗️ Setup')
     .paragraph('To use the default config, follow these steps:')
     .list('ordered', [
@@ -80,7 +104,15 @@ export function configsToMarkdown(configs, peerDeps, extended) {
         '#⚙️-configs',
         'listed above',
       )}). This will require installing additional peer dependencies. For more details, refer to setup docs for the configs you're interested in using.`,
-    )
+    );
+}
+
+/**
+ * Generate docs with peer dependencies for each config
+ * @param {import('./types.js').PeerDep[]} peerDeps Peer dependencies
+ */
+function peerDepsDocs(peerDeps) {
+  return new MarkdownDocument()
     .heading(4, '📦 Peer dependencies')
     .paragraph(
       md`All peer dependencies used by ${md.code(
@@ -100,7 +132,14 @@ export function configsToMarkdown(configs, peerDeps, extended) {
         md.code(version),
         optional ? '' : '✅',
       ]),
-    )
+    );
+}
+
+/**
+ * Generate docs on test overrides
+ */
+function testOverridesDocs() {
+  return new MarkdownDocument()
     .heading(3, '🧪 Test overrides')
     .paragraph(
       'For non-production code, some rules are disabled (or downgraded from errors to warnings).',
@@ -108,20 +147,22 @@ export function configsToMarkdown(configs, peerDeps, extended) {
     .paragraph(
       'This applies to file paths matching any of the following globs:',
     )
-    .list(TEST_FILE_PATTERNS.map(md.code))
-    .toString();
+    .list(TEST_FILE_PATTERNS.map(md.code));
 }
 
-/** @param {import('./types').Icon} icon  */
+/**
+ * Create Markdown image for given icon
+ * @param {import('./types.js').Icon} icon Icon file name without extension
+ */
 function iconToImage(icon) {
   return md.image(`./docs/icons/${icon}.png`, icon.replace(/^\w+\//, ''));
 }
 
 /**
- *
- * @param {{ id: string, label: string }[]} nodes
- * @param {{ from: string, to: string; label?: string }[]} edges
- * @param {'TD' | 'TB' | 'BT' | 'LR' | 'RL'} orientation
+ * Create Mermaid diagram
+ * @param {{ id: string, label: string }[]} nodes Nodes
+ * @param {{ from: string, to: string; label?: string }[]} edges Edges between nodes
+ * @param {'TD' | 'TB' | 'BT' | 'LR' | 'RL'} orientation Diagram orientation
  */
 function mermaidDiagram(nodes, edges, orientation = 'TD') {
   return [

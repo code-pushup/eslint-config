@@ -16,11 +16,12 @@ const setupLink = '../README.md#🏗️-setup';
 /**
  * Format Markdown documentation for given config.
  * @param {string} config Config name
- * @param {import('./types').RuleData[]} rules List of rules included in config
- * @param {import('./types').ExtendedConfig[]} extended List of extended Code PushUp configs
- * @param {import('./types').PeerDep[]} peerDeps Peer dependencies
+ * @param {import('./types.js').RuleData[]} rules List of rules included in config
+ * @param {import('./types.js').ExtendedConfig[]} extended List of extended Code PushUp configs
+ * @param {import('./types.js').PeerDep[]} peerDeps Peer dependencies
  * @param {{hideOverrides?: boolean}} options Extra options
  */
+// eslint-disable-next-line @typescript-eslint/max-params
 export function configRulesToMarkdown(
   config,
   rules,
@@ -28,15 +29,22 @@ export function configRulesToMarkdown(
   peerDeps,
   options = {},
 ) {
-  const errors = rules.filter(rule => rule.level === 'error');
-  const warnings = rules.filter(rule => rule.level === 'warn');
+  return new MarkdownDocument()
+    .heading(1, md`${md.code(config)} config`)
+    .paragraph(configDescription(config))
+    .$concat(
+      setupDocs(config, peerDeps),
+      rulesDocs(config, rules, extended, options),
+    )
+    .toString();
+}
 
-  const extendedRulesCount = extended.reduce(
-    (acc, { rulesCount }) => acc + rulesCount,
-    0,
-  );
-  const totalRulesCount = extendedRulesCount + rules.length;
-
+/**
+ * Generate docs on how to setup given config
+ * @param {string} config Config name
+ * @param {import('./types.js').PeerDep[]} peerDeps Peer dependencies
+ */
+function setupDocs(config, peerDeps) {
   const extraSetupDocs = configsExtraSetupDocs[config];
 
   const dependencies = sortPeerDeps(peerDeps)
@@ -46,48 +54,64 @@ export function configRulesToMarkdown(
     )
     .map(({ pkg }) => pkg);
 
+  return new MarkdownDocument().heading(2, '🏗️ Setup').$if(
+    config === 'javascript',
+    doc =>
+      doc.paragraph(
+        md`Refer to ${md.link(setupLink, 'setup instructions in README')}.`,
+      ),
+    doc =>
+      doc.list('ordered', [
+        md`If you haven't already, make sure to ${md.link(
+          setupLink,
+          md`install ${md.code('@code-pushup/eslint-config')} and its required peer dependencies`,
+        )}.`,
+        ...(dependencies.length > 0
+          ? [
+              md`Since this plugin requires additional peer dependencies, you have to install them as well:${md.codeBlock(
+                'sh',
+                `npm install -D ${abbreviatePackageList(dependencies)}`,
+              )}`,
+            ]
+          : []),
+        md`Add to your ${md.code('eslint.config.js')} file:${md.codeBlock(
+          'js',
+          [
+            `import ${config} from '@code-pushup/eslint-config/${config}.js';`,
+            "import tseslint from 'typescript-eslint';",
+            '',
+            ...(configsExtraEslintrc[config]
+              ? [
+                  'export default tseslint.config(',
+                  `  ...${config}${configsExtraEslintrc[config]}`,
+                  ');',
+                ]
+              : [`export default tseslint.config(...${config});`]),
+          ].join('\n'),
+        )}`,
+        ...(extraSetupDocs ? [extraSetupDocs] : []),
+      ]),
+  );
+}
+
+/**
+ * Generate docs on rules included in given config
+ * @param {string} config Config name
+ * @param {import('./types.js').RuleData[]} rules List of rules included in config
+ * @param {import('./types.js').ExtendedConfig[]} extended List of extended Code PushUp configs
+ * @param {{hideOverrides?: boolean}} options Extra options
+ */
+function rulesDocs(config, rules, extended, options) {
+  const errors = rules.filter(rule => rule.level === 'error');
+  const warnings = rules.filter(rule => rule.level === 'warn');
+
+  const extendedRulesCount = extended.reduce(
+    (acc, { rulesCount }) => acc + rulesCount,
+    0,
+  );
+  const totalRulesCount = extendedRulesCount + rules.length;
+
   return new MarkdownDocument()
-    .heading(1, md`${md.code(config)} config`)
-    .paragraph(configDescription(config))
-    .heading(2, '🏗️ Setup')
-    .$if(
-      config === 'javascript',
-      doc =>
-        doc.paragraph(
-          md`Refer to ${md.link(setupLink, 'setup instructions in README')}.`,
-        ),
-      doc =>
-        doc.list('ordered', [
-          md`If you haven't already, make sure to ${md.link(
-            setupLink,
-            md`install ${md.code('@code-pushup/eslint-config')} and its required peer dependencies`,
-          )}.`,
-          ...(dependencies.length > 0
-            ? [
-                md`Since this plugin requires additional peer dependencies, you have to install them as well:${md.codeBlock(
-                  'sh',
-                  `npm install -D ${abbreviatePackageList(dependencies)}`,
-                )}`,
-              ]
-            : []),
-          md`Add to your ${md.code('eslint.config.js')} file:${md.codeBlock(
-            'js',
-            [
-              `import ${config} from '@code-pushup/eslint-config/${config}.js';`,
-              "import tseslint from 'typescript-eslint';",
-              '',
-              ...(configsExtraEslintrc[config]
-                ? [
-                    'export default tseslint.config(',
-                    `  ...${config}${configsExtraEslintrc[config]}`,
-                    ');',
-                  ]
-                : [`export default tseslint.config(...${config});`]),
-            ].join('\n'),
-          )}`,
-          ...(extraSetupDocs ? [extraSetupDocs] : []),
-        ]),
-    )
     .heading(2, `📏 Rules (${totalRulesCount})`)
     .paragraph(
       extended.length > 0 &&
@@ -97,6 +121,7 @@ export function configRulesToMarkdown(
               `./${alias}.md#📏-rules-${rulesCount}`,
               md`${md.code(
                 alias,
+                // eslint-disable-next-line sonarjs/no-nested-template-literals
               )} config${length > 1 ? ` (${rulesCount})` : ''}`.toString(),
             ),
           )
@@ -105,6 +130,7 @@ export function configRulesToMarkdown(
           )}. For brevity, only the ${md.bold(rules.length.toString())} additional rules are listed in this document.`,
     )
     .quote(
+      // eslint-disable-next-line sonarjs/no-nested-template-literals
       md`🔧 Automatically fixable by the ${md.link('https://eslint.org/docs/user-guide/command-line-interface#--fix', md`${md.code('--fix')} CLI option`)}.<br>💡 Manually fixable by ${md.link('https://eslint.org/docs/developer-guide/working-with-rules#providing-suggestions', 'editor suggestions')}.${options.hideOverrides ? '' : md`<br>🧪🚫 Disabled for ${md.link(testGlobsLink, 'test files')}.<br>🧪⚠️ Severity lessened to warning for ${md.link(testGlobsLink, 'test files')}.`}`,
     )
     .$if(errors.length > 0, doc =>
@@ -116,12 +142,11 @@ export function configRulesToMarkdown(
       doc
         .heading(3, `⚠️ Warnings (${warnings.length})`)
         .table(...rulesTable(warnings)),
-    )
-    .toString();
+    );
 }
 
 /**
- * @param {import('./types').RuleData[]} rules
+ * @param {import('./types.js').RuleData[]} rules
  * @param {boolean} hideOverrides
  * @returns {Parameters<import('build-md').MarkdownDocument['table']>}
  */
@@ -142,54 +167,86 @@ function rulesTable(rules, hideOverrides = false) {
         const { name: name2, plugin: plugin2 = '' } = parseRuleId(b.id);
         return plugin1.localeCompare(plugin2) || name1.localeCompare(name2);
       })
-      .map(rule => {
-        const { name, plugin } = parseRuleId(rule.id);
-
-        const options =
-          rule.options && rule.options.length > 1
-            ? rule.options
-            : rule.options?.length === 1
-              ? rule.options[0]
-              : undefined;
-
-        return [
-          plugin
-            ? md.link(
-                pluginDocs(plugin),
-                md.image(
-                  `./icons/${pluginIcon(plugin)}.png`,
-                  plugin || 'ESLint core',
-                ),
-              )
-            : '',
-
-          md`${rule.meta?.docs?.url ? md.link(rule.meta.docs.url, name) : name}\n${rule.meta?.docs?.description ?? ''}`,
-
-          options
-            ? md.details(
-                truncate(sanitizeRuleOptions(optionsPreview(options)), 30),
-                md.codeBlock(
-                  'json',
-                  sanitizeRuleOptions(JSON.stringify(options, null, 2)),
-                ),
-              )
-            : '',
-
-          [
-            rule.meta?.fixable ? '🔧' : '',
-            rule.meta?.hasSuggestions ? '💡' : '',
-          ]
-            .filter(Boolean)
-            .join(', ') || '',
-
-          rule.testOverride
-            ? rule.testOverride.level === 'off'
-              ? '🧪🚫'
-              : '🧪⚠️'
-            : '',
-        ];
-      }),
+      .map(rule => [
+        formatRulePlugin(rule),
+        formatRuleName(rule),
+        formatRuleOptions(rule),
+        formatRuleAutofix(rule),
+        formatRuleOverrides(rule),
+      ]),
   ];
+}
+
+/**
+ * Format table cell for rule's "Plugin" column
+ * @param {import('../helpers/types.js').RuleData} rule Rule
+ * @returns {import('build-md').BlockText}
+ */
+function formatRulePlugin(rule) {
+  const { plugin } = parseRuleId(rule.id);
+  if (!plugin) {
+    return '';
+  }
+  return md.link(
+    pluginDocs(plugin),
+    md.image(`./icons/${pluginIcon(plugin)}.png`, plugin || 'ESLint core'),
+  );
+}
+
+/**
+ * Format table cell for rule's "Name" column
+ * @param {import('../helpers/types.js').RuleData} rule Rule
+ * @returns {import('build-md').BlockText}
+ */
+function formatRuleName(rule) {
+  const { name } = parseRuleId(rule.id);
+  return md`${rule.meta?.docs?.url ? md.link(rule.meta.docs.url, name) : name}\n${rule.meta?.docs?.description ?? ''}`;
+}
+
+/**
+ * Format table cell for rule's "Options" column
+ * @param {import('../helpers/types.js').RuleData} rule Rule
+ * @returns {import('build-md').BlockText}
+ */
+function formatRuleOptions(rule) {
+  const options =
+    rule.options && rule.options.length > 1
+      ? rule.options
+      : rule.options?.length === 1
+        ? rule.options[0]
+        : undefined;
+  if (!options) {
+    return '';
+  }
+  return md.details(
+    truncate(sanitizeRuleOptions(optionsPreview(options)), 30),
+    md.codeBlock('json', sanitizeRuleOptions(JSON.stringify(options, null, 2))),
+  );
+}
+
+/**
+ * Format table cell for rule's "Autofix" column
+ * @param {import('../helpers/types.js').RuleData} rule Rule
+ * @returns {import('build-md').BlockText}
+ */
+function formatRuleAutofix(rule) {
+  return (
+    [rule.meta?.fixable ? '🔧' : '', rule.meta?.hasSuggestions ? '💡' : '']
+      .filter(Boolean)
+      .join(', ') || ''
+  );
+}
+
+/**
+ * Format table cell for rule's "Overrides" column
+ * @param {import('../helpers/types.js').RuleData} rule Rule
+ * @returns {import('build-md').BlockText}
+ */
+function formatRuleOverrides(rule) {
+  if (!rule.testOverride) {
+    return '';
+  }
+  return rule.testOverride.level === 'off' ? '🧪🚫' : '🧪⚠️';
 }
 
 /**
@@ -206,7 +263,7 @@ function optionsPreview(options) {
   ) {
     return options.toString();
   }
-  if (typeof options === 'object' && options !== null) {
+  if (typeof options === 'object' && options != null) {
     return Object.entries(options)
       .map(([key, value]) => {
         if (

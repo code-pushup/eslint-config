@@ -18,6 +18,7 @@
   "scripts": {
     "prepare": "husky install",
     "test": "vitest run",
+    "lint": "eslint .",
     "docs": "node scripts/docs.js",
     "release": "release-it"
   },

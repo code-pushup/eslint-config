@@ -13,6 +13,7 @@ const fromDirectory = dir => `**/${dir}/**/*`;
  */
 export const withExtensions = (patterns, options = {}) =>
   patterns.map(
+    // eslint-disable-next-line sonarjs/no-nested-template-literals
     pattern => `${pattern}.?(c|m)[jt]s${options.skipJSX ? '' : `?(x)`}`,
   );
 

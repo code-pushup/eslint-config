@@ -2,7 +2,7 @@
 
 import { ESLint } from 'eslint';
 import fs from 'node:fs/promises';
-import path, { dirname } from 'node:path';
+import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { TEST_FILE_PATTERNS } from '../src/lib/patterns.js';
 import {
@@ -19,7 +19,7 @@ import {
   ruleLevelFromEntry,
 } from './helpers/rules.js';
 
-const currentDir = fileURLToPath(dirname(import.meta.url));
+const currentDir = fileURLToPath(path.dirname(import.meta.url));
 const readmePath = path.join(currentDir, '..', 'README.md');
 const docsDir = path.join(currentDir, '..', 'docs');
 
@@ -31,16 +31,16 @@ async function generateDocs() {
 
   await fs.mkdir(docsDir, { recursive: true });
 
-  for (const config of configs) {
-    await generateConfigDocs(config, configs, peerDeps);
-  }
+  await Promise.all(
+    configs.map(config => generateConfigDocs(config, configs, peerDeps)),
+  );
 
   await generateReadmeDocs(configs, peerDeps);
 }
 
 /**
  * @param {string[]} names
- * @returns {Promise<import('./helpers/types').ExportedConfig[]>}
+ * @returns {Promise<import('./helpers/types.js').ExportedConfig[]>}
  */
 function loadConfigs(names) {
   return Promise.all(
@@ -52,37 +52,42 @@ function loadConfigs(names) {
 }
 
 /**
- * @param {import('./helpers/types').ExportedConfig[]} configs
- * @returns {Promise<import('./helpers/types').PeerDep[]>}
+ * @param {import('./helpers/types.js').ExportedConfig[]} configs
+ * @returns {Promise<import('./helpers/types.js').PeerDep[]>}
  */
 async function loadPeerDependencies(configs) {
   const packageJson = await import('../package.json', {
     with: { type: 'json' },
   }).then(m => m.default);
 
-  /** @type {Record<string, string[]>} */
-  const pkgConfigs = {};
-
-  for (const config of configs) {
-    const plugins = config.flatConfig.flatMap(({ plugins = {} }) =>
-      Object.keys(plugins),
-    );
-
-    for (const pkg in packageJson.peerDependencies) {
-      if (pkg === 'eslint') {
-        continue;
-      }
-      const alias = pkg.replace(/eslint-plugin-?/, '').replace(/\/$/, '');
-      if (
-        plugins.includes(pkg) ||
-        plugins.includes(alias) ||
-        plugins.map(plugin => plugin.replace(/^@/, '')).includes(alias)
-      ) {
-        pkgConfigs[pkg] ??= [];
-        pkgConfigs[pkg].push(config.name);
-      }
-    }
-  }
+  const pkgConfigs = configs.reduce(
+    /** @param {Record<string, string[]>} acc */
+    (acc, config) => {
+      const plugins = config.flatConfig.flatMap(cfg =>
+        Object.keys(cfg.plugins ?? {}),
+      );
+      const usedPackages = Object.keys(packageJson.peerDependencies).filter(
+        pkg => {
+          if (pkg === 'eslint') {
+            return false;
+          }
+          const alias = pkg.replace(/eslint-plugin-?/, '').replace(/\/$/, '');
+          return (
+            plugins.includes(pkg) ||
+            plugins.includes(alias) ||
+            plugins.map(plugin => plugin.replace(/^@/, '')).includes(alias)
+          );
+        },
+      );
+      return {
+        ...acc,
+        ...Object.fromEntries(
+          usedPackages.map(pkg => [pkg, [...(acc[pkg] ?? []), config.name]]),
+        ),
+      };
+    },
+    {},
+  );
 
   return Object.entries(packageJson.peerDependencies).map(([pkg, version]) => ({
     pkg,
@@ -94,8 +99,8 @@ async function loadPeerDependencies(configs) {
 
 /**
  * Update auto-generated part of README.md
- * @param {import('./helpers/types').ExportedConfig[]} configs Exported configs
- * @param {import('./helpers/types').PeerDep[]} peerDeps Peer dependencies
+ * @param {import('./helpers/types.js').ExportedConfig[]} configs Exported configs
+ * @param {import('./helpers/types.js').PeerDep[]} peerDeps Peer dependencies
  */
 async function generateReadmeDocs(configs, peerDeps) {
   const extended = Object.fromEntries(
@@ -137,9 +142,9 @@ async function generateReadmeDocs(configs, peerDeps) {
 
 /**
  * Generate Markdown file for specified ESLint config.
- * @param {import('./helpers/types').ExportedConfig} config Exported config
- * @param {import('./helpers/types').ExportedConfig[]} allConfigs All exported configs
- * @param {import('./helpers/types').PeerDep[]} peerDeps Peer dependencies
+ * @param {import('./helpers/types.js').ExportedConfig} config Exported config
+ * @param {import('./helpers/types.js').ExportedConfig[]} allConfigs All exported configs
+ * @param {import('./helpers/types.js').PeerDep[]} peerDeps Peer dependencies
  */
 async function generateConfigDocs(config, allConfigs, peerDeps) {
   const extendedConfigs = Object.fromEntries(
@@ -159,59 +164,16 @@ async function generateConfigDocs(config, allConfigs, peerDeps) {
   const dummyFile = 'eslint.config.js';
   await eslint.lintFiles(dummyFile);
 
-  const rules = getRulesMetadata(config.flatConfig, ruleIds, eslint, dummyFile);
+  const rulesMeta = getRulesMetadata(
+    config.flatConfig,
+    ruleIds,
+    eslint,
+    dummyFile,
+  );
 
   const markdown = configRulesToMarkdown(
     config.name,
-    ruleIds.map(id => {
-      const entry =
-        findRuleEntry(
-          config.flatConfig.filter(
-            ({ name }) =>
-              name?.startsWith('code-pushup/') &&
-              (name.endsWith('/customized') || name.endsWith('/additional')),
-          ),
-          id,
-        ) ??
-        findRuleEntry(
-          config.flatConfig.filter(({ files }) => files !== TEST_FILE_PATTERNS),
-          id,
-        );
-      if (entry == null) {
-        throw new Error(
-          `Internal logic error - no entry found for rule ${id} in ${config.name} config`,
-        );
-      }
-      const level = ruleLevelFromEntry(entry);
-      if (level === 'off') {
-        throw new Error(
-          `Internal logic error - rule ${id} turned off in ${config.name} config`,
-        );
-      }
-
-      const testEntry = findRuleEntry(
-        config.flatConfig.filter(({ files }) => files === TEST_FILE_PATTERNS),
-        id,
-      );
-      const testLevel =
-        testEntry == null ? null : ruleLevelFromEntry(testEntry);
-
-      return {
-        id,
-        meta: rules[id],
-        level,
-        ...(Array.isArray(entry) &&
-          entry.length > 1 && {
-            options: entry.slice(1),
-          }),
-        ...(testLevel &&
-          testLevel !== level && {
-            testOverride: {
-              level: testLevel,
-            },
-          }),
-      };
-    }),
+    ruleIds.map(id => findRuleData(id, config, rulesMeta)),
     Object.entries(extendedConfigs).map(([alias, rules]) => ({
       alias,
       rulesCount: rules.length,
@@ -229,10 +191,66 @@ async function generateConfigDocs(config, allConfigs, peerDeps) {
 }
 
 /**
- * Get all extended code-pushup configs from flat config.
- * @param {import('./helpers/types').ExportedConfig} config Exported config
+ * Look up rule's metadata, level, custom options and overrides for given config.
+ * @param {string} id Rule ID
+ * @param {import('./helpers/types.js').ExportedConfig} config Configuration
+ * @param {Record<string, import('eslint').Rule.RuleMetaData>} rules Rules metadata
+ * @returns {import('./helpers/types.js').RuleData} Rule data
  */
-export function getExtendedConfigs(config) {
+function findRuleData(id, config, rules) {
+  const entry =
+    findRuleEntry(
+      config.flatConfig.filter(
+        ({ name }) =>
+          name?.startsWith('code-pushup/') &&
+          (name.endsWith('/customized') || name.endsWith('/additional')),
+      ),
+      id,
+    ) ??
+    findRuleEntry(
+      config.flatConfig.filter(({ files }) => files !== TEST_FILE_PATTERNS),
+      id,
+    );
+  if (entry == null) {
+    throw new Error(
+      `Internal logic error - no entry found for rule ${id} in ${config.name} config`,
+    );
+  }
+  const level = ruleLevelFromEntry(entry);
+  if (level === 'off') {
+    throw new Error(
+      `Internal logic error - rule ${id} turned off in ${config.name} config`,
+    );
+  }
+
+  const testEntry = findRuleEntry(
+    config.flatConfig.filter(({ files }) => files === TEST_FILE_PATTERNS),
+    id,
+  );
+  const testLevel = testEntry == null ? null : ruleLevelFromEntry(testEntry);
+
+  return {
+    id,
+    meta: rules[id],
+    level,
+    ...(Array.isArray(entry) &&
+      entry.length > 1 && {
+        options: entry.slice(1),
+      }),
+    ...(testLevel &&
+      testLevel !== level && {
+        testOverride: {
+          level: testLevel,
+        },
+      }),
+  };
+}
+
+/**
+ * Get all extended code-pushup configs from flat config.
+ * @param {import('./helpers/types.js').ExportedConfig} config Exported config
+ */
+function getExtendedConfigs(config) {
   const allExtended = [
     ...new Set(
       config.flatConfig

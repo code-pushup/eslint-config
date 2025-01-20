@@ -1,6 +1,6 @@
 // @ts-check
 
-/** @type {Record<string, import('./types').Icon>} */
+/** @type {Record<string, import('./types.js').Icon>} */
 const pluginIcons = {
   '@angular-eslint': 'material/angular',
   '@angular-eslint/template': 'material/angular_component',

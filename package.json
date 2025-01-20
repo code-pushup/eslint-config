@@ -18,7 +18,11 @@
   "scripts": {
     "prepare": "husky install",
     "test": "vitest run",
+    "test:watch": "vitest",
     "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "docs": "node scripts/docs.js",
     "release": "release-it"
   },

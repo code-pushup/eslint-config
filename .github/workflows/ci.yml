@@ -22,6 +22,23 @@ jobs:
         run: npm ci
       - name: Run Vitest tests
         run: npm test
+
+  lint:
+    runs-on: ubuntu-latest
+    name: Lint
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .tool-versions
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Run ESLint
+        run: npm run lint
+
   docs:
     runs-on: ubuntu-latest
     name: Docs check
@@ -44,6 +61,7 @@ jobs:
             git diff --ignore-space-at-eol --text docs/*.md README.md
             exit 1
           fi
+
   format:
     runs-on: ubuntu-latest
     name: Format check

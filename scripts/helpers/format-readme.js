@@ -131,10 +131,11 @@ function mermaidDiagram(nodes, edges, orientation = 'TD') {
       .map(node => `    ${node.id}("${node.label}")`),
     ...edges.map(
       edge =>
-        `    ${ 
-        [edge.from, edge.label ? `--${edge.label}-->` : '-->', edge.to].join(
-          ' ',
-        )}`,
+        `    ${[
+          edge.from,
+          edge.label ? `--${edge.label}-->` : '-->',
+          edge.to,
+        ].join(' ')}`,
     ),
   ].join('\n');
 }

@@ -2,7 +2,7 @@
 
 import { satisfies } from 'compare-versions';
 import { readFile } from 'node:fs/promises';
-import { beforeAll, describe, expect, test } from 'vitest';
+import { beforeAll, describe, expect, it } from 'vitest';
 
 describe('package.json checks', () => {
   /** @type {{ devDependencies: Record<string, string>, peerDependencies: Record<string, string>, peerDependenciesMeta: Record<string, { optional?: boolean }> }} */
@@ -22,8 +22,9 @@ describe('package.json checks', () => {
       return {
         pass: satisfies(version, range),
         message: () =>
-          `Version ${version} ${isNot ? 'does not satisfy' : 'satisfies'} range ${range}${ 
-          name ? ` [package: ${name}]` : ''}`,
+          `Version ${version} ${isNot ? 'does not satisfy' : 'satisfies'} range ${range}${
+            name ? ` [package: ${name}]` : ''
+          }`,
       };
     },
   });
@@ -58,9 +59,9 @@ describe('package.json checks', () => {
 
   it('should mark peer dependency as optional if not included in default config', async () => {
     const { default: javascript } = await import('@code-pushup/eslint-config');
-    const plugins = new Set(javascript.flatMap(config =>
-      Object.keys(config.plugins ?? {}),
-    ));
+    const plugins = new Set(
+      javascript.flatMap(config => Object.keys(config.plugins ?? {})),
+    );
     const expected = Object.keys(packageJson.peerDependencies)
       .filter(pkg => {
         if (!pkg.includes('eslint-plugin')) {

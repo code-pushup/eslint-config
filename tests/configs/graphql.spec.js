@@ -1,6 +1,6 @@
 // @ts-check
 
-import { afterAll, beforeAll, describe, expect, test } from 'vitest';
+import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import { createLintUtils } from '../helpers/lint-utils';
 
 describe('graphql config', () => {

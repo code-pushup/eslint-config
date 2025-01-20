@@ -235,7 +235,7 @@ function optionsPreview(options) {
  */
 function truncate(text, max) {
   if (text.length > max) {
-    return `${text.slice(0, max - 3)  }...`;
+    return `${text.slice(0, max - 3)}...`;
   }
   return text;
 }

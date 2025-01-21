@@ -4,6 +4,7 @@
 import { md } from 'build-md';
 import { getEnabledRuleIds } from './rules.js';
 
+/** @type {Record<import('./types.js').ConfigName, import('build-md').FormattedText>} */
 const configDescriptions = {
   javascript: md`Default config, suitable for any ${md.bold('JavaScript/TypeScript')} project.`,
   typescript: md`Config for strict ${md.bold('TypeScript')} projects.`,
@@ -20,11 +21,11 @@ const configDescriptions = {
   'react-testing-library': md`Config for projects using ${md.bold('React Testing Library')} for testing.`,
 };
 
-/** @type {(keyof typeof configDescriptions)[]} */
+/** @type {(import('./types.js').ConfigName)[]} */
 // @ts-expect-error keys won't be any string
 export const configNames = Object.keys(configDescriptions);
 
-/** @type {Record<keyof typeof configDescriptions, import('./types.js').Icon>} */
+/** @type {Record<import('./types.js').ConfigName, import('./types.js').Icon>} */
 const configIcons = {
   javascript: 'material/javascript',
   typescript: 'material/typescript',
@@ -41,7 +42,7 @@ const configIcons = {
   'react-testing-library': 'other/testing-library',
 };
 
-/** @type {Partial<Record<keyof typeof configDescriptions, string>>} */
+/** @type {Partial<Record<import('./types.js').ConfigName, string>>} */
 const configPatterns = {
   graphql: '*.graphql',
   jest: '*.test.ts',
@@ -52,13 +53,13 @@ const configPatterns = {
   'react-testing-library': '*.spec.tsx',
 };
 
-/** @type {Partial<Record<keyof typeof configDescriptions, string>>} */
+/** @type {Partial<Record<import('./types.js').ConfigName, string>>} */
 const configExtraPatterns = {
   angular: '*.html',
   storybook: '.storybook/main.ts',
 };
 
-/** @type {Set<(keyof typeof configDescriptions)>} */
+/** @type {Set<(import('./types.js').ConfigName)>} */
 const testConfigs = new Set([
   'jest',
   'vitest',
@@ -71,7 +72,7 @@ const eslintConfig = 'eslint.config.js';
 
 const tsConfigDocsReference = md`Refer to ${md.link('./typescript.md#🏗️-setup', "step 3 in TypeScript config's setup docs")} for how to set up tsconfig properly.`;
 
-/** @type {Partial<Record<keyof typeof configDescriptions, import('build-md').FormattedText>>} */
+/** @type {Partial<Record<import('./types.js').ConfigName, import('build-md').FormattedText>>} */
 export const configsExtraSetupDocs = {
   typescript: md`${md.paragraph(
     md`Because this config includes rules which require type information, make sure to configure ${md.code('parserOptions.project')} in your ${md.code('eslint.config.js')} points to your project's tsconfig.
@@ -207,7 +208,7 @@ const angularExtraEslintrc = `,
     }
   }`;
 
-/** @type {Partial<Record<keyof typeof configDescriptions, string>>} */
+/** @type {Partial<Record<import('./types.js').ConfigName, string>>} */
 export const configsExtraEslintrc = {
   angular: angularExtraEslintrc,
   ngrx: angularExtraEslintrc,
@@ -236,30 +237,24 @@ export const configsExtraEslintrc = {
 
 /**
  * Get description for given config.
- * @param {string} name Config file name without extension
+ * @param {import('./types.js').ConfigName} name Config file name without extension
  */
 export function configDescription(name) {
-  if (!(name in configDescriptions)) {
-    throw new Error(`No description found for config ${name}`);
-  }
   return configDescriptions[name];
 }
 
 /**
  * Get icon name for given config.
- * @param {string} name Config file name without extension
+ * @param {import('./types.js').ConfigName} name Config file name without extension
  * @returns {import('./types.js').Icon}
  */
 export function configIcon(name) {
-  if (!(name in configIcons)) {
-    throw new Error(`No icon found for config ${name}`);
-  }
   return configIcons[name];
 }
 
 /**
  * Get file pattern for given config.
- * @param {string} name Config file name without extension
+ * @param {import('./types.js').ConfigName} name Config file name without extension
  */
 export function configPattern(name) {
   if (!(name in configPatterns)) {
@@ -270,7 +265,7 @@ export function configPattern(name) {
 
 /**
  * Get additional file pattern for given config.
- * @param {string} name Config file name without extension
+ * @param {import('./types.js').ConfigName} name Config file name without extension
  * @returns {string | undefined}
  */
 export function configExtraPattern(name) {
@@ -279,16 +274,15 @@ export function configExtraPattern(name) {
 
 /**
  * Is config targetting some testing framework?
- * @param {string} name Config file name without extension
+ * @param {import('./types.js').ConfigName} name Config file name without extension
  */
 export function isConfigForTests(name) {
-  // @ts-expect-error the point is to check if string is a union
   return testConfigs.has(name);
 }
 
 /**
  * Imports flat config array by name.
- * @param {string} name Config file name without extension
+ * @param {import('./types.js').ConfigName} name Config file name without extension
  * @returns {Promise<import('@typescript-eslint/utils').TSESLint.FlatConfig.ConfigArray>}
  */
 export async function importConfig(name) {

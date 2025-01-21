@@ -14,13 +14,11 @@ export default tseslint.config(...javascript, {
     globals: globals.browser,
   },
   extends: [
-    // @ts-expect-error types inferred as possibly undefined
     react.configs.flat.recommended,
     jsxA11y.flatConfigs.recommended,
     {
       name: 'code-pushup/react/react-hooks',
       plugins: {
-        // @ts-expect-error inferred index signature mismatch
         'react-hooks': reactHooks,
       },
       rules: {

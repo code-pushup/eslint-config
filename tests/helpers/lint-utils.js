@@ -106,6 +106,13 @@ export default [
       return level !== 0 && level !== 'off';
     });
 
+  /** @param {import('eslint').Rule.RuleMetaData} meta */
+  const requiresTypeChecking = meta => {
+    /** @type {Record<string, unknown> | undefined} */
+    const docs = meta.docs;
+    return docs?.['requiresTypeChecking'] === true;
+  };
+
   return {
     setup,
     teardown,
@@ -115,6 +122,7 @@ export default [
     lint,
     getExplicitRuleIds,
     getEnabledRuleIds,
+    requiresTypeChecking,
   };
 }
 

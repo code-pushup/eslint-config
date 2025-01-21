@@ -54,8 +54,6 @@ const pluginDocsUrls = {
   playwright:
     'https://github.com/playwright-community/eslint-plugin-playwright#readme',
   promise: 'https://github.com/eslint-community/eslint-plugin-promise#readme',
-  'react-testing-library':
-    'https://github.com/testing-library/eslint-plugin-testing-library#readme',
   react: 'https://github.com/jsx-eslint/eslint-plugin-react#readme',
   'react-hooks':
     'https://github.com/facebook/react/tree/main/packages/eslint-plugin-react-hooks#readme',
@@ -63,6 +61,8 @@ const pluginDocsUrls = {
   'rxjs-x': 'https://github.com/JasonWeinzierl/eslint-plugin-rxjs-x#readme',
   sonarjs: 'https://github.com/SonarSource/eslint-plugin-sonarjs#readme',
   storybook: 'https://github.com/storybookjs/eslint-plugin-storybook#readme',
+  'testing-library':
+    'https://github.com/testing-library/eslint-plugin-testing-library#readme',
   unicorn: 'https://github.com/sindresorhus/eslint-plugin-unicorn#readme',
   vitest: 'https://github.com/veritem/eslint-plugin-vitest#readme',
 };
@@ -71,18 +71,20 @@ const pluginDocsUrls = {
  * @param {string} plugin
  */
 export function pluginIcon(plugin) {
-  if (!(plugin in pluginIcons)) {
+  const icon = pluginIcons[plugin];
+  if (!icon) {
     throw new Error(`No icon found for plugin ${plugin}`);
   }
-  return pluginIcons[plugin];
+  return icon;
 }
 
 /**
  * @param {string} plugin
  */
 export function pluginDocs(plugin) {
-  if (!(plugin in pluginIcons)) {
+  const docsUrl = pluginDocsUrls[plugin];
+  if (!docsUrl) {
     throw new Error(`No docs URL found for plugin ${plugin}`);
   }
-  return pluginDocsUrls[plugin];
+  return docsUrl;
 }

@@ -1,8 +1,23 @@
 import type { TSESLint } from '@typescript-eslint/utils';
 import type { Linter, Rule } from 'eslint';
 
+export type ConfigName =
+  | 'javascript'
+  | 'typescript'
+  | 'node'
+  | 'angular'
+  | 'ngrx'
+  | 'react'
+  | 'graphql'
+  | 'jest'
+  | 'vitest'
+  | 'cypress'
+  | 'playwright'
+  | 'storybook'
+  | 'react-testing-library';
+
 export type ExportedConfig = {
-  name: string;
+  name: ConfigName;
   flatConfig: TSESLint.FlatConfig.ConfigArray;
 };
 

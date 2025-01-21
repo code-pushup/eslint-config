@@ -22,8 +22,7 @@ export default tseslint.config({
         'jest-formatting': jestFormatting,
       },
       rules: convertErrorsToWarnings(
-        // @ts-expect-error severity 2 incorrectly inferred as number from .js
-        jestFormatting.configs.recommended.overrides[0].rules,
+        jestFormatting.configs.recommended.overrides?.[0]?.rules,
       ),
     },
     {

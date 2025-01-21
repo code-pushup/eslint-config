@@ -13,9 +13,7 @@ export default tseslint.config(...node, {
     '@graphql-eslint': graphqlEslint,
   },
   extends: [
-    // @ts-expect-error rule severity inferred as string from .js
     graphqlEslint.flatConfigs['schema-recommended'],
-    // @ts-expect-error rule severity inferred as string from .js
     graphqlEslint.flatConfigs['relay'],
     {
       name: 'code-pushup/graphql/customized',

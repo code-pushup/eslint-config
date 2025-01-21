@@ -1,7 +1,7 @@
 // @ts-check
 
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
-import { createLintUtils } from '../helpers/lint-utils';
+import { createLintUtils } from '../helpers/lint-utils.js';
 
 describe('react config', () => {
   const { setup, teardown, loadConfig } = createLintUtils('react', '*.tsx');

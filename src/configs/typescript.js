@@ -16,10 +16,6 @@ import {
 } from '../lib/rule-options.js';
 import javascript from './javascript.js';
 
-/** @type {import('@typescript-eslint/utils').TSESLint.FlatConfig.Config} */
-// @ts-expect-error inferred from .js incorrectly
-const importConfigTypescript = importPlugin.flatConfigs?.typescript;
-
 export default tseslint.config(
   ...javascript,
   {
@@ -27,7 +23,7 @@ export default tseslint.config(
     extends: [
       ...tseslint.configs.recommendedTypeChecked,
       ...tseslint.configs.strictTypeChecked,
-      importConfigTypescript,
+      importPlugin.flatConfigs.typescript,
       {
         name: 'code-pushup/typescript/customized',
         rules: {

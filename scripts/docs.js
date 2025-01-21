@@ -39,7 +39,7 @@ async function generateDocs() {
 }
 
 /**
- * @param {string[]} names
+ * @param {import('./helpers/types.js').ConfigName[]} names
  * @returns {Promise<import('./helpers/types.js').ExportedConfig[]>}
  */
 function loadConfigs(names) {
@@ -89,10 +89,13 @@ async function loadPeerDependencies(configs) {
     {},
   );
 
+  /** @type {Record<string, {optional: boolean}>} */
+  const peerDependenciesMeta = packageJson.peerDependenciesMeta;
+
   return Object.entries(packageJson.peerDependencies).map(([pkg, version]) => ({
     pkg,
     version,
-    optional: packageJson.peerDependenciesMeta[pkg]?.optional ?? false,
+    optional: peerDependenciesMeta[pkg]?.optional ?? false,
     usedByConfigs: pkgConfigs[pkg] ?? [],
   }));
 }
@@ -198,6 +201,11 @@ async function generateConfigDocs(config, allConfigs, peerDeps) {
  * @returns {import('./helpers/types.js').RuleData} Rule data
  */
 function findRuleData(id, config, rules) {
+  const meta = rules[id];
+  if (!meta) {
+    throw new Error(`Can't find metadata for rule ${id}`);
+  }
+
   const entry =
     findRuleEntry(
       config.flatConfig.filter(
@@ -231,7 +239,7 @@ function findRuleData(id, config, rules) {
 
   return {
     id,
-    meta: rules[id],
+    meta,
     level,
     ...(Array.isArray(entry) &&
       entry.length > 1 && {

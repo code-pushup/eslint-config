@@ -12,7 +12,7 @@ import {
 
 /**
  * Format Markdown documentation for README
- * @param {string[]} configs Config names
+ * @param {import('./types.js').ConfigName[]} configs Config names
  * @param {import('./types.js').PeerDep[]} peerDeps Peer dependencies
  * @param {Record<string, string[]>} extended Map of extended configs
  */
@@ -29,7 +29,7 @@ export function configsToMarkdown(configs, peerDeps, extended) {
 
 /**
  * Generate docs with overview of all configs and relationships between them
- * @param {string[]} configs Config names
+ * @param {import('./types.js').ConfigName[]} configs Config names
  * @param {Record<string, string[]>} extended Map of extended configs
  */
 function configsOverviewDocs(configs, extended) {

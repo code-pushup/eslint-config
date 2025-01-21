@@ -52,7 +52,7 @@ describe('package.json checks', () => {
     expect.assertions(peerDeps.length);
     peerDeps.forEach(([pkg, version]) => {
       expect(
-        packageLockJson.packages[`node_modules/${pkg}`].version,
+        packageLockJson.packages[`node_modules/${pkg}`]?.version,
       ).toSatisfyVersion(version, pkg);
     });
   });

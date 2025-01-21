@@ -39,6 +39,22 @@ jobs:
       - name: Run ESLint
         run: npm run lint
 
+  typecheck:
+    runs-on: ubuntu-latest
+    name: Type check
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .tool-versions
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Check types using TypeScript compiler
+        run: npm run typecheck
+
   docs:
     runs-on: ubuntu-latest
     name: Docs check

@@ -26,7 +26,7 @@ export default tseslint.config(
     extends: [
       eslint.configs.recommended,
       ...tseslint.configs.recommended,
-      importPlugin.flatConfigs?.recommended,
+      importPlugin.flatConfigs.recommended,
       sonarjs.configs.recommended,
       promise.configs['flat/recommended'],
       {

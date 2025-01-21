@@ -1,13 +1,11 @@
 // @ts-check
 
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
-import { createLintUtils } from '../helpers/lint-utils';
+import { createLintUtils } from '../helpers/lint-utils.js';
 
 describe('javascript config', () => {
-  const { setup, teardown, loadConfig, loadRules, lint } = createLintUtils(
-    'javascript',
-    '*.js',
-  );
+  const { setup, teardown, loadConfig, loadRules, lint, requiresTypeChecking } =
+    createLintUtils('javascript', '*.js');
 
   beforeAll(setup);
 
@@ -34,7 +32,7 @@ describe('javascript config', () => {
   it('should not include any rule which requires type checking', async () => {
     const rules = await loadRules();
     const rulesWithTypes = Object.entries(rules)
-      .filter(([, meta]) => meta.docs?.['requiresTypeChecking'])
+      .filter(([, meta]) => requiresTypeChecking(meta))
       .map(([ruleId]) => ruleId);
     expect(rulesWithTypes).toHaveLength(0);
   });

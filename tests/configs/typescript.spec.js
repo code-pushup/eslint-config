@@ -12,6 +12,7 @@ describe('typescript config', () => {
     getExplicitRuleIds,
     getEnabledRuleIds,
     loadRules,
+    requiresTypeChecking,
   } = createLintUtils('typescript', '*.ts', ['src/utils.js']);
 
   beforeAll(setup);
@@ -53,7 +54,7 @@ describe('typescript config', () => {
     const ruleIds = getExplicitRuleIds(typescript);
     const rules = await loadRulesByIds(ruleIds);
     const rulesWithoutTypes = Object.entries(rules)
-      .filter(([, meta]) => !meta.docs?.['requiresTypeChecking'])
+      .filter(([, meta]) => !requiresTypeChecking(meta))
       .map(([ruleId]) => ruleId)
       .sort();
     expect(rulesWithoutTypes).toEqual([
@@ -79,7 +80,7 @@ describe('typescript config', () => {
   it('should not include any rule which requires type checking for non-TS files', async () => {
     const rules = await loadRules('src/utils.js');
     const rulesWithTypes = Object.entries(rules)
-      .filter(([, meta]) => meta.docs?.['requiresTypeChecking'])
+      .filter(([, meta]) => requiresTypeChecking(meta))
       .map(([ruleId]) => ruleId);
     expect(rulesWithTypes).toHaveLength(0);
   });

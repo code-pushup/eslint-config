@@ -23,6 +23,7 @@
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
+    "typecheck": "tsc",
     "docs": "node scripts/docs.js",
     "release": "release-it"
   },

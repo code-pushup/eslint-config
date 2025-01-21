@@ -80,12 +80,16 @@ export function getRulesMetadata(config, ruleIds, eslint, dummyFile) {
                 suppressedMessages: [],
               },
             ]);
-            return [id, rules[id]];
+            const meta = rules[id];
+            if (!meta) {
+              return null;
+            }
+            return [id, meta];
           }
           const plugin = plugins[rule.plugin];
           const ruleDef = plugin?.rules?.[rule.name];
           if (typeof ruleDef === 'object') {
-            /** @type {import('@typescript-eslint/utils').TSESLint.RuleMetaDataWithDocs} */
+            /** @type {import('@typescript-eslint/utils').TSESLint.RuleMetaDataWithDocs<string>} */
             // @ts-expect-error assuming valid metadata
             const meta = ruleDef.meta;
             return [id, meta];

@@ -1,7 +1,7 @@
 // @ts-check
 
 import { describe, expect, it } from 'vitest';
-import { kebabToCamelCase } from './lint-utils';
+import { kebabToCamelCase } from './lint-utils.js';
 
 describe('kebabToCamelCase', () => {
   it('should transform kebak-case to camelCase', async () => {

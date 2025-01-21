@@ -15,7 +15,7 @@ const setupLink = '../README.md#🏗️-setup';
 
 /**
  * Format Markdown documentation for given config.
- * @param {string} config Config name
+ * @param {import('./types.js').ConfigName} config Config name
  * @param {import('./types.js').RuleData[]} rules List of rules included in config
  * @param {import('./types.js').ExtendedConfig[]} extended List of extended Code PushUp configs
  * @param {import('./types.js').PeerDep[]} peerDeps Peer dependencies
@@ -41,7 +41,7 @@ export function configRulesToMarkdown(
 
 /**
  * Generate docs on how to setup given config
- * @param {string} config Config name
+ * @param {import('./types.js').ConfigName} config Config name
  * @param {import('./types.js').PeerDep[]} peerDeps Peer dependencies
  */
 function setupDocs(config, peerDeps) {
@@ -96,7 +96,7 @@ function setupDocs(config, peerDeps) {
 
 /**
  * Generate docs on rules included in given config
- * @param {string} config Config name
+ * @param {import('./types.js').ConfigName} config Config name
  * @param {import('./types.js').RuleData[]} rules List of rules included in config
  * @param {import('./types.js').ExtendedConfig[]} extended List of extended Code PushUp configs
  * @param {{hideOverrides?: boolean}} options Extra options
@@ -251,6 +251,7 @@ function formatRuleOverrides(rule) {
 
 /**
  * @param {unknown} options
+ * @returns {string}
  */
 function optionsPreview(options) {
   if (Array.isArray(options)) {

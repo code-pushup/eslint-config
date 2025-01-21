@@ -51,6 +51,7 @@ export function sortPeerDeps(peerDeps) {
         return Number(a.optional) - Number(b.optional);
       })
       .reduce(
+        /** @param {Record<string, (import('./types.js').PeerDep)[]>} acc  */
         (acc, peerDep) => ({
           ...acc,
           [packageIcon(peerDep.pkg)]: [

@@ -53,12 +53,28 @@ export default tseslint.config({
         'vitest/prefer-hooks-on-top': 'warn',
         'vitest/prefer-mock-promise-shorthand': 'warn',
         'vitest/prefer-spy-on': 'warn',
+        // from v1.1.26 onwards
+        ...('prefer-strict-boolean-matchers' in vitest.rules && {
+          'vitest/prefer-strict-boolean-matchers': 'warn',
+        }),
         'vitest/prefer-to-contain': 'warn',
         'vitest/prefer-to-have-length': 'warn',
         'vitest/prefer-todo': 'warn',
+        // from v1.1.6 onwards
+        ...('prefer-vi-mocked' in vitest.rules && {
+          'vitest/prefer-vi-mocked': 'warn',
+        }),
         'vitest/require-hook': 'warn',
+        // from v1.1.27 onwards
+        ...('require-mock-type-parameters' in vitest.rules && {
+          'vitest/require-mock-type-parameters': 'warn',
+        }),
         'vitest/require-to-throw-message': 'warn',
         'vitest/require-top-level-describe': 'warn',
+        // from v1.1.9 onwards
+        ...('valid-expect-in-promise' in vitest.rules && {
+          'vitest/valid-expect-in-promise': 'error',
+        }),
       },
     },
   ],

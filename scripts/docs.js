@@ -75,6 +75,7 @@ async function loadPeerDependencies(configs) {
           return (
             plugins.includes(pkg) ||
             plugins.includes(alias) ||
+            plugins.includes(alias.replace(/^@/, '')) ||
             plugins.map(plugin => plugin.replace(/^@/, '')).includes(alias)
           );
         },

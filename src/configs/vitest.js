@@ -1,7 +1,7 @@
 // @ts-check
 
+import vitest from '@vitest/eslint-plugin';
 import * as jestFormatting from 'eslint-plugin-jest-formatting';
-import vitest from 'eslint-plugin-vitest';
 import tseslint from 'typescript-eslint';
 import { UNIT_TEST_FILE_PATTERNS } from '../lib/patterns.js';
 import { convertErrorsToWarnings } from '../lib/utils.js';
@@ -34,7 +34,7 @@ export default tseslint.config({
     {
       name: 'code-pushup/vitest/additional',
       rules: {
-        // https://github.com/veritem/eslint-plugin-vitest#rules
+        // https://github.com/vitest-dev/eslint-plugin-vitest#rules
         'vitest/consistent-test-filename': [
           'warn',
           { pattern: String.raw`.*\.spec\.[tj]sx?$` },

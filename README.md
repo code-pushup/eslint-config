@@ -82,6 +82,7 @@ All peer dependencies used by `@code-pushup/eslint-config` are listed below, alo
 |    ![typescript](./docs/icons/material/typescript.png)     | [typescript-eslint](https://www.npmjs.com/package/typescript-eslint)                                 |        `^8.0.0`        |    ✅     |
 |       ![graphql](./docs/icons/material/graphql.png)        | [@graphql-eslint/eslint-plugin](https://www.npmjs.com/package/@graphql-eslint/eslint-plugin)         |        `^3.0.0`        |          |
 |            ![ngrx](./docs/icons/other/ngrx.png)            | [@ngrx/eslint-plugin](https://www.npmjs.com/package/@ngrx/eslint-plugin)                             | `^18.0.0 \|\| ^19.0.0` |          |
+|        ![vitest](./docs/icons/material/vitest.png)         | [@vitest/eslint-plugin](https://www.npmjs.com/package/@vitest/eslint-plugin)                         |        `^1.0.0`        |          |
 |       ![angular](./docs/icons/material/angular.png)        | [angular-eslint](https://www.npmjs.com/package/angular-eslint)                                       | `^18.0.0 \|\| ^19.0.0` |          |
 |       ![cypress](./docs/icons/material/cypress.png)        | [eslint-plugin-cypress](https://www.npmjs.com/package/eslint-plugin-cypress)                         |       `>=3.3.0`        |          |
 |          ![jest](./docs/icons/material/jest.png)           | [eslint-plugin-jest](https://www.npmjs.com/package/eslint-plugin-jest)                               |       `^28.8.0`        |          |
@@ -94,7 +95,6 @@ All peer dependencies used by `@code-pushup/eslint-config` are listed below, alo
 |            ![rxjs](./docs/icons/other/rxjs.png)            | [eslint-plugin-rxjs-x](https://www.npmjs.com/package/eslint-plugin-rxjs-x)                           |       `>=0.6.0`        |          |
 |     ![storybook](./docs/icons/material/storybook.png)      | [eslint-plugin-storybook](https://www.npmjs.com/package/eslint-plugin-storybook)                     |       `>=0.10.0`       |          |
 | ![testing-library](./docs/icons/other/testing-library.png) | [eslint-plugin-testing-library](https://www.npmjs.com/package/eslint-plugin-testing-library)         |        `^7.1.1`        |          |
-|        ![vitest](./docs/icons/material/vitest.png)         | [eslint-plugin-vitest](https://www.npmjs.com/package/eslint-plugin-vitest)                           |       `>=0.5.0`        |          |
 
 ### 🧪 Test overrides
 

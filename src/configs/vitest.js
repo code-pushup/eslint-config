@@ -1,10 +1,8 @@
 // @ts-check
 
 import vitest from '@vitest/eslint-plugin';
-import * as jestFormatting from 'eslint-plugin-jest-formatting';
 import tseslint from 'typescript-eslint';
 import { UNIT_TEST_FILE_PATTERNS } from '../lib/patterns.js';
-import { convertErrorsToWarnings } from '../lib/utils.js';
 
 export default tseslint.config({
   files: UNIT_TEST_FILE_PATTERNS,
@@ -15,15 +13,6 @@ export default tseslint.config({
       languageOptions: {
         globals: vitest.environments.env.globals,
       },
-    },
-    {
-      name: 'code-pushup/vitest/jest-formatting',
-      plugins: {
-        'jest-formatting': jestFormatting,
-      },
-      rules: convertErrorsToWarnings(
-        jestFormatting.configs.recommended.overrides?.[0]?.rules,
-      ),
     },
     {
       name: 'code-pushup/vitest/customized',
@@ -51,6 +40,12 @@ export default tseslint.config({
         'vitest/no-mocks-import': 'warn',
         'vitest/no-standalone-expect': 'warn',
         'vitest/no-test-return-statement': 'warn',
+        'vitest/padding-around-after-all-blocks': 'warn',
+        'vitest/padding-around-after-each-blocks': 'warn',
+        'vitest/padding-around-before-all-blocks': 'warn',
+        'vitest/padding-around-before-each-blocks': 'warn',
+        'vitest/padding-around-describe-blocks': 'warn',
+        'vitest/padding-around-test-blocks': 'warn',
         'vitest/prefer-comparison-matcher': 'warn',
         'vitest/prefer-each': 'warn',
         'vitest/prefer-expect-resolves': 'warn',

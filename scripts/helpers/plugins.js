@@ -8,6 +8,7 @@ const pluginIcons = {
   '@ngrx': 'other/ngrx',
   '@rx-angular': 'other/rx-angular',
   '@typescript-eslint': 'material/typescript',
+  '@vitest': 'material/vitest',
   cypress: 'material/cypress',
   deprecation: 'icons8/expired',
   functional: 'icons8/lambda',
@@ -40,6 +41,7 @@ const pluginDocsUrls = {
   '@ngrx': 'https://ngrx.io/guide/eslint-plugin',
   '@rx-angular': 'https://www.rx-angular.io/docs/eslint-plugin',
   '@typescript-eslint': 'https://typescript-eslint.io/',
+  '@vitest': 'https://github.com/veritem/eslint-plugin-vitest#readme',
   cypress: 'https://github.com/cypress-io/eslint-plugin-cypress#readme',
   deprecation: 'https://github.com/gund/eslint-plugin-deprecation#readme',
   functional:

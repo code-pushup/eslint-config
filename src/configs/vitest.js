@@ -53,10 +53,6 @@ export default tseslint.config({
         'vitest/prefer-hooks-on-top': 'warn',
         'vitest/prefer-mock-promise-shorthand': 'warn',
         'vitest/prefer-spy-on': 'warn',
-        // from v1.1.26 onwards
-        ...('prefer-strict-boolean-matchers' in vitest.rules && {
-          'vitest/prefer-strict-boolean-matchers': 'warn',
-        }),
         'vitest/prefer-to-contain': 'warn',
         'vitest/prefer-to-have-length': 'warn',
         'vitest/prefer-todo': 'warn',

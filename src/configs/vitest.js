@@ -56,17 +56,11 @@ export default tseslint.config({
         'vitest/prefer-to-contain': 'warn',
         'vitest/prefer-to-have-length': 'warn',
         'vitest/prefer-todo': 'warn',
-        // from v1.1.6 onwards
-        ...('prefer-vi-mocked' in vitest.rules && {
-          'vitest/prefer-vi-mocked': 'warn',
-        }),
+        'vitest/prefer-vi-mocked': 'warn',
         'vitest/require-hook': 'warn',
         'vitest/require-to-throw-message': 'warn',
         'vitest/require-top-level-describe': 'warn',
-        // from v1.1.9 onwards
-        ...('valid-expect-in-promise' in vitest.rules && {
-          'vitest/valid-expect-in-promise': 'error',
-        }),
+        'vitest/valid-expect-in-promise': 'error',
       },
     },
   ],

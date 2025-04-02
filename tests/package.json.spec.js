@@ -39,6 +39,7 @@ describe('package.json checks', () => {
       .filter(
         pkg =>
           (pkg.includes('eslint') || pkg === 'globals') &&
+          pkg !== '@eslint/compat' &&
           !pkg.startsWith('@types/') &&
           !pkg.startsWith('@typescript-eslint/'), // installed via "typescript-eslint"
       )

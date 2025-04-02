@@ -122,6 +122,7 @@
     }
   },
   "devDependencies": {
+    "@eslint/compat": "^1.2.8",
     "@eslint/js": "^9.18.0",
     "@graphql-eslint/eslint-plugin": "^3.20.1",
     "@ngrx/eslint-plugin": "^19.0.0",

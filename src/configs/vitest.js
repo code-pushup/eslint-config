@@ -65,10 +65,6 @@ export default tseslint.config({
           'vitest/prefer-vi-mocked': 'warn',
         }),
         'vitest/require-hook': 'warn',
-        // from v1.1.27 onwards
-        ...('require-mock-type-parameters' in vitest.rules && {
-          'vitest/require-mock-type-parameters': 'warn',
-        }),
         'vitest/require-to-throw-message': 'warn',
         'vitest/require-top-level-describe': 'warn',
         // from v1.1.9 onwards

@@ -1,5 +1,8 @@
 // @ts-check
 
+import functional from 'eslint-plugin-functional';
+import { isOptionSupported } from './utils.js';
+
 export const NAMING_CONVENTION_OPTIONS = [
   {
     selector: [
@@ -83,6 +86,10 @@ export const NAMING_CONVENTION_OPTIONS_ANGULAR = [
 ];
 
 export const IMMUTABLE_DATA_OPTIONS = {
+  ...(isOptionSupported(
+    functional.rules['immutable-data'].meta.schema,
+    'ignoreMapsAndSets',
+  ) && { ignoreMapsAndSets: true }),
   ignoreImmediateMutation: true,
   ignoreClasses: true,
   ignoreAccessorPattern: 'module.exports',

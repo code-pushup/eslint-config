@@ -17,7 +17,7 @@ export function convertErrorsToWarnings(rules) {
 /**
  * Checks if the rule supports a specific option by checking rule schema
  * @param {object | object[]} ruleSchema rules schema that holds options
- * @param option {string} rule option to check if supported
+ * @param {string} option rule option to check if supported
  * @returns {boolean}
  */
 export function isOptionSupported(ruleSchema, option) {

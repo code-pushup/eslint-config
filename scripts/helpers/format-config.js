@@ -165,7 +165,10 @@ function rulesTable(rules, hideOverrides = false) {
       .sort((a, b) => {
         const { name: name1, plugin: plugin1 = '' } = parseRuleId(a.id);
         const { name: name2, plugin: plugin2 = '' } = parseRuleId(b.id);
-        return plugin1.localeCompare(plugin2) || name1.localeCompare(name2);
+        return (
+          plugin1.localeCompare(plugin2, 'en') ||
+          name1.localeCompare(name2, 'en')
+        );
       })
       .map(rule => [
         formatRulePlugin(rule),

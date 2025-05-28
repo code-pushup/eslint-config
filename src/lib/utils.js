@@ -13,3 +13,15 @@ export function convertErrorsToWarnings(rules) {
     ]),
   );
 }
+
+/**
+ * Checks if the rule supports a specific option by checking rule schema
+ * @param {object | object[]} ruleSchema rules schema that holds options
+ * @param {string} option rule option to check if supported
+ * @returns {boolean}
+ */
+export function isOptionSupported(ruleSchema, option) {
+  return (Array.isArray(ruleSchema) ? ruleSchema : [ruleSchema]).some(
+    schema => 'properties' in schema && option in schema.properties,
+  );
+}

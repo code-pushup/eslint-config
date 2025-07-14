@@ -68,6 +68,8 @@ export const JS_TS_JSON_FILE_PATTERNS = [
 
 export const REACT_FILE_PATTERNS = withExtensions(['**/*']);
 
+export const VUE_FILE_PATTERNS = ['**/*.vue'];
+
 export const HTML_FILE_PATTERNS = ['**/*.html'];
 
 export const CYPRESS_FILE_PATTERNS = [

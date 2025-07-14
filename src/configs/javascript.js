@@ -17,12 +17,13 @@ import {
   SVELTE_FILE_PATTERNS,
   TEST_FILE_PATTERNS,
   TYPESCRIPT_DECLARATION_FILE_PATTERNS,
+  VUE_FILE_PATTERNS,
 } from '../lib/patterns.js';
 import { convertErrorsToWarnings } from '../lib/utils.js';
 
 export default tseslint.config(
   {
-    files: JS_TS_JSON_FILE_PATTERNS,
+    files: [...JS_TS_JSON_FILE_PATTERNS, ...VUE_FILE_PATTERNS],
     extends: [
       eslint.configs.recommended,
       ...tseslint.configs.recommended,

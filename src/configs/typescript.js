@@ -8,6 +8,7 @@ import {
   STORYBOOK_FILE_PATTERNS,
   TEST_FILE_PATTERNS,
   TYPESCRIPT_FILE_PATTERNS,
+  VUE_FILE_PATTERNS,
 } from '../lib/patterns.js';
 import {
   IMMUTABLE_DATA_OPTIONS,
@@ -19,7 +20,7 @@ import javascript from './javascript.js';
 export default tseslint.config(
   ...javascript,
   {
-    files: TYPESCRIPT_FILE_PATTERNS,
+    files: [...TYPESCRIPT_FILE_PATTERNS, ...VUE_FILE_PATTERNS],
     extends: [
       ...tseslint.configs.recommendedTypeChecked,
       ...tseslint.configs.strictTypeChecked,

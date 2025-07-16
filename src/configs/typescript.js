@@ -154,7 +154,7 @@ export default tseslint.config(
     },
   },
   {
-    files: negatePatterns(TYPESCRIPT_FILE_PATTERNS),
+    files: negatePatterns([...TYPESCRIPT_FILE_PATTERNS, ...VUE_FILE_PATTERNS]),
     ...tseslint.configs.disableTypeChecked,
   },
 );

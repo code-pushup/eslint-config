@@ -61,6 +61,9 @@ export default tseslint.config(
             'warn',
             ...NAMING_CONVENTION_OPTIONS_ANGULAR,
           ],
+          ...('prefer-inject' in (angular.tsPlugin.rules ?? {}) && {
+            '@angular-eslint/prefer-inject': 'warn',
+          }),
         },
       },
       {

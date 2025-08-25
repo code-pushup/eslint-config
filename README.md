@@ -68,33 +68,33 @@ Depending on your tech stack, you may wish to extend other configs as well ([lis
 
 All peer dependencies used by `@code-pushup/eslint-config` are listed below, along with their supported versions. Only the default config's dependencies are required, others are optional.
 
-|                                                            | NPM package                                                                                          |             Version              | Required |
-| :--------------------------------------------------------: | :--------------------------------------------------------------------------------------------------- | :------------------------------: | :------: |
-|        ![eslint](./docs/icons/material/eslint.png)         | [eslint](https://www.npmjs.com/package/eslint)                                                       |             `^9.0.0`             |    ✅     |
-|        ![eslint](./docs/icons/material/eslint.png)         | [@eslint/js](https://www.npmjs.com/package/@eslint/js)                                               |             `^9.0.0`             |    ✅     |
-|         ![lambda](./docs/icons/icons8/lambda.png)          | [eslint-plugin-functional](https://www.npmjs.com/package/eslint-plugin-functional)                   | `^7.0.0 \|\| ^8.0.0 \|\| ^9.0.0` |    ✅     |
-|         ![import](./docs/icons/icons8/import.png)          | [eslint-plugin-import](https://www.npmjs.com/package/eslint-plugin-import)                           |            `^2.31.0`             |    ✅     |
-|         ![import](./docs/icons/icons8/import.png)          | [eslint-import-resolver-typescript](https://www.npmjs.com/package/eslint-import-resolver-typescript) |             `^3.0.0`             |          |
-|        ![promise](./docs/icons/icons8/promise.png)         | [eslint-plugin-promise](https://www.npmjs.com/package/eslint-plugin-promise)                         |            `>=6.4.0`             |    ✅     |
-|           ![sonar](./docs/icons/other/sonar.png)           | [eslint-plugin-sonarjs](https://www.npmjs.com/package/eslint-plugin-sonarjs)                         |             `^1.0.4`             |    ✅     |
-|        ![unicorn](./docs/icons/icons8/unicorn.png)         | [eslint-plugin-unicorn](https://www.npmjs.com/package/eslint-plugin-unicorn)                         |            `>=50.0.0`            |    ✅     |
-|         ![global](./docs/icons/icons8/global.png)          | [globals](https://www.npmjs.com/package/globals)                                                     |            `>=14.0.0`            |    ✅     |
-|    ![typescript](./docs/icons/material/typescript.png)     | [typescript-eslint](https://www.npmjs.com/package/typescript-eslint)                                 |             `^8.0.0`             |    ✅     |
-|       ![graphql](./docs/icons/material/graphql.png)        | [@graphql-eslint/eslint-plugin](https://www.npmjs.com/package/@graphql-eslint/eslint-plugin)         |             `^3.0.0`             |          |
-|            ![ngrx](./docs/icons/other/ngrx.png)            | [@ngrx/eslint-plugin](https://www.npmjs.com/package/@ngrx/eslint-plugin)                             |      `^18.0.0 \|\| ^19.0.0`      |          |
-|        ![vitest](./docs/icons/material/vitest.png)         | [@vitest/eslint-plugin](https://www.npmjs.com/package/@vitest/eslint-plugin)                         |             `^1.1.9`             |          |
-|       ![angular](./docs/icons/material/angular.png)        | [angular-eslint](https://www.npmjs.com/package/angular-eslint)                                       |      `^18.0.0 \|\| ^19.0.0`      |          |
-|       ![cypress](./docs/icons/material/cypress.png)        | [eslint-plugin-cypress](https://www.npmjs.com/package/eslint-plugin-cypress)                         |            `>=3.3.0`             |          |
-|          ![jest](./docs/icons/material/jest.png)           | [eslint-plugin-jest](https://www.npmjs.com/package/eslint-plugin-jest)                               |            `^28.8.0`             |          |
-|           ![test](./docs/icons/icons8/test.png)            | [eslint-plugin-jest-formatting](https://www.npmjs.com/package/eslint-plugin-jest-formatting)         |             `^3.0.0`             |          |
-|  ![accessibility](./docs/icons/icons8/accessibility.png)   | [eslint-plugin-jsx-a11y](https://www.npmjs.com/package/eslint-plugin-jsx-a11y)                       |            `^6.10.0`             |          |
-|        ![nodejs](./docs/icons/material/nodejs.png)         | [eslint-plugin-n](https://www.npmjs.com/package/eslint-plugin-n)                                     |            `>=17.0.0`            |          |
-|    ![playwright](./docs/icons/material/playwright.png)     | [eslint-plugin-playwright](https://www.npmjs.com/package/eslint-plugin-playwright)                   |             `^2.1.0`             |          |
-|         ![react](./docs/icons/material/react.png)          | [eslint-plugin-react](https://www.npmjs.com/package/eslint-plugin-react)                             |            `^7.36.0`             |          |
-|      ![react_ts](./docs/icons/material/react_ts.png)       | [eslint-plugin-react-hooks](https://www.npmjs.com/package/eslint-plugin-react-hooks)                 |            `>=5.0.0`             |          |
-|            ![rxjs](./docs/icons/other/rxjs.png)            | [eslint-plugin-rxjs-x](https://www.npmjs.com/package/eslint-plugin-rxjs-x)                           |            `>=0.6.0`             |          |
-|     ![storybook](./docs/icons/material/storybook.png)      | [eslint-plugin-storybook](https://www.npmjs.com/package/eslint-plugin-storybook)                     |            `>=0.10.0`            |          |
-| ![testing-library](./docs/icons/other/testing-library.png) | [eslint-plugin-testing-library](https://www.npmjs.com/package/eslint-plugin-testing-library)         |             `^7.1.1`             |          |
+|                                                            | NPM package                                                                                          |               Version               | Required |
+| :--------------------------------------------------------: | :--------------------------------------------------------------------------------------------------- | :---------------------------------: | :------: |
+|        ![eslint](./docs/icons/material/eslint.png)         | [eslint](https://www.npmjs.com/package/eslint)                                                       |              `^9.0.0`               |    ✅     |
+|        ![eslint](./docs/icons/material/eslint.png)         | [@eslint/js](https://www.npmjs.com/package/@eslint/js)                                               |              `^9.0.0`               |    ✅     |
+|         ![lambda](./docs/icons/icons8/lambda.png)          | [eslint-plugin-functional](https://www.npmjs.com/package/eslint-plugin-functional)                   |  `^7.0.0 \|\| ^8.0.0 \|\| ^9.0.0`   |    ✅     |
+|         ![import](./docs/icons/icons8/import.png)          | [eslint-plugin-import](https://www.npmjs.com/package/eslint-plugin-import)                           |              `^2.31.0`              |    ✅     |
+|         ![import](./docs/icons/icons8/import.png)          | [eslint-import-resolver-typescript](https://www.npmjs.com/package/eslint-import-resolver-typescript) |              `^3.0.0`               |          |
+|        ![promise](./docs/icons/icons8/promise.png)         | [eslint-plugin-promise](https://www.npmjs.com/package/eslint-plugin-promise)                         |              `>=6.4.0`              |    ✅     |
+|           ![sonar](./docs/icons/other/sonar.png)           | [eslint-plugin-sonarjs](https://www.npmjs.com/package/eslint-plugin-sonarjs)                         |              `^1.0.4`               |    ✅     |
+|        ![unicorn](./docs/icons/icons8/unicorn.png)         | [eslint-plugin-unicorn](https://www.npmjs.com/package/eslint-plugin-unicorn)                         |             `>=50.0.0`              |    ✅     |
+|         ![global](./docs/icons/icons8/global.png)          | [globals](https://www.npmjs.com/package/globals)                                                     |             `>=14.0.0`              |    ✅     |
+|    ![typescript](./docs/icons/material/typescript.png)     | [typescript-eslint](https://www.npmjs.com/package/typescript-eslint)                                 |              `^8.0.0`               |    ✅     |
+|       ![graphql](./docs/icons/material/graphql.png)        | [@graphql-eslint/eslint-plugin](https://www.npmjs.com/package/@graphql-eslint/eslint-plugin)         |              `^3.0.0`               |          |
+|            ![ngrx](./docs/icons/other/ngrx.png)            | [@ngrx/eslint-plugin](https://www.npmjs.com/package/@ngrx/eslint-plugin)                             |       `^18.0.0 \|\| ^19.0.0`        |          |
+|        ![vitest](./docs/icons/material/vitest.png)         | [@vitest/eslint-plugin](https://www.npmjs.com/package/@vitest/eslint-plugin)                         |              `^1.1.9`               |          |
+|       ![angular](./docs/icons/material/angular.png)        | [angular-eslint](https://www.npmjs.com/package/angular-eslint)                                       | `^18.0.0 \|\| ^19.0.0 \|\| ^20.0.0` |          |
+|       ![cypress](./docs/icons/material/cypress.png)        | [eslint-plugin-cypress](https://www.npmjs.com/package/eslint-plugin-cypress)                         |              `>=3.3.0`              |          |
+|          ![jest](./docs/icons/material/jest.png)           | [eslint-plugin-jest](https://www.npmjs.com/package/eslint-plugin-jest)                               |              `^28.8.0`              |          |
+|           ![test](./docs/icons/icons8/test.png)            | [eslint-plugin-jest-formatting](https://www.npmjs.com/package/eslint-plugin-jest-formatting)         |              `^3.0.0`               |          |
+|  ![accessibility](./docs/icons/icons8/accessibility.png)   | [eslint-plugin-jsx-a11y](https://www.npmjs.com/package/eslint-plugin-jsx-a11y)                       |              `^6.10.0`              |          |
+|        ![nodejs](./docs/icons/material/nodejs.png)         | [eslint-plugin-n](https://www.npmjs.com/package/eslint-plugin-n)                                     |             `>=17.0.0`              |          |
+|    ![playwright](./docs/icons/material/playwright.png)     | [eslint-plugin-playwright](https://www.npmjs.com/package/eslint-plugin-playwright)                   |              `^2.1.0`               |          |
+|         ![react](./docs/icons/material/react.png)          | [eslint-plugin-react](https://www.npmjs.com/package/eslint-plugin-react)                             |              `^7.36.0`              |          |
+|      ![react_ts](./docs/icons/material/react_ts.png)       | [eslint-plugin-react-hooks](https://www.npmjs.com/package/eslint-plugin-react-hooks)                 |              `>=5.0.0`              |          |
+|            ![rxjs](./docs/icons/other/rxjs.png)            | [eslint-plugin-rxjs-x](https://www.npmjs.com/package/eslint-plugin-rxjs-x)                           |              `>=0.6.0`              |          |
+|     ![storybook](./docs/icons/material/storybook.png)      | [eslint-plugin-storybook](https://www.npmjs.com/package/eslint-plugin-storybook)                     |             `>=0.10.0`              |          |
+| ![testing-library](./docs/icons/other/testing-library.png) | [eslint-plugin-testing-library](https://www.npmjs.com/package/eslint-plugin-testing-library)         |              `^7.1.1`               |          |
 
 ### 🧪 Test overrides
 

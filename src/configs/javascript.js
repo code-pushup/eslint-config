@@ -11,19 +11,18 @@ import {
   COMMONJS_FILE_PATTERNS,
   CONFIG_FILE_PATTERNS,
   GENERATED_FILE_PATTERNS,
-  JS_TS_JSON_FILE_PATTERNS,
+  JAVASCRIPT_EXTENDED_FILE_PATTERNS,
   JSON_FILE_PATTERNS,
   MOCKS_FILE_PATTERNS,
   SVELTE_FILE_PATTERNS,
   TEST_FILE_PATTERNS,
   TYPESCRIPT_DECLARATION_FILE_PATTERNS,
-  VUE_FILE_PATTERNS,
 } from '../lib/patterns.js';
 import { convertErrorsToWarnings } from '../lib/utils.js';
 
 export default tseslint.config(
   {
-    files: [...JS_TS_JSON_FILE_PATTERNS, ...VUE_FILE_PATTERNS],
+    files: JAVASCRIPT_EXTENDED_FILE_PATTERNS,
     extends: [
       eslint.configs.recommended,
       ...tseslint.configs.recommended,

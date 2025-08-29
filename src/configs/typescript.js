@@ -7,8 +7,7 @@ import {
   negatePatterns,
   STORYBOOK_FILE_PATTERNS,
   TEST_FILE_PATTERNS,
-  TYPESCRIPT_FILE_PATTERNS,
-  VUE_FILE_PATTERNS,
+  TYPESCRIPT_EXTENDED_FILE_PATTERNS,
 } from '../lib/patterns.js';
 import {
   IMMUTABLE_DATA_OPTIONS,
@@ -20,7 +19,7 @@ import javascript from './javascript.js';
 export default tseslint.config(
   ...javascript,
   {
-    files: [...TYPESCRIPT_FILE_PATTERNS, ...VUE_FILE_PATTERNS],
+    files: TYPESCRIPT_EXTENDED_FILE_PATTERNS,
     extends: [
       ...tseslint.configs.recommendedTypeChecked,
       ...tseslint.configs.strictTypeChecked,
@@ -93,7 +92,7 @@ export default tseslint.config(
   },
   {
     files: TEST_FILE_PATTERNS,
-    ignores: negatePatterns(TYPESCRIPT_FILE_PATTERNS),
+    ignores: negatePatterns(TYPESCRIPT_EXTENDED_FILE_PATTERNS),
     extends: [
       {
         name: 'code-pushup/typescript/tests/disabled',
@@ -145,7 +144,7 @@ export default tseslint.config(
   {
     name: 'code-pushup/typescript/storybook/customized',
     files: STORYBOOK_FILE_PATTERNS,
-    ignores: negatePatterns(TYPESCRIPT_FILE_PATTERNS),
+    ignores: negatePatterns(TYPESCRIPT_EXTENDED_FILE_PATTERNS),
     rules: {
       '@typescript-eslint/naming-convention': [
         'warn',
@@ -154,7 +153,7 @@ export default tseslint.config(
     },
   },
   {
-    files: negatePatterns([...TYPESCRIPT_FILE_PATTERNS, ...VUE_FILE_PATTERNS]),
+    files: negatePatterns(TYPESCRIPT_EXTENDED_FILE_PATTERNS),
     ...tseslint.configs.disableTypeChecked,
   },
 );

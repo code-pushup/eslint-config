@@ -101,6 +101,17 @@ export const COMMONJS_FILE_PATTERNS = ['**/*.cjs', '**/*.cts'];
 
 export const SVELTE_FILE_PATTERNS = ['**/*.svelte'];
 
+export const JAVASCRIPT_EXTENDED_FILE_PATTERNS = [
+  ...JS_TS_JSON_FILE_PATTERNS,
+  ...VUE_FILE_PATTERNS,
+  ...SVELTE_FILE_PATTERNS,
+];
+export const TYPESCRIPT_EXTENDED_FILE_PATTERNS = [
+  ...TYPESCRIPT_FILE_PATTERNS,
+  ...VUE_FILE_PATTERNS,
+  ...SVELTE_FILE_PATTERNS,
+];
+
 /** @param {string[]} patterns  */
 export function negatePatterns(patterns) {
   return patterns.map(pattern => `!${pattern}`);

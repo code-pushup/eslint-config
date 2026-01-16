@@ -18,29 +18,6 @@ declare module 'eslint-plugin-promise' {
   export = plugin;
 }
 
-declare module 'eslint-plugin-react' {
-  const plugin: Plugin & {
-    configs: {
-      recommended: LegacyConfig;
-      strict: LegacyConfig;
-      flat: {
-        recommended: Config;
-        strict: Config;
-      };
-    };
-  };
-  export = plugin;
-}
-
-declare module 'eslint-plugin-react-hooks' {
-  const plugin: Plugin & {
-    configs: {
-      recommended: LegacyConfig;
-    };
-  };
-  export = plugin;
-}
-
 declare module 'eslint-plugin-jsx-a11y' {
   const plugin: Plugin & {
     configs: {

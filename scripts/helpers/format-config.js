@@ -162,7 +162,7 @@ function rulesTable(rules, hideOverrides = false) {
   return [
     hideOverrides ? columns.slice(0, -1) : columns,
     rules
-      .sort((a, b) => {
+      .toSorted((a, b) => {
         const { name: name1, plugin: plugin1 = '' } = parseRuleId(a.id);
         const { name: name2, plugin: plugin2 = '' } = parseRuleId(b.id);
         return (

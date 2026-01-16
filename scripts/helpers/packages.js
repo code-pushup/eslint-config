@@ -41,7 +41,7 @@ export function packageDocs(pkg) {
 export function sortPeerDeps(peerDeps) {
   return Object.values(
     [...peerDeps]
-      .sort((a, b) => {
+      .toSorted((a, b) => {
         if (a.pkg === 'eslint') {
           return -1;
         }

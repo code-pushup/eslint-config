@@ -56,7 +56,7 @@ describe('typescript config', () => {
     const rulesWithoutTypes = Object.entries(rules)
       .filter(([, meta]) => !requiresTypeChecking(meta))
       .map(([ruleId]) => ruleId)
-      .sort();
+      .toSorted();
     expect(rulesWithoutTypes).toEqual([
       '@typescript-eslint/consistent-type-assertions',
     ]);

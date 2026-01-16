@@ -55,22 +55,6 @@ declare module 'eslint-plugin-jsx-a11y' {
   export = plugin;
 }
 
-declare module '@graphql-eslint/eslint-plugin' {
-  const plugin: Plugin & {
-    flatConfigs: {
-      'operations-all': Config;
-      'operations-recommended': Config;
-      relay: Config;
-      'schema-all': Config;
-      'schema-recommended': Config;
-    };
-    processors: {
-      graphql: Processor;
-    };
-  };
-  export = plugin;
-}
-
 declare module 'eslint-plugin-cypress/flat' {
   const plugin: Plugin & {
     configs: {

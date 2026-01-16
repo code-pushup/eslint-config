@@ -107,11 +107,10 @@ export default [
     });
 
   /** @param {import('eslint').Rule.RuleMetaData} meta */
-  const requiresTypeChecking = meta => {
-    /** @type {Record<string, unknown> | undefined} */
-    const docs = meta.docs;
-    return docs?.['requiresTypeChecking'] === true;
-  };
+  const requiresTypeChecking = meta =>
+    meta.docs != null &&
+    'requiresTypeChecking' in meta.docs &&
+    meta.docs['requiresTypeChecking'] === true;
 
   return {
     setup,

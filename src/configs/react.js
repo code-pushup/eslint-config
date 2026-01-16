@@ -14,7 +14,7 @@ export default tseslint.config(...javascript, {
     globals: globals.browser,
   },
   extends: [
-    react.configs.flat.recommended,
+    react.configs.flat.recommended ? [react.configs.flat.recommended] : [],
     jsxA11y.flatConfigs.recommended,
     {
       name: 'code-pushup/react/react-hooks',

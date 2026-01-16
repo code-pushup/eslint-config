@@ -45,13 +45,6 @@ describe('playwright config', () => {
     expect(config.rules).toHaveProperty('playwright/prefer-native-locators');
   });
 
-  it('should include jest formatting rule', async () => {
-    const config = await loadConfig();
-    expect(Object.keys(config.rules ?? {}).join(',')).toContain(
-      'jest-formatting/',
-    );
-  });
-
   it('should have customized severity level for rule from extended config', async () => {
     const config = await loadConfig();
     expect(config.rules?.['playwright/no-conditional-expect']).toEqual([1]);

@@ -18,16 +18,6 @@ declare module 'eslint-plugin-promise' {
   export = plugin;
 }
 
-declare module 'eslint-plugin-jest-formatting' {
-  const plugin: Plugin & {
-    configs: {
-      recommended: LegacyConfig;
-      strict: LegacyConfig;
-    };
-  };
-  export = plugin;
-}
-
 declare module 'eslint-plugin-react' {
   const plugin: Plugin & {
     configs: {

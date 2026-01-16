@@ -16,6 +16,11 @@ import {
 } from '../lib/rule-options.js';
 import javascript from './javascript.js';
 
+const tseslintRules =
+  'rules' in tseslint.plugin && typeof tseslint.plugin.rules === 'object'
+    ? Object.keys(tseslint.plugin.rules ?? {})
+    : [];
+
 export default tseslint.config(
   ...javascript,
   {
@@ -33,6 +38,12 @@ export default tseslint.config(
           '@typescript-eslint/no-unnecessary-condition': 'warn',
           '@typescript-eslint/no-unnecessary-type-arguments': 'warn',
           '@typescript-eslint/no-unnecessary-template-expression': 'warn',
+          ...(tseslintRules.includes('no-unnecessary-type-conversion') && {
+            '@typescript-eslint/no-unnecessary-type-conversion': 'warn',
+          }),
+          ...(tseslintRules.includes('no-useless-default-assignment') && {
+            '@typescript-eslint/no-useless-default-assignment': 'warn',
+          }),
           '@typescript-eslint/prefer-promise-reject-errors': 'warn',
           '@typescript-eslint/prefer-includes': 'warn',
           '@typescript-eslint/prefer-nullish-coalescing': [
@@ -125,8 +136,7 @@ export default tseslint.config(
             },
           ],
           '@typescript-eslint/require-await': 'warn',
-          ...('related-getter-setter-pairs' in
-            (tseslint.plugin.rules ?? {}) && {
+          ...(tseslintRules.includes('related-getter-setter-pairs') && {
             '@typescript-eslint/related-getter-setter-pairs': 'warn',
           }),
           'functional/immutable-data': ['warn', IMMUTABLE_DATA_OPTIONS],

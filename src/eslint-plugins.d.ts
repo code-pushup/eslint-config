@@ -8,21 +8,6 @@ type Config = import('eslint').Linter.Config;
 type LegacyConfig = import('eslint').Linter.LegacyConfig;
 type Processor = import('eslint').Linter.Processor;
 
-declare module 'eslint-plugin-import' {
-  const plugin: Plugin & {
-    flatConfigs: {
-      recommended: Config;
-      errors: Config;
-      warnings: Config;
-      react: Config;
-      'react-native': Config;
-      electron: Config;
-      typescript: Config;
-    };
-  };
-  export = plugin;
-}
-
 declare module 'eslint-plugin-promise' {
   const plugin: Plugin & {
     configs: {

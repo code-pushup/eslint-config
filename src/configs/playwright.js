@@ -1,6 +1,5 @@
 // @ts-check
 
-import * as jestFormatting from 'eslint-plugin-jest-formatting';
 import playwright from 'eslint-plugin-playwright';
 import tseslint from 'typescript-eslint';
 import { PLAYWRIGHT_FILE_PATTERNS } from '../lib/patterns.js';
@@ -9,16 +8,6 @@ export default tseslint.config({
   files: PLAYWRIGHT_FILE_PATTERNS,
   extends: [
     playwright.configs['flat/recommended'],
-    {
-      name: 'code-pushup/playwright/jest-formatting',
-      plugins: {
-        'jest-formatting': jestFormatting,
-      },
-      rules: {
-        'jest-formatting/padding-around-describe-blocks': 'warn',
-        'jest-formatting/padding-around-test-blocks': 'warn',
-      },
-    },
     {
       name: 'code-pushup/playwright/customized',
       rules: {

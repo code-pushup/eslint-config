@@ -7,14 +7,20 @@ import node from './node.js';
 
 export { NAMING_CONVENTION_OPTIONS_GRAPHQL } from '../lib/rule-options.js';
 
+/** @type {Record<string, import('eslint').Linter.Config> | undefined} */
+// @ts-expect-error flat configs were different in version 3
+const v3FlatConfigs =
+  'flatConfigs' in graphqlEslint ? graphqlEslint.flatConfigs : undefined;
+
 export default tseslint.config(...node, {
   files: GRAPHQL_FILE_PATTERNS,
   plugins: {
     '@graphql-eslint': graphqlEslint,
   },
   extends: [
-    graphqlEslint.flatConfigs['schema-recommended'],
-    graphqlEslint.flatConfigs['relay'],
+    v3FlatConfigs?.['schema-recommended'] ??
+      graphqlEslint.configs['flat/schema-recommended'],
+    v3FlatConfigs?.['relay'] ?? graphqlEslint.configs['flat/schema-relay'],
     {
       name: 'code-pushup/graphql/customized',
       rules: {

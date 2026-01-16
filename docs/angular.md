@@ -53,9 +53,9 @@ Config for **Angular** projects.
 
 4. Refer to [step 3 in TypeScript config's setup docs](./typescript.md#🏗️-setup) for how to set up tsconfig properly.
 
-## 📏 Rules (442)
+## 📏 Rules (459)
 
-**361** rules are included from [`typescript` config](./typescript.md#📏-rules-361). For brevity, only the **81** additional rules are listed in this document.
+**378** rules are included from [`typescript` config](./typescript.md#📏-rules-378). For brevity, only the **81** additional rules are listed in this document.
 
 > 🔧 Automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/user-guide/command-line-interface#--fix).<br>💡 Manually fixable by [editor suggestions](https://eslint.org/docs/developer-guide/working-with-rules#providing-suggestions).<br>🧪🚫 Disabled for [test files](../README.md#🧪-test-overrides).<br>🧪⚠️ Severity lessened to warning for [test files](../README.md#🧪-test-overrides).
 

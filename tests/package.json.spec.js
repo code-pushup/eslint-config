@@ -43,8 +43,8 @@ describe('package.json checks', () => {
           !pkg.startsWith('@types/') &&
           !pkg.startsWith('@typescript-eslint/'), // installed via "typescript-eslint"
       )
-      .sort();
-    const received = Object.keys(packageJson.peerDependencies).sort();
+      .toSorted();
+    const received = Object.keys(packageJson.peerDependencies).toSorted();
     expect(received).toEqual(expected);
   });
 
@@ -71,12 +71,12 @@ describe('package.json checks', () => {
         const alias = pkg.replace(/\/?eslint-plugin-?/, '');
         return !plugins.has(alias);
       })
-      .sort();
+      .toSorted();
     const received = Object.entries(packageJson.peerDependenciesMeta)
       .filter(([, { optional }]) => optional)
       .filter(([pkg]) => pkg.includes('eslint-plugin'))
       .map(([pkg]) => pkg)
-      .sort();
+      .toSorted();
     expect(received).toEqual(expected);
   });
 });

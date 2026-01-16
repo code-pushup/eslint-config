@@ -61,6 +61,7 @@ export default tseslint.config({
         'vitest/prefer-equality-matcher': 'warn',
         'vitest/prefer-hooks-on-top': 'warn',
         'vitest/prefer-mock-promise-shorthand': 'warn',
+        'vitest/prefer-mock-return-shorthand': 'warn',
         'vitest/prefer-spy-on': 'warn',
         'vitest/prefer-to-contain': 'warn',
         'vitest/prefer-to-have-length': 'warn',

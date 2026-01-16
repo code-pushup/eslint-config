@@ -18,6 +18,15 @@ export default tseslint.config({
       name: 'code-pushup/vitest/customized',
       rules: {
         'vitest/prefer-to-be': 'warn',
+        ...('no-interpolation-in-snapshots' in vitest.rules && {
+          'vitest/no-interpolation-in-snapshots': 'warn',
+        }),
+        ...('no-unneeded-async-expect-function' in vitest.rules && {
+          'vitest/no-unneeded-async-expect-function': 'warn',
+        }),
+        ...('prefer-called-exactly-once-with' in vitest.rules && {
+          'vitest/prefer-called-exactly-once-with': 'warn',
+        }),
       },
     },
     {

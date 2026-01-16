@@ -12,11 +12,11 @@ describe('javascript config', () => {
   afterAll(teardown);
 
   it('should load config for JavaScript file', async () => {
-    await expect(loadConfig('index.js')).resolves.not.toThrow();
+    await expect(loadConfig('index.js')).resolves.not.toThrowError();
   });
 
   it('should load config for TypeScript file', async () => {
-    await expect(loadConfig('src/utils.ts')).resolves.not.toThrow();
+    await expect(loadConfig('src/utils.ts')).resolves.not.toThrowError();
   });
 
   it('should have explicitly added rule', async () => {
@@ -57,7 +57,7 @@ describe('javascript config', () => {
   });
 
   it('should not throw when linting project without tsconfig', async () => {
-    await expect(lint(['*.js'])).resolves.not.toThrow();
+    await expect(lint(['*.js'])).resolves.not.toThrowError();
   });
 
   it('should only warn for all unicorn plugin rules', async () => {

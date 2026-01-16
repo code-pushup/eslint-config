@@ -20,7 +20,7 @@ describe('typescript config', () => {
   afterAll(teardown);
 
   it('should load config for TypeScript file', async () => {
-    await expect(loadConfig('index.ts')).resolves.not.toThrow();
+    await expect(loadConfig('index.ts')).resolves.not.toThrowError();
   });
 
   it('should have explicitly added rule', async () => {

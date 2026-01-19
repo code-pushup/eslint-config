@@ -78,15 +78,15 @@ function setupDocs(config, peerDeps) {
           'js',
           [
             `import ${config} from '@code-pushup/eslint-config/${config}.js';`,
-            "import tseslint from 'typescript-eslint';",
+            "import { defineConfig } from 'eslint/config';",
             '',
             ...(configsExtraEslintrc[config]
               ? [
-                  'export default tseslint.config(',
+                  'export default defineConfig(',
                   `  ...${config}${configsExtraEslintrc[config]}`,
                   ');',
                 ]
-              : [`export default tseslint.config(...${config});`]),
+              : [`export default defineConfig(...${config});`]),
           ].join('\n'),
         )}`,
         ...(extraSetupDocs ? [extraSetupDocs] : []),

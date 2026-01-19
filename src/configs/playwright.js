@@ -1,10 +1,11 @@
 // @ts-check
 
 import playwright from 'eslint-plugin-playwright';
-import tseslint from 'typescript-eslint';
+import { defineConfig } from 'eslint/config';
 import { PLAYWRIGHT_FILE_PATTERNS } from '../lib/patterns.js';
 
-export default tseslint.config({
+export default defineConfig({
+  name: 'code-pushup/playwright',
   files: PLAYWRIGHT_FILE_PATTERNS,
   extends: [
     playwright.configs['flat/recommended'],

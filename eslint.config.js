@@ -1,13 +1,13 @@
 // @ts-check
 
 import { includeIgnoreFile } from '@eslint/compat';
+import { defineConfig } from 'eslint/config';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import tseslint from 'typescript-eslint';
 import node from './src/configs/node.js';
 import vitest from './src/configs/vitest.js';
 
-export default tseslint.config(
+export default defineConfig(
   includeIgnoreFile(
     path.join(path.dirname(fileURLToPath(import.meta.url)), '.gitignore'),
   ),

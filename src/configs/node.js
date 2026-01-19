@@ -1,12 +1,12 @@
 // @ts-check
 
 import nodePlugin from 'eslint-plugin-n';
+import { defineConfig } from 'eslint/config';
 import globals from 'globals';
-import tseslint from 'typescript-eslint';
 import javascript from './javascript.js';
 
-export default tseslint.config(...javascript, {
-  name: 'code-pushup/node/custom',
+export default defineConfig(...javascript, {
+  name: 'code-pushup/node',
   languageOptions: {
     globals: globals.node,
   },

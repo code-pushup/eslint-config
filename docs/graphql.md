@@ -15,9 +15,9 @@ Config for **GraphQL servers** implemented in Node.js.
 
    ```js
    import graphql from '@code-pushup/eslint-config/graphql.js';
-   import tseslint from 'typescript-eslint';
+   import { defineConfig } from 'eslint/config';
    
-   export default tseslint.config(...graphql);
+   export default defineConfig(...graphql);
    ```
 
 4. The GraphQL ESLint plugin needs to know where your GraphQL schema is located. For more information, refer to [_Extended Linting Rules with GraphQL Schema_ in GraphQL ESLint docs](https://the-guild.dev/graphql/eslint/docs/getting-started#extended-linting-rules-with-graphql-schema).
@@ -25,7 +25,7 @@ Config for **GraphQL servers** implemented in Node.js.
    - Otherwise, you can use [`parserOptions.schema`](https://the-guild.dev/graphql/eslint/docs/getting-started/parser-options#schema), e.g.:
    
      ```js
-     export default tseslint.config(
+     export default defineConfig(
        // ...
        {
          files: ['**/*.graphql'],

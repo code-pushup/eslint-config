@@ -2,8 +2,8 @@
 
 import angular from 'angular-eslint';
 import rxjs from 'eslint-plugin-rxjs-x';
+import { defineConfig } from 'eslint/config';
 import globals from 'globals';
-import tseslint from 'typescript-eslint';
 import {
   ANGULAR_COMPONENT_FILE_PATTERNS,
   ANGULAR_PIPE_FILE_PATTERNS,
@@ -20,7 +20,7 @@ import {
 } from '../lib/rule-options.js';
 import typescript from './typescript.js';
 
-export default tseslint.config(
+export default defineConfig(
   ...typescript,
   {
     plugins: {
@@ -28,6 +28,7 @@ export default tseslint.config(
     },
   },
   {
+    name: 'code-pushup/angular',
     files: TYPESCRIPT_FILE_PATTERNS,
     processor: angular.processInlineTemplates,
     languageOptions: {
@@ -118,6 +119,7 @@ export default tseslint.config(
     ],
   },
   {
+    name: 'code-pushup/angular/template',
     files: HTML_FILE_PATTERNS,
     extends: [
       ...angular.configs.templateRecommended,
@@ -158,6 +160,7 @@ export default tseslint.config(
     ],
   },
   {
+    name: 'code-pushup/angular/tests',
     files: TEST_FILE_PATTERNS,
     ignores: negatePatterns(TYPESCRIPT_FILE_PATTERNS),
     extends: [

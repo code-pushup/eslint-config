@@ -217,7 +217,9 @@ function findRuleData(id, config, rules) {
       id,
     ) ??
     findRuleEntry(
-      config.flatConfig.filter(({ files }) => files !== TEST_FILE_PATTERNS),
+      config.flatConfig.filter(
+        ({ files }) => !patternsEqual(files, TEST_FILE_PATTERNS),
+      ),
       id,
     );
   if (entry == null) {
@@ -225,6 +227,7 @@ function findRuleData(id, config, rules) {
       `Internal logic error - no entry found for rule ${id} in ${config.name} config`,
     );
   }
+  const options = Array.isArray(entry) && entry.length > 1 && entry.slice(1);
   const level = ruleLevelFromEntry(entry);
   if (level === 'off') {
     throw new Error(
@@ -233,25 +236,20 @@ function findRuleData(id, config, rules) {
   }
 
   const testEntry = findRuleEntry(
-    config.flatConfig.filter(({ files }) => files === TEST_FILE_PATTERNS),
+    config.flatConfig.filter(({ files }) =>
+      patternsEqual(files, TEST_FILE_PATTERNS),
+    ),
     id,
   );
   const testLevel = testEntry == null ? null : ruleLevelFromEntry(testEntry);
+  const testOverride = testLevel && testLevel !== level && { level: testLevel };
 
   return {
     id,
     meta,
     level,
-    ...(Array.isArray(entry) &&
-      entry.length > 1 && {
-        options: entry.slice(1),
-      }),
-    ...(testLevel &&
-      testLevel !== level && {
-        testOverride: {
-          level: testLevel,
-        },
-      }),
+    ...(options && { options }),
+    ...(testOverride && { testOverride }),
   };
 }
 
@@ -265,9 +263,21 @@ function getExtendedConfigs(config) {
       config.flatConfig
         .map(cfg => cfg.name)
         .filter(name => name?.startsWith('code-pushup/'))
-        .map(name => name?.split('/')[1])
+        .map(name => name?.split('/')[1]?.split(' > ')[0])
         .filter(name => name != null),
     ),
   ];
   return allExtended.filter(name => name !== config.name).slice(-1);
+}
+
+/**
+ * Checks if patterns are identical.
+ *
+ * ESLint's `defineConfig` copies `files` arrays, so `===` and `!==` can't be used.
+ *
+ * @param {(string | string[])[] | undefined} lhs Minimatch patterns (left-hand side)
+ * @param {(string | string[])[] | undefined} rhs Minimatch patterns (right-hand side)
+ */
+function patternsEqual(lhs, rhs) {
+  return JSON.stringify(lhs) === JSON.stringify(rhs);
 }

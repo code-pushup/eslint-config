@@ -9,9 +9,9 @@ Config for strict **TypeScript** projects.
 
    ```js
    import typescript from '@code-pushup/eslint-config/typescript.js';
-   import tseslint from 'typescript-eslint';
+   import { defineConfig } from 'eslint/config';
    
-   export default tseslint.config(...typescript);
+   export default defineConfig(...typescript);
    ```
 
 3. Because this config includes rules which require type information, make sure to configure `parserOptions.project` in your `eslint.config.js` points to your project's tsconfig.
@@ -20,10 +20,10 @@ Config for strict **TypeScript** projects.
    - Example for library in Nx monorepo:
    
      ```js
-     import tseslint from 'typescript-eslint';
+     import { defineConfig } from 'eslint/config';
      import baseConfig from '../../eslint.config.js';
      
-     export default tseslint.config(
+     export default defineConfig(
        ...baseConfig,
        {
          files: ['**/*.ts'],
@@ -49,7 +49,7 @@ Config for strict **TypeScript** projects.
    - Example `eslint.config.js` for Nx monorepo:
    
      ```js
-     export default tseslint.config(
+     export default defineConfig(
        // ...
        {
          settings: {

@@ -15,9 +15,9 @@ Config for projects using **Jest** for testing.
 
    ```js
    import jest from '@code-pushup/eslint-config/jest.js';
-   import tseslint from 'typescript-eslint';
+   import { defineConfig } from 'eslint/config';
    
-   export default tseslint.config(
+   export default defineConfig(
      ...jest,
      {
        // customize rules if needed:

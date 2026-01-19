@@ -3,12 +3,17 @@
 import jsxA11y from 'eslint-plugin-jsx-a11y';
 import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
+import { defineConfig } from 'eslint/config';
 import globals from 'globals';
-import tseslint from 'typescript-eslint';
 import { REACT_FILE_PATTERNS } from '../lib/patterns.js';
 import javascript from './javascript.js';
 
-export default tseslint.config(...javascript, {
+/** @type {import('eslint').ESLint.Plugin} */
+// @ts-expect-error incompatible nesting in configs (e.g. flat -> recommended)
+const reactHooksPlugin = reactHooks;
+
+export default defineConfig(...javascript, {
+  name: 'code-pushup/react',
   files: REACT_FILE_PATTERNS,
   languageOptions: {
     globals: globals.browser,
@@ -19,7 +24,7 @@ export default tseslint.config(...javascript, {
     {
       name: 'code-pushup/react/react-hooks',
       plugins: {
-        'react-hooks': reactHooks,
+        'react-hooks': reactHooksPlugin,
       },
       rules: {
         'react-hooks/rules-of-hooks': 'error',

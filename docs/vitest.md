@@ -15,9 +15,9 @@ Config for projects using **Vitest** for testing.
 
    ```js
    import vitest from '@code-pushup/eslint-config/vitest.js';
-   import tseslint from 'typescript-eslint';
+   import { defineConfig } from 'eslint/config';
    
-   export default tseslint.config(
+   export default defineConfig(
      ...vitest,
      {
        // customize rules if needed:

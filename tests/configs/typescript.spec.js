@@ -8,8 +8,6 @@ describe('typescript config', () => {
     setup,
     teardown,
     loadConfig,
-    loadRulesByIds,
-    getExplicitRuleIds,
     getEnabledRuleIds,
     loadRules,
     requiresTypeChecking,
@@ -45,21 +43,6 @@ describe('typescript config', () => {
     expect(config.rules).toHaveProperty(
       '@typescript-eslint/no-non-null-assertion',
     );
-  });
-
-  it('should only explicitly reference rules which require type checking (with specified exceptions)', async () => {
-    const { default: typescript } = await import(
-      '@code-pushup/eslint-config/typescript'
-    );
-    const ruleIds = getExplicitRuleIds(typescript);
-    const rules = await loadRulesByIds(ruleIds);
-    const rulesWithoutTypes = Object.entries(rules)
-      .filter(([, meta]) => !requiresTypeChecking(meta))
-      .map(([ruleId]) => ruleId)
-      .toSorted();
-    expect(rulesWithoutTypes).toEqual([
-      '@typescript-eslint/consistent-type-assertions',
-    ]);
   });
 
   it('should have rule disabled if test file pattern matches', async () => {

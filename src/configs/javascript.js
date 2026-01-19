@@ -98,6 +98,7 @@ export default tseslint.config(
           'unicorn/no-nested-ternary': 'off',
           'unicorn/prefer-string-replace-all': 'off',
           'unicorn/no-anonymous-default-export': 'off', // duplicate of import/no-anonymous-default-export
+          'unicorn/empty-brace-spaces': 'off',
         },
       },
       {

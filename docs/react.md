@@ -15,9 +15,9 @@ Config for **React** projects.
 
    ```js
    import react from '@code-pushup/eslint-config/react.js';
-   import tseslint from 'typescript-eslint';
+   import { defineConfig } from 'eslint/config';
    
-   export default tseslint.config(...react);
+   export default defineConfig(...react);
    ```
 
 ## 📏 Rules (420)

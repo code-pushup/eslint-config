@@ -1,10 +1,11 @@
 // @ts-check
 
 import rtl from 'eslint-plugin-testing-library';
-import tseslint from 'typescript-eslint';
+import { defineConfig } from 'eslint/config';
 import { UNIT_TEST_FILE_PATTERNS } from '../lib/patterns.js';
 
-export default tseslint.config({
+export default defineConfig({
+  name: 'code-pushup/react-testing-library',
   files: UNIT_TEST_FILE_PATTERNS,
   extends: [
     rtl.configs['flat/react'],

@@ -1,17 +1,22 @@
 // @ts-check
 
 import ngrx from '@ngrx/eslint-plugin';
-import tseslint from 'typescript-eslint';
+import { defineConfig } from 'eslint/config';
 import { TYPESCRIPT_FILE_PATTERNS } from '../lib/patterns.js';
 import angular from './angular.js';
 
-export default tseslint.config(...angular, {
+/** @type {import('eslint').ESLint.Plugin} */
+// @ts-expect-error rules in configs have string values instead of RuleConfig
+const ngrxPlugin = ngrx;
+
+export default defineConfig(...angular, {
+  name: 'code-pushup/ngrx',
   files: TYPESCRIPT_FILE_PATTERNS,
   extends: [
     {
       name: 'code-pushup/ngrx/ngrx',
       plugins: {
-        '@ngrx': ngrx,
+        '@ngrx': ngrxPlugin,
       },
       rules: {
         // https://ngrx.io/guide/eslint-plugin#rules

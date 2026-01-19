@@ -15,9 +15,9 @@ Config for projects using **React Testing Library** for testing.
 
    ```js
    import react-testing-library from '@code-pushup/eslint-config/react-testing-library.js';
-   import tseslint from 'typescript-eslint';
+   import { defineConfig } from 'eslint/config';
    
-   export default tseslint.config(...react-testing-library);
+   export default defineConfig(...react-testing-library);
    ```
 
 ## 📏 Rules (25)

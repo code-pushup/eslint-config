@@ -15,9 +15,9 @@ Config for **Node.js** projects.
 
    ```js
    import node from '@code-pushup/eslint-config/node.js';
-   import tseslint from 'typescript-eslint';
+   import { defineConfig } from 'eslint/config';
    
-   export default tseslint.config(...node);
+   export default defineConfig(...node);
    ```
 
 4. Some rules (e.g. `n/no-unsupported-features/node-builtins`) need to know which Node version is being used. Configuration options include:
@@ -35,7 +35,7 @@ Config for **Node.js** projects.
    - `settings.node.version` in `eslint.config.js`: 
    
      ```js
-     export default tseslint.config({
+     export default defineConfig({
        // ...
        {
          settings: {

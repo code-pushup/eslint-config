@@ -15,9 +15,9 @@ Config for projects using **Storybook** for UI components.
 
    ```js
    import storybook from '@code-pushup/eslint-config/storybook.js';
-   import tseslint from 'typescript-eslint';
+   import { defineConfig } from 'eslint/config';
    
-   export default tseslint.config(...storybook);
+   export default defineConfig(...storybook);
    ```
 
 ## 📏 Rules (12)

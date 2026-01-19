@@ -6,6 +6,7 @@ import * as importPlugin from 'eslint-plugin-import';
 import promise from 'eslint-plugin-promise';
 import sonarjs from 'eslint-plugin-sonarjs';
 import unicorn from 'eslint-plugin-unicorn';
+import { defineConfig } from 'eslint/config';
 import tseslint from 'typescript-eslint';
 import {
   COMMONJS_FILE_PATTERNS,
@@ -20,8 +21,9 @@ import {
 } from '../lib/patterns.js';
 import { convertErrorsToWarnings } from '../lib/utils.js';
 
-export default tseslint.config(
+export default defineConfig(
   {
+    name: 'code-pushup/javascript',
     files: JAVASCRIPT_EXTENDED_FILE_PATTERNS,
     extends: [
       eslint.configs.recommended,

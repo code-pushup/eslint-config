@@ -87,15 +87,6 @@ export default [
   const lint = (patterns = defaultFilePath) => eslint.lintFiles(patterns);
 
   /**
-   * @param {import('@typescript-eslint/utils').TSESLint.FlatConfig.ConfigArray} configs
-   * @returns {string[]}
-   */
-  const getExplicitRuleIds = configs =>
-    configs
-      .filter(config => config.name?.startsWith(`code-pushup/${configName}`))
-      .flatMap(getEnabledRuleIds);
-
-  /**
    * @param {import('@typescript-eslint/utils').TSESLint.FlatConfig.Config} config
    * @returns {string[]}
    */
@@ -119,7 +110,6 @@ export default [
     loadRules,
     loadRulesByIds,
     lint,
-    getExplicitRuleIds,
     getEnabledRuleIds,
     requiresTypeChecking,
   };

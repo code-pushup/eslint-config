@@ -1,10 +1,11 @@
 // @ts-check
 
 import vitest from '@vitest/eslint-plugin';
-import tseslint from 'typescript-eslint';
+import { defineConfig } from 'eslint/config';
 import { UNIT_TEST_FILE_PATTERNS } from '../lib/patterns.js';
 
-export default tseslint.config({
+export default defineConfig({
+  name: 'code-pushup/vitest',
   files: UNIT_TEST_FILE_PATTERNS,
   extends: [
     vitest.configs.recommended,

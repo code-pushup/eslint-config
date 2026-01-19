@@ -93,9 +93,9 @@ function basicSetupDocs(peerDeps) {
         'js',
         [
           "import javascript from '@code-pushup/eslint-config/javascript.js';",
-          "import tseslint from 'typescript-eslint';",
+          "import { defineConfig } from 'eslint/config';",
           '',
-          'export default tseslint.config(...javascript);',
+          'export default defineConfig(...javascript);',
         ].join('\n'),
       )}`,
     ])

@@ -80,10 +80,10 @@ For more information, refer to ${md.link('https://typescript-eslint.io/linting/t
       [
         md`Example for library in Nx monorepo:${md.codeBlock(
           'js',
-          `import tseslint from 'typescript-eslint';
+          `import { defineConfig } from 'eslint/config';
 import baseConfig from '../../eslint.config.js';
 
-export default tseslint.config(
+export default defineConfig(
   ...baseConfig,
   {
     files: ['**/*.ts'],
@@ -105,7 +105,7 @@ export default tseslint.config(
         md`Install additional import resolver:${md.codeBlock('sh', 'npm i -D eslint-import-resolver-typescript')}`,
         md`Example ${md.code(eslintConfig)} for Nx monorepo:${md.codeBlock(
           'js',
-          `export default tseslint.config(
+          `export default defineConfig(
   // ...
   {
     settings: {
@@ -139,7 +139,7 @@ export default tseslint.config(
       )}`,
       md`${md.code('settings.node.version')} in ${md.code(eslintConfig)}: ${md.codeBlock(
         'js',
-        `export default tseslint.config({
+        `export default defineConfig({
   // ...
   {
     settings: {
@@ -159,7 +159,7 @@ export default tseslint.config(
       md`If you're using ${md.link('https://the-guild.dev/graphql/config/docs', 'graphql-config')}, then your GraphQL schema will be loaded automatically from your ${md.code('.graphqlrc.yml')} (or equivalent) file. So no extra setup is required in this case.`,
       md`Otherwise, you can use ${md.link('https://the-guild.dev/graphql/eslint/docs/getting-started/parser-options#schema', md.code('parserOptions.schema'))}, e.g.:${md.codeBlock(
         'js',
-        `export default tseslint.config(
+        `export default defineConfig(
   // ...
   {
     files: ['**/*.graphql'],

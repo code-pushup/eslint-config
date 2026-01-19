@@ -15,9 +15,9 @@ Config for **Angular** projects using **NgRx** library.
 
    ```js
    import ngrx from '@code-pushup/eslint-config/ngrx.js';
-   import tseslint from 'typescript-eslint';
+   import { defineConfig } from 'eslint/config';
    
-   export default tseslint.config(
+   export default defineConfig(
      ...ngrx,
      {
        // It is recommended that selectors in Angular use a common custom prefix

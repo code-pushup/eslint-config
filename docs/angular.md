@@ -15,9 +15,9 @@ Config for **Angular** projects.
 
    ```js
    import angular from '@code-pushup/eslint-config/angular.js';
-   import tseslint from 'typescript-eslint';
+   import { defineConfig } from 'eslint/config';
    
-   export default tseslint.config(
+   export default defineConfig(
      ...angular,
      {
        // It is recommended that selectors in Angular use a common custom prefix

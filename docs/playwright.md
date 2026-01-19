@@ -15,9 +15,9 @@ Config for projects using **Playwright** for testing.
 
    ```js
    import playwright from '@code-pushup/eslint-config/playwright.js';
-   import tseslint from 'typescript-eslint';
+   import { defineConfig } from 'eslint/config';
    
-   export default tseslint.config(...playwright);
+   export default defineConfig(...playwright);
    ```
 
 ## 📏 Rules (42)

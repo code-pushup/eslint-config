@@ -1,10 +1,11 @@
 // @ts-check
 
 import jest from 'eslint-plugin-jest';
-import tseslint from 'typescript-eslint';
+import { defineConfig } from 'eslint/config';
 import { UNIT_TEST_FILE_PATTERNS } from '../lib/patterns.js';
 
-export default tseslint.config({
+export default defineConfig({
+  name: 'code-pushup/jest',
   files: UNIT_TEST_FILE_PATTERNS,
   extends: [
     jest.configs['flat/recommended'],

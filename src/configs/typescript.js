@@ -1,6 +1,7 @@
 // @ts-check
 
 import * as importPlugin from 'eslint-plugin-import';
+import { defineConfig } from 'eslint/config';
 import tseslint from 'typescript-eslint';
 import {
   CONFIG_FILE_PATTERNS,
@@ -21,9 +22,10 @@ const tseslintRules =
     ? Object.keys(tseslint.plugin.rules ?? {})
     : [];
 
-export default tseslint.config(
+export default defineConfig(
   ...javascript,
   {
+    name: 'code-pushup/typescript',
     files: TYPESCRIPT_EXTENDED_FILE_PATTERNS,
     extends: [
       ...tseslint.configs.recommendedTypeChecked,
@@ -102,6 +104,7 @@ export default tseslint.config(
     ],
   },
   {
+    name: 'code-pushup/typescript/tests',
     files: TEST_FILE_PATTERNS,
     ignores: negatePatterns(TYPESCRIPT_EXTENDED_FILE_PATTERNS),
     extends: [
@@ -163,6 +166,7 @@ export default tseslint.config(
     },
   },
   {
+    name: 'code-pushup/typescript/disable-type-checked-for-javascript',
     files: negatePatterns(TYPESCRIPT_EXTENDED_FILE_PATTERNS),
     ...tseslint.configs.disableTypeChecked,
   },

@@ -1,10 +1,11 @@
 // @ts-check
 
 import cypress from 'eslint-plugin-cypress/flat';
-import tseslint from 'typescript-eslint';
+import { defineConfig } from 'eslint/config';
 import { CYPRESS_FILE_PATTERNS } from '../lib/patterns.js';
 
-export default tseslint.config({
+export default defineConfig({
+  name: 'code-pushup/cypress',
   files: CYPRESS_FILE_PATTERNS,
   extends: [
     cypress.configs.recommended,

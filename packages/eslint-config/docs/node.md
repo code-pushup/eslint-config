@@ -21,7 +21,6 @@ Config for **Node.js** projects.
    ```
 
 4. Some rules (e.g. `n/no-unsupported-features/node-builtins`) need to know which Node version is being used. Configuration options include:
-
    - `engines` field in `package.json`:
 
      ```jsonc

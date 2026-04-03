@@ -16,7 +16,6 @@ Config for strict **TypeScript** projects.
 
 3. Because this config includes rules which require type information, make sure to configure `parserOptions.project` in your `eslint.config.js` points to your project's tsconfig.
    For more information, refer to [_Linting with Type Information_ (typescript-eslint)](https://typescript-eslint.io/linting/typed-linting).
-
    - Example for library in Nx monorepo:
 
      ```js
@@ -36,7 +35,6 @@ Config for strict **TypeScript** projects.
      ```
 
    Similarly, you may need to [configure a tsconfig file for `eslint-plugin-import` rules](https://www.npmjs.com/package/eslint-plugin-import#typescript) (e.g. if using path aliases in `.ts` files):
-
    - Install additional import resolver:
 
      ```sh

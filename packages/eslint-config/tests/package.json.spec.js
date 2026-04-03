@@ -43,6 +43,8 @@ describe('package.json checks', () => {
         pkg =>
           (pkg.includes('eslint') || pkg === 'globals') &&
           pkg !== '@eslint/compat' &&
+          pkg !== 'eslint-config-prettier' &&
+          pkg !== 'jsonc-eslint-parser' &&
           !pkg.startsWith('@types/') &&
           !pkg.startsWith('@typescript-eslint/') && // installed via "typescript-eslint"
           !pkg.startsWith('@nx/'),

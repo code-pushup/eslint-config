@@ -1,0 +1,42 @@
+{
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "targetDefaults": {
+    "test:coverage": {
+      "outputs": ["{projectRoot}/coverage"],
+      "cache": true
+    },
+    "docs": {
+      "outputs": ["{projectRoot}/docs"],
+      "cache": true
+    },
+    "test": {
+      "cache": true
+    },
+    "lint": {
+      "cache": true
+    },
+    "format:check": {
+      "cache": true
+    },
+    "typecheck": {
+      "cache": true
+    }
+  },
+  "analytics": false,
+  "plugins": [
+    {
+      "plugin": "@nx/eslint/plugin",
+      "options": {
+        "targetName": "eslint:lint"
+      }
+    },
+    {
+      "plugin": "@nx/vitest",
+      "options": {
+        "testTargetName": "vitest:test",
+        "ciTargetName": "test-ci",
+        "testMode": "watch"
+      }
+    }
+  ]
+}

@@ -41,7 +41,8 @@ describe('package.json checks', () => {
           (pkg.includes('eslint') || pkg === 'globals') &&
           pkg !== '@eslint/compat' &&
           !pkg.startsWith('@types/') &&
-          !pkg.startsWith('@typescript-eslint/'), // installed via "typescript-eslint"
+          !pkg.startsWith('@typescript-eslint/') && // installed via "typescript-eslint"
+          !pkg.startsWith('@nx/'),
       )
       .toSorted();
     const received = Object.keys(packageJson.peerDependencies).toSorted();

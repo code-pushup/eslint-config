@@ -11,15 +11,13 @@ describe('angular config', () => {
   afterAll(teardown);
 
   it('should load config for TypeScript file', async () => {
-    await expect(
-      loadConfig('src/app/app.component.ts'),
-    ).resolves.not.toThrowError();
+    await expect(loadConfig('src/app/app.component.ts')).resolves.not.toThrow();
   });
 
   it('should load config for HTML file', async () => {
     await expect(
       loadConfig('src/app/app.component.html'),
-    ).resolves.not.toThrowError();
+    ).resolves.not.toThrow();
   });
 
   it('should not include template rules for non-HTML file', async () => {

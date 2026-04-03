@@ -13,7 +13,7 @@ describe('ngrx config', () => {
   it('should load config for TypeScript file', async () => {
     await expect(
       loadConfig('src/app/store/auth.reducer.ts'),
-    ).resolves.not.toThrowError();
+    ).resolves.not.toThrow();
   });
 
   it('should have explicitly added rule', async () => {

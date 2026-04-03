@@ -16,39 +16,36 @@ Config for **Angular** projects using **NgRx** library.
    ```js
    import ngrx from '@code-pushup/eslint-config/ngrx.js';
    import { defineConfig } from 'eslint/config';
-   
-   export default defineConfig(
-     ...ngrx,
-     {
-       // It is recommended that selectors in Angular use a common custom prefix
-       // - see https://angular.io/guide/styleguide#style-02-07
-       // To enforce this consistently, add the following rules:
-       rules: {
-         '@angular-eslint/component-selector': [
-           'warn',
-           {
-             type: 'element',
-             style: 'kebab-case',
-             prefix: ['cp'] // <-- replace with your own prefix
-           }
-         ],
-         '@angular-eslint/directive-selector': [
-           'warn',
-           {
-             type: 'attribute',
-             style: 'camelCase',
-             prefix: 'cp' // <-- replace with your own prefix
-           }
-         ],
-         '@angular-eslint/pipe-prefix': [
-           'warn',
-           {
-             prefixes: ['cp'] // <-- replace with your own prefix
-           }
-         ]
-       }
-     }
-   );
+
+   export default defineConfig(...ngrx, {
+     // It is recommended that selectors in Angular use a common custom prefix
+     // - see https://angular.io/guide/styleguide#style-02-07
+     // To enforce this consistently, add the following rules:
+     rules: {
+       '@angular-eslint/component-selector': [
+         'warn',
+         {
+           type: 'element',
+           style: 'kebab-case',
+           prefix: ['cp'], // <-- replace with your own prefix
+         },
+       ],
+       '@angular-eslint/directive-selector': [
+         'warn',
+         {
+           type: 'attribute',
+           style: 'camelCase',
+           prefix: 'cp', // <-- replace with your own prefix
+         },
+       ],
+       '@angular-eslint/pipe-prefix': [
+         'warn',
+         {
+           prefixes: ['cp'], // <-- replace with your own prefix
+         },
+       ],
+     },
+   });
    ```
 
 4. Refer to [step 3 in TypeScript config's setup docs](./typescript.md#🏗️-setup) for how to set up tsconfig properly.
@@ -66,9 +63,9 @@ Config for **Angular** projects using **NgRx** library.
 |              [![@ngrx](./icons/other/ngrx.png)](https://ngrx.io/guide/eslint-plugin)               | [avoid-cyclic-effects](https://ngrx.io/guide/eslint-plugin/rules/avoid-cyclic-effects)<br />Avoid `Effect` that re-emit filtered actions.                                                |         |         |           |
 |              [![@ngrx](./icons/other/ngrx.png)](https://ngrx.io/guide/eslint-plugin)               | [avoid-duplicate-actions-in-reducer](https://ngrx.io/guide/eslint-plugin/rules/avoid-duplicate-actions-in-reducer)<br />A `Reducer` should handle an `Action` once.                      |         |   💡    |           |
 |              [![@ngrx](./icons/other/ngrx.png)](https://ngrx.io/guide/eslint-plugin)               | [no-effects-in-providers](https://ngrx.io/guide/eslint-plugin/rules/no-effects-in-providers)<br />`Effect` should not be listed as a provider if it is added to the `EffectsModule`.     |         |   🔧    |           |
-| [![rxjs-x](./icons/other/rxjs.png)](https://github.com/JasonWeinzierl/eslint-plugin-rxjs-x#readme) | [no-unsafe-catch](https://github.com/JasonWeinzierl/eslint-plugin-rxjs-x/blob/v0.8.4/docs/rules/no-unsafe-catch.md)<br />Disallow unsafe `catchError` usage in effects and epics.        |         |         |           |
-| [![rxjs-x](./icons/other/rxjs.png)](https://github.com/JasonWeinzierl/eslint-plugin-rxjs-x#readme) | [no-unsafe-first](https://github.com/JasonWeinzierl/eslint-plugin-rxjs-x/blob/v0.8.4/docs/rules/no-unsafe-first.md)<br />Disallow unsafe `first`/`take` usage in effects and epics.      |         |         |           |
-| [![rxjs-x](./icons/other/rxjs.png)](https://github.com/JasonWeinzierl/eslint-plugin-rxjs-x#readme) | [no-unsafe-switchmap](https://github.com/JasonWeinzierl/eslint-plugin-rxjs-x/blob/v0.8.4/docs/rules/no-unsafe-switchmap.md)<br />Disallow unsafe `switchMap` usage in effects and epics. |         |         |           |
+| [![rxjs-x](./icons/other/rxjs.png)](https://github.com/JasonWeinzierl/eslint-plugin-rxjs-x#readme) | [no-unsafe-catch](https://github.com/JasonWeinzierl/eslint-plugin-rxjs-x/blob/v0.8.5/docs/rules/no-unsafe-catch.md)<br />Disallow unsafe `catchError` usage in effects and epics.        |         |         |           |
+| [![rxjs-x](./icons/other/rxjs.png)](https://github.com/JasonWeinzierl/eslint-plugin-rxjs-x#readme) | [no-unsafe-first](https://github.com/JasonWeinzierl/eslint-plugin-rxjs-x/blob/v0.8.5/docs/rules/no-unsafe-first.md)<br />Disallow unsafe `first`/`take` usage in effects and epics.      |         |         |           |
+| [![rxjs-x](./icons/other/rxjs.png)](https://github.com/JasonWeinzierl/eslint-plugin-rxjs-x#readme) | [no-unsafe-switchmap](https://github.com/JasonWeinzierl/eslint-plugin-rxjs-x/blob/v0.8.5/docs/rules/no-unsafe-switchmap.md)<br />Disallow unsafe `switchMap` usage in effects and epics. |         |         |           |
 
 ### ⚠️ Warnings (24)
 

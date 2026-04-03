@@ -12,7 +12,7 @@ describe('node config', () => {
   afterAll(teardown);
 
   it('should load config for JavaScript file', async () => {
-    await expect(loadConfig('src/utils.js')).resolves.not.toThrowError();
+    await expect(loadConfig('src/utils.js')).resolves.not.toThrow();
   });
 
   it('should have explicitly added rule', async () => {

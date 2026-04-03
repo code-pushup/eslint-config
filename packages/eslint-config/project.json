@@ -1,0 +1,79 @@
+{
+  "name": "eslint-config",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/eslint-config/src",
+  "projectType": "library",
+  "targets": {
+    "test": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "vitest run",
+        "cwd": "packages/eslint-config"
+      },
+      "cache": true
+    },
+    "test:watch": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "vitest",
+        "cwd": "packages/eslint-config"
+      }
+    },
+    "test:coverage": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "vitest run --coverage.enabled",
+        "cwd": "packages/eslint-config"
+      },
+      "cache": true,
+      "outputs": ["{projectRoot}/coverage"]
+    },
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "eslint .",
+        "cwd": "packages/eslint-config"
+      },
+      "cache": true
+    },
+    "lint:fix": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "eslint . --fix",
+        "cwd": "packages/eslint-config"
+      }
+    },
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsc",
+        "cwd": "packages/eslint-config"
+      },
+      "cache": true
+    },
+    "format:check": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "prettier --check .",
+        "cwd": "packages/eslint-config"
+      },
+      "cache": true
+    },
+    "format": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "prettier --write .",
+        "cwd": "packages/eslint-config"
+      }
+    },
+    "docs": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "node scripts/docs.js",
+        "cwd": "packages/eslint-config"
+      },
+      "cache": true,
+      "outputs": ["{projectRoot}/docs", "{projectRoot}/README.md"]
+    }
+  }
+}

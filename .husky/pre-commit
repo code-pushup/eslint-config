@@ -2,11 +2,11 @@
 . "$(dirname -- "$0")/_/husky.sh"
 
 # tests
-npm test
+npx nx run eslint-config:test
 
 # docs script
-npm run docs
-git add docs README.md
+npx nx run eslint-config:docs
+git add packages/eslint-config/docs packages/eslint-config/README.md
 
 # Prettier (https://prettier.io/docs/en/precommit.html#option-5-shell-script)
 FILES=$(git diff --cached --name-only --diff-filter=ACMR | sed 's| |\\ |g')

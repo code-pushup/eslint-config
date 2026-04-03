@@ -58,7 +58,7 @@ To use the default config, follow these steps:
    ```js
    import javascript from '@code-pushup/eslint-config/javascript.js';
    import { defineConfig } from 'eslint/config';
-   
+
    export default defineConfig(...javascript);
    ```
 
@@ -70,16 +70,16 @@ All peer dependencies used by `@code-pushup/eslint-config` are listed below, alo
 
 |                                                            | NPM package                                                                                          |                     Version                      | Required |
 | :--------------------------------------------------------: | :--------------------------------------------------------------------------------------------------- | :----------------------------------------------: | :------: |
-|        ![eslint](./docs/icons/material/eslint.png)         | [eslint](https://www.npmjs.com/package/eslint)                                                       |                     `^9.0.0`                     |    ✅     |
-|        ![eslint](./docs/icons/material/eslint.png)         | [@eslint/js](https://www.npmjs.com/package/@eslint/js)                                               |                     `^9.0.0`                     |    ✅     |
-|         ![lambda](./docs/icons/icons8/lambda.png)          | [eslint-plugin-functional](https://www.npmjs.com/package/eslint-plugin-functional)                   |         `^7.0.0 \|\| ^8.0.0 \|\| ^9.0.0`         |    ✅     |
-|         ![import](./docs/icons/icons8/import.png)          | [eslint-plugin-import](https://www.npmjs.com/package/eslint-plugin-import)                           |                    `^2.31.0`                     |    ✅     |
+|        ![eslint](./docs/icons/material/eslint.png)         | [eslint](https://www.npmjs.com/package/eslint)                                                       |                     `^9.0.0`                     |    ✅    |
+|        ![eslint](./docs/icons/material/eslint.png)         | [@eslint/js](https://www.npmjs.com/package/@eslint/js)                                               |                     `^9.0.0`                     |    ✅    |
+|         ![lambda](./docs/icons/icons8/lambda.png)          | [eslint-plugin-functional](https://www.npmjs.com/package/eslint-plugin-functional)                   |         `^7.0.0 \|\| ^8.0.0 \|\| ^9.0.0`         |    ✅    |
+|         ![import](./docs/icons/icons8/import.png)          | [eslint-plugin-import](https://www.npmjs.com/package/eslint-plugin-import)                           |                    `^2.31.0`                     |    ✅    |
 |         ![import](./docs/icons/icons8/import.png)          | [eslint-import-resolver-typescript](https://www.npmjs.com/package/eslint-import-resolver-typescript) |               `^3.0.0 \|\| ^4.0.0`               |          |
-|        ![promise](./docs/icons/icons8/promise.png)         | [eslint-plugin-promise](https://www.npmjs.com/package/eslint-plugin-promise)                         |                    `>=6.4.0`                     |    ✅     |
-|           ![sonar](./docs/icons/other/sonar.png)           | [eslint-plugin-sonarjs](https://www.npmjs.com/package/eslint-plugin-sonarjs)                         |                     `^1.0.4`                     |    ✅     |
-|        ![unicorn](./docs/icons/icons8/unicorn.png)         | [eslint-plugin-unicorn](https://www.npmjs.com/package/eslint-plugin-unicorn)                         |                    `>=50.0.0`                    |    ✅     |
-|         ![global](./docs/icons/icons8/global.png)          | [globals](https://www.npmjs.com/package/globals)                                                     |                    `>=14.0.0`                    |    ✅     |
-|    ![typescript](./docs/icons/material/typescript.png)     | [typescript-eslint](https://www.npmjs.com/package/typescript-eslint)                                 |                     `^8.0.0`                     |    ✅     |
+|        ![promise](./docs/icons/icons8/promise.png)         | [eslint-plugin-promise](https://www.npmjs.com/package/eslint-plugin-promise)                         |                    `>=6.4.0`                     |    ✅    |
+|           ![sonar](./docs/icons/other/sonar.png)           | [eslint-plugin-sonarjs](https://www.npmjs.com/package/eslint-plugin-sonarjs)                         |                     `^1.0.4`                     |    ✅    |
+|        ![unicorn](./docs/icons/icons8/unicorn.png)         | [eslint-plugin-unicorn](https://www.npmjs.com/package/eslint-plugin-unicorn)                         |                    `>=50.0.0`                    |    ✅    |
+|         ![global](./docs/icons/icons8/global.png)          | [globals](https://www.npmjs.com/package/globals)                                                     |                    `>=14.0.0`                    |    ✅    |
+|    ![typescript](./docs/icons/material/typescript.png)     | [typescript-eslint](https://www.npmjs.com/package/typescript-eslint)                                 |                     `^8.0.0`                     |    ✅    |
 |       ![graphql](./docs/icons/material/graphql.png)        | [@graphql-eslint/eslint-plugin](https://www.npmjs.com/package/@graphql-eslint/eslint-plugin)         |               `^3.0.0 \|\| ^4.0.0`               |          |
 |            ![ngrx](./docs/icons/other/ngrx.png)            | [@ngrx/eslint-plugin](https://www.npmjs.com/package/@ngrx/eslint-plugin)                             | `^18.0.0 \|\| ^19.0.0 \|\| ^20.0.0 \|\| ^21.0.0` |          |
 |        ![vitest](./docs/icons/material/vitest.png)         | [@vitest/eslint-plugin](https://www.npmjs.com/package/@vitest/eslint-plugin)                         |                     `^1.1.9`                     |          |

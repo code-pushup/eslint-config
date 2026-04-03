@@ -9,7 +9,12 @@ import vitest from './src/configs/vitest.js';
 
 export default defineConfig(
   includeIgnoreFile(
-    path.join(path.dirname(fileURLToPath(import.meta.url)), '.gitignore'),
+    path.join(
+      path.dirname(fileURLToPath(import.meta.url)),
+      '..',
+      '..',
+      '.gitignore',
+    ),
   ),
   ...node,
   ...vitest,

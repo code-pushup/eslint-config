@@ -5,8 +5,10 @@ import { readFile } from 'node:fs/promises';
 import { beforeAll, describe, expect, it } from 'vitest';
 
 describe('package.json checks', () => {
-  /** @type {{ devDependencies: Record<string, string>, peerDependencies: Record<string, string>, peerDependenciesMeta: Record<string, { optional?: boolean }> }} */
+  /** @type {{ peerDependencies: Record<string, string>, peerDependenciesMeta: Record<string, { optional?: boolean }> }} */
   let packageJson;
+  /** @type {{ devDependencies: Record<string, string> }} */
+  let rootPackageJson;
   /** @type {{ packages: Record<string, { version: string }> }} */
   let packageLockJson;
 
@@ -31,11 +33,12 @@ describe('package.json checks', () => {
 
   beforeAll(async () => {
     packageJson = await readJson('package.json');
-    packageLockJson = await readJson('package-lock.json');
+    rootPackageJson = await readJson('../../package.json');
+    packageLockJson = await readJson('../../package-lock.json');
   });
 
   it('should include every eslint-related package as peer dependency', () => {
-    const expected = Object.keys(packageJson.devDependencies)
+    const expected = Object.keys(rootPackageJson.devDependencies)
       .filter(
         pkg =>
           (pkg.includes('eslint') || pkg === 'globals') &&

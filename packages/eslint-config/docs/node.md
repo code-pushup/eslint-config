@@ -16,24 +16,25 @@ Config for **Node.js** projects.
    ```js
    import node from '@code-pushup/eslint-config/node.js';
    import { defineConfig } from 'eslint/config';
-   
+
    export default defineConfig(...node);
    ```
 
 4. Some rules (e.g. `n/no-unsupported-features/node-builtins`) need to know which Node version is being used. Configuration options include:
-   - `engines` field in `package.json`: 
-   
+
+   - `engines` field in `package.json`:
+
      ```jsonc
      {
        // ...
        "engines": {
          "node": ">=22.12.0"
        }
-     
+
      ```
-   
-   - `settings.node.version` in `eslint.config.js`: 
-   
+
+   - `settings.node.version` in `eslint.config.js`:
+
      ```js
      export default defineConfig({
        // ...
@@ -45,7 +46,7 @@ Config for **Node.js** projects.
          }
        }
      });
-     
+
      ```
 
    For more information, refer to [`eslint-plugin-n` docs](https://github.com/eslint-community/eslint-plugin-n?tab=readme-ov-file#configured-nodejs-version-range).

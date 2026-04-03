@@ -16,11 +16,11 @@ Config for projects using **Playwright** for testing.
    ```js
    import playwright from '@code-pushup/eslint-config/playwright.js';
    import { defineConfig } from 'eslint/config';
-   
+
    export default defineConfig(...playwright);
    ```
 
-## 📏 Rules (42)
+## 📏 Rules (43)
 
 > 🔧 Automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/user-guide/command-line-interface#--fix).<br>💡 Manually fixable by [editor suggestions](https://eslint.org/docs/developer-guide/working-with-rules#providing-suggestions).
 
@@ -37,10 +37,10 @@ Config for projects using **Playwright** for testing.
 | [![playwright](./icons/material/playwright.png)](https://github.com/playwright-community/eslint-plugin-playwright#readme) | [valid-describe-callback](https://github.com/mskelton/eslint-plugin-playwright/tree/main/docs/rules/valid-describe-callback.md)<br />Enforce valid `describe()` callback                                             |         |         |           |
 | [![playwright](./icons/material/playwright.png)](https://github.com/playwright-community/eslint-plugin-playwright#readme) | [valid-expect](https://github.com/mskelton/eslint-plugin-playwright/tree/main/docs/rules/valid-expect.md)<br />Enforce valid `expect()` usage                                                                        |         |         |           |
 | [![playwright](./icons/material/playwright.png)](https://github.com/playwright-community/eslint-plugin-playwright#readme) | [valid-expect-in-promise](https://github.com/mskelton/eslint-plugin-playwright/tree/main/docs/rules/valid-expect-in-promise.md)<br />Require promises that have expectations in their chain to be valid              |         |         |           |
-| [![playwright](./icons/material/playwright.png)](https://github.com/playwright-community/eslint-plugin-playwright#readme) | valid-test-tags<br />Enforce valid tag format in Playwright test blocks and titles                                                                                                                                   |         |         |           |
+| [![playwright](./icons/material/playwright.png)](https://github.com/playwright-community/eslint-plugin-playwright#readme) | [valid-test-tags](https://github.com/mskelton/eslint-plugin-playwright/tree/main/docs/rules/valid-test-tags.md)<br />Enforce valid tag format in Playwright test blocks and titles                                   |         |         |           |
 | [![playwright](./icons/material/playwright.png)](https://github.com/playwright-community/eslint-plugin-playwright#readme) | [valid-title](https://github.com/mskelton/eslint-plugin-playwright/tree/main/docs/rules/valid-title.md)<br />Enforce valid titles                                                                                    |         |   🔧    |           |
 
-### ⚠️ Warnings (31)
+### ⚠️ Warnings (32)
 
 |                                                          Plugin                                                           | Rule                                                                                                                                                                                                                                                          | Options | Autofix | Overrides |
 | :-----------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :------ | :-----: | :-------: |
@@ -51,6 +51,7 @@ Config for projects using **Playwright** for testing.
 | [![playwright](./icons/material/playwright.png)](https://github.com/playwright-community/eslint-plugin-playwright#readme) | [no-conditional-expect](https://github.com/mskelton/eslint-plugin-playwright/tree/main/docs/rules/no-conditional-expect.md)<br />Disallow calling `expect` conditionally                                                                                      |         |         |           |
 | [![playwright](./icons/material/playwright.png)](https://github.com/playwright-community/eslint-plugin-playwright#readme) | [no-conditional-in-test](https://github.com/mskelton/eslint-plugin-playwright/tree/main/docs/rules/no-conditional-in-test.md)<br />Disallow conditional logic in tests                                                                                        |         |         |           |
 | [![playwright](./icons/material/playwright.png)](https://github.com/playwright-community/eslint-plugin-playwright#readme) | [no-duplicate-hooks](https://github.com/mskelton/eslint-plugin-playwright/tree/main/docs/rules/no-duplicate-hooks.md)<br />Disallow duplicate setup and teardown hooks                                                                                        |         |         |           |
+| [![playwright](./icons/material/playwright.png)](https://github.com/playwright-community/eslint-plugin-playwright#readme) | [no-duplicate-slow](https://github.com/mskelton/eslint-plugin-playwright/tree/main/docs/rules/no-duplicate-slow.md)<br />Disallow multiple `test.slow()` calls in the same test                                                                               |         |         |           |
 | [![playwright](./icons/material/playwright.png)](https://github.com/playwright-community/eslint-plugin-playwright#readme) | [no-element-handle](https://github.com/mskelton/eslint-plugin-playwright/tree/main/docs/rules/no-element-handle.md)<br />The use of ElementHandle is discouraged, use Locator instead                                                                         |         |   💡    |           |
 | [![playwright](./icons/material/playwright.png)](https://github.com/playwright-community/eslint-plugin-playwright#readme) | [no-eval](https://github.com/mskelton/eslint-plugin-playwright/tree/main/docs/rules/no-eval.md)<br />The use of `page.$eval` and `page.$$eval` are discouraged, use `locator.evaluate` or `locator.evaluateAll` instead                                       |         |         |           |
 | [![playwright](./icons/material/playwright.png)](https://github.com/playwright-community/eslint-plugin-playwright#readme) | [no-focused-test](https://github.com/mskelton/eslint-plugin-playwright/tree/main/docs/rules/no-focused-test.md)<br />Prevent usage of `.only()` focus test annotation                                                                                         |         |   💡    |           |

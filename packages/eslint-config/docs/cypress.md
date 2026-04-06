@@ -16,7 +16,7 @@ Config for projects using **Cypress** for testing.
    ```js
    import cypress from '@code-pushup/eslint-config/cypress.js';
    import { defineConfig } from 'eslint/config';
-
+   
    export default defineConfig(...cypress);
    ```
 

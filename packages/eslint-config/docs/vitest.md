@@ -16,22 +16,22 @@ Config for projects using **Vitest** for testing.
    ```js
    import vitest from '@code-pushup/eslint-config/vitest.js';
    import { defineConfig } from 'eslint/config';
-
-   export default defineConfig(...vitest, {
-     // customize rules if needed:
-     rules: {
-       // e.g. to customize file naming convention (default pattern is '.*\\.spec\\.[tj]sx?$'):
-       'vitest/consistent-test-filename': [
-         'warn',
-         { pattern: '.*\\.(unit|integration|e2e)\\.test\\.ts$' },
-       ],
-       // e.g. to customize `test` or `it` usage (default is `it` in `describe` and `test` at top-level):
-       'vitest/consistent-test-it': [
-         'warn',
-         { fn: 'test', withinDescribe: 'test' },
-       ],
-     },
-   });
+   
+   export default defineConfig(
+     ...vitest,
+     {
+       // customize rules if needed:
+       rules: {
+         // e.g. to customize file naming convention (default pattern is '.*\\.spec\\.[tj]sx?$'):
+         'vitest/consistent-test-filename': [
+           'warn',
+           { 'pattern': '.*\\.(unit|integration|e2e)\\.test\\.ts$' }
+         ],
+         // e.g. to customize `test` or `it` usage (default is `it` in `describe` and `test` at top-level):
+         'vitest/consistent-test-it': ['warn', { fn: 'test', withinDescribe: 'test' }]
+       }
+     }
+   );
    ```
 
 ## 📏 Rules (47)
@@ -58,7 +58,7 @@ Config for projects using **Vitest** for testing.
 | :----------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------- | :-----: | :-------: |
 | [![vitest](./icons/material/vitest.png)](https://github.com/veritem/eslint-plugin-vitest#readme) | [consistent-test-filename](https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/consistent-test-filename.md)<br />require test file pattern                                                                                     | <details><summary>pattern: .\*\\.spec\\.[tj]sx?$</summary><pre lang="json"><code>{&#13;  "pattern": ".\*\\\\.spec\\\\.[tj]sx?$"&#13;}</code></pre></details> |         |           |
 | [![vitest](./icons/material/vitest.png)](https://github.com/veritem/eslint-plugin-vitest#readme) | [consistent-test-it](https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/consistent-test-it.md)<br />enforce using test or it but not both                                                                                     |                                                                                                                                                              |   🔧    |           |
-| [![vitest](./icons/material/vitest.png)](https://github.com/veritem/eslint-plugin-vitest#readme) | [max-nested-describe](https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/max-nested-describe.md)<br />require describe block to be less than set max value or default value                                                   | <details><summary>max: 2</summary><pre lang="json"><code>{&#13; "max": 2&#13;}</code></pre></details>                                                        |         |           |
+| [![vitest](./icons/material/vitest.png)](https://github.com/veritem/eslint-plugin-vitest#readme) | [max-nested-describe](https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/max-nested-describe.md)<br />require describe block to be less than set max value or default value                                                   | <details><summary>max: 2</summary><pre lang="json"><code>{&#13;  "max": 2&#13;}</code></pre></details>                                                       |         |           |
 | [![vitest](./icons/material/vitest.png)](https://github.com/veritem/eslint-plugin-vitest#readme) | [no-alias-methods](https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/no-alias-methods.md)<br />disallow alias methods                                                                                                        |                                                                                                                                                              |   🔧    |           |
 | [![vitest](./icons/material/vitest.png)](https://github.com/veritem/eslint-plugin-vitest#readme) | [no-conditional-expect](https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/no-conditional-expect.md)<br />disallow conditional expects                                                                                        |                                                                                                                                                              |         |           |
 | [![vitest](./icons/material/vitest.png)](https://github.com/veritem/eslint-plugin-vitest#readme) | [no-conditional-tests](https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/no-conditional-tests.md)<br />disallow conditional tests                                                                                            |                                                                                                                                                              |         |           |
@@ -67,7 +67,7 @@ Config for projects using **Vitest** for testing.
 | [![vitest](./icons/material/vitest.png)](https://github.com/veritem/eslint-plugin-vitest#readme) | [no-duplicate-hooks](https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/no-duplicate-hooks.md)<br />disallow duplicate hooks and teardown hooks                                                                               |                                                                                                                                                              |         |           |
 | [![vitest](./icons/material/vitest.png)](https://github.com/veritem/eslint-plugin-vitest#readme) | [no-focused-tests](https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/no-focused-tests.md)<br />disallow focused tests                                                                                                        |                                                                                                                                                              |   🔧    |           |
 | [![vitest](./icons/material/vitest.png)](https://github.com/veritem/eslint-plugin-vitest#readme) | [no-interpolation-in-snapshots](https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/no-interpolation-in-snapshots.md)<br />disallow string interpolation in snapshots                                                          |                                                                                                                                                              |   🔧    |           |
-| [![vitest](./icons/material/vitest.png)](https://github.com/veritem/eslint-plugin-vitest#readme) | [no-mocks-import](https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/no-mocks-import.md)<br />disallow importing from **mocks** directory                                                                                     |                                                                                                                                                              |         |           |
+| [![vitest](./icons/material/vitest.png)](https://github.com/veritem/eslint-plugin-vitest#readme) | [no-mocks-import](https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/no-mocks-import.md)<br />disallow importing from __mocks__ directory                                                                                     |                                                                                                                                                              |         |           |
 | [![vitest](./icons/material/vitest.png)](https://github.com/veritem/eslint-plugin-vitest#readme) | [no-standalone-expect](https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/no-standalone-expect.md)<br />disallow using `expect` outside of `it` or `test` blocks                                                              |                                                                                                                                                              |         |           |
 | [![vitest](./icons/material/vitest.png)](https://github.com/veritem/eslint-plugin-vitest#readme) | [no-test-return-statement](https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/no-test-return-statement.md)<br />disallow return statements in tests                                                                           |                                                                                                                                                              |         |           |
 | [![vitest](./icons/material/vitest.png)](https://github.com/veritem/eslint-plugin-vitest#readme) | [no-unneeded-async-expect-function](https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/no-unneeded-async-expect-function.md)<br />Disallow unnecessary async function wrapper for expected promises                           |                                                                                                                                                              |   🔧    |           |

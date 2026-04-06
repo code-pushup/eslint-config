@@ -2,7 +2,6 @@
 
 import { satisfies } from 'compare-versions';
 import { readFile } from 'node:fs/promises';
-import { beforeAll, describe, expect, it } from 'vitest';
 
 describe('package.json checks', () => {
   /** @type {{ peerDependencies: Record<string, string>, peerDependenciesMeta: Record<string, { optional?: boolean }> }} */
@@ -43,8 +42,6 @@ describe('package.json checks', () => {
         pkg =>
           (pkg.includes('eslint') || pkg === 'globals') &&
           pkg !== '@eslint/compat' &&
-          pkg !== 'eslint-config-prettier' &&
-          pkg !== 'jsonc-eslint-parser' &&
           !pkg.startsWith('@types/') &&
           !pkg.startsWith('@typescript-eslint/') && // installed via "typescript-eslint"
           !pkg.startsWith('@nx/'),

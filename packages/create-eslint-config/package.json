@@ -1,9 +1,12 @@
 {
   "name": "@code-pushup/create-eslint-config",
-  "version": "0.0.1",
-  "type": "commonjs",
+  "version": "0.15.1",
+  "type": "module",
   "main": "./src/index.js",
   "types": "./src/index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "tslib": "^2.3.0"
   }

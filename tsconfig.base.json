@@ -12,13 +12,7 @@
     "noUncheckedIndexedAccess": true,
     "noImplicitOverride": true,
     "module": "NodeNext",
-    "noEmit": true,
-    "lib": ["es2023"],
-    "baseUrl": ".",
-    "paths": {
-      "@code-pushup/create-eslint-config": [
-        "packages/create-eslint-config/src/index.ts"
-      ]
-    }
-  }
+    "lib": ["es2023"]
+  },
+  "exclude": ["node_modules", "tmp", "dist"]
 }

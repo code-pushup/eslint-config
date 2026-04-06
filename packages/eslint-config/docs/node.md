@@ -16,24 +16,24 @@ Config for **Node.js** projects.
    ```js
    import node from '@code-pushup/eslint-config/node.js';
    import { defineConfig } from 'eslint/config';
-
+   
    export default defineConfig(...node);
    ```
 
 4. Some rules (e.g. `n/no-unsupported-features/node-builtins`) need to know which Node version is being used. Configuration options include:
-   - `engines` field in `package.json`:
-
+   - `engines` field in `package.json`: 
+   
      ```jsonc
      {
        // ...
        "engines": {
          "node": ">=22.12.0"
        }
-
+     
      ```
-
-   - `settings.node.version` in `eslint.config.js`:
-
+   
+   - `settings.node.version` in `eslint.config.js`: 
+   
      ```js
      export default defineConfig({
        // ...
@@ -45,14 +45,14 @@ Config for **Node.js** projects.
          }
        }
      });
-
+     
      ```
 
    For more information, refer to [`eslint-plugin-n` docs](https://github.com/eslint-community/eslint-plugin-n?tab=readme-ov-file#configured-nodejs-version-range).
 
-## 📏 Rules (323)
+## 📏 Rules (328)
 
-**319** rules are included from [`javascript` config](./javascript.md#📏-rules-319). For brevity, only the **4** additional rules are listed in this document.
+**324** rules are included from [`javascript` config](./javascript.md#📏-rules-324). For brevity, only the **4** additional rules are listed in this document.
 
 > 🔧 Automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/user-guide/command-line-interface#--fix).<br>💡 Manually fixable by [editor suggestions](https://eslint.org/docs/developer-guide/working-with-rules#providing-suggestions).<br>🧪🚫 Disabled for [test files](../README.md#🧪-test-overrides).<br>🧪⚠️ Severity lessened to warning for [test files](../README.md#🧪-test-overrides).
 

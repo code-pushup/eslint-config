@@ -1,7 +1,7 @@
-import { createEslintConfig } from './create-eslint-config';
+import { createEslintConfig } from './create-eslint-config.js';
 
 describe('createEslintConfig', () => {
   it('should work', () => {
-    expect(createEslintConfig()).toEqual('create-eslint-config');
+    expect(createEslintConfig()).toBe('create-eslint-config');
   });
 });

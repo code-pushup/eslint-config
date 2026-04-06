@@ -1,49 +1,70 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "targetDefaults": {
-    "test:coverage": {
-      "outputs": ["{projectRoot}/coverage"],
-      "cache": true
-    },
-    "docs": {
-      "outputs": ["{projectRoot}/docs"],
-      "cache": true
-    },
-    "test": {
-      "cache": true
-    },
-    "lint": {
-      "cache": true
-    },
-    "format:check": {
-      "cache": true
-    },
-    "typecheck": {
-      "cache": true
-    },
-    "@nx/js:tsc": {
+    "build": {
+      "executor": "@nx/js:tsc",
       "cache": true,
       "dependsOn": ["^build"],
       "inputs": ["default", "^default"]
+    },
+    "test": {
+      "executor": "nx:run-commands",
+      "cache": true,
+      "options": {
+        "command": "vitest run",
+        "cwd": "{projectRoot}"
+      }
+    },
+    "test:coverage": {
+      "executor": "nx:run-commands",
+      "cache": true,
+      "options": {
+        "command": "vitest run --coverage.enabled",
+        "cwd": "{projectRoot}"
+      },
+      "outputs": ["{projectRoot}/coverage"]
+    },
+    "lint": {
+      "executor": "nx:run-commands",
+      "cache": true,
+      "options": {
+        "command": "eslint .",
+        "cwd": "{projectRoot}"
+      }
+    },
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "cache": true,
+      "options": {
+        "command": "tsc",
+        "cwd": "{projectRoot}"
+      }
+    },
+    "format": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "prettier --write .",
+        "cwd": "{projectRoot}"
+      }
+    },
+    "format:check": {
+      "executor": "nx:run-commands",
+      "cache": true,
+      "options": {
+        "command": "prettier --check .",
+        "cwd": "{projectRoot}"
+      }
+    },
+    "docs": {
+      "executor": "nx:run-commands",
+      "cache": true,
+      "outputs": ["{projectRoot}/docs"]
+    },
+    "nx-release-publish": {
+      "executor": "@nx/js:release-publish"
     }
   },
   "analytics": false,
-  "plugins": [
-    {
-      "plugin": "@nx/eslint/plugin",
-      "options": {
-        "targetName": "eslint:lint"
-      }
-    },
-    {
-      "plugin": "@nx/vitest",
-      "options": {
-        "testTargetName": "vitest:test",
-        "ciTargetName": "test-ci",
-        "testMode": "watch"
-      }
-    }
-  ],
   "release": {
     "version": {
       "preVersionCommand": "npx nx run-many -t build"

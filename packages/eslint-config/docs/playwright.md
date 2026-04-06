@@ -16,7 +16,7 @@ Config for projects using **Playwright** for testing.
    ```js
    import playwright from '@code-pushup/eslint-config/playwright.js';
    import { defineConfig } from 'eslint/config';
-
+   
    export default defineConfig(...playwright);
    ```
 

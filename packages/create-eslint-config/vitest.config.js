@@ -5,7 +5,7 @@ export default defineConfig({
     globals: true,
     reporters: [['default', { summary: false }]],
     coverage: {
-      include: ['src/**/*.js'],
+      include: ['src/**/*.ts'],
       reporter: ['text', 'lcov'],
     },
   },

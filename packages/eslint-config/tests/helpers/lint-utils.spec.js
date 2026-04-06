@@ -1,6 +1,5 @@
 // @ts-check
 
-import { describe, expect, it } from 'vitest';
 import { kebabToCamelCase } from './lint-utils.js';
 
 describe('kebabToCamelCase', () => {

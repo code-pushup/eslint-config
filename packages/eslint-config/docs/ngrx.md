@@ -16,43 +16,46 @@ Config for **Angular** projects using **NgRx** library.
    ```js
    import ngrx from '@code-pushup/eslint-config/ngrx.js';
    import { defineConfig } from 'eslint/config';
-
-   export default defineConfig(...ngrx, {
-     // It is recommended that selectors in Angular use a common custom prefix
-     // - see https://angular.io/guide/styleguide#style-02-07
-     // To enforce this consistently, add the following rules:
-     rules: {
-       '@angular-eslint/component-selector': [
-         'warn',
-         {
-           type: 'element',
-           style: 'kebab-case',
-           prefix: ['cp'], // <-- replace with your own prefix
-         },
-       ],
-       '@angular-eslint/directive-selector': [
-         'warn',
-         {
-           type: 'attribute',
-           style: 'camelCase',
-           prefix: 'cp', // <-- replace with your own prefix
-         },
-       ],
-       '@angular-eslint/pipe-prefix': [
-         'warn',
-         {
-           prefixes: ['cp'], // <-- replace with your own prefix
-         },
-       ],
-     },
-   });
+   
+   export default defineConfig(
+     ...ngrx,
+     {
+       // It is recommended that selectors in Angular use a common custom prefix
+       // - see https://angular.io/guide/styleguide#style-02-07
+       // To enforce this consistently, add the following rules:
+       rules: {
+         '@angular-eslint/component-selector': [
+           'warn',
+           {
+             type: 'element',
+             style: 'kebab-case',
+             prefix: ['cp'] // <-- replace with your own prefix
+           }
+         ],
+         '@angular-eslint/directive-selector': [
+           'warn',
+           {
+             type: 'attribute',
+             style: 'camelCase',
+             prefix: 'cp' // <-- replace with your own prefix
+           }
+         ],
+         '@angular-eslint/pipe-prefix': [
+           'warn',
+           {
+             prefixes: ['cp'] // <-- replace with your own prefix
+           }
+         ]
+       }
+     }
+   );
    ```
 
 4. Refer to [step 3 in TypeScript config's setup docs](./typescript.md#🏗️-setup) for how to set up tsconfig properly.
 
-## 📏 Rules (489)
+## 📏 Rules (494)
 
-**459** rules are included from [`angular` config](./angular.md#📏-rules-459). For brevity, only the **30** additional rules are listed in this document.
+**464** rules are included from [`angular` config](./angular.md#📏-rules-464). For brevity, only the **30** additional rules are listed in this document.
 
 > 🔧 Automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/user-guide/command-line-interface#--fix).<br>💡 Manually fixable by [editor suggestions](https://eslint.org/docs/developer-guide/working-with-rules#providing-suggestions).<br>🧪🚫 Disabled for [test files](../README.md#🧪-test-overrides).<br>🧪⚠️ Severity lessened to warning for [test files](../README.md#🧪-test-overrides).
 

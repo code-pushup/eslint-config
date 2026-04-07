@@ -1,11 +1,5 @@
-# create-eslint-config
+# @code-pushup/create-eslint-config
 
-This library was generated with [Nx](https://nx.dev).
+Interactive setup wizard for [`@code-pushup/eslint-config`](../eslint-config/README.md).
 
-## Building
-
-Run `nx build create-eslint-config` to build the library.
-
-## Running unit tests
-
-Run `nx test create-eslint-config` to execute the unit tests via [Vitest](https://vitest.dev/).
+> **Coming soon.** This package is under development.

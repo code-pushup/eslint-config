@@ -8,8 +8,6 @@
     "test:coverage": {},
     "lint": {},
     "typecheck": {},
-    "format": {},
-    "format:check": {},
     "docs": {
       "options": {
         "command": "node scripts/docs.js",

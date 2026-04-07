@@ -16,8 +16,6 @@
     "test": {},
     "lint": {},
     "typecheck": {},
-    "format": {},
-    "format:check": {},
     "nx-release-publish": {
       "options": {
         "packageRoot": "dist/{projectRoot}"

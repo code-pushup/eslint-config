@@ -15,6 +15,13 @@
         "cwd": "{projectRoot}"
       }
     },
+    "test:watch": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "vitest",
+        "cwd": "{projectRoot}"
+      }
+    },
     "test:coverage": {
       "executor": "nx:run-commands",
       "cache": true,

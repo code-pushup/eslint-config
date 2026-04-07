@@ -5,6 +5,7 @@
   "projectType": "library",
   "targets": {
     "test": {},
+    "test:watch": {},
     "test:coverage": {},
     "lint": {},
     "typecheck": {},

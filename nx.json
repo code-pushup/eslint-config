@@ -106,7 +106,8 @@
       "commitMessage": "release: {version}"
     },
     "version": {
-      "conventionalCommits": true
+      "conventionalCommits": true,
+      "fallbackCurrentVersionResolver": "disk"
     },
     "releaseTagPattern": "v{version}"
   }

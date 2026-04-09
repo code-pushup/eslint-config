@@ -18,7 +18,7 @@ export function createLintUtils(
 ) {
   const camelCaseConfig = kebabToCamelCase(configName);
 
-  const cwd = path.join(process.cwd(), 'tmp', configName);
+  const cwd = path.join(import.meta.dirname, '../../tmp', configName);
   const eslint = new ESLint({ cwd });
 
   const setup = async () => {

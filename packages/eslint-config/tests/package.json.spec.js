@@ -2,6 +2,7 @@
 
 import { satisfies } from 'compare-versions';
 import { readFile } from 'node:fs/promises';
+import path from 'node:path';
 
 describe('package.json checks', () => {
   /** @type {{ peerDependencies: Record<string, string>, peerDependenciesMeta: Record<string, { optional?: boolean }> }} */
@@ -31,9 +32,14 @@ describe('package.json checks', () => {
   });
 
   beforeAll(async () => {
-    packageJson = await readJson('package.json');
-    rootPackageJson = await readJson('../../package.json');
-    packageLockJson = await readJson('../../package-lock.json');
+    const projectRoot = path.join(import.meta.dirname, '..');
+    const workspaceRoot = path.join(projectRoot, '..', '..');
+
+    packageJson = await readJson(path.join(projectRoot, 'package.json'));
+    rootPackageJson = await readJson(path.join(workspaceRoot, 'package.json'));
+    packageLockJson = await readJson(
+      path.join(workspaceRoot, 'package-lock.json'),
+    );
   });
 
   it('should include every eslint-related package as peer dependency', () => {

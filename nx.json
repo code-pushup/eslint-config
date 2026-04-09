@@ -11,6 +11,7 @@
     "test": {
       "executor": "nx:run-commands",
       "cache": true,
+      "inputs": ["default", "^default"],
       "options": {
         "command": "vitest run",
         "cwd": "{projectRoot}"
@@ -26,6 +27,7 @@
     "test:coverage": {
       "executor": "nx:run-commands",
       "cache": true,
+      "inputs": ["default", "^default"],
       "options": {
         "command": "vitest run --coverage.enabled",
         "cwd": "{projectRoot}"
@@ -35,6 +37,7 @@
     "lint": {
       "executor": "nx:run-commands",
       "cache": true,
+      "inputs": ["default", "^default"],
       "options": {
         "command": "eslint .",
         "cwd": "{projectRoot}"
@@ -43,6 +46,7 @@
     "typecheck": {
       "executor": "nx:run-commands",
       "cache": true,
+      "inputs": ["default", "^default"],
       "options": {
         "command": "tsc",
         "cwd": "{projectRoot}"
@@ -51,6 +55,7 @@
     "docs": {
       "executor": "nx:run-commands",
       "cache": true,
+      "inputs": ["default", "^default"],
       "outputs": ["{projectRoot}/docs"]
     },
     "nx-release-publish": {

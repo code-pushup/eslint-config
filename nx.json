@@ -1,17 +1,41 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "parallel": 3,
+  "namedInputs": {
+    "default": ["{projectRoot}/**/*", "sharedGlobals"],
+    "sharedGlobals": [
+      "{workspaceRoot}/tsconfig.base.json",
+      { "runtime": "node -v" },
+      { "runtime": "npm -v" }
+    ],
+    "production": [
+      "default",
+      "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)",
+      "!{projectRoot}/eslint.config.js",
+      "!{projectRoot}/vitest.config.[jt]s",
+      "!{projectRoot}/tsconfig.spec.json"
+    ],
+    "lint-eslint-inputs": [{ "externalDependencies": ["eslint"] }],
+    "test-vitest-inputs": [
+      "{workspaceRoot}/vitest.config.ts",
+      { "externalDependencies": ["vitest"] }
+    ],
+    "typecheck-typescript-inputs": [
+      "{workspaceRoot}/tsconfig.base.json",
+      { "externalDependencies": ["typescript"] }
+    ]
+  },
   "targetDefaults": {
     "build": {
       "executor": "@nx/js:tsc",
       "cache": true,
       "dependsOn": ["^build"],
-      "inputs": ["default", "^default"]
+      "inputs": ["production", "^production"]
     },
     "test": {
       "executor": "nx:run-commands",
       "cache": true,
-      "inputs": ["default", "^default"],
+      "inputs": ["default", "^default", "test-vitest-inputs"],
       "options": {
         "command": "vitest run",
         "cwd": "{projectRoot}"
@@ -27,7 +51,7 @@
     "test:coverage": {
       "executor": "nx:run-commands",
       "cache": true,
-      "inputs": ["default", "^default"],
+      "inputs": ["default", "^default", "test-vitest-inputs"],
       "options": {
         "command": "vitest run --coverage.enabled",
         "cwd": "{projectRoot}"
@@ -37,7 +61,7 @@
     "lint": {
       "executor": "nx:run-commands",
       "cache": true,
-      "inputs": ["default", "^default"],
+      "inputs": ["default", "^default", "lint-eslint-inputs"],
       "options": {
         "command": "eslint .",
         "cwd": "{projectRoot}"
@@ -46,7 +70,7 @@
     "typecheck": {
       "executor": "nx:run-commands",
       "cache": true,
-      "inputs": ["default", "^default"],
+      "inputs": ["default", "^default", "typecheck-typescript-inputs"],
       "options": {
         "command": "tsc",
         "cwd": "{projectRoot}"
@@ -55,7 +79,7 @@
     "docs": {
       "executor": "nx:run-commands",
       "cache": true,
-      "inputs": ["default", "^default"],
+      "inputs": ["production", "^production"],
       "outputs": ["{projectRoot}/docs"]
     },
     "nx-release-publish": {

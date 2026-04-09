@@ -25,7 +25,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Run affected tests
-        run: npx nx affected -t test --parallel=3
+        run: npx nx affected -t test
 
   lint:
     runs-on: ubuntu-latest
@@ -45,7 +45,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Lint affected projects
-        run: npx nx affected -t lint --parallel=3
+        run: npx nx affected -t lint
 
   typecheck:
     runs-on: ubuntu-latest
@@ -65,7 +65,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Type check affected projects
-        run: npx nx affected -t typecheck --parallel=3
+        run: npx nx affected -t typecheck
 
   docs:
     runs-on: ubuntu-latest
@@ -85,7 +85,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Generate docs
-        run: npx nx affected -t docs --parallel=3
+        run: npx nx affected -t docs
       - name: Check docs unchanged
         run: |
           if [ "$(git diff --ignore-space-at-eol --text -- packages/eslint-config/docs/ packages/eslint-config/README.md | wc -l)" -gt "0" ]; then

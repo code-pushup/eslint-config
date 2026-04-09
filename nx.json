@@ -1,5 +1,6 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "parallel": 3,
   "targetDefaults": {
     "build": {
       "executor": "@nx/js:tsc",

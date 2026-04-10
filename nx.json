@@ -10,7 +10,7 @@
     ],
     "production": [
       "default",
-      "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)",
+      "!{projectRoot}/**/*.spec.[jt]s",
       "!{projectRoot}/eslint.config.js",
       "!{projectRoot}/vitest.config.[jt]s",
       "!{projectRoot}/tsconfig.spec.json"

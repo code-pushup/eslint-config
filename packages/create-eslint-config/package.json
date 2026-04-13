@@ -1,0 +1,11 @@
+{
+  "name": "@code-pushup/create-eslint-config",
+  "version": "0.15.1",
+  "type": "module",
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {}
+}

@@ -1,131 +1,37 @@
 {
-  "name": "@code-pushup/eslint-config",
-  "version": "0.15.1",
-  "description": "Recommended ESLint presets by Code PushUp",
-  "publishConfig": {
-    "access": "public"
-  },
+  "name": "@code-pushup/eslint-config-workspace",
+  "private": true,
   "type": "module",
-  "main": "./src/index.js",
-  "exports": {
-    ".": "./src/configs/javascript.js",
-    "./*": "./src/configs/*.js",
-    "./*.js": "./src/configs/*.js"
-  },
-  "files": [
-    "./src"
-  ],
   "scripts": {
     "prepare": "husky install",
-    "test": "vitest run",
-    "test:watch": "vitest",
-    "test:coverage": "vitest run --coverage.enabled",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "format": "prettier --write .",
-    "format:check": "prettier --check .",
-    "typecheck": "tsc",
-    "docs": "node scripts/docs.js",
-    "release": "release-it"
+    "commit": "git-cz"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/code-pushup/eslint-config.git"
-  },
-  "keywords": [
-    "eslint",
-    "eslintconfig",
-    "styleguide",
-    "code-pushup"
-  ],
-  "author": "Matěj Chalk <matej.chalk@flowup.cz>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/code-pushup/eslint-config/issues"
-  },
-  "homepage": "https://github.com/code-pushup/eslint-config#readme",
-  "peerDependencies": {
-    "@eslint/js": "^9.0.0",
-    "@graphql-eslint/eslint-plugin": "^3.0.0 || ^4.0.0",
-    "@ngrx/eslint-plugin": "^18.0.0 || ^19.0.0 || ^20.0.0 || ^21.0.0",
-    "@vitest/eslint-plugin": "^1.1.9",
-    "angular-eslint": "^18.0.0 || ^19.0.0 || ^20.0.0 || ^21.0.0",
-    "eslint": "^9.0.0",
-    "eslint-import-resolver-typescript": "^3.0.0 || ^4.0.0",
-    "eslint-plugin-cypress": ">=3.3.0",
-    "eslint-plugin-functional": "^7.0.0 || ^8.0.0 || ^9.0.0",
-    "eslint-plugin-import": "^2.31.0",
-    "eslint-plugin-jest": "^28.8.0 || ^29.0.0",
-    "eslint-plugin-jsx-a11y": "^6.10.0",
-    "eslint-plugin-n": ">=17.0.0",
-    "eslint-plugin-playwright": "^2.1.0",
-    "eslint-plugin-promise": ">=6.4.0",
-    "eslint-plugin-react": "^7.36.0",
-    "eslint-plugin-react-hooks": ">=5.0.0",
-    "eslint-plugin-rxjs-x": ">=0.6.0",
-    "eslint-plugin-sonarjs": "^1.0.4",
-    "eslint-plugin-storybook": ">=0.10.0",
-    "eslint-plugin-testing-library": "^7.1.1",
-    "eslint-plugin-unicorn": ">=50.0.0",
-    "globals": ">=14.0.0",
-    "typescript-eslint": "^8.0.0"
-  },
-  "peerDependenciesMeta": {
-    "@graphql-eslint/eslint-plugin": {
-      "optional": true
-    },
-    "@ngrx/eslint-plugin": {
-      "optional": true
-    },
-    "@vitest/eslint-plugin": {
-      "optional": true
-    },
-    "angular-eslint": {
-      "optional": true
-    },
-    "eslint-import-resolver-typescript": {
-      "optional": true
-    },
-    "eslint-plugin-cypress": {
-      "optional": true
-    },
-    "eslint-plugin-jest": {
-      "optional": true
-    },
-    "eslint-plugin-jsx-a11y": {
-      "optional": true
-    },
-    "eslint-plugin-n": {
-      "optional": true
-    },
-    "eslint-plugin-playwright": {
-      "optional": true
-    },
-    "eslint-plugin-react": {
-      "optional": true
-    },
-    "eslint-plugin-react-hooks": {
-      "optional": true
-    },
-    "eslint-plugin-rxjs-x": {
-      "optional": true
-    },
-    "eslint-plugin-storybook": {
-      "optional": true
-    },
-    "eslint-plugin-testing-library": {
-      "optional": true
+  "config": {
+    "commitizen": {
+      "path": "@commitlint/cz-commitlint"
     }
   },
   "devDependencies": {
+    "@commitlint/cli": "^20.5.0",
+    "@commitlint/config-conventional": "^20.5.0",
+    "@commitlint/config-nx-scopes": "^20.5.0",
+    "@commitlint/cz-commitlint": "^20.5.1",
+    "@commitlint/types": "^20.5.0",
     "@eslint/compat": "^2.0.1",
     "@eslint/js": "^9.39.2",
     "@graphql-eslint/eslint-plugin": "^4.4.0",
     "@ngrx/eslint-plugin": "^21.0.1",
-    "@vitest/coverage-v8": "^2.1.4",
+    "@nx/eslint-plugin": "^22.6.4",
+    "@nx/js": "22.6.4",
+    "@swc-node/register": "~1.11.1",
+    "@swc/core": "~1.15.5",
+    "@swc/helpers": "~0.5.18",
+    "@types/node": "20.19.9",
+    "@vitest/coverage-v8": "^3.2.4",
     "@vitest/eslint-plugin": "^1.6.6",
     "angular-eslint": "^21.1.0",
     "build-md": "^0.4.1",
+    "commitizen": "^4.3.1",
     "compare-versions": "^6.1.0",
     "eslint": "^9.39.2",
     "eslint-import-resolver-typescript": "^4.4.4",
@@ -147,10 +53,13 @@
     "globals": "^15.12.0",
     "graphql": "^16.9.0",
     "husky": "^8.0.0",
-    "prettier": "3.2.5",
-    "release-it": "^17.0.0",
+    "jsonc-eslint-parser": "^3.1.0",
+    "nx": "22.6.4",
+    "prettier": "~3.6.2",
+    "tslib": "^2.3.0",
     "typescript": "^5.6.3",
     "typescript-eslint": "^8.53.0",
-    "vitest": "^2.1.4"
+    "vite": "^8.0.0",
+    "vitest": "^3.2.4"
   }
 }

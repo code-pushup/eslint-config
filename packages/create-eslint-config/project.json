@@ -1,0 +1,31 @@
+{
+  "name": "create-eslint-config",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/create-eslint-config/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/create-eslint-config",
+        "main": "packages/create-eslint-config/src/index.ts",
+        "tsConfig": "packages/create-eslint-config/tsconfig.lib.json",
+        "assets": ["packages/create-eslint-config/*.md"]
+      }
+    },
+    "test": {},
+    "test:watch": {},
+    "lint": {},
+    "typecheck": {},
+    "nx-release-publish": {
+      "options": {
+        "packageRoot": "dist/{projectRoot}"
+      }
+    }
+  },
+  "release": {
+    "version": {
+      "manifestRootsToUpdate": ["dist/{projectRoot}"]
+    }
+  }
+}

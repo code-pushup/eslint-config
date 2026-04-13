@@ -38,3 +38,8 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# Nx
+.nx/cache
+.nx/workspace-data
+vitest.config.*.timestamp*

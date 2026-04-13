@@ -1,0 +1,20 @@
+{
+  "name": "eslint-config",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/eslint-config/src",
+  "projectType": "library",
+  "targets": {
+    "test": {},
+    "test:watch": {},
+    "test:coverage": {},
+    "lint": {},
+    "typecheck": {},
+    "docs": {
+      "options": {
+        "command": "node scripts/docs.js",
+        "cwd": "packages/eslint-config"
+      },
+      "outputs": ["{projectRoot}/docs", "{projectRoot}/README.md"]
+    }
+  }
+}

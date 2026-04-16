@@ -50,4 +50,33 @@ export default defineConfig(
       '@nx/dependency-checks': 'error',
     },
   },
+  {
+    // in bin files, imports with side effects are allowed
+    files: ['**/bin.js'],
+    rules: {
+      'import/no-unassigned-import': 'off',
+    },
+  },
+  {
+    // specs call a custom test created via test.extend
+    // all variants are listed so the vitest rules treat them as test blocks
+    files: ['**/*.spec.ts'],
+    rules: {
+      'vitest/no-standalone-expect': [
+        'warn',
+        { additionalTestBlockFunctions: ['test', 'test.for', 'test.each'] },
+      ],
+      'vitest/require-hook': [
+        'warn',
+        { allowedFunctionCalls: ['test', 'test.for', 'test.each'] },
+      ],
+    },
+  },
+  {
+    // test.extend belongs at module scope (the documented vitest pattern)
+    files: ['**/testing.ts'],
+    rules: {
+      'vitest/require-hook': 'off',
+    },
+  },
 );

@@ -10,7 +10,18 @@
         "outputPath": "dist/packages/create-eslint-config",
         "main": "packages/create-eslint-config/src/index.ts",
         "tsConfig": "packages/create-eslint-config/tsconfig.lib.json",
-        "assets": ["packages/create-eslint-config/*.md"]
+        "assets": [
+          {
+            "input": "packages/create-eslint-config",
+            "glob": "*.md",
+            "output": "./"
+          },
+          {
+            "input": "packages/create-eslint-config",
+            "glob": "bin.js",
+            "output": "./"
+          }
+        ]
       }
     },
     "test": {},

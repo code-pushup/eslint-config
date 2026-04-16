@@ -11,4 +11,4 @@ Monorepo for [Code PushUp](https://github.com/code-pushup/cli) ESLint packages.
 | Package                                                              | Description                                  |
 | :------------------------------------------------------------------- | :------------------------------------------- |
 | [`@code-pushup/eslint-config`](./packages/eslint-config/README.md)  | Recommended ESLint presets by Code PushUp     |
-| `@code-pushup/create-eslint-config`                                 | Interactive setup wizard _(coming soon)_      |
+| [`@code-pushup/create-eslint-config`](./packages/create-eslint-config/README.md) | Interactive setup wizard for `@code-pushup/eslint-config` |

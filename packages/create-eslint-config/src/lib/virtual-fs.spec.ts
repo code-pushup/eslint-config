@@ -1,7 +1,7 @@
 import { readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { describe, expect } from 'vitest';
-import { test } from '../testing.js';
+import { test } from '../test-setup.js';
 import type { FileChange } from './types.js';
 import { createTree } from './virtual-fs.js';
 

@@ -19,13 +19,14 @@ export async function runSetupWizard(
   const normalized = { ...options, targetDir };
 
   const snapshot = await snapshotProject(targetDir);
-  const configs = await promptConfigSelection(normalized, snapshot);
-  const followUps = await collectFollowUps(configs, normalized, snapshot);
 
   const existingConfig = await detectExistingEslintConfig(snapshot);
   if (existingConfig?.format === 'cjs') {
     throw new Error('Only ESLint configs in ESM format are supported.');
   }
+
+  const configs = await promptConfigSelection(normalized, snapshot);
+  const followUps = await collectFollowUps(configs, normalized, snapshot);
 
   const { version: selfVersion } = createRequire(import.meta.url)(
     '../../package.json',

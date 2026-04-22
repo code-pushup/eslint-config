@@ -1,7 +1,7 @@
 import { mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { test } from '../testing.js';
+import { test } from '../test-setup.js';
 import { collectAllDeps, fileExists, readJsonFile } from './utils.js';
 
 describe('readJsonFile', () => {

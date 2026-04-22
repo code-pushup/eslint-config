@@ -74,7 +74,7 @@ export default defineConfig(
   },
   {
     // test.extend belongs at module scope (the documented vitest pattern)
-    files: ['**/testing.ts'],
+    files: ['**/test-setup.ts'],
     rules: {
       'vitest/require-hook': 'off',
     },

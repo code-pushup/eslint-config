@@ -1,7 +1,7 @@
 import { writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { beforeEach, describe, expect, vi } from 'vitest';
-import { test } from '../testing.js';
+import { test } from '../test-setup.js';
 import type { FileChange } from './types.js';
 import { runSetupWizard } from './wizard.js';
 

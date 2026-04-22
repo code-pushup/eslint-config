@@ -27,7 +27,6 @@
   "homepage": "https://github.com/code-pushup/eslint-config/tree/main/packages/create-eslint-config#readme",
   "dependencies": {
     "@inquirer/prompts": "^8.4.1",
-    "yargs": "^18.0.0",
-    "vitest": "^3.2.4"
+    "yargs": "^18.0.0"
   }
 }

@@ -11,6 +11,7 @@
     "production": [
       "default",
       "!{projectRoot}/**/*.spec.[jt]s",
+      "!{projectRoot}/src/test-setup.ts",
       "!{projectRoot}/eslint.config.js",
       "!{projectRoot}/vitest.config.[jt]s",
       "!{projectRoot}/tsconfig.spec.json"

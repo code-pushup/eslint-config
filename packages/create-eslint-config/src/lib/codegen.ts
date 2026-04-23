@@ -90,10 +90,7 @@ function collectImports(
     moduleSpecifier: `@code-pushup/eslint-config/${slug}.js`,
     defaultImport: toIdentifier(slug),
   }));
-  if (
-    setup.node?.source === 'node-version' ||
-    setup.node?.source === 'engines'
-  ) {
+  if (setup.node?.source === 'node-version') {
     imports.push({ moduleSpecifier: 'node:fs', defaultImport: 'fs' });
   }
   return sortImports(imports);
@@ -153,8 +150,12 @@ function typescriptEntries(ts: TypescriptSetup | undefined): string[] {
   ];
 }
 
+/**
+ * Emits the settings.node.version block. Returns empty for the engines
+ * source, which eslint-plugin-n reads from package.json directly.
+ */
 function nodeEntry(node: NodeSetup | undefined): string[] {
-  if (!node) {
+  if (!node || node.source === 'engines') {
     return [];
   }
   return [
@@ -171,9 +172,6 @@ function nodeEntry(node: NodeSetup | undefined): string[] {
 function nodeVersionExpression(node: NodeSetup): string {
   if (node.source === 'node-version') {
     return `${readFileSyncCall('.node-version')}.trim()`;
-  }
-  if (node.source === 'engines') {
-    return `JSON.parse(${readFileSyncCall('package.json')}).engines.node`;
   }
   return singleQuote(node.version);
 }

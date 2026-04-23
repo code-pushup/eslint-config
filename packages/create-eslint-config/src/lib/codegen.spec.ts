@@ -67,14 +67,12 @@ describe('generateEslintConfigSource', () => {
     expect(source).toContain("fs.readFileSync('.node-version', 'utf8').trim()");
   });
 
-  it('should render a node config reading engines.node', () => {
+  it('should skip the settings.node block when engines.node is used', () => {
     const source = generateEslintConfigSource(['javascript', 'node'], {
       node: { source: 'engines', version: '>=18' },
     });
-    expect(source).toContain("import fs from 'node:fs';");
-    expect(source).toContain(
-      "JSON.parse(fs.readFileSync('package.json', 'utf8')).engines.node",
-    );
+    expect(source).not.toContain('settings');
+    expect(source).not.toContain('import fs');
   });
 
   it('should camelCase hyphenated slugs into valid JS identifiers', () => {

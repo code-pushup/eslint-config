@@ -1,13 +1,25 @@
 import { readFile, stat } from 'node:fs/promises';
 import path from 'node:path';
+import { WizardError } from './errors.js';
 import type { PackageJson } from './types.js';
 
 export async function readJsonFile<T = unknown>(
   filePath: string,
 ): Promise<T | null> {
-  return readFile(filePath, 'utf8')
-    .then(contents => JSON.parse(contents) as T)
-    .catch(() => null);
+  try {
+    const raw = await readFile(filePath, 'utf8');
+    return JSON.parse(raw);
+  } catch (error) {
+    if (error instanceof Error && 'code' in error && error.code === 'ENOENT') {
+      return null;
+    }
+    if (error instanceof SyntaxError) {
+      throw new WizardError(
+        `Failed to parse JSON at ${filePath}: ${error.message}`,
+      );
+    }
+    throw error;
+  }
 }
 
 export function readPackageJson<T extends PackageJson = PackageJson>(

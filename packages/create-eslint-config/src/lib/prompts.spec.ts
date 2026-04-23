@@ -113,7 +113,7 @@ describe('promptNodeSetup', () => {
       ),
     ).resolves.toEqual({
       source: 'manual',
-      version: `>=${process.versions.node}`,
+      version: process.versions.node,
     });
   });
 
@@ -139,7 +139,7 @@ describe('validateConfigSlugs', () => {
 
   it('should throw on unknown slugs', () => {
     expect(() => validateConfigSlugs(['unknown'])).toThrow(
-      /Unknown config slugs/,
+      /Failed to resolve config slugs/,
     );
   });
 });

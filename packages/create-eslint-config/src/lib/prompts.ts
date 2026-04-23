@@ -1,4 +1,5 @@
 import { checkbox, input as inputPrompt, select } from '@inquirer/prompts';
+import semver from 'semver';
 import {
   ALL_SLUGS,
   CONFIG_REGISTRY,
@@ -10,16 +11,16 @@ import {
   detectNodeVersionInfo,
   detectTsconfigPath,
 } from './detection.js';
+import { WizardError } from './errors.js';
 import type {
   CodegenSetup,
   NodeSetup,
   NodeVersionSource,
+  NodeVersionSourceOption,
   ProjectSnapshot,
   TypescriptSetup,
   WizardOptions,
 } from './types.js';
-
-const NODE_VERSION_FILE: NodeVersionSource = 'node-version';
 
 /** Selects configs interactively or falls back to recommended/provided ones. */
 export async function promptConfigSelection(
@@ -71,11 +72,20 @@ export async function promptNodeSetup(
   snapshot: ProjectSnapshot,
 ): Promise<NodeSetup> {
   const nodeInfo = await detectNodeVersionInfo(snapshot);
-  const defaultSource: NodeVersionSource = nodeInfo.file
-    ? NODE_VERSION_FILE
-    : nodeInfo.engines
-      ? 'engines'
-      : 'manual';
+  const sources: NodeVersionSourceOption[] = [
+    {
+      value: 'node-version',
+      name: 'Use .node-version file',
+      detected: nodeInfo.file,
+    },
+    {
+      value: 'engines',
+      name: 'Use engines.node from package.json',
+      detected: nodeInfo.engines,
+    },
+    { value: 'manual', name: 'Enter a version range manually' },
+  ];
+  const defaultSource = sources.find(s => s.detected)?.value ?? 'manual';
 
   const source =
     options.nodeVersionSource ??
@@ -83,22 +93,12 @@ export async function promptNodeSetup(
       ? defaultSource
       : await select<NodeVersionSource>({
           message: 'Node version source:',
-          choices: [
-            { name: 'Use .node-version file', value: NODE_VERSION_FILE },
-            { name: 'Use engines.node from package.json', value: 'engines' },
-            { name: 'Enter a version range manually', value: 'manual' },
-          ],
+          choices: sources.map(({ value, name }) => ({ value, name })),
           default: defaultSource,
         }));
 
-  const detectedVersion =
-    source === NODE_VERSION_FILE
-      ? nodeInfo.file
-      : source === 'engines'
-        ? nodeInfo.engines
-        : undefined;
-
-  const defaultVersion = `>=${process.versions.node}`;
+  const detectedVersion = sources.find(s => s.value === source)?.detected;
+  const defaultVersion = process.versions.node;
 
   const version =
     options.nodeVersion ??
@@ -106,10 +106,10 @@ export async function promptNodeSetup(
     (options.yes
       ? defaultVersion
       : await inputPrompt({
-          message: 'Node version range (e.g. >=20.0.0):',
+          message: 'Node version range (e.g. >=24):',
           default: defaultVersion,
           validate: value =>
-            value.trim() ? true : 'Node version range is required.',
+            semver.validRange(value) ? true : 'Invalid semver range.',
         }));
 
   return { source, version };
@@ -135,8 +135,8 @@ export function validateConfigSlugs(slugs: string[]): string[] {
   const valid = slugs.filter(isConfigSlug);
   if (valid.length < slugs.length) {
     const invalid = slugs.filter(slug => !isConfigSlug(slug));
-    throw new TypeError(
-      `Unknown config slugs: ${invalid.join(', ')}. Available: ${ALL_SLUGS.join(', ')}`,
+    throw new WizardError(
+      `Failed to resolve config slugs: unknown ${invalid.join(', ')}. Available: ${ALL_SLUGS.join(', ')}.`,
     );
   }
   return valid;

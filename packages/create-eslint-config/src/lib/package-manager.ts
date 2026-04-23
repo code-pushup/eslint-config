@@ -1,5 +1,6 @@
 import { spawn } from 'node:child_process';
 import path from 'node:path';
+import { WizardError } from './errors.js';
 import type { PackageManager } from './types.js';
 import { fileExists, readPackageJson } from './utils.js';
 
@@ -20,8 +21,10 @@ export async function detectPackageManager(
   return 'npm';
 }
 
-export async function installDependencies(targetDir: string): Promise<void> {
-  const manager = await detectPackageManager(targetDir);
+export async function installDependencies(
+  targetDir: string,
+  manager: PackageManager,
+): Promise<void> {
   const exitCode = await new Promise<number>((resolve, reject) => {
     const child = spawn(manager, ['install'], {
       cwd: targetDir,
@@ -32,6 +35,8 @@ export async function installDependencies(targetDir: string): Promise<void> {
     child.once('exit', code => resolve(code ?? 0));
   });
   if (exitCode !== 0) {
-    throw new Error(`${manager} install failed (exit code ${exitCode})`);
+    throw new WizardError(
+      `Failed to install dependencies: ${manager} exited with code ${exitCode}.`,
+    );
   }
 }

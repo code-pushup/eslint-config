@@ -31,6 +31,12 @@ export const NODE_VERSION_SOURCES = [
 
 export type NodeVersionSource = (typeof NODE_VERSION_SOURCES)[number];
 
+export type NodeVersionSourceOption = {
+  value: NodeVersionSource;
+  name: string;
+  detected?: string;
+};
+
 export type ProjectSnapshot = {
   targetDir: string;
   packageJson: PackageJson | null;

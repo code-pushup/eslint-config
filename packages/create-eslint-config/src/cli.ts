@@ -1,7 +1,7 @@
 import path from 'node:path';
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
-import { logError, formatError, printChanges, logInfo } from './lib/output.js';
+import { logError, formatError, logChanges, logInfo } from './lib/output.js';
 import {
   detectPackageManager,
   installDependencies,
@@ -65,7 +65,7 @@ try {
     yes: argv.yes,
   });
 
-  printChanges(result.files);
+  logChanges(result.files);
 
   if (argv.dryRun) {
     logInfo('Dry run — no files written.');
@@ -74,7 +74,7 @@ try {
     const manager = await detectPackageManager(targetDir);
     logInfo(`Installing dependencies with ${manager}...`, '');
     try {
-      await installDependencies(targetDir);
+      await installDependencies(targetDir, manager);
     } catch (error) {
       logError(
         formatError(error),
@@ -98,6 +98,6 @@ try {
     logInfo('Next step: run `npx eslint .` to verify the setup.');
   }
 } catch (error) {
-  logError(`Error: ${formatError(error)}`);
+  logError(formatError(error));
   process.exitCode = 1;
 }

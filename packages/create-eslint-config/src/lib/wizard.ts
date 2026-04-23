@@ -5,6 +5,7 @@ import {
   generatePackageJson,
 } from './codegen.js';
 import { detectExistingEslintConfig, snapshotProject } from './detection.js';
+import { WizardError } from './errors.js';
 import { resolvePeerDeps } from './peer-deps.js';
 import { collectFollowUps, promptConfigSelection } from './prompts.js';
 import type { PackageJson, WizardOptions, WizardResult } from './types.js';
@@ -21,7 +22,9 @@ export async function runSetupWizard(
 
   const existingConfig = await detectExistingEslintConfig(snapshot);
   if (existingConfig?.format === 'cjs') {
-    throw new Error('Only ESLint configs in ESM format are supported.');
+    throw new WizardError(
+      'Failed to extend existing eslint config: only ESM format is supported.',
+    );
   }
 
   const configs = await promptConfigSelection(normalized, snapshot);

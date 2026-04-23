@@ -16,6 +16,16 @@ describe('readJsonFile', () => {
       readJsonFile(path.join(tmp, 'missing.json')),
     ).resolves.toBeNull();
   });
+
+  test('should throw a descriptive error when the file is invalid JSON', async ({
+    tmp,
+  }) => {
+    const filePath = path.join(tmp, 'invalid.json');
+    await writeFile(filePath, '{ not valid }');
+    await expect(readJsonFile(filePath)).rejects.toThrow(
+      /Failed to parse JSON/,
+    );
+  });
 });
 
 describe('fileExists', () => {
@@ -50,5 +60,13 @@ describe('collectAllDeps', () => {
 
   it('should return an empty set for null input', () => {
     expect(collectAllDeps(null).size).toBe(0);
+  });
+
+  it('should deduplicate packages present in multiple dependency fields', () => {
+    const deps = collectAllDeps({
+      devDependencies: { typescript: '^5.0.0' },
+      peerDependencies: { typescript: '>=5.0.0' },
+    });
+    expect(deps).toEqual(new Set(['typescript']));
   });
 });

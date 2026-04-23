@@ -1,18 +1,3 @@
-export type ConfigSlug =
-  | 'javascript'
-  | 'typescript'
-  | 'node'
-  | 'angular'
-  | 'ngrx'
-  | 'react'
-  | 'graphql'
-  | 'jest'
-  | 'vitest'
-  | 'cypress'
-  | 'playwright'
-  | 'storybook'
-  | 'react-testing-library';
-
 export type PeerDep = {
   name: string;
   version: string;
@@ -26,6 +11,7 @@ export type PackageJson = {
   dependencies?: Record<string, string>;
   devDependencies?: Record<string, string>;
   peerDependencies?: Record<string, string>;
+  peerDependenciesMeta?: Record<string, { optional?: boolean }>;
   engines?: { node?: string };
 };
 
@@ -63,10 +49,9 @@ export type ExistingConfig = {
 };
 
 export type ConfigDefinition = {
-  slug: ConfigSlug;
+  slug: string;
   title: string;
-  extends?: ConfigSlug;
-  peerDeps: PeerDep[];
+  extends?: string;
   isRecommended: (snapshot: ProjectSnapshot) => boolean;
 };
 

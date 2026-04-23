@@ -1,4 +1,3 @@
-import { createRequire } from 'node:module';
 import path from 'node:path';
 import {
   generateEslintConfigSnippet,
@@ -6,7 +5,7 @@ import {
   generatePackageJson,
 } from './codegen.js';
 import { detectExistingEslintConfig, snapshotProject } from './detection.js';
-import { resolvePackages } from './packages.js';
+import { resolvePeerDeps } from './peer-deps.js';
 import { collectFollowUps, promptConfigSelection } from './prompts.js';
 import type { PackageJson, WizardOptions, WizardResult } from './types.js';
 import { isProjectEsm } from './utils.js';
@@ -28,10 +27,7 @@ export async function runSetupWizard(
   const configs = await promptConfigSelection(normalized, snapshot);
   const followUps = await collectFollowUps(configs, normalized, snapshot);
 
-  const { version: selfVersion } = createRequire(import.meta.url)(
-    '../../package.json',
-  ) as typeof import('../../package.json');
-  const deps = resolvePackages(configs, selfVersion);
+  const deps = await resolvePeerDeps(configs);
 
   const tree = createTree(targetDir);
   await tree.write(

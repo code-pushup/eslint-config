@@ -1,7 +1,6 @@
-import { excludeAncestors, toIdentifier } from './config-registry.js';
+import { excludeAncestors } from './config-registry.js';
 import type {
   CodegenSetup,
-  ConfigSlug,
   ImportDeclarationStructure,
   NodeSetup,
   PackageJson,
@@ -37,7 +36,7 @@ export class CodeBuilder {
  * presets are subsumed (e.g., picking `typescript` drops `javascript`).
  */
 export function generateEslintConfigSource(
-  slugs: ConfigSlug[],
+  slugs: string[],
   setup: CodegenSetup = {},
 ): string {
   const effective = excludeAncestors(slugs);
@@ -65,7 +64,7 @@ export function generateEslintConfigSource(
  * `eslint.config.*`. TODO: drop once the wizard can merge into existing configs.
  */
 export function generateEslintConfigSnippet(
-  slugs: ConfigSlug[],
+  slugs: string[],
   setup: CodegenSetup = {},
 ): string {
   const effective = excludeAncestors(slugs);
@@ -84,7 +83,7 @@ export function generateEslintConfigSnippet(
 }
 
 function collectImports(
-  slugs: ConfigSlug[],
+  slugs: string[],
   setup: CodegenSetup,
 ): ImportDeclarationStructure[] {
   const imports: ImportDeclarationStructure[] = slugs.map(slug => ({
@@ -100,10 +99,7 @@ function collectImports(
   return sortImports(imports);
 }
 
-function formatConfigEntries(
-  slugs: ConfigSlug[],
-  setup: CodegenSetup,
-): string[] {
+function formatConfigEntries(slugs: string[], setup: CodegenSetup): string[] {
   return [
     ...slugs.map(slug => `...${toIdentifier(slug)},`),
     ...typescriptEntries(setup.typescript),
@@ -184,6 +180,11 @@ function nodeVersionExpression(node: NodeSetup): string {
 
 function readFileSyncCall(filePath: string): string {
   return `fs.readFileSync(${singleQuote(filePath)}, ${singleQuote('utf8')})`;
+}
+
+/** CamelCase JS identifier for a slug. */
+function toIdentifier(slug: string): string {
+  return slug.replace(/-([a-z])/g, (_, ch: string) => ch.toUpperCase());
 }
 
 export function generatePackageJson(

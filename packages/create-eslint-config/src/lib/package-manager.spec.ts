@@ -1,25 +1,8 @@
 import { writeFile } from 'node:fs/promises';
 import path from 'node:path';
-import { describe, expect, it } from 'vitest';
+import { describe, expect } from 'vitest';
 import { test } from '../test-setup.js';
-import { detectPackageManager, resolvePackages } from './packages.js';
-
-describe('resolvePackages', () => {
-  it('should include base, ancestor, config-specific, and self deps', () => {
-    expect(resolvePackages(['ngrx'], '0.15.1')).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({ name: 'eslint' }),
-        expect.objectContaining({ name: 'eslint-import-resolver-typescript' }),
-        expect.objectContaining({ name: 'angular-eslint' }),
-        expect.objectContaining({ name: '@ngrx/eslint-plugin' }),
-        expect.objectContaining({
-          name: '@code-pushup/eslint-config',
-          version: '^0.15.1',
-        }),
-      ]),
-    );
-  });
-});
+import { detectPackageManager } from './package-manager.js';
 
 describe('detectPackageManager', () => {
   test('should default to npm', async ({ tmp }) => {

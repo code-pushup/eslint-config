@@ -1,4 +1,5 @@
 import { readFile, stat } from 'node:fs/promises';
+import path from 'node:path';
 import type { PackageJson } from './types.js';
 
 export async function readJsonFile<T = unknown>(
@@ -7,6 +8,12 @@ export async function readJsonFile<T = unknown>(
   return readFile(filePath, 'utf8')
     .then(contents => JSON.parse(contents) as T)
     .catch(() => null);
+}
+
+export function readPackageJson<T extends PackageJson = PackageJson>(
+  dir: string,
+): Promise<T | null> {
+  return readJsonFile<T>(path.join(dir, 'package.json'));
 }
 
 export async function fileExists(filePath: string): Promise<boolean> {

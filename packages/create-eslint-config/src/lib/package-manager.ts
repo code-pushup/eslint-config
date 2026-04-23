@@ -1,24 +1,12 @@
 import { spawn } from 'node:child_process';
 import path from 'node:path';
-import {
-  BASE_PEER_DEPS,
-  includeAncestors,
-  findConfig,
-} from './config-registry.js';
-import type {
-  ConfigSlug,
-  PackageJson,
-  PackageManager,
-  PeerDep,
-} from './types.js';
-import { fileExists, readJsonFile } from './utils.js';
+import type { PackageManager } from './types.js';
+import { fileExists, readPackageJson } from './utils.js';
 
 export async function detectPackageManager(
   targetDir: string,
 ): Promise<PackageManager> {
-  const pkg = await readJsonFile<PackageJson>(
-    path.join(targetDir, 'package.json'),
-  );
+  const pkg = await readPackageJson(targetDir);
   const manager = pkg?.packageManager?.split('@')[0];
   if (manager === 'pnpm' || manager === 'yarn' || manager === 'npm') {
     return manager;
@@ -30,25 +18,6 @@ export async function detectPackageManager(
     return 'yarn';
   }
   return 'npm';
-}
-
-/**
- * Resolves the full install list: base toolchain, each config's peer deps
- * (including ancestors), and the eslint-config package itself.
- */
-export function resolvePackages(
-  slugs: ConfigSlug[],
-  selfVersion: string,
-): PeerDep[] {
-  const configDeps = includeAncestors(slugs).flatMap(
-    slug => findConfig(slug)?.peerDeps ?? [],
-  );
-  const allDeps = [
-    ...BASE_PEER_DEPS,
-    ...configDeps,
-    { name: '@code-pushup/eslint-config', version: `^${selfVersion}` },
-  ];
-  return [...new Map(allDeps.map(dep => [dep.name, dep])).values()];
 }
 
 export async function installDependencies(targetDir: string): Promise<void> {

@@ -2,7 +2,10 @@ import path from 'node:path';
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 import { logError, formatError, printChanges, logInfo } from './lib/output.js';
-import { detectPackageManager, installDependencies } from './lib/packages.js';
+import {
+  detectPackageManager,
+  installDependencies,
+} from './lib/package-manager.js';
 import { validateConfigSlugs } from './lib/prompts.js';
 import { NODE_VERSION_SOURCES } from './lib/types.js';
 import { runSetupWizard } from './lib/wizard.js';

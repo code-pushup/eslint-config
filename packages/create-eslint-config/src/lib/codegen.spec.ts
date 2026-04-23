@@ -77,6 +77,14 @@ describe('generateEslintConfigSource', () => {
     );
   });
 
+  it('should camelCase hyphenated slugs into valid JS identifiers', () => {
+    const source = generateEslintConfigSource(['react-testing-library']);
+    expect(source).toContain(
+      "import reactTestingLibrary from '@code-pushup/eslint-config/react-testing-library.js';",
+    );
+    expect(source).toContain('...reactTestingLibrary,');
+  });
+
   it('should sort spreads in registry order regardless of input order', () => {
     const a = generateEslintConfigSource([
       'vitest',

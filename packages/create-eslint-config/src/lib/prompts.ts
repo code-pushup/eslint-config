@@ -12,7 +12,6 @@ import {
 } from './detection.js';
 import type {
   CodegenSetup,
-  ConfigSlug,
   NodeSetup,
   NodeVersionSource,
   ProjectSnapshot,
@@ -26,7 +25,7 @@ const NODE_VERSION_FILE: NodeVersionSource = 'node-version';
 export async function promptConfigSelection(
   options: WizardOptions,
   snapshot: ProjectSnapshot,
-): Promise<ConfigSlug[]> {
+): Promise<string[]> {
   if (options.configs && options.configs.length > 0) {
     return normalizeSlugs(options.configs);
   }
@@ -34,7 +33,7 @@ export async function promptConfigSelection(
   if (options.yes) {
     return normalizeSlugs([...recommended]);
   }
-  const selected = await checkbox<ConfigSlug>({
+  const selected = await checkbox<string>({
     message: 'Configurations to set up:',
     required: true,
     choices: CONFIG_REGISTRY.map(config => ({
@@ -118,7 +117,7 @@ export async function promptNodeSetup(
 
 /** Collects follow-up inputs for configs that need them (typescript, node). */
 export async function collectFollowUps(
-  selected: ConfigSlug[],
+  selected: string[],
   options: WizardOptions,
   snapshot: ProjectSnapshot,
 ): Promise<CodegenSetup> {
@@ -132,7 +131,7 @@ export async function collectFollowUps(
   return { typescript, node };
 }
 
-export function validateConfigSlugs(slugs: string[]): ConfigSlug[] {
+export function validateConfigSlugs(slugs: string[]): string[] {
   const valid = slugs.filter(isConfigSlug);
   if (valid.length < slugs.length) {
     const invalid = slugs.filter(slug => !isConfigSlug(slug));

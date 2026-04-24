@@ -11,7 +11,6 @@ export type PackageJson = {
   dependencies?: Record<string, string>;
   devDependencies?: Record<string, string>;
   peerDependencies?: Record<string, string>;
-  peerDependenciesMeta?: Record<string, { optional?: boolean }>;
   engines?: { node?: string };
 };
 
@@ -58,6 +57,7 @@ export type ConfigDefinition = {
   slug: string;
   title: string;
   extends?: string;
+  peerDeps: PeerDep[];
   isRecommended: (snapshot: ProjectSnapshot) => boolean;
 };
 

@@ -30,7 +30,7 @@ export async function runSetupWizard(
   const configs = await promptConfigSelection(normalized, snapshot);
   const followUps = await collectFollowUps(configs, normalized, snapshot);
 
-  const deps = await resolvePeerDeps(configs);
+  const deps = resolvePeerDeps(configs);
 
   const tree = createTree(targetDir);
   await tree.write(

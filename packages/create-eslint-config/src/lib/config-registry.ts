@@ -1,5 +1,4 @@
-import { listAvailableConfigs } from './eslint-config-source.js';
-import type { ConfigDefinition, ProjectSnapshot } from './types.js';
+import type { ConfigDefinition, PeerDep, ProjectSnapshot } from './types.js';
 
 const BACKEND_FRAMEWORKS = [
   'express',
@@ -26,101 +25,137 @@ function hasAnyFile(snapshot: ProjectSnapshot, pattern: RegExp): boolean {
   return [...snapshot.files].some(file => pattern.test(file));
 }
 
+export const BASE_PEER_DEPS: PeerDep[] = [
+  { name: 'eslint', version: '^9.0.0' },
+  { name: '@eslint/js', version: '^9.0.0' },
+  {
+    name: 'eslint-plugin-functional',
+    version: '^7.0.0 || ^8.0.0 || ^9.0.0',
+  },
+  { name: 'eslint-plugin-import', version: '^2.31.0' },
+  { name: 'eslint-plugin-promise', version: '>=6.4.0' },
+  { name: 'eslint-plugin-sonarjs', version: '^1.0.4' },
+  { name: 'eslint-plugin-unicorn', version: '>=50.0.0' },
+  { name: 'globals', version: '>=14.0.0' },
+  { name: 'typescript-eslint', version: '^8.0.0' },
+];
+
 type ConfigMetadata = Omit<ConfigDefinition, 'slug'>;
 
-const CONFIG_METADATA: Record<string, ConfigMetadata> = {
+// TODO: add a metadata subpath to code-pushup/eslint-config exporting the slug
+// list, `extends` fields, and peerDeps (scripts/docs.js already derives these);
+// import them here. Keep title and isRecommended here.
+const CONFIG_METADATA = {
   javascript: {
     title: 'JavaScript (default)',
+    peerDeps: [],
     isRecommended: () => true,
   },
   typescript: {
     title: 'TypeScript (strict)',
     extends: 'javascript',
+    peerDeps: [
+      {
+        name: 'eslint-import-resolver-typescript',
+        version: '^3.0.0 || ^4.0.0',
+      },
+    ],
     isRecommended: snapshot =>
       snapshot.files.has('tsconfig.json') || snapshot.allDeps.has('typescript'),
   },
   node: {
     title: 'Node.js',
     extends: 'javascript',
+    peerDeps: [{ name: 'eslint-plugin-n', version: '>=17.0.0' }],
     isRecommended: snapshot => hasAnyDep(snapshot, BACKEND_FRAMEWORKS),
   },
   angular: {
     title: 'Angular',
     extends: 'typescript',
+    peerDeps: [
+      {
+        name: 'angular-eslint',
+        version: '^18.0.0 || ^19.0.0 || ^20.0.0 || ^21.0.0',
+      },
+      { name: 'eslint-plugin-rxjs-x', version: '>=0.6.0' },
+    ],
     isRecommended: snapshot => snapshot.allDeps.has('@angular/core'),
   },
   ngrx: {
     title: 'Angular & NgRx',
     extends: 'angular',
+    peerDeps: [
+      {
+        name: '@ngrx/eslint-plugin',
+        version: '^18.0.0 || ^19.0.0 || ^20.0.0 || ^21.0.0',
+      },
+    ],
     isRecommended: snapshot => snapshot.allDeps.has('@ngrx/core'),
   },
   react: {
     title: 'React',
     extends: 'javascript',
+    peerDeps: [
+      { name: 'eslint-plugin-react', version: '^7.36.0' },
+      { name: 'eslint-plugin-react-hooks', version: '>=5.0.0' },
+      { name: 'eslint-plugin-jsx-a11y', version: '^6.10.0' },
+    ],
     isRecommended: snapshot => snapshot.allDeps.has('react'),
   },
   graphql: {
     title: 'GraphQL (server)',
     extends: 'node',
+    peerDeps: [
+      {
+        name: '@graphql-eslint/eslint-plugin',
+        version: '^3.0.0 || ^4.0.0',
+      },
+    ],
     isRecommended: snapshot => hasAnyDep(snapshot, GRAPHQL_SERVERS),
   },
   jest: {
     title: 'Jest',
+    peerDeps: [{ name: 'eslint-plugin-jest', version: '^28.8.0 || ^29.0.0' }],
     isRecommended: snapshot =>
       snapshot.allDeps.has('jest') || hasAnyFile(snapshot, JEST_CONFIG_PATTERN),
   },
   vitest: {
     title: 'Vitest',
+    peerDeps: [{ name: '@vitest/eslint-plugin', version: '^1.1.9' }],
     isRecommended: snapshot =>
       snapshot.allDeps.has('vitest') ||
       hasAnyFile(snapshot, VITEST_CONFIG_PATTERN),
   },
   cypress: {
     title: 'Cypress',
+    peerDeps: [{ name: 'eslint-plugin-cypress', version: '>=3.3.0' }],
     isRecommended: snapshot =>
       snapshot.allDeps.has('cypress') ||
       hasAnyFile(snapshot, CYPRESS_CONFIG_PATTERN),
   },
   playwright: {
     title: 'Playwright',
+    peerDeps: [{ name: 'eslint-plugin-playwright', version: '^2.1.0' }],
     isRecommended: snapshot =>
       snapshot.allDeps.has('@playwright/test') ||
       snapshot.files.has('playwright.config.ts'),
   },
   storybook: {
     title: 'Storybook',
+    peerDeps: [{ name: 'eslint-plugin-storybook', version: '>=0.10.0' }],
     isRecommended: snapshot =>
       snapshot.allDeps.has('storybook') || snapshot.files.has('.storybook'),
   },
   'react-testing-library': {
     title: 'React Testing Library',
+    peerDeps: [{ name: 'eslint-plugin-testing-library', version: '^7.1.1' }],
     isRecommended: snapshot => snapshot.allDeps.has('@testing-library/react'),
   },
-};
+} satisfies Record<string, ConfigMetadata>;
 
-const AVAILABLE_SLUGS = new Set(await listAvailableConfigs());
-const METADATA_SLUGS = new Set(Object.keys(CONFIG_METADATA));
-const KNOWN_SLUGS = [...METADATA_SLUGS.intersection(AVAILABLE_SLUGS)];
-const UNKNOWN_SLUGS = [
-  ...AVAILABLE_SLUGS.difference(METADATA_SLUGS),
-].toSorted();
-
-function slugToTitle(slug: string): string {
-  return slug.replaceAll('-', ' ').replace(/\b\w/g, char => char.toUpperCase());
-}
-
-export const CONFIG_REGISTRY: ConfigDefinition[] = [
-  ...KNOWN_SLUGS,
-  ...UNKNOWN_SLUGS,
-].map(slug => {
-  const meta = CONFIG_METADATA[slug];
-  return {
-    slug,
-    title: meta?.title ?? slugToTitle(slug),
-    ...(meta?.extends && { extends: meta.extends }),
-    isRecommended: meta?.isRecommended ?? (() => false),
-  };
-});
+export const CONFIG_REGISTRY: ConfigDefinition[] = Object.entries(
+  CONFIG_METADATA,
+).map(([slug, meta]) => ({ slug, ...meta }));
 
 export const ALL_SLUGS: string[] = CONFIG_REGISTRY.map(c => c.slug);
 
@@ -129,7 +164,7 @@ export function findConfig(slug: string): ConfigDefinition | undefined {
 }
 
 export function isConfigSlug(value: string): boolean {
-  return AVAILABLE_SLUGS.has(value);
+  return ALL_SLUGS.includes(value);
 }
 
 /** Deduplicates and realigns slugs to registry declaration order. */

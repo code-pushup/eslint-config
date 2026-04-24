@@ -1,43 +1,30 @@
-import { includeAncestors } from './config-registry.js';
-import { loadConfigSource, packageJson } from './eslint-config-source.js';
+import { createRequire } from 'node:module';
+import {
+  BASE_PEER_DEPS,
+  findConfig,
+  includeAncestors,
+} from './config-registry.js';
 import type { PeerDep } from './types.js';
 
-const { peerDependencies, peerDependenciesMeta, version } = packageJson;
+const { version: PACKAGE_VERSION } = createRequire(import.meta.url)(
+  '../../package.json',
+) as typeof import('../../package.json');
 
-export async function resolvePeerDeps(slugs: string[]): Promise<PeerDep[]> {
-  const expanded = includeAncestors(slugs);
-  const importedNames = new Set(
-    (await Promise.all(expanded.map(collectImportedPeers))).flat(),
+export function resolvePeerDeps(slugs: string[]): PeerDep[] {
+  const configDeps = includeAncestors(slugs).flatMap(
+    slug => findConfig(slug)?.peerDeps ?? [],
   );
-  const isOptional = (name: string): boolean =>
-    peerDependenciesMeta?.[name]?.optional === true;
-  const isCodegenRequired = (name: string): boolean =>
-    expanded.includes('typescript') &&
-    name === 'eslint-import-resolver-typescript';
-
-  return [
-    ...Object.entries(peerDependencies)
-      .filter(
-        ([name]) =>
-          !isOptional(name) ||
-          importedNames.has(name) ||
-          isCodegenRequired(name),
-      )
-      .map(([name, range]) => ({ name, version: range })),
-    { name: '@code-pushup/eslint-config', version: `^${version}` },
+  const all: PeerDep[] = [
+    ...BASE_PEER_DEPS,
+    ...configDeps,
+    { name: '@code-pushup/eslint-config', version: `^${PACKAGE_VERSION}` },
   ];
-}
-
-async function collectImportedPeers(slug: string): Promise<string[]> {
-  const source = await loadConfigSource(slug);
-  return Object.keys(peerDependencies).filter(name =>
-    isImportedFrom(source, name),
-  );
-}
-
-export function isImportedFrom(source: string, packageName: string): boolean {
-  return (
-    source.includes(`from '${packageName}'`) ||
-    source.includes(`from '${packageName}/`)
-  );
+  const seen = new Set<string>();
+  return all.filter(dep => {
+    if (seen.has(dep.name)) {
+      return false;
+    }
+    seen.add(dep.name);
+    return true;
+  });
 }

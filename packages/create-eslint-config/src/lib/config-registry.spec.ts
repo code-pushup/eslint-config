@@ -1,20 +1,28 @@
 import { describe, expect, it } from 'vitest';
 import {
   ALL_SLUGS,
-  CONFIG_REGISTRY,
   excludeAncestors,
   findConfig,
   includeAncestors,
 } from './config-registry.js';
 
 describe('CONFIG_REGISTRY', () => {
-  it('should enumerate every config exported by eslint-config', () => {
-    expect(ALL_SLUGS).toEqual(expect.arrayContaining(['javascript', 'react']));
-    expect(CONFIG_REGISTRY.length).toBeGreaterThan(0);
-  });
-
-  it('should have unique slugs', () => {
-    expect(new Set(ALL_SLUGS).size).toBe(ALL_SLUGS.length);
+  it('should list every config slug shipped by the wizard', () => {
+    expect(ALL_SLUGS).toEqual([
+      'javascript',
+      'typescript',
+      'node',
+      'angular',
+      'ngrx',
+      'react',
+      'graphql',
+      'jest',
+      'vitest',
+      'cypress',
+      'playwright',
+      'storybook',
+      'react-testing-library',
+    ]);
   });
 
   it('should recommend javascript unconditionally', () => {

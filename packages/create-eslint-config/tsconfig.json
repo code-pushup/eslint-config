@@ -4,7 +4,6 @@
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    "lib": ["esnext"],
     "types": ["vitest"]
   },
   "files": [],

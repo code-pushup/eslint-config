@@ -26,7 +26,6 @@
   },
   "homepage": "https://github.com/code-pushup/eslint-config/tree/main/packages/create-eslint-config#readme",
   "dependencies": {
-    "@code-pushup/eslint-config": "0.15.1",
     "@inquirer/prompts": "^8.4.1",
     "semver": "^7.7.4",
     "yargs": "^18.0.0"

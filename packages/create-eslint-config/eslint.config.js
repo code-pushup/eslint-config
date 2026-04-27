@@ -16,11 +16,7 @@ export default defineConfig(
   {
     files: ['**/package.json'],
     rules: {
-      // sibling install target, not an imported module
-      '@nx/dependency-checks': [
-        'error',
-        { ignoredDependencies: ['@code-pushup/eslint-config'] },
-      ],
+      '@nx/dependency-checks': 'error',
     },
   },
 );

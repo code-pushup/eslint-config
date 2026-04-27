@@ -3,4 +3,20 @@
 import { defineConfig } from 'eslint/config';
 import baseConfig from '../../eslint.config.js';
 
-export default defineConfig(...baseConfig);
+export default defineConfig(
+  ...baseConfig,
+  {
+    files: ['**/*.ts'],
+    languageOptions: {
+      parserOptions: {
+        projectService: true,
+      },
+    },
+  },
+  {
+    files: ['**/package.json'],
+    rules: {
+      '@nx/dependency-checks': 'error',
+    },
+  },
+);

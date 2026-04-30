@@ -17,7 +17,8 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/code-pushup/eslint-config.git"
+    "url": "git+https://github.com/code-pushup/eslint-config.git",
+    "directory": "packages/eslint-config"
   },
   "keywords": [
     "eslint",
@@ -28,9 +29,9 @@
   "author": "Matěj Chalk <matej.chalk@flowup.cz>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/code-pushup/eslint-config/issues"
+    "url": "https://github.com/code-pushup/eslint-config/issues?q=is%3Aissue%20state%3Aopen%20type%3ABug%20label%3A\"🧩%20eslint-config\""
   },
-  "homepage": "https://github.com/code-pushup/eslint-config#readme",
+  "homepage": "https://github.com/code-pushup/eslint-config/tree/main/packages/eslint-config#readme",
   "peerDependencies": {
     "@eslint/js": "^9.0.0",
     "@graphql-eslint/eslint-plugin": "^3.0.0 || ^4.0.0",

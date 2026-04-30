@@ -39,6 +39,9 @@ testem.log
 .DS_Store
 Thumbs.db
 
+# secret environment variables
+.env
+
 # Nx
 .nx/cache
 .nx/workspace-data

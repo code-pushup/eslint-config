@@ -1,6 +1,6 @@
 {
   "name": "@code-pushup/create-eslint-config",
-  "version": "0.15.1",
+  "version": "0.16.0",
   "description": "Interactive setup wizard for @code-pushup/eslint-config",
   "type": "module",
   "main": "./src/index.js",
@@ -22,7 +22,7 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/code-pushup/eslint-config/issues"
+    "url": "https://github.com/code-pushup/eslint-config/issues?q=is%3Aissue%20state%3Aopen%20type%3ABug%20label%3A\"🧩%20create-eslint-config\""
   },
   "homepage": "https://github.com/code-pushup/eslint-config/tree/main/packages/create-eslint-config#readme",
   "dependencies": {

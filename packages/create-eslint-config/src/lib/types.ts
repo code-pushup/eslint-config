@@ -53,7 +53,7 @@ export type ExistingConfig = {
   format: 'esm' | 'cjs';
 };
 
-export type ConfigDefinition = {
+export type ConfigPreset = {
   slug: string;
   title: string;
   extends?: string;

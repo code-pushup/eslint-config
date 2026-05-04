@@ -1,7 +1,7 @@
 import { createRequire } from 'node:module';
 import {
   BASE_PEER_DEPS,
-  findConfig,
+  findPreset,
   includeAncestors,
 } from './config-registry.js';
 import type { PeerDep } from './types.js';
@@ -12,7 +12,7 @@ const { version: PACKAGE_VERSION } = createRequire(import.meta.url)(
 
 export function resolvePeerDeps(slugs: string[]): PeerDep[] {
   const configDeps = includeAncestors(slugs).flatMap(
-    slug => findConfig(slug)?.peerDeps ?? [],
+    slug => findPreset(slug)?.peerDeps ?? [],
   );
   const all: PeerDep[] = [
     ...BASE_PEER_DEPS,

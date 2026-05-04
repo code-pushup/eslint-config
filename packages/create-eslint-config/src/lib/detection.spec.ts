@@ -3,7 +3,7 @@ import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { test } from '../test-setup.js';
 import {
-  collectRecommendedConfigs,
+  collectRecommendedSlugs,
   detectExistingEslintConfig,
   detectNodeVersionInfo,
   detectTsconfigPath,
@@ -21,19 +21,19 @@ const makeSnapshot = (
   ...overrides,
 });
 
-describe('collectRecommendedConfigs', () => {
+describe('collectRecommendedSlugs', () => {
   it('should recommend only javascript for an empty project', () => {
-    expect([...collectRecommendedConfigs(makeSnapshot())]).toEqual([
+    expect([...collectRecommendedSlugs(makeSnapshot())]).toEqual([
       'javascript',
     ]);
   });
 
-  it('should recommend configs matching the project snapshot', () => {
+  it('should recommend slugs matching the project snapshot', () => {
     const snapshot = makeSnapshot({
       allDeps: new Set(['react', 'vitest']),
       files: new Set(['tsconfig.json']),
     });
-    const recommended = collectRecommendedConfigs(snapshot);
+    const recommended = collectRecommendedSlugs(snapshot);
     expect(recommended).toContain('javascript');
     expect(recommended).toContain('typescript');
     expect(recommended).toContain('react');

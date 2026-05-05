@@ -1,4 +1,4 @@
-import { readFile, writeFile } from 'node:fs/promises';
+import { readFile, unlink, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { describe, expect } from 'vitest';
 import { test } from '../test-setup.js';
@@ -71,5 +71,41 @@ describe('createTree', () => {
     await tree.flush();
 
     expect(tree.listChanges()).toEqual([]);
+  });
+
+  test('should roll back a partial flush when one write fails', async ({
+    tmp,
+  }) => {
+    const existingPath = path.join(tmp, 'existing.txt');
+    const createdPath = path.join(tmp, 'created.txt');
+    await writeFile(existingPath, 'original');
+
+    const tree = createTree(tmp, {
+      readFile,
+      writeFile: async (filePath, content) => {
+        if (filePath.endsWith('boom.txt')) {
+          throw new Error('disk full');
+        }
+        await writeFile(filePath, content);
+      },
+      exists: filePath =>
+        readFile(filePath, 'utf8').then(
+          () => true,
+          () => false,
+        ),
+      mkdir: async () => 'created',
+      unlink,
+    });
+
+    await tree.write('existing.txt', 'updated');
+    await tree.write('created.txt', 'new');
+    await tree.write('boom.txt', 'never');
+
+    await expect(tree.flush()).rejects.toThrow(/disk full/);
+
+    await expect(readFile(existingPath, 'utf8')).resolves.toBe('original');
+    await expect(readFile(createdPath, 'utf8')).rejects.toMatchObject({
+      code: 'ENOENT',
+    });
   });
 });

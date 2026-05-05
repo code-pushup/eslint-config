@@ -22,6 +22,10 @@ export type FileChange = {
   content: string;
 };
 
+export type PendingEntry = Omit<FileChange, 'path'> & {
+  original: string | null;
+};
+
 export const NODE_VERSION_SOURCES = [
   'node-version',
   'engines',
@@ -89,6 +93,7 @@ export type FileSystemAdapter = {
     path: string,
     options: { recursive: true },
   ) => Promise<string | undefined>;
+  unlink: (path: string) => Promise<void>;
 };
 
 export type Tree = {

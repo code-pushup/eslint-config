@@ -57,6 +57,11 @@ export type ExistingConfig = {
   format: 'esm' | 'cjs';
 };
 
+export type LoadedEslintConfig = {
+  source: string;
+  relativePath: string;
+};
+
 export type ConfigPreset = {
   slug: string;
   title: string;
@@ -114,17 +119,8 @@ export type WizardOptions = {
   yes?: boolean;
 };
 
-/**
- * Return shape of `runSetupWizard`. `files` paths are relative to `root`;
- * call `flush()` to persist all pending changes to disk.
- *
- * TODO: once the wizard can merge into existing configs, drop
- * `manualSnippet` and `manualSnippetPath` and collapse this type.
- */
 export type WizardResult = {
   root: string;
   files: FileChange[];
   flush: () => Promise<void>;
-  manualSnippet?: string;
-  manualSnippetPath?: string;
 };

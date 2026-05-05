@@ -1,66 +1,97 @@
 import path from 'node:path';
 import {
-  generateEslintConfigSnippet,
-  generateEslintConfigSource,
-  generatePackageJson,
-} from './codegen.js';
+  generateEslintConfig,
+  extendPackageJson,
+  extendEslintConfig,
+} from './codegen/index.js';
 import { detectExistingEslintConfig, snapshotProject } from './detection.js';
 import { WizardError } from './errors.js';
 import { resolvePeerDeps } from './peer-deps.js';
-import { collectFollowUps, promptConfigSelection } from './prompts.js';
-import type { PackageJson, WizardOptions, WizardResult } from './types.js';
+import {
+  collectFollowUps,
+  promptConfigSelection,
+  validateConfigSlugs,
+} from './prompts.js';
+import type {
+  LoadedEslintConfig,
+  ProjectSnapshot,
+  Tree,
+  WizardOptions,
+  WizardResult,
+} from './types.js';
 import { isProjectEsm } from './utils.js';
 import { createTree } from './virtual-fs.js';
 
 export async function runSetupWizard(
   options: WizardOptions,
 ): Promise<WizardResult> {
+  if (options.configs) {
+    validateConfigSlugs(options.configs);
+  }
   const targetDir = path.resolve(options.targetDir);
   const normalized = { ...options, targetDir };
 
   const snapshot = await snapshotProject(targetDir);
-
-  const existingConfig = await detectExistingEslintConfig(snapshot);
-  if (existingConfig?.format === 'cjs') {
-    throw new WizardError(
-      'Failed to extend existing eslint config: only ESM format is supported.',
-    );
-  }
+  const tree = createTree(targetDir);
+  const existingConfig = await loadExistingEslintConfig(tree, snapshot);
 
   const configs = await promptConfigSelection(normalized, snapshot);
   const followUps = await collectFollowUps(configs, normalized, snapshot);
 
-  const deps = resolvePeerDeps(configs);
+  const eslintConfigPath = existingConfig
+    ? existingConfig.relativePath
+    : isProjectEsm(snapshot.packageJson)
+      ? 'eslint.config.js'
+      : 'eslint.config.mjs';
 
-  const tree = createTree(targetDir);
+  const eslintConfigSource = existingConfig
+    ? await extendEslintConfig(
+        existingConfig.source,
+        configs,
+        followUps,
+        targetDir,
+      )
+    : await generateEslintConfig(configs, followUps, targetDir);
+
   await tree.write(
     'package.json',
-    generatePackageJson(
-      JSON.parse((await tree.read('package.json')) ?? '{}') as PackageJson,
-      deps,
+    extendPackageJson(
+      snapshot.packageJson ?? {},
+      resolvePeerDeps(configs),
       followUps,
     ),
   );
   if (followUps.node?.source === 'node-version') {
     await tree.write('.node-version', `${followUps.node.version}\n`);
   }
-  if (!existingConfig) {
-    await tree.write(
-      isProjectEsm(snapshot.packageJson)
-        ? 'eslint.config.js'
-        : 'eslint.config.mjs',
-      generateEslintConfigSource(configs, followUps),
-    );
-  }
+  await tree.write(eslintConfigPath, eslintConfigSource);
 
-  // TODO: merge into existing config instead of returning a snippet
   return {
     root: tree.root,
     files: tree.listChanges(),
     flush: () => tree.flush(),
-    ...(existingConfig && {
-      manualSnippet: generateEslintConfigSnippet(configs, followUps),
-      manualSnippetPath: existingConfig.path,
-    }),
   };
+}
+
+async function loadExistingEslintConfig(
+  tree: Tree,
+  snapshot: ProjectSnapshot,
+): Promise<LoadedEslintConfig | null> {
+  const detected = await detectExistingEslintConfig(snapshot);
+  if (detected == null) {
+    return null;
+  }
+  if (detected.format === 'cjs') {
+    throw new WizardError(
+      'Failed to extend existing eslint config: only ESM format is supported.',
+    );
+  }
+  const relativePath = path.relative(tree.root, detected.path);
+  const source = await tree.read(relativePath);
+  if (source == null) {
+    throw new WizardError(
+      `Failed to read existing eslint config at ${relativePath}.`,
+    );
+  }
+  return { source, relativePath };
 }

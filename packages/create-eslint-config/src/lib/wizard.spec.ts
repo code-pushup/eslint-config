@@ -1,6 +1,6 @@
-import { writeFile } from 'node:fs/promises';
+import { readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
-import { beforeEach, describe, expect, vi } from 'vitest';
+import { assert, beforeEach, describe, expect, vi } from 'vitest';
 import { test } from '../test-setup.js';
 import type { FileChange } from './types.js';
 import { runSetupWizard } from './wizard.js';
@@ -13,15 +13,17 @@ const { checkbox, input, select } = vi.hoisted(() => ({
 
 vi.mock('@inquirer/prompts', () => ({ checkbox, input, select }));
 
-function findChange(files: FileChange[], name: string): FileChange | undefined {
-  return files.find(f => f.path.endsWith(name));
+function findChange(files: FileChange[], name: string): FileChange {
+  const found = files.find(f => f.path.endsWith(name));
+  assert(found, `expected file change ending with ${name}`);
+  return found;
 }
 
 function parseJson<T = Record<string, unknown>>(
   files: FileChange[],
   name: string,
 ): T {
-  return JSON.parse(findChange(files, name)?.content ?? '{}') as T;
+  return JSON.parse(findChange(files, name).content) as T;
 }
 
 describe('runSetupWizard', () => {
@@ -34,14 +36,17 @@ describe('runSetupWizard', () => {
   test('should create eslint.config.mjs when type:module is not set', async ({
     tmp,
   }) => {
-    const { files, manualSnippet } = await runSetupWizard({
+    const { files } = await runSetupWizard({
       targetDir: tmp,
       yes: true,
     });
-    const config = findChange(files, 'eslint.config.mjs');
-    expect(config?.type).toBe('CREATE');
-    expect(config?.content).toContain('defineConfig(');
-    expect(manualSnippet).toBeUndefined();
+    expect(files).toContainEqual(
+      expect.objectContaining({
+        path: 'eslint.config.mjs',
+        type: 'CREATE',
+        content: expect.stringContaining('defineConfig('),
+      }),
+    );
   });
 
   test('should create eslint.config.js when type:module is set', async ({
@@ -52,19 +57,27 @@ describe('runSetupWizard', () => {
       JSON.stringify({ type: 'module' }),
     );
     const { files } = await runSetupWizard({ targetDir: tmp, yes: true });
-    expect(findChange(files, 'eslint.config.js')).toBeDefined();
-    expect(findChange(files, 'eslint.config.mjs')).toBeUndefined();
+    expect(files).toContainEqual(
+      expect.objectContaining({ path: 'eslint.config.js' }),
+    );
+    expect(files).not.toContainEqual(
+      expect.objectContaining({ path: 'eslint.config.mjs' }),
+    );
   });
 
   test('should add deps to package.json', async ({ tmp }) => {
     const { files } = await runSetupWizard({ targetDir: tmp, yes: true });
-    expect(findChange(files, 'package.json')?.type).toBe('CREATE');
-    const pkg = parseJson<{ devDependencies?: Record<string, string> }>(
+    expect(files).toContainEqual(
+      expect.objectContaining({ path: 'package.json', type: 'CREATE' }),
+    );
+    const packageJson = parseJson<{ devDependencies: Record<string, string> }>(
       files,
       'package.json',
     );
-    expect(pkg.devDependencies?.eslint).toBeDefined();
-    expect(pkg.devDependencies?.['@code-pushup/eslint-config']).toBeDefined();
+    expect(packageJson.devDependencies.eslint).toBeDefined();
+    expect(
+      packageJson.devDependencies['@code-pushup/eslint-config'],
+    ).toBeDefined();
   });
 
   test('should update existing package.json while preserving other fields', async ({
@@ -79,33 +92,78 @@ describe('runSetupWizard', () => {
       }),
     );
     const { files } = await runSetupWizard({ targetDir: tmp, yes: true });
-    expect(findChange(files, 'package.json')?.type).toBe('UPDATE');
-    const pkg = parseJson<{
+    expect(files).toContainEqual(
+      expect.objectContaining({ path: 'package.json', type: 'UPDATE' }),
+    );
+    const packageJson = parseJson<{
       name: string;
       scripts: Record<string, string>;
       devDependencies: Record<string, string>;
     }>(files, 'package.json');
-    expect(pkg.name).toBe('demo');
-    expect(pkg.scripts).toEqual({ test: 'vitest' });
-    expect(pkg.devDependencies.vitest).toBe('1.0.0');
-    expect(pkg.devDependencies.eslint).toBeDefined();
+    expect(packageJson.name).toBe('demo');
+    expect(packageJson.scripts).toEqual({ test: 'vitest' });
+    expect(packageJson.devDependencies.vitest).toBe('1.0.0');
+    expect(packageJson.devDependencies.eslint).toBeDefined();
   });
 
-  test('should return a snippet when an ESM config already exists', async ({
+  test('should not modify the eslint config when re-running with the same configs', async ({
     tmp,
   }) => {
     await writeFile(
       path.join(tmp, 'package.json'),
       JSON.stringify({ type: 'module' }),
     );
-    await writeFile(path.join(tmp, 'eslint.config.js'), 'export default [];');
-    const { files, manualSnippet, manualSnippetPath } = await runSetupWizard({
+    await writeFile(
+      path.join(tmp, 'eslint.config.js'),
+      [
+        "import { defineConfig } from 'eslint/config';",
+        '',
+        'export default defineConfig();',
+        '',
+      ].join('\n'),
+    );
+
+    const first = await runSetupWizard({
       targetDir: tmp,
+      configs: ['javascript'],
       yes: true,
     });
-    expect(findChange(files, 'eslint.config.js')).toBeUndefined();
-    expect(manualSnippet).toContain('defineConfig');
-    expect(manualSnippetPath).toMatch(/eslint\.config\.js$/);
+    await first.flush();
+
+    const second = await runSetupWizard({
+      targetDir: tmp,
+      configs: ['javascript'],
+      yes: true,
+    });
+
+    expect(second.files).not.toContainEqual(
+      expect.objectContaining({ path: 'eslint.config.js' }),
+    );
+  });
+
+  test('should throw and leave package.json untouched when the existing config has an unsupported shape', async ({
+    tmp,
+  }) => {
+    await writeFile(
+      path.join(tmp, 'package.json'),
+      JSON.stringify({ type: 'module' }),
+    );
+    await writeFile(
+      path.join(tmp, 'eslint.config.js'),
+      ['const config = [];', 'export default config;', ''].join('\n'),
+    );
+    const before = await readFile(path.join(tmp, 'package.json'), 'utf8');
+
+    await expect(
+      runSetupWizard({
+        targetDir: tmp,
+        configs: ['javascript'],
+        yes: true,
+      }),
+    ).rejects.toThrow(/defineConfig/);
+
+    const after = await readFile(path.join(tmp, 'package.json'), 'utf8');
+    expect(after).toBe(before);
   });
 
   test('should throw when a CJS config is detected', async ({ tmp }) => {
@@ -124,9 +182,11 @@ describe('runSetupWizard', () => {
       nodeVersionSource: 'node-version',
       nodeVersion: '>=22.0.0',
     });
-    const nv = findChange(files, '.node-version');
-    expect(nv?.type).toBe('CREATE');
-    expect(nv?.content).toBe('>=22.0.0\n');
+    expect(files).toContainEqual({
+      path: '.node-version',
+      type: 'CREATE',
+      content: '>=22.0.0\n',
+    });
   });
 
   test('should set engines.node when source is engines', async ({ tmp }) => {
@@ -136,11 +196,11 @@ describe('runSetupWizard', () => {
       nodeVersionSource: 'engines',
       nodeVersion: '>=20.0.0',
     });
-    const pkg = parseJson<{ engines?: { node: string } }>(
+    const packageJson = parseJson<{ engines: { node: string } }>(
       files,
       'package.json',
     );
-    expect(pkg.engines?.node).toBe('>=20.0.0');
+    expect(packageJson.engines.node).toBe('>=20.0.0');
   });
 
   test('should include config-specific deps', async ({ tmp }) => {
@@ -148,10 +208,10 @@ describe('runSetupWizard', () => {
       targetDir: tmp,
       configs: ['javascript', 'react'],
     });
-    const pkg = parseJson<{ devDependencies?: Record<string, string> }>(
+    const packageJson = parseJson<{ devDependencies: Record<string, string> }>(
       files,
       'package.json',
     );
-    expect(pkg.devDependencies?.['eslint-plugin-react']).toBeDefined();
+    expect(packageJson.devDependencies['eslint-plugin-react']).toBeDefined();
   });
 });

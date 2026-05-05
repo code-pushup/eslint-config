@@ -26,8 +26,18 @@
   },
   "homepage": "https://github.com/code-pushup/eslint-config/tree/main/packages/create-eslint-config#readme",
   "dependencies": {
+    "@babel/types": "^7.25.0",
     "@inquirer/prompts": "^8.4.1",
+    "recast": "^0.23.11",
     "semver": "^7.7.4",
     "yargs": "^18.0.0"
+  },
+  "peerDependencies": {
+    "prettier": "^3.0.0"
+  },
+  "peerDependenciesMeta": {
+    "prettier": {
+      "optional": true
+    }
   }
 }

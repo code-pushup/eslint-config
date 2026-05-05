@@ -135,7 +135,7 @@ export function validateConfigSlugs(slugs: string[]): string[] {
   const invalid = slugs.filter(slug => !isPresetSlug(slug));
   if (invalid.length > 0) {
     throw new WizardError(
-      `Failed to resolve config slugs: unknown ${invalid.join(', ')}. Available: ${PRESET_SLUGS.join(', ')}.`,
+      `Unknown configs: ${invalid.join(', ')}. Available: ${PRESET_SLUGS.join(', ')}.`,
     );
   }
   return slugs;

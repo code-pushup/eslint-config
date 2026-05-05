@@ -68,15 +68,20 @@ async function readNodeVersionFile(
 export async function detectExistingEslintConfig(
   snapshot: ProjectSnapshot,
 ): Promise<ExistingConfig | null> {
-  const configFilename = [...snapshot.files].find(name =>
-    ESLINT_CONFIG_PATTERN.test(name),
-  );
-  if (!configFilename) {
+  const candidates = [...snapshot.files]
+    .filter(name => ESLINT_CONFIG_PATTERN.test(name))
+    .map(name => ({
+      name,
+      format: classifyFormat(name, snapshot.packageJson),
+    }));
+  const chosen =
+    candidates.find(({ format }) => format === 'esm') ?? candidates[0];
+  if (!chosen) {
     return null;
   }
   return {
-    path: path.join(snapshot.targetDir, configFilename),
-    format: classifyFormat(configFilename, snapshot.packageJson),
+    path: path.join(snapshot.targetDir, chosen.name),
+    format: chosen.format,
   };
 }
 

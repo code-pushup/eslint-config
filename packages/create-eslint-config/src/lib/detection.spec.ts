@@ -163,4 +163,24 @@ describe('detectExistingEslintConfig', () => {
       detectExistingEslintConfig(makeSnapshot()),
     ).resolves.toBeNull();
   });
+
+  it('should prefer an ESM config over a CJS one when both exist', async () => {
+    const snapshot = makeSnapshot({
+      files: new Set(['eslint.config.cjs', 'eslint.config.mjs']),
+    });
+    await expect(detectExistingEslintConfig(snapshot)).resolves.toMatchObject({
+      path: path.join('/test', 'eslint.config.mjs'),
+      format: 'esm',
+    });
+  });
+
+  it('should fall back to a CJS config when no ESM config exists', async () => {
+    const snapshot = makeSnapshot({
+      files: new Set(['eslint.config.cjs', 'eslint.config.cts']),
+    });
+    await expect(detectExistingEslintConfig(snapshot)).resolves.toMatchObject({
+      path: path.join('/test', 'eslint.config.cjs'),
+      format: 'cjs',
+    });
+  });
 });

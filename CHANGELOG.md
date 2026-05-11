@@ -1,3 +1,13 @@
+## 0.16.2 (2026-05-11)
+
+### 🩹 Fixes
+
+- **create-eslint-config:** sync version with eslint-config ([55467ee](https://github.com/code-pushup/eslint-config/commit/55467ee))
+
+### ❤️ Thank You
+
+- Matěj Chalk
+
 ## 0.16.1 (2026-04-30)
 
 ### 🩹 Fixes

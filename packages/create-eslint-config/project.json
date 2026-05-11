@@ -33,10 +33,5 @@
         "packageRoot": "dist/{projectRoot}"
       }
     }
-  },
-  "release": {
-    "version": {
-      "manifestRootsToUpdate": ["dist/{projectRoot}"]
-    }
   }
 }

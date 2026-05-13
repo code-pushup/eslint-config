@@ -1,3 +1,13 @@
+## 0.16.3 (2026-05-13)
+
+### 🩹 Fixes
+
+- **create-eslint-config:** add license file ([a927994](https://github.com/code-pushup/eslint-config/commit/a927994))
+
+### ❤️ Thank You
+
+- Matěj Chalk
+
 ## 0.16.2 (2026-05-11)
 
 ### 🩹 Fixes

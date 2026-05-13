@@ -1,7 +1,9 @@
 # @code-pushup/create-eslint-config
 
 [![npm](https://img.shields.io/npm/v/%40code-pushup%2Fcreate-eslint-config.svg)](https://www.npmjs.com/package/@code-pushup/create-eslint-config)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![downloads](https://img.shields.io/npm/dm/%40code-pushup%2Fcreate-eslint-config)](https://npmtrends.com/@code-pushup/create-eslint-config)
+[![dependencies](https://img.shields.io/librariesio/release/npm/%40code-pushup/create-eslint-config)](https://www.npmjs.com/package/@code-pushup/create-eslint-config?activeTab=dependencies)
+[![license](https://img.shields.io/npm/l/%40code-pushup%2Fcreate-eslint-config)](https://opensource.org/licenses/MIT)
 
 Interactive setup wizard for [`@code-pushup/eslint-config`](../eslint-config/README.md).
 
@@ -31,14 +33,14 @@ npm init @code-pushup/eslint-config -- --yes
 
 ### Options
 
-| Option                      | Type                                             | Default       | Description                        |
-| --------------------------- | ------------------------------------------------ | ------------- | ---------------------------------- |
-| **`--configs`**             | `string[]`                                       |               | Configs to include                 |
-| **`--tsconfig`**            | `string`                                         | auto-detected | Path to tsconfig                   |
-| **`--node-version-source`** | `'node-version'` \| `'engines'` \| `'manual'`   | auto-detected | Where to read the Node version     |
-| **`--node-version`**        | `string`                                         |               | Node version range (e.g. `>=20.0.0`) |
-| **`--dry-run`**             | `boolean`                                        | `false`       | Preview changes without writing    |
-| **`--yes`**, `-y`           | `boolean`                                        | `false`       | Skip prompts and use defaults      |
+| Option                      | Type                                          | Default       | Description                          |
+| --------------------------- | --------------------------------------------- | ------------- | ------------------------------------ |
+| **`--configs`**             | `string[]`                                    |               | Configs to include                   |
+| **`--tsconfig`**            | `string`                                      | auto-detected | Path to tsconfig                     |
+| **`--node-version-source`** | `'node-version'` \| `'engines'` \| `'manual'` | auto-detected | Where to read the Node version       |
+| **`--node-version`**        | `string`                                      |               | Node version range (e.g. `>=20.0.0`) |
+| **`--dry-run`**             | `boolean`                                     | `false`       | Preview changes without writing      |
+| **`--yes`**, `-y`           | `boolean`                                     | `false`       | Skip prompts and use defaults        |
 
 ### Programmatic API
 
@@ -56,20 +58,20 @@ const result = await runSetupWizard({
 
 ## Available configs
 
-| Slug                     | Detected when                                      |
-| ------------------------ | -------------------------------------------------- |
-| `javascript`             | Always recommended                                 |
-| `typescript`             | `tsconfig.json` exists or `typescript` is installed |
-| `node`                   | Backend/full-stack framework is installed           |
-| `angular`                | `@angular/core` is installed                       |
-| `ngrx`                   | `@ngrx/core` is installed                          |
-| `react`                  | `react` is installed                               |
-| `graphql`                | GraphQL server package is installed                |
-| `jest`                   | `jest` is installed or config file exists           |
-| `vitest`                 | `vitest` is installed or config file exists         |
-| `cypress`                | `cypress` is installed or config file exists        |
-| `playwright`             | `@playwright/test` is installed or config exists   |
-| `storybook`              | `storybook` is installed or `.storybook` exists    |
-| `react-testing-library`  | `@testing-library/react` is installed              |
+| Slug                    | Detected when                                       |
+| ----------------------- | --------------------------------------------------- |
+| `javascript`            | Always recommended                                  |
+| `typescript`            | `tsconfig.json` exists or `typescript` is installed |
+| `node`                  | Backend/full-stack framework is installed           |
+| `angular`               | `@angular/core` is installed                        |
+| `ngrx`                  | `@ngrx/core` is installed                           |
+| `react`                 | `react` is installed                                |
+| `graphql`               | GraphQL server package is installed                 |
+| `jest`                  | `jest` is installed or config file exists           |
+| `vitest`                | `vitest` is installed or config file exists         |
+| `cypress`               | `cypress` is installed or config file exists        |
+| `playwright`            | `@playwright/test` is installed or config exists    |
+| `storybook`             | `storybook` is installed or `.storybook` exists     |
+| `react-testing-library` | `@testing-library/react` is installed               |
 
 Configs follow an inheritance hierarchy. Selecting a child preset subsumes its parent. For example, picking `typescript` automatically includes `javascript`.

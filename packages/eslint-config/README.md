@@ -1,7 +1,9 @@
 # @code-pushup/eslint-config
 
 [![npm](https://img.shields.io/npm/v/%40code-pushup%2Feslint-config.svg)](https://www.npmjs.com/package/@code-pushup/eslint-config)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![downloads](https://img.shields.io/npm/dm/%40code-pushup%2Feslint-config)](https://npmtrends.com/@code-pushup/eslint-config)
+[![dependencies](https://img.shields.io/librariesio/release/npm/%40code-pushup/eslint-config)](https://www.npmjs.com/package/@code-pushup/eslint-config?activeTab=dependencies)
+[![license](https://img.shields.io/npm/l/%40code-pushup%2Feslint-config)](https://opensource.org/licenses/MIT)
 
 Recommended ESLint presets by [Code PushUp](https://github.com/code-pushup/cli/tree/main/packages/cli).
 

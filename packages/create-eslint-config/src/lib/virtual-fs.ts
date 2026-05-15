@@ -72,14 +72,14 @@ export function createTree(
       const written = new Set<string>();
       try {
         await [...pending.entries()].reduce<Promise<null>>(
-          (acc, [filePath, { content }]) =>
-            acc.then(async () => {
-              const absolutePath = resolve(filePath);
-              await fs.mkdir(path.dirname(absolutePath), { recursive: true });
-              await fs.writeFile(absolutePath, content);
-              written.add(filePath);
-              return null;
-            }),
+          async (acc, [filePath, { content }]) => {
+            await acc;
+            const absolutePath = resolve(filePath);
+            await fs.mkdir(path.dirname(absolutePath), { recursive: true });
+            await fs.writeFile(absolutePath, content);
+            written.add(filePath);
+            return null;
+          },
           Promise.resolve(null),
         );
         pending.clear();

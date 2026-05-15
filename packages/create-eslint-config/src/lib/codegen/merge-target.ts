@@ -152,7 +152,7 @@ function getImportedName(
   return t.isIdentifier(imported) ? imported.name : imported.value;
 }
 
-/** Map keyed as `${moduleSpecifier}::${importedName}` to local name. */
+/** Map from `module::importedName` to local binding name. */
 function collectExistingImports(program: t.Program): Map<string, string> {
   return new Map(
     program.body
@@ -161,7 +161,7 @@ function collectExistingImports(program: t.Program): Map<string, string> {
         declaration.specifiers.map(
           specifier =>
             [
-              `${declaration.source.value}::${getImportedName(specifier)}`,
+              importKey(declaration.source.value, getImportedName(specifier)),
               specifier.local.name,
             ] as const,
         ),
@@ -178,9 +178,13 @@ function filterNewImports(
       const importedName = defaultImport
         ? 'default'
         : (namedImports?.[0] ?? 'default');
-      return !existingImports.has(`${moduleSpecifier}::${importedName}`);
+      return !existingImports.has(importKey(moduleSpecifier, importedName));
     },
   );
+}
+
+function importKey(moduleSpecifier: string, importedName: string): string {
+  return `${moduleSpecifier}::${importedName}`;
 }
 
 function insertImports(
@@ -192,7 +196,7 @@ function insertImports(
   }
   const declarations = newImports.map(buildImportDeclaration);
   const lastImportIdx = program.body.findLastIndex(t.isImportDeclaration);
-  const insertAt = lastImportIdx === -1 ? 0 : lastImportIdx + 1;
+  const insertAt = lastImportIdx + 1;
   program.body.splice(insertAt, 0, ...declarations);
 }
 

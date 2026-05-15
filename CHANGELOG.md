@@ -1,3 +1,13 @@
+## 0.17.0 (2026-05-15)
+
+### 🚀 Features
+
+- **create-eslint-config:** extend existing config ([#52](https://github.com/code-pushup/eslint-config/pull/52))
+
+### ❤️ Thank You
+
+- Hanna Skryl @hanna-skryl
+
 ## 0.16.3 (2026-05-13)
 
 ### 🩹 Fixes

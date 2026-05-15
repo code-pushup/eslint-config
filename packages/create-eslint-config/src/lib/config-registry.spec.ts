@@ -1,14 +1,14 @@
 import { describe, expect, it } from 'vitest';
 import {
-  ALL_SLUGS,
   excludeAncestors,
-  findConfig,
+  findPreset,
   includeAncestors,
+  PRESET_SLUGS,
 } from './config-registry.js';
 
-describe('CONFIG_REGISTRY', () => {
-  it('should list every config slug shipped by the wizard', () => {
-    expect(ALL_SLUGS).toEqual([
+describe('CONFIG_PRESETS', () => {
+  it('should list every preset slug shipped by the wizard', () => {
+    expect(PRESET_SLUGS).toEqual([
       'javascript',
       'typescript',
       'node',
@@ -27,7 +27,7 @@ describe('CONFIG_REGISTRY', () => {
 
   it('should recommend javascript unconditionally', () => {
     expect(
-      findConfig('javascript')!.isRecommended({
+      findPreset('javascript')!.isRecommended({
         targetDir: '',
         packageJson: null,
         allDeps: new Set(),

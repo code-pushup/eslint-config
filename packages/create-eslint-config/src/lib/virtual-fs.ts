@@ -1,6 +1,11 @@
-import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, unlink, writeFile } from 'node:fs/promises';
 import path from 'node:path';
-import type { FileChange, FileSystemAdapter, Tree } from './types.js';
+import type {
+  FileChange,
+  FileSystemAdapter,
+  PendingEntry,
+  Tree,
+} from './types.js';
 import { fileExists } from './utils.js';
 
 const DEFAULT_FS: FileSystemAdapter = {
@@ -8,6 +13,7 @@ const DEFAULT_FS: FileSystemAdapter = {
   writeFile,
   exists: fileExists,
   mkdir,
+  unlink,
 };
 
 // eslint-disable-next-line max-lines-per-function
@@ -15,7 +21,7 @@ export function createTree(
   root: string,
   fs: FileSystemAdapter = DEFAULT_FS,
 ): Tree {
-  const pending = new Map<string, Omit<FileChange, 'path'>>();
+  const pending = new Map<string, PendingEntry>();
   const resolve = (filePath: string): string => path.resolve(root, filePath);
 
   return {
@@ -50,6 +56,7 @@ export function createTree(
         pending.set(filePath, {
           content,
           type: existing == null ? 'CREATE' : 'UPDATE',
+          original: existing,
         });
       }
     },
@@ -62,14 +69,46 @@ export function createTree(
       })),
 
     async flush(): Promise<void> {
-      await Promise.all(
-        [...pending.entries()].map(async ([filePath, { content }]) => {
-          const absolutePath = resolve(filePath);
-          await fs.mkdir(path.dirname(absolutePath), { recursive: true });
-          await fs.writeFile(absolutePath, content);
-        }),
-      );
-      pending.clear();
+      const written = new Set<string>();
+      try {
+        await [...pending.entries()].reduce<Promise<null>>(
+          async (acc, [filePath, { content }]) => {
+            await acc;
+            const absolutePath = resolve(filePath);
+            await fs.mkdir(path.dirname(absolutePath), { recursive: true });
+            await fs.writeFile(absolutePath, content);
+            written.add(filePath);
+            return null;
+          },
+          Promise.resolve(null),
+        );
+        pending.clear();
+      } catch (error) {
+        await rollback([...written], pending, fs, resolve);
+        throw error;
+      }
     },
   };
+}
+
+async function rollback(
+  written: string[],
+  pending: Map<string, PendingEntry>,
+  fs: FileSystemAdapter,
+  resolve: (filePath: string) => string,
+): Promise<void> {
+  await Promise.allSettled(
+    written.map(async filePath => {
+      const entry = pending.get(filePath);
+      if (!entry) {
+        return;
+      }
+      const absolutePath = resolve(filePath);
+      if (entry.original == null) {
+        await fs.unlink(absolutePath);
+        return;
+      }
+      await fs.writeFile(absolutePath, entry.original);
+    }),
+  );
 }

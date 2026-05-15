@@ -1,13 +1,13 @@
 import { checkbox, input as inputPrompt, select } from '@inquirer/prompts';
 import semver from 'semver';
 import {
-  ALL_SLUGS,
-  CONFIG_REGISTRY,
-  isConfigSlug,
+  CONFIG_PRESETS,
+  isPresetSlug,
   normalizeSlugs,
+  PRESET_SLUGS,
 } from './config-registry.js';
 import {
-  collectRecommendedConfigs,
+  collectRecommendedSlugs,
   detectNodeVersionInfo,
   detectTsconfigPath,
 } from './detection.js';
@@ -30,17 +30,17 @@ export async function promptConfigSelection(
   if (options.configs && options.configs.length > 0) {
     return normalizeSlugs(options.configs);
   }
-  const recommended = collectRecommendedConfigs(snapshot);
+  const recommended = collectRecommendedSlugs(snapshot);
   if (options.yes) {
     return normalizeSlugs([...recommended]);
   }
   const selected = await checkbox<string>({
     message: 'Configurations to set up:',
     required: true,
-    choices: CONFIG_REGISTRY.map(config => ({
-      name: config.title,
-      value: config.slug,
-      checked: recommended.has(config.slug),
+    choices: CONFIG_PRESETS.map(preset => ({
+      name: preset.title,
+      value: preset.slug,
+      checked: recommended.has(preset.slug),
     })),
   });
   return normalizeSlugs(selected);
@@ -132,12 +132,11 @@ export async function collectFollowUps(
 }
 
 export function validateConfigSlugs(slugs: string[]): string[] {
-  const valid = slugs.filter(isConfigSlug);
-  if (valid.length < slugs.length) {
-    const invalid = slugs.filter(slug => !isConfigSlug(slug));
+  const invalid = slugs.filter(slug => !isPresetSlug(slug));
+  if (invalid.length > 0) {
     throw new WizardError(
-      `Failed to resolve config slugs: unknown ${invalid.join(', ')}. Available: ${ALL_SLUGS.join(', ')}.`,
+      `Unknown configs: ${invalid.join(', ')}. Available: ${PRESET_SLUGS.join(', ')}.`,
     );
   }
-  return valid;
+  return slugs;
 }

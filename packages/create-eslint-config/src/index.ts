@@ -1,7 +1,9 @@
 export { runSetupWizard } from './lib/wizard.js';
-export type {
-  FileChange,
-  NodeVersionSource,
-  WizardOptions,
-  WizardResult,
+export { WizardError } from './lib/errors.js';
+export {
+  NODE_VERSION_SOURCES,
+  type FileChange,
+  type NodeVersionSource,
+  type WizardOptions,
+  type WizardResult,
 } from './lib/types.js';

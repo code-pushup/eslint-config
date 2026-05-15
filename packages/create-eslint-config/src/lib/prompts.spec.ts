@@ -138,8 +138,6 @@ describe('validateConfigSlugs', () => {
   });
 
   it('should throw on unknown slugs', () => {
-    expect(() => validateConfigSlugs(['unknown'])).toThrow(
-      /Failed to resolve config slugs/,
-    );
+    expect(() => validateConfigSlugs(['unknown'])).toThrow(/Unknown configs/);
   });
 });

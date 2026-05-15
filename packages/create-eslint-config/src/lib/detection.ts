@@ -1,6 +1,6 @@
 import { readdir, readFile } from 'node:fs/promises';
 import path from 'node:path';
-import { CONFIG_REGISTRY } from './config-registry.js';
+import { CONFIG_PRESETS } from './config-registry.js';
 import type {
   ExistingConfig,
   NodeVersionInfo,
@@ -25,11 +25,11 @@ export async function snapshotProject(
   return { targetDir, packageJson, allDeps, files };
 }
 
-export function collectRecommendedConfigs(
+export function collectRecommendedSlugs(
   snapshot: ProjectSnapshot,
 ): Set<string> {
   return new Set(
-    CONFIG_REGISTRY.filter(c => c.isRecommended(snapshot)).map(c => c.slug),
+    CONFIG_PRESETS.filter(p => p.isRecommended(snapshot)).map(p => p.slug),
   );
 }
 
@@ -68,15 +68,20 @@ async function readNodeVersionFile(
 export async function detectExistingEslintConfig(
   snapshot: ProjectSnapshot,
 ): Promise<ExistingConfig | null> {
-  const configFilename = [...snapshot.files].find(name =>
-    ESLINT_CONFIG_PATTERN.test(name),
-  );
-  if (!configFilename) {
+  const candidates = [...snapshot.files]
+    .filter(name => ESLINT_CONFIG_PATTERN.test(name))
+    .map(name => ({
+      name,
+      format: classifyFormat(name, snapshot.packageJson),
+    }));
+  const chosen =
+    candidates.find(({ format }) => format === 'esm') ?? candidates[0];
+  if (!chosen) {
     return null;
   }
   return {
-    path: path.join(snapshot.targetDir, configFilename),
-    format: classifyFormat(configFilename, snapshot.packageJson),
+    path: path.join(snapshot.targetDir, chosen.name),
+    format: chosen.format,
   };
 }
 

@@ -167,7 +167,7 @@ export default defineConfig(
   },
   {
     name: 'code-pushup/typescript/disable-type-checked-for-javascript',
-    files: negatePatterns(TYPESCRIPT_EXTENDED_FILE_PATTERNS),
+    ignores: TYPESCRIPT_EXTENDED_FILE_PATTERNS,
     ...tseslint.configs.disableTypeChecked,
   },
 );

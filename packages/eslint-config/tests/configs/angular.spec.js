@@ -30,44 +30,53 @@ describe('angular config', () => {
     const config = await loadConfig('src/app/app.component.ts');
     expect(config.rules).toHaveProperty(
       '@angular-eslint/prefer-on-push-component-change-detection',
+      [1],
     );
   });
 
   it('should have explicitly added rule for HTML file', async () => {
     const config = await loadConfig('src/app/app.component.html');
-    expect(config.rules).toHaveProperty('@angular-eslint/template/no-any');
+    expect(config.rules).toHaveProperty('@angular-eslint/template/no-any', [2]);
   });
 
   it('should have rule from extended typescript config', async () => {
     const config = await loadConfig('src/app/app.component.ts');
     expect(config.rules).toHaveProperty(
       '@typescript-eslint/no-non-null-assertion',
+      [2],
     );
   });
 
   it('should have rule from extended recommended angular config', async () => {
     const config = await loadConfig('src/app/app.component.ts');
-    expect(config.rules).toHaveProperty('@angular-eslint/contextual-lifecycle');
+    expect(config.rules).toHaveProperty(
+      '@angular-eslint/contextual-lifecycle',
+      [2],
+    );
   });
 
   it('should have rule from extended recommended angular template config', async () => {
     const config = await loadConfig('src/app/app.component.html');
     expect(config.rules).toHaveProperty(
       '@angular-eslint/template/banana-in-box',
+      [2],
     );
   });
 
   it('should have rule from extended angular template accessibility config', async () => {
     const config = await loadConfig('src/app/app.component.html');
-    expect(config.rules).toHaveProperty('@angular-eslint/template/alt-text');
+    expect(config.rules).toHaveProperty('@angular-eslint/template/alt-text', [
+      2,
+    ]);
   });
 
   it('should have rule disabled if test file pattern matches', async () => {
     const config = await loadConfig(
       'src/app/components/accordion/accordion.component.stories.ts',
     );
-    expect(
-      config.rules?.['@angular-eslint/component-max-inline-declarations'],
-    ).toEqual([0]);
+    expect(config.rules).toHaveProperty(
+      '@angular-eslint/component-max-inline-declarations',
+      [0],
+    );
   });
 });

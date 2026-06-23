@@ -16,12 +16,12 @@ describe('node config', () => {
 
   it('should have explicitly added rule', async () => {
     const config = await loadConfig();
-    expect(config.rules).toHaveProperty('n/prefer-promises/fs');
+    expect(config.rules).toHaveProperty('n/prefer-promises/fs', [1]);
   });
 
   it('should have rule from extended base config', async () => {
     const config = await loadConfig();
-    expect(config.rules).toHaveProperty('import/no-commonjs');
+    expect(config.rules).toHaveProperty('import/no-commonjs', [2]);
   });
 
   it('should not include any rule which requires type checking', async () => {

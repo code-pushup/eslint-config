@@ -21,17 +21,19 @@ describe('react config', () => {
 
   it('should have rule from extended javascript config', async () => {
     const config = await loadConfig('components/Button.tsx');
-    expect(config.rules).toHaveProperty('@typescript-eslint/no-unused-vars');
+    expect(config.rules).toHaveProperty('@typescript-eslint/no-explicit-any', [
+      2,
+    ]);
   });
 
   it('should have rule from extended recommended react config', async () => {
     const config = await loadConfig();
-    expect(config.rules).toHaveProperty('react/jsx-key');
+    expect(config.rules).toHaveProperty('react/jsx-key', [2]);
   });
 
   it('should have explicitly added rule', async () => {
     const config = await loadConfig();
-    expect(config.rules).toHaveProperty('react/no-array-index-key');
+    expect(config.rules).toHaveProperty('react/no-array-index-key', [2]);
   });
 
   it('should include react-hooks rule', async () => {
@@ -41,6 +43,6 @@ describe('react config', () => {
 
   it('should have rule from extended recommended jsx-a11y config', async () => {
     const config = await loadConfig();
-    expect(config.rules).toHaveProperty('jsx-a11y/alt-text');
+    expect(config.rules).toHaveProperty('jsx-a11y/alt-text', [2]);
   });
 });

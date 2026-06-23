@@ -21,16 +21,16 @@ describe('jest config', () => {
 
   it('should have rule from extended recommended jest config', async () => {
     const config = await loadConfig();
-    expect(config.rules).toHaveProperty('jest/no-identical-title');
+    expect(config.rules).toHaveProperty('jest/no-identical-title', [2]);
   });
 
   it('should have explicitly added rule', async () => {
     const config = await loadConfig();
-    expect(config.rules).toHaveProperty('jest/no-test-return-statement');
+    expect(config.rules).toHaveProperty('jest/no-test-return-statement', [1]);
   });
 
   it('should have customized severity level for rule from extended config', async () => {
     const config = await loadConfig();
-    expect(config.rules?.['jest/no-mocks-import']).toEqual([1]);
+    expect(config.rules).toHaveProperty('jest/no-mocks-import', [1]);
   });
 });

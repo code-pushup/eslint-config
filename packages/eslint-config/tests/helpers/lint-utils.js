@@ -71,18 +71,15 @@ export default [
   };
 
   /** @param {string[]} ruleIds */
-  const loadRulesByIds = async (ruleIds, filePath = defaultFilePath) => {
-    const results = await eslint.lintFiles(filePath);
-    return eslint.getRulesMetaForResults([
+  const loadRulesByIds = async (ruleIds, filePath = defaultFilePath) =>
+    eslint.getRulesMetaForResults([
       {
-        filePath: results[0]?.filePath ?? filePath,
+        filePath,
         // @ts-expect-error incomplete message (hack to load rule metadata)
         messages: ruleIds.map(ruleId => ({ ruleId })),
         suppressedMessages: [],
       },
     ]);
-  };
-
   /** @param {string | string[]} patterns */
   const lint = (patterns = defaultFilePath) => eslint.lintFiles(patterns);
 

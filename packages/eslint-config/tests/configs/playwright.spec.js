@@ -36,16 +36,20 @@ describe('playwright config', () => {
 
   it('should have rule from extended recommended playwright config', async () => {
     const config = await loadConfig();
-    expect(config.rules).toHaveProperty('playwright/valid-expect');
+    expect(config.rules).toHaveProperty('playwright/valid-expect', [2]);
   });
 
   it('should have explicitly added rule', async () => {
     const config = await loadConfig();
-    expect(config.rules).toHaveProperty('playwright/prefer-native-locators');
+    expect(config.rules).toHaveProperty('playwright/prefer-native-locators', [
+      1,
+    ]);
   });
 
   it('should have customized severity level for rule from extended config', async () => {
     const config = await loadConfig();
-    expect(config.rules?.['playwright/no-conditional-expect']).toEqual([1]);
+    expect(config.rules).toHaveProperty('playwright/no-conditional-expect', [
+      1,
+    ]);
   });
 });

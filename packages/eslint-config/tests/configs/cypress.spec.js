@@ -31,6 +31,6 @@ describe('cypress config', () => {
 
   it('should have explicitly added rule', async () => {
     const config = await loadConfig();
-    expect(config.rules).toHaveProperty('cypress/no-force');
+    expect(config.rules).toHaveProperty('cypress/no-force', [1]);
   });
 });

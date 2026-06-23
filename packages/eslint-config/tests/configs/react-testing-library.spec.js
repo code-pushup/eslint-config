@@ -28,39 +28,42 @@ describe('react-testing-library config', () => {
 
   it('should have rule from extended recommended react-testing-library config', async () => {
     const config = await loadConfig();
-    expect(config.rules).toHaveProperty('testing-library/await-async-events');
+    expect(config.rules).toHaveProperty('testing-library/await-async-queries', [
+      2,
+    ]);
   });
 
   it('should have explicitly added rule', async () => {
     const config = await loadConfig();
-    expect(config.rules).toHaveProperty('testing-library/prefer-user-event');
+    expect(config.rules).toHaveProperty('testing-library/prefer-user-event', [
+      1,
+    ]);
   });
 
   it('should have customized severity level for rule from extended config', async () => {
     const config = await loadConfig();
-    expect(config.rules?.['testing-library/no-await-sync-queries']).toEqual([
-      1,
-    ]);
+    expect(config.rules).toHaveProperty(
+      'testing-library/no-await-sync-queries',
+      [1],
+    );
   });
 
   it('should have customized rule', async () => {
     const config = await loadConfig();
     expect(config.rules).toHaveProperty(
       'testing-library/prefer-query-matchers',
+      [
+        1,
+        {
+          validEntries: [
+            { matcher: 'toBeVisible', query: 'get' },
+            { matcher: 'toHaveTextContent', query: 'get' },
+            { matcher: 'toBeEnabled', query: 'get' },
+            { matcher: 'toBeDisabled', query: 'get' },
+            { matcher: 'toBeChecked', query: 'get' },
+          ],
+        },
+      ],
     );
-    expect(
-      config.rules?.['testing-library/prefer-query-matchers'],
-    ).toStrictEqual([
-      1,
-      {
-        validEntries: [
-          { matcher: 'toBeVisible', query: 'get' },
-          { matcher: 'toHaveTextContent', query: 'get' },
-          { matcher: 'toBeEnabled', query: 'get' },
-          { matcher: 'toBeDisabled', query: 'get' },
-          { matcher: 'toBeChecked', query: 'get' },
-        ],
-      },
-    ]);
   });
 });

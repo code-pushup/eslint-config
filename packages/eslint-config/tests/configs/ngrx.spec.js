@@ -17,18 +17,19 @@ describe('ngrx config', () => {
 
   it('should have explicitly added rule', async () => {
     const config = await loadConfig();
-    expect(config.rules).toHaveProperty('rxjs-x/no-unsafe-catch');
+    expect(config.rules).toHaveProperty('rxjs-x/no-unsafe-catch', [2]);
   });
 
   it('should have rule from extended angular config', async () => {
     const config = await loadConfig();
     expect(config.rules).toHaveProperty(
       '@angular-eslint/prefer-on-push-component-change-detection',
+      [1],
     );
   });
 
   it('should have rule from extended recommended ngrx config', async () => {
     const config = await loadConfig();
-    expect(config.rules).toHaveProperty('@ngrx/good-action-hygiene');
+    expect(config.rules).toHaveProperty('@ngrx/good-action-hygiene', [1]);
   });
 });

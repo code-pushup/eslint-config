@@ -21,20 +21,23 @@ describe('graphql config', () => {
 
   it('should have rule from extended schema config', async () => {
     const config = await loadConfig();
-    expect(config.rules).toHaveProperty('@graphql-eslint/naming-convention');
+    expect(config.rules).toHaveProperty('@graphql-eslint/naming-convention', [
+      2,
+      expect.any(Object),
+    ]);
   });
 
   it('should have rule from extended relay config', async () => {
     const config = await loadConfig();
     expect(config.rules).toHaveProperty(
       '@graphql-eslint/relay-connection-types',
+      [2],
     );
   });
 
   it('should have customized rule', async () => {
     const config = await loadConfig();
-    expect(config.rules).toHaveProperty('@graphql-eslint/description-style');
-    expect(config.rules?.['@graphql-eslint/description-style']).toEqual([
+    expect(config.rules).toHaveProperty('@graphql-eslint/description-style', [
       1,
       { style: 'inline' },
     ]);

@@ -1,5 +1,6 @@
 // @ts-check
 
+import { NAMING_CONVENTION_OPTIONS } from '../../src/lib/rule-options.js';
 import { createLintUtils } from '../helpers/lint-utils.js';
 
 describe('typescript config', () => {
@@ -22,18 +23,22 @@ describe('typescript config', () => {
 
   it('should have explicitly added rule', async () => {
     const config = await loadConfig();
-    expect(config.rules).toHaveProperty('@typescript-eslint/naming-convention');
+    expect(config.rules).toHaveProperty(
+      '@typescript-eslint/naming-convention',
+      [1, ...NAMING_CONVENTION_OPTIONS],
+    );
   });
 
   it('should have rule from extended base config', async () => {
     const config = await loadConfig();
-    expect(config.rules).toHaveProperty('@typescript-eslint/no-shadow');
+    expect(config.rules).toHaveProperty('@typescript-eslint/no-shadow', [1]);
   });
 
   it('should have rule from extended recommended type-checked config', async () => {
     const config = await loadConfig();
     expect(config.rules).toHaveProperty(
       '@typescript-eslint/no-unsafe-assignment',
+      [2],
     );
   });
 
@@ -41,14 +46,16 @@ describe('typescript config', () => {
     const config = await loadConfig();
     expect(config.rules).toHaveProperty(
       '@typescript-eslint/no-non-null-assertion',
+      [2],
     );
   });
 
   it('should have rule disabled if test file pattern matches', async () => {
     const config = await loadConfig('index.test.ts');
-    expect(config.rules?.['@typescript-eslint/no-unsafe-assignment']).toEqual([
-      0,
-    ]);
+    expect(config.rules).toHaveProperty(
+      '@typescript-eslint/no-unsafe-assignment',
+      [0],
+    );
   });
 
   it('should not include extra rules for non-TS file', async () => {

@@ -26,16 +26,19 @@ describe('storybook config', () => {
 
   it('should include storybook rule for .storybook directory', async () => {
     const config = await loadConfig('.storybook/main.js');
-    expect(config.rules).toHaveProperty('storybook/no-uninstalled-addons');
+    expect(config.rules).toHaveProperty(
+      'storybook/no-uninstalled-addons',
+      expect.arrayContaining([2]),
+    );
   });
 
   it('should have rule from extended recommended config', async () => {
     const config = await loadConfig();
-    expect(config.rules).toHaveProperty('storybook/story-exports');
+    expect(config.rules).toHaveProperty('storybook/story-exports', [2]);
   });
 
   it('should have rule from extended csf config', async () => {
     const config = await loadConfig();
-    expect(config.rules).toHaveProperty('storybook/csf-component');
+    expect(config.rules).toHaveProperty('storybook/csf-component', [1]);
   });
 });

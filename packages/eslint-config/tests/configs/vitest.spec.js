@@ -24,11 +24,14 @@ describe('vitest config', () => {
 
   it('should have rule from extended recommended vitest config', async () => {
     const config = await loadConfig();
-    expect(config.rules).toHaveProperty('vitest/expect-expect');
+    expect(config.rules).toHaveProperty(
+      'vitest/expect-expect',
+      expect.arrayContaining([2]),
+    );
   });
 
   it('should have explicitly added rule', async () => {
     const config = await loadConfig();
-    expect(config.rules).toHaveProperty('vitest/prefer-to-have-length');
+    expect(config.rules).toHaveProperty('vitest/prefer-to-have-length', [1]);
   });
 });

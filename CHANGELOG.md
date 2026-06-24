@@ -1,3 +1,13 @@
+## 0.17.1 (2026-06-24)
+
+### 🩹 Fixes
+
+- **eslint-config:** enable type-checked rules ([51cc25a](https://github.com/code-pushup/eslint-config/commit/51cc25a))
+
+### ❤️ Thank You
+
+- Matěj Chalk
+
 ## 0.17.0 (2026-05-15)
 
 ### 🚀 Features

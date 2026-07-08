@@ -1,3 +1,13 @@
+## 0.17.2 (2026-07-08)
+
+### 🩹 Fixes
+
+- **eslint-config:** disable no-template-curly-in-string for .json files ([b93b60a](https://github.com/code-pushup/eslint-config/commit/b93b60a))
+
+### ❤️ Thank You
+
+- Matěj Chalk
+
 ## 0.17.1 (2026-06-24)
 
 ### 🩹 Fixes

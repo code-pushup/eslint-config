@@ -1,6 +1,6 @@
 {
   "name": "@code-pushup/create-eslint-config",
-  "version": "0.17.1",
+  "version": "0.17.2",
   "description": "Interactive setup wizard for @code-pushup/eslint-config",
   "type": "module",
   "main": "./src/index.js",

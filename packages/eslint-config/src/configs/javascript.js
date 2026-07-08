@@ -263,6 +263,7 @@ export default defineConfig(
     rules: {
       'max-lines': 'off',
       'no-unused-expressions': 'off',
+      'no-template-curly-in-string': 'off',
       '@typescript-eslint/no-unused-expressions': 'off',
       '@typescript-eslint/no-magic-numbers': 'off',
       'sonarjs/no-duplicate-string': 'off',

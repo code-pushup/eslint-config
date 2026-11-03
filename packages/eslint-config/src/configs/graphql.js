@@ -12,39 +12,45 @@ export { NAMING_CONVENTION_OPTIONS_GRAPHQL } from '../lib/rule-options.js';
 const v3FlatConfigs =
   'flatConfigs' in graphqlEslint ? graphqlEslint.flatConfigs : undefined;
 
-export default defineConfig(...node, {
-  name: 'code-pushup/graphql',
-  files: GRAPHQL_FILE_PATTERNS,
-  plugins: {
-    // @ts-expect-error incompatible meta.docs.category type in rules (`CategoryType | CategoryType[]` not assignable to `string | undefined`)
-    '@graphql-eslint': graphqlEslint,
+export default defineConfig(
+  ...node,
+  {
+    name: 'code-pushup/graphql/node-files-processor',
+    files: NODE_FILE_PATTERNS,
+    processor: graphqlEslint.processors.graphql,
   },
-  extends: [
-    v3FlatConfigs?.['schema-recommended'] ??
-      graphqlEslint.configs['flat/schema-recommended'],
-    v3FlatConfigs?.['relay'] ?? graphqlEslint.configs['flat/schema-relay'],
-    {
-      name: 'code-pushup/graphql/customized',
-      rules: {
-        // https://the-guild.dev/graphql/eslint/rules
-        '@graphql-eslint/description-style': ['warn', { style: 'inline' }],
-        '@graphql-eslint/no-hashtag-description': 'warn',
-        '@graphql-eslint/relay-edge-types': [
-          'error',
-          { listTypeCanWrapOnlyEdgeType: false },
-        ],
+  {
+    name: 'code-pushup/graphql',
+    files: GRAPHQL_FILE_PATTERNS,
+    plugins: {
+      // @ts-expect-error incompatible meta.docs.category type in rules (`CategoryType | CategoryType[]` not assignable to `string | undefined`)
+      '@graphql-eslint': graphqlEslint,
+    },
+    ...(v3FlatConfigs
+      ? {}
+      : { languageOptions: { parser: graphqlEslint.parser } }),
+    extends: [
+      v3FlatConfigs?.['schema-recommended'] ??
+        graphqlEslint.configs['flat/schema-recommended'],
+      v3FlatConfigs?.['relay'] ?? graphqlEslint.configs['flat/schema-relay'],
+      {
+        name: 'code-pushup/graphql/customized',
+        rules: {
+          // https://the-guild.dev/graphql/eslint/rules
+          '@graphql-eslint/description-style': ['warn', { style: 'inline' }],
+          '@graphql-eslint/no-hashtag-description': 'warn',
+          '@graphql-eslint/relay-edge-types': [
+            'error',
+            { listTypeCanWrapOnlyEdgeType: false },
+          ],
+        },
       },
-    },
-    {
-      name: 'code-pushup/graphql/disabled',
-      rules: {
-        '@graphql-eslint/strict-id-in-types': 'off',
+      {
+        name: 'code-pushup/graphql/disabled',
+        rules: {
+          '@graphql-eslint/strict-id-in-types': 'off',
+        },
       },
-    },
-    {
-      name: 'code-pushup/graphql/node-files-processor',
-      files: NODE_FILE_PATTERNS,
-      processor: graphqlEslint.processors.graphql,
-    },
-  ],
-});
+    ],
+  },
+);

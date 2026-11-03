@@ -1,3 +1,13 @@
+## 0.17.3 (2026-11-03)
+
+### 🩹 Fixes
+
+- **eslint-config:** lint GraphQL in tagged templates and parse .graphql files ([ba5eba8](https://github.com/code-pushup/eslint-config/commit/ba5eba8))
+
+### ❤️ Thank You
+
+- Matyáš Anton
+
 ## 0.17.2 (2026-07-08)
 
 ### 🩹 Fixes

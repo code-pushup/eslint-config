@@ -101,6 +101,7 @@ export default [
     meta.docs['requiresTypeChecking'] === true;
 
   return {
+    cwd,
     setup,
     teardown,
     loadConfig,
